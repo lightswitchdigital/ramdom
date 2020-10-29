@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -18,6 +19,9 @@ class User extends Authenticatable
 
     public const TYPE_INDIVIDUAL = 'individual';
     public const TYPE_ENTITY = 'entity';
+
+    public const STATUS_WAIT = 'wait';
+    public const STATUS_ACTIVE = 'active';
 
     protected $fillable = [
         'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role'
@@ -33,7 +37,7 @@ class User extends Authenticatable
         'passport_issue_date' => 'date'
     ];
 
-    public function rolesList() {
+    public static function rolesList() {
         return [
             self::ROLE_CUSTOMER => 'Заказчик',
             self::ROLE_PRO => 'Профессионал',
@@ -41,7 +45,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function adminRolesList() {
+    public static function adminRolesList() {
         return [
             self::ROLE_CUSTOMER => 'Заказчик',
             self::ROLE_PRO => 'Профессионал',
@@ -54,7 +58,7 @@ class User extends Authenticatable
         return self::rolesList()[$this->role];
     }
 
-    public function typesList() {
+    public static function typesList() {
         return [
             self::TYPE_INDIVIDUAL => 'Физическое лицо',
             self::TYPE_ENTITY => 'Юридическое лицо'
@@ -64,6 +68,32 @@ class User extends Authenticatable
     public function getType() {
         return self::typesList()[$this->type];
     }
+
+    public static function statusesList() {
+        return [
+            self::STATUS_WAIT => 'Неактивен',
+            self::STATUS_ACTIVE => 'Активен'
+        ];
+    }
+
+    public function getStatus() {
+        return self::statusesList()[$this->status];
+    }
+
+
+    public static function register($name, $last_name, $email, $phone, $role, $password) {
+        return static::create([
+            'name' => $name,
+            'last_name' => $last_name,
+            'email' => $email,
+            'phone' => $phone,
+            'password' => bcrypt($password),
+            'email_verify_token' => Str::uuid(),
+            'status' => self::STATUS_WAIT,
+            'role' => $role
+        ]);
+    }
+
 
     public function isCustomer() {
         return $this->role === self::ROLE_CUSTOMER;
@@ -75,6 +105,10 @@ class User extends Authenticatable
 
     public function isDeveloper() {
         return $this->role === self::ROLE_DEVELOPER;
+    }
+
+    public function isAdmin() {
+        return $this->role === self::ROLE_ADMIN;
     }
 
     public function isIndividual() {
