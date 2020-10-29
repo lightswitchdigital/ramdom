@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,64 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group([
+    'prefix' => 'profile',
+    'as' => 'profile.',
+    'namespace' => 'Profile',
+    'middleware' => ['auth']
+], function() {
+
+    Route::get('/', 'HomeController@index')->name('index');
+
+    Route::group([
+        'prefix' => 'projects',
+        'as' => 'projects.'
+    ], function() {
+
+        Route::get('/', 'ProjectsController@index')->name('index');
+
+    });
+
+    Route::group([
+        'prefix' => 'favorites',
+        'as' => 'favorites.'
+    ], function() {
+
+        Route::get('/', 'FavoritesController@index')->name('index');
+
+    });
+
+    Route::group([
+        'prefix' => 'building',
+        'as' => 'building.'
+    ], function() {
+
+        Route::get('/', 'BuildingController@index')->name('index');
+
+    });
+
+    Route::group([
+        'prefix' => 'documentation',
+        'as' => 'documentation.'
+    ], function() {
+
+        Route::get('/', 'DocumentationController@index')->name('index');
+
+    });
+
+    Route::group([
+        'prefix' => 'discounts',
+        'as' => 'discounts.'
+    ], function() {
+
+        Route::get('/', 'DiscountsController@index')->name('index');
+
+    });
+
+    Route::get('/', 'ProfileController@index')->name('index');
+
+});
