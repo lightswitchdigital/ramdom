@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+Route::get('/projects', 'ProjectsController@index')->name('projects');
+
 Route::group([
     'prefix' => 'profile',
     'as' => 'profile.',

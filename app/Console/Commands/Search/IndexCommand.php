@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Search;
 
-use App\Models\Project;
+use App\Models\Projects\Project;
 use App\Services\Search\ProjectsIndexerService;
 use Illuminate\Console\Command;
 

@@ -3,7 +3,7 @@
 
 namespace App\Services\Search;
 
-use App\Models\Project;
+use App\Models\Projects\Project;
 use Elasticsearch\Client;
 use stdClass;
 

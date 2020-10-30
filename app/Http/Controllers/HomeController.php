@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\Projects;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller

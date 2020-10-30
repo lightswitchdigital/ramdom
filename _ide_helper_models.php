@@ -40,16 +40,15 @@ namespace App\Models{
 	class Image extends Eloquent {}
 }
 
-namespace App\Models\Project{
+namespace App\Models\Projects{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
 
     /**
- * App\Models\Project\Attribute
+ * App\Models\Projects\Attribute
  *
  * @property int $id
- * @property int $category_id
  * @property string $name
  * @property string $type
  * @property int $required
@@ -58,7 +57,6 @@ namespace App\Models\Project{
  * @method static Builder|Attribute newModelQuery()
  * @method static Builder|Attribute newQuery()
  * @method static Builder|Attribute query()
- * @method static Builder|Attribute whereCategoryId($value)
  * @method static Builder|Attribute whereId($value)
  * @method static Builder|Attribute whereName($value)
  * @method static Builder|Attribute whereRequired($value)
@@ -69,13 +67,52 @@ namespace App\Models\Project{
 	class Attribute extends Eloquent {}
 }
 
-namespace App\Models\Project{
+namespace App\Models\Projects{
+
+    use App\Models\Image;
+    use App\Models\User;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\Projects\Project
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $title
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|User[] $favorites
+ * @property-read int|null $favorites_count
+ * @property-read Collection|Image[] $images
+ * @property-read int|null $images_count
+ * @property-read User $user
+ * @property-read Collection|Value[] $values
+ * @property-read int|null $values_count
+ * @method static Builder|Project active()
+ * @method static Builder|Project favoredByUser(User $user)
+ * @method static Builder|Project forUser(User $user)
+ * @method static Builder|Project newModelQuery()
+ * @method static Builder|Project newQuery()
+ * @method static Builder|Project query()
+ * @method static Builder|Project whereCreatedAt($value)
+ * @method static Builder|Project whereId($value)
+ * @method static Builder|Project whereTitle($value)
+ * @method static Builder|Project whereUpdatedAt($value)
+ * @method static Builder|Project whereUserId($value)
+ */
+	class Project extends Eloquent {}
+}
+
+namespace App\Models\Projects{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
 
     /**
- * App\Models\Project\Value
+ * App\Models\Projects\Value
  *
  * @property int $project_id
  * @property int $attribute_id
