@@ -40,33 +40,54 @@ namespace App\Models{
 	class Image extends Eloquent {}
 }
 
-namespace App\Models{
+namespace App\Models\Project{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
-    use Illuminate\Database\Eloquent\Collection;
-    use Illuminate\Support\Carbon;
 
     /**
- * App\Models\Project
+ * App\Models\Project\Attribute
  *
  * @property int $id
- * @property int $user_id
- * @property string $title
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Collection|Image[] $images
- * @property-read int|null $images_count
- * @method static Builder|Project newModelQuery()
- * @method static Builder|Project newQuery()
- * @method static Builder|Project query()
- * @method static Builder|Project whereCreatedAt($value)
- * @method static Builder|Project whereId($value)
- * @method static Builder|Project whereTitle($value)
- * @method static Builder|Project whereUpdatedAt($value)
- * @method static Builder|Project whereUserId($value)
+ * @property int $category_id
+ * @property string $name
+ * @property string $type
+ * @property int $required
+ * @property array $variants
+ * @property int $sort
+ * @method static Builder|Attribute newModelQuery()
+ * @method static Builder|Attribute newQuery()
+ * @method static Builder|Attribute query()
+ * @method static Builder|Attribute whereCategoryId($value)
+ * @method static Builder|Attribute whereId($value)
+ * @method static Builder|Attribute whereName($value)
+ * @method static Builder|Attribute whereRequired($value)
+ * @method static Builder|Attribute whereSort($value)
+ * @method static Builder|Attribute whereType($value)
+ * @method static Builder|Attribute whereVariants($value)
  */
-	class Project extends Eloquent {}
+	class Attribute extends Eloquent {}
+}
+
+namespace App\Models\Project{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Project\Value
+ *
+ * @property int $project_id
+ * @property int $attribute_id
+ * @property string $value
+ * @method static Builder|Value newModelQuery()
+ * @method static Builder|Value newQuery()
+ * @method static Builder|Value query()
+ * @method static Builder|Value whereAttributeId($value)
+ * @method static Builder|Value whereProjectId($value)
+ * @method static Builder|Value whereValue($value)
+ */
+	class Value extends Eloquent {}
 }
 
 namespace App\Models{
