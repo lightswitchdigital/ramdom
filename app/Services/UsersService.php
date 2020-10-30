@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Services;
 
 use App\Http\Requests\Auth\RegisterRequest;
@@ -10,7 +9,7 @@ class UsersService
 {
     public function register(RegisterRequest $request) {
 
-        $user = User::register($request['name'], $request['last_name'], $request['email'], $request['phone'], $request['role'], $request['password']);
+        $user = User::register($request['name'], $request['last_name'], $request['email'], $request['phone'], $request['role'], $request['type'], $request['password']);
 
         return $user;
     }

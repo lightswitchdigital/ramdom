@@ -24,7 +24,7 @@ class User extends Authenticatable
     public const STATUS_ACTIVE = 'active';
 
     protected $fillable = [
-        'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role'
+        'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status'
     ];
 
     protected $hidden = [
@@ -80,8 +80,7 @@ class User extends Authenticatable
         return self::statusesList()[$this->status];
     }
 
-
-    public static function register($name, $last_name, $email, $phone, $role, $password) {
+    public static function register($name, $last_name, $email, $phone, $role, $type, $password) {
         return static::create([
             'name' => $name,
             'last_name' => $last_name,
@@ -90,7 +89,8 @@ class User extends Authenticatable
             'password' => bcrypt($password),
             'email_verify_token' => Str::uuid(),
             'status' => self::STATUS_WAIT,
-            'role' => $role
+            'role' => $role,
+            'type' => $type
         ]);
     }
 

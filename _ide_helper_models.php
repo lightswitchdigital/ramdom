@@ -92,7 +92,7 @@ namespace App\Models{
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string $role
- * @property string $address
+ * @property string|null $address
  * @property string $type
  * @property string|null $passport_serial
  * @property string|null $passport_code
@@ -102,6 +102,7 @@ namespace App\Models{
  * @property string|null $company_address
  * @property string|null $company_inn
  * @property string|null $company_account
+ * @property string $status
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static Builder|User newModelQuery()
@@ -127,6 +128,7 @@ namespace App\Models{
  * @method static Builder|User wherePhone($value)
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereRole($value)
+ * @method static Builder|User whereStatus($value)
  * @method static Builder|User whereType($value)
  * @method static Builder|User whereUpdatedAt($value)
  */

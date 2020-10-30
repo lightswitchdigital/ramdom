@@ -13,7 +13,7 @@ class AddUserCredentials extends Migration
             $table->string('last_name')->after('name');
             $table->string('middle_name')->after('last_name')->nullable();
             $table->string('phone')->after('email');
-            $table->text('address');
+            $table->text('address')->nullable();
 
             $table->string('type');
         });
