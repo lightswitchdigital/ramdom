@@ -82,6 +82,7 @@ namespace App\Models\Projects{
  * @property int $id
  * @property int $user_id
  * @property string $title
+ * @property string $slug
  * @property string $description
  * @property float $price
  * @property string $status
@@ -104,6 +105,7 @@ namespace App\Models\Projects{
  * @method static Builder|Project whereDescription($value)
  * @method static Builder|Project whereId($value)
  * @method static Builder|Project wherePrice($value)
+ * @method static Builder|Project whereSlug($value)
  * @method static Builder|Project whereStatus($value)
  * @method static Builder|Project whereTitle($value)
  * @method static Builder|Project whereUpdatedAt($value)

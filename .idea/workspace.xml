@@ -20,23 +20,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Mail/Auth/VerificationMail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Region.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_31_090125_create_regions_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/projects/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProjectsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Projects/CreateRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Projects/UpdateRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Users/CreateRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Users/UpdateRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/ProjectsService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/_nav.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/users/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Search/IndexCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Search/IndexCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Search/InitCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Search/InitCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Projects/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Value.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Value.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Search/ProjectsIndexerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Search/ProjectsIndexerService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_28_083506_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_28_083506_create_projects_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UsersService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UsersService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +245,7 @@
       <workItem from="1604059634454" duration="203000" />
       <workItem from="1604066351222" duration="10594000" />
       <workItem from="1604133240232" duration="7584000" />
-      <workItem from="1604211485514" duration="153000" />
+      <workItem from="1604211485514" duration="4892000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -289,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604086247748</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="region added, minor features">
+      <created>1604211828695</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604211828695</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,7 +332,8 @@
     <MESSAGE value="elasticsearch added" />
     <MESSAGE value="project attributes, values" />
     <MESSAGE value="basic search added" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic search added" />
+    <MESSAGE value="region added, minor features" />
+    <option name="LAST_COMMIT_MESSAGE" value="region added, minor features" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -333,27 +348,27 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="257" y="109" width="978" height="681" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1603822713746" />
-    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604067991650">
+    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604214210656">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1604067991650" />
-    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603997678855">
+    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1604214210656" />
+    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604214086388">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1603997678855" />
-    <state x="174" y="0" width="1067" height="800" key="CommitChangelistDialog2" timestamp="1604086247486">
+    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1604214086388" />
+    <state x="174" y="0" width="1067" height="800" key="CommitChangelistDialog2" timestamp="1604211828443">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1604086247486" />
+    <state x="174" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1604211828443" />
     <state x="174" y="23" width="1067" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1603873639392" />
     <state x="209" y="79" key="DiffContextDialog" timestamp="1603823954491">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="209" y="79" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1603823954490" />
-    <state x="345" y="130" key="NewPhpClassDialog" timestamp="1604080201850">
+    <state x="345" y="130" key="NewPhpClassDialog" timestamp="1604215196939">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="345" y="130" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1604080201850" />
+    <state x="345" y="130" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1604215196939" />
     <state x="493" y="365" key="NewPhpFileDialog" timestamp="1603997457241">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -362,10 +377,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="97" y="1" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1603990408269" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1604086258137">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1604211904570">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604086258137" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604211904570" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1604141170875">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

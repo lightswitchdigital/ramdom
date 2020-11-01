@@ -22,6 +22,17 @@ class Project extends Model
 
     public $timestamps = true;
 
+    public static function statusesList() {
+        return [
+            self::STATUS_ACTIVE => 'Активен',
+            self::STATUS_CLOSED => 'Закрыт',
+        ];
+    }
+
+    public function getStatus() {
+        return self::statusesList()[$this->status];
+    }
+
     public function getValue($id)
     {
         foreach ($this->values as $value) {
