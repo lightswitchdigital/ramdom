@@ -20,17 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Projects/SearchRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Search/SearchService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/Auth/VerificationMail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Region.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_31_090125_create_regions_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Console/Commands/Search/IndexCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Search/IndexCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Project/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Project/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Project/Value.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Value.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Search/InitCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Search/InitCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Value.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Value.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/Search/ProjectsIndexerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Search/ProjectsIndexerService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_28_083506_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_28_083506_create_projects_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -230,7 +236,9 @@
       <workItem from="1604052872500" duration="2013000" />
       <workItem from="1604058692137" duration="59000" />
       <workItem from="1604059634454" duration="203000" />
-      <workItem from="1604066351222" duration="9907000" />
+      <workItem from="1604066351222" duration="10594000" />
+      <workItem from="1604133240232" duration="7584000" />
+      <workItem from="1604211485514" duration="153000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -274,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604080008308</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="basic search added">
+      <created>1604086247748</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1604086247748</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +317,8 @@
     <MESSAGE value="basic profile markup added" />
     <MESSAGE value="elasticsearch added" />
     <MESSAGE value="project attributes, values" />
-    <option name="LAST_COMMIT_MESSAGE" value="project attributes, values" />
+    <MESSAGE value="basic search added" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic search added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -325,10 +341,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1603997678855" />
-    <state x="174" y="0" width="1067" height="800" key="CommitChangelistDialog2" timestamp="1604080008121">
+    <state x="174" y="0" width="1067" height="800" key="CommitChangelistDialog2" timestamp="1604086247486">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1604080008121" />
+    <state x="174" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1604086247486" />
     <state x="174" y="23" width="1067" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1603873639392" />
     <state x="209" y="79" key="DiffContextDialog" timestamp="1603823954491">
       <screen x="0" y="0" width="1440" height="900" />
@@ -346,14 +362,14 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="97" y="1" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1603990408269" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1604080014516">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1604086258137">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604080014516" />
-    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1604078868572">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604086258137" />
+    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1604141170875">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1604078868572" />
+    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1604141170875" />
     <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603823589704">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

@@ -18,7 +18,23 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/projects', 'ProjectsController@index')->name('projects');
+Route::group([
+    'prefix' => 'projects',
+    'as' => 'projects.'
+], function() {
+
+    Route::get('/', 'ProjectsController@index')->name('index');
+    Route::get('/{project}', 'ProjectsController@show')->name('show');
+
+    Route::group([
+        'middleware' => ['auth'],
+    ], function() {
+
+
+
+    });
+
+});
 
 Route::group([
     'prefix' => 'profile',

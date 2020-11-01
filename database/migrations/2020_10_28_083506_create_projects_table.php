@@ -6,18 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProjectsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->string('title');
+            $table->string('slug');
+            $table->text('description');
+            $table->double('price', 8, 2);
+            $table->string('status');
 
             $table->timestamps();
         });

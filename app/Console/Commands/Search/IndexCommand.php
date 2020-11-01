@@ -24,7 +24,7 @@ class IndexCommand extends Command
     {
         $this->service->clear();
 
-        foreach (Project::orderBy('id')->cursor() as $project) {
+        foreach (Project::active()->orderBy('id')->cursor() as $project) {
             $this->service->index($project);
         }
 

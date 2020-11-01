@@ -12,6 +12,6 @@ class Value extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'attribute_id' => 'value'
+        'project_id', 'attribute_id', 'value'
     ];
 }

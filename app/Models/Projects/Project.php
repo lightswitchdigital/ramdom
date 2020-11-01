@@ -17,7 +17,7 @@ class Project extends Model
     protected $table = 'projects';
 
     protected $fillable = [
-        'user_id', 'title'
+        'user_id', 'title', 'slug', 'description', 'price', 'status'
     ];
 
     public $timestamps = true;
@@ -84,5 +84,10 @@ class Project extends Model
         return $query->whereHas('favorites', function(Builder $query) use ($user) {
             $query->where('user_id', $user->id);
         });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

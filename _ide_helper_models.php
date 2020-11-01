@@ -82,6 +82,9 @@ namespace App\Models\Projects{
  * @property int $id
  * @property int $user_id
  * @property string $title
+ * @property string $description
+ * @property float $price
+ * @property string $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Collection|User[] $favorites
@@ -98,7 +101,10 @@ namespace App\Models\Projects{
  * @method static Builder|Project newQuery()
  * @method static Builder|Project query()
  * @method static Builder|Project whereCreatedAt($value)
+ * @method static Builder|Project whereDescription($value)
  * @method static Builder|Project whereId($value)
+ * @method static Builder|Project wherePrice($value)
+ * @method static Builder|Project whereStatus($value)
  * @method static Builder|Project whereTitle($value)
  * @method static Builder|Project whereUpdatedAt($value)
  * @method static Builder|Project whereUserId($value)
@@ -125,6 +131,27 @@ namespace App\Models\Projects{
  * @method static Builder|Value whereValue($value)
  */
 	class Value extends Eloquent {}
+}
+
+namespace App\Models{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Region
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @method static Builder|Region newModelQuery()
+ * @method static Builder|Region newQuery()
+ * @method static Builder|Region query()
+ * @method static Builder|Region whereId($value)
+ * @method static Builder|Region whereName($value)
+ * @method static Builder|Region whereSlug($value)
+ */
+	class Region extends Eloquent {}
 }
 
 namespace App\Models{

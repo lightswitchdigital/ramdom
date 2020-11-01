@@ -48,6 +48,9 @@ class InitCommand extends Command
                         'title' => [
                             'type' => 'text',
                         ],
+                        'price' => [
+                            'type' => 'integer'
+                        ],
                         'description' => [
                             'type' => 'text',
                         ],
