@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -55,7 +53,7 @@ class User extends Authenticatable
     }
 
     public function getRole() {
-        return self::rolesList()[$this->role];
+        return self::adminRolesList()[$this->role];
     }
 
     public static function typesList() {
@@ -71,8 +69,8 @@ class User extends Authenticatable
 
     public static function statusesList() {
         return [
-            self::STATUS_WAIT => 'Неактивен',
-            self::STATUS_ACTIVE => 'Активен'
+            self::STATUS_ACTIVE => 'Активен',
+            self::STATUS_WAIT => 'Неактивен'
         ];
     }
 

@@ -55,7 +55,7 @@ class UsersController extends Controller
 
 
         $statuses = User::statusesList();
-        $roles = User::rolesList();
+        $roles = User::adminRolesList();
         $types = User::typesList();
 
         return view('admin.users.index', compact('users', 'statuses', 'roles', 'types'));
@@ -65,7 +65,7 @@ class UsersController extends Controller
     public function create()
     {
         $statuses = User::statusesList();
-        $roles = User::rolesList();
+        $roles = User::adminRolesList();
         $types = User::typesList();
 
         return view('admin.users.create', compact('statuses', 'roles', 'types'));
@@ -89,16 +89,22 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $statuses = User::statusesList();
-        $roles = User::rolesList();
+        $roles = User::adminRolesList();
         $types = User::typesList();
 
-        return view('admin.users.show', compact('user', 'statuses', 'roles', 'types'));
+        return view('admin.users.edit', compact('user', 'statuses', 'roles', 'types'));
     }
 
 
     public function update(UpdateRequest $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->except('password'));
+
+        if ($request['password']) {
+            $user->update([
+                'password' => bcrypt($request['password'])
+            ]);
+        }
 
         return redirect()->route('admin.users.show', $user)
             ->with('success', 'Пользователь успешно обновлен.');

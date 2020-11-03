@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Value extends Model
 {
-    protected $table = 'project_values';
+    protected $table = 'order_project_values';
 
     public $timestamps = false;
 

@@ -13,7 +13,7 @@
 
     namespace Illuminate\Support\Facades {
 
-        use App\Console\Kernel;
+        use use App\Console\Kernel;
         use App\Models\User;
         use BadMethodCallException;
         use Closure;
@@ -14566,7 +14566,7 @@
 
         namespace Barryvdh\Debugbar {
 
-            use Closure;use DebugBar\DataCollectorInterface;use DebugBar\HttpDriverInterface;
+            use use Closure;use DebugBar\DataCollectorInterface;use DebugBar\HttpDriverInterface;
             use DebugBar\RequestIdGeneratorInterface;
             use DebugBar\StorageInterface;use ErrorException;use Exception;use Symfony\Component\HttpFoundation\Request;use Symfony\Component\HttpFoundation\Response;
 

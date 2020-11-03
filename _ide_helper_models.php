@@ -93,7 +93,7 @@ namespace App\Models\Projects{
  * @property-read Collection|Image[] $images
  * @property-read int|null $images_count
  * @property-read User $user
- * @property-read Collection|Value[] $values
+ * @property-read Collection|ProjectValue[] $values
  * @property-read int|null $values_count
  * @method static Builder|Project active()
  * @method static Builder|Project favoredByUser(User $user)
@@ -125,12 +125,12 @@ namespace App\Models\Projects{
  * @property int $project_id
  * @property int $attribute_id
  * @property string $value
- * @method static Builder|Value newModelQuery()
- * @method static Builder|Value newQuery()
- * @method static Builder|Value query()
- * @method static Builder|Value whereAttributeId($value)
- * @method static Builder|Value whereProjectId($value)
- * @method static Builder|Value whereValue($value)
+ * @method static Builder|ProjectValue newModelQuery()
+ * @method static Builder|ProjectValue newQuery()
+ * @method static Builder|ProjectValue query()
+ * @method static Builder|ProjectValue whereAttributeId($value)
+ * @method static Builder|ProjectValue whereProjectId($value)
+ * @method static Builder|ProjectValue whereValue($value)
  */
 	class Value extends Eloquent {}
 }

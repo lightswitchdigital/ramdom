@@ -13,7 +13,6 @@ class CreateProjectAttributesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->boolean('required');
             $table->json('variants');
             $table->integer('sort');
         });

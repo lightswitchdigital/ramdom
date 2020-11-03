@@ -57,20 +57,20 @@ class InitCommand extends Command
                         'status' => [
                             'type' => 'keyword',
                         ],
-                        'values' => [
-                            'type' => 'nested',
-                            'properties' => [
-                                'attribute' => [
-                                    'type' => 'integer'
-                                ],
-                                'value_string' => [
-                                    'type' => 'keyword',
-                                ],
-                                'value_int' => [
-                                    'type' => 'integer',
-                                ],
-                            ],
-                        ],
+//                        'values' => [
+//                            'type' => 'nested',
+//                            'properties' => [
+//                                'attribute' => [
+//                                    'type' => 'integer'
+//                                ],
+//                                'value_string' => [
+//                                    'type' => 'keyword',
+//                                ],
+//                                'value_int' => [
+//                                    'type' => 'integer',
+//                                ],
+//                            ],
+//                        ],
                     ],
                 ],
                 'settings' => [
