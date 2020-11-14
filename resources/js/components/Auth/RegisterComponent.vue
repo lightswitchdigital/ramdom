@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         It is a register component
     </div>
 </template>
