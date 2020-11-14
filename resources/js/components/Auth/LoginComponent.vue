@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <form class="mx-auto" @submit.prevent='onSubmit'>
             <div class="form-group">
                 <label for="login">Эл. почта</label>
@@ -21,9 +21,9 @@
                 <small class="error-text" v-if="$v.password.$dirty && !$v.password.required">
                     введите пароль</small>
                 <small class="error-text" v-else-if="$v.password.$dirty && !$v.password.minLength">
-                    пароль не должен быть короче {{$v.password.$params.minLength.min}} символов</small>    
+                    пароль не должен быть короче {{$v.password.$params.minLength.min}} символов</small>
             </div>
-            
+
             <button class="btn btn-primary" type="submit">Войти</button>
         </form>
     </div>
@@ -62,7 +62,7 @@ export default {
         async onSubmit() {
             if(this.$v.$invalid){
                 this.$v.$touch()
-                return
+
             }
             const formData = {
                 email: this.email,

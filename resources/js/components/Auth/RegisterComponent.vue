@@ -46,6 +46,7 @@
             
             <button class="btn btn-primary" type="submit">Войти</button>
         </form>
+    <div>
     </div>
 </template>
 
