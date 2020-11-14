@@ -116,4 +116,12 @@ class User extends Authenticatable
     public function isEntity() {
         return $this->type === self::TYPE_ENTITY;
     }
+
+    public function isWait() {
+        return $this->status === self::STATUS_WAIT;
+    }
+
+    public function isActive() {
+        return $this->status === self::STATUS_ACTIVE;
+    }
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Services\UsersService;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,6 +45,6 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request) {
         $this->service->register($request);
 
-        return redirect()->route('login');
+        return new JsonResponse([], 204);
     }
 }

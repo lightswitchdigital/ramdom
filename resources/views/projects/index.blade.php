@@ -42,7 +42,10 @@
         </form>
 
         @foreach($projects as $project)
-            <project :project="{{ $project }}" :project-link="'{{ route('projects.show', $project) }}'"></project>
+            <project
+                :project="{{ $project }}"
+                :project-link="'{{ route('projects.show', $project) }}'"
+            ></project>
         @endforeach
     </div>
 
