@@ -51,16 +51,34 @@ export default {
         email: '',
         password: ''
     }),
+    created() {
+        this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+    },
     validations: {
         email: {required , email},
         password: {required , minLength: minLength(8)}
     },
     methods: {
-        onSubmit() {
+        async onSubmit() {
             if(this.$v.$invalid){
                 this.$v.$touch()
 
             }
+            const formData = {
+                email: this.email,
+                password: this.password,
+                _token: this.csrfToken
+            }
+
+            axios.post('/login' , formData).then(response => {
+                if(response.status == 200){
+                    alert('вы успешно вошли в свой аккаунт')
+                    this.$router.push('/')
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
         }
     }
 
