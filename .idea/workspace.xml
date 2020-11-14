@@ -23,11 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="gitignore public added">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Auth/LoginComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Auth/LoginComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Auth/RegisterComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Auth/RegisterComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +235,7 @@
       <workItem from="1604327550843" duration="10136000" />
       <workItem from="1604432239463" duration="416000" />
       <workItem from="1605327281944" duration="198000" />
-      <workItem from="1605341244675" duration="401000" />
+      <workItem from="1605341244675" duration="3341000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -298,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604216810110</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="gitignore public folder added added">
+      <created>1605341682352</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605341682352</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +338,8 @@
     <MESSAGE value="basic search added" />
     <MESSAGE value="region added, minor features" />
     <MESSAGE value="basic admin panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic admin panel" />
+    <MESSAGE value="gitignore public folder added added" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore public folder added added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -348,14 +358,18 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1604336992783" />
+    <state x="392" y="145" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605354090735">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="392" y="145" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1605354090735" />
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604214086388">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1604214086388" />
-    <state x="174" y="0" width="1067" height="800" key="CommitChangelistDialog2" timestamp="1605341644408">
+    <state x="174" y="0" width="1067" height="800" key="CommitChangelistDialog2" timestamp="1605341696337">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1605341644408" />
+    <state x="174" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1605341696337" />
     <state x="174" y="23" width="1067" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1603873639392" />
     <state x="209" y="79" key="DiffContextDialog" timestamp="1603823954491">
       <screen x="0" y="0" width="1440" height="900" />

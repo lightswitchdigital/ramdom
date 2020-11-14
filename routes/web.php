@@ -86,7 +86,7 @@ Route::group([
 
     });
 
-    Route::get('/', 'ProfileController@index')->name('index');
+    Route::get('/', 'HomeController@index')->name('index');
 
 });
 
