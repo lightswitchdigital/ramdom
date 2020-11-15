@@ -33,6 +33,10 @@ class Attribute extends Model
         ];
     }
 
+    public function getType() {
+        return self::typesList()[$this->type];
+    }
+
     public function isString(): bool
     {
         return $this->type === self::TYPE_STRING;

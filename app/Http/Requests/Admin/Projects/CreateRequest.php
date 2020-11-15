@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Projects;
 
 use App\Models\Projects\Attribute;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
@@ -33,7 +34,7 @@ class CreateRequest extends FormRequest
             if ($attribute->isSelect()) {
                 $rules[] = Rule::in($attribute->variants);
             }
-            $items['attribute.' . $attribute->id] = $rules;
+            $items['attributes.' . $attribute->id] = $rules;
         }
 
         return array_merge([

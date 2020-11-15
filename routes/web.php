@@ -111,7 +111,14 @@ Route::group([
         'as' => 'projects.'
     ], function() {
 
+        Route::group([
+            'prefix' => 'attributes',
+            'as' => 'attributes.'
+        ], function() {
 
+
+        });
+        Route::resource('attributes', 'AttributesController');
 
     });
     Route::resource('projects', 'ProjectsController');

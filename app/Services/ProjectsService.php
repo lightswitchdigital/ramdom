@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\Projects\PhotosRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use DB;
+use Illuminate\Support\Str;
 use Storage;
 
 class ProjectsService
@@ -20,8 +21,10 @@ class ProjectsService
 
             $project = Project::create([
                 'title' => $request['title'],
+                'slug' => Str::slug($request['title']),
                 'description' => $request['description'],
                 'price' => $request['price'],
+                'status' => Project::STATUS_ACTIVE
             ]);
 
             foreach (Attribute::all() as $attribute) {

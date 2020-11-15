@@ -10,7 +10,6 @@ class CreateOrderProjectValuesTable extends Migration
     public function up()
     {
         Schema::create('order_project_values', function (Blueprint $table) {
-
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
@@ -20,7 +19,6 @@ class CreateOrderProjectValuesTable extends Migration
             $table->unsignedBigInteger('attribute_id');
             $table->foreign('attribute_id')->references('id')->on('order_project_attributes')->onDelete('CASCADE');
             $table->string('value');
-
         });
     }
 
