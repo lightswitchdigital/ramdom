@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Projects\CreateRequest;
-use App\Http\Requests\Admin\Projects\UpdateRequest;
+use App\Http\Requests\Admin\Projects\EditRequest;
 use App\Models\Projects\Project;
 use App\Services\ProjectsService;
 use GuzzleHttp\Promise\Create;
@@ -76,7 +76,7 @@ class ProjectsController extends Controller
     }
 
 
-    public function update(UpdateRequest $request, Project $project)
+    public function update(EditRequest $request, Project $project)
     {
         $project->update($request->all());
 

@@ -22,4 +22,8 @@ class ProjectValue extends Model
     public function project() {
         return $this->belongsTo(Project::class);
     }
+
+    public function attribute() {
+        return $this->belongsTo(ProjectAttribute::class);
+    }
 }

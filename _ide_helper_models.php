@@ -82,6 +82,33 @@ namespace App\Models\Orders{
 
 namespace App\Models\Orders{
 
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Orders\ProjectAttribute
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $type
+ * @property array $variants
+ * @property int $sort
+ * @property float $price
+ * @method static Builder|ProjectAttribute newModelQuery()
+ * @method static Builder|ProjectAttribute newQuery()
+ * @method static Builder|ProjectAttribute query()
+ * @method static Builder|ProjectAttribute whereId($value)
+ * @method static Builder|ProjectAttribute whereName($value)
+ * @method static Builder|ProjectAttribute wherePrice($value)
+ * @method static Builder|ProjectAttribute whereSort($value)
+ * @method static Builder|ProjectAttribute whereType($value)
+ * @method static Builder|ProjectAttribute whereVariants($value)
+ */
+	class ProjectAttribute extends Eloquent {}
+}
+
+namespace App\Models\Orders{
+
     use App\Models\Projects\Project;
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
@@ -122,6 +149,7 @@ namespace App\Models\Orders{
  * @property int $project_id
  * @property int $attribute_id
  * @property string $value
+ * @property-read ProjectAttribute $attribute
  * @property-read Order $order
  * @property-read Project $project
  * @method static Builder|ProjectValue newModelQuery()
@@ -215,7 +243,6 @@ namespace App\Models\Projects{
  * App\Models\Projects\Value
  *
  * @property int $id
- * @property int $order_id
  * @property int $project_id
  * @property int $attribute_id
  * @property string $value
@@ -224,7 +251,6 @@ namespace App\Models\Projects{
  * @method static Builder|Value query()
  * @method static Builder|Value whereAttributeId($value)
  * @method static Builder|Value whereId($value)
- * @method static Builder|Value whereOrderId($value)
  * @method static Builder|Value whereProjectId($value)
  * @method static Builder|Value whereValue($value)
  */

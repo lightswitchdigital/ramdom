@@ -6,7 +6,7 @@ use App\Models\Projects\Attribute;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class AttributesRequest extends FormRequest
 {
 
     public function authorize()
@@ -36,10 +36,6 @@ class CreateRequest extends FormRequest
             $items['attribute.' . $attribute->id] = $rules;
         }
 
-        return array_merge([
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'price' => ['required', 'numeric']
-        ], $items);
+        return $items;
     }
 }
