@@ -40,6 +40,102 @@ namespace App\Models{
 	class Image extends Eloquent {}
 }
 
+namespace App\Models\Orders{
+
+    use App\Models\Projects\Project;
+    use App\Models\User;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\Orders\Order
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $project_id
+ * @property string $order_name
+ * @property string $order_email
+ * @property string $order_phone
+ * @property float $amount
+ * @property string $status
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Project $project
+ * @property-read User $user
+ * @method static Builder|Order newModelQuery()
+ * @method static Builder|Order newQuery()
+ * @method static Builder|Order query()
+ * @method static Builder|Order whereAmount($value)
+ * @method static Builder|Order whereCreatedAt($value)
+ * @method static Builder|Order whereId($value)
+ * @method static Builder|Order whereOrderEmail($value)
+ * @method static Builder|Order whereOrderName($value)
+ * @method static Builder|Order whereOrderPhone($value)
+ * @method static Builder|Order whereProjectId($value)
+ * @method static Builder|Order whereStatus($value)
+ * @method static Builder|Order whereUpdatedAt($value)
+ * @method static Builder|Order whereUserId($value)
+ */
+	class Order extends Eloquent {}
+}
+
+namespace App\Models\Orders{
+
+    use App\Models\Projects\Project;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Orders\ProjectData
+ *
+ * @property int $id
+ * @property int $order_id
+ * @property int $project_id
+ * @property string $data
+ * @property float $total_price
+ * @property-read Order $order
+ * @property-read Project $project
+ * @method static Builder|ProjectData newModelQuery()
+ * @method static Builder|ProjectData newQuery()
+ * @method static Builder|ProjectData query()
+ * @method static Builder|ProjectData whereData($value)
+ * @method static Builder|ProjectData whereId($value)
+ * @method static Builder|ProjectData whereOrderId($value)
+ * @method static Builder|ProjectData whereProjectId($value)
+ * @method static Builder|ProjectData whereTotalPrice($value)
+ */
+	class ProjectData extends Eloquent {}
+}
+
+namespace App\Models\Orders{
+
+    use App\Models\Projects\Project;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Orders\ProjectValue
+ *
+ * @property int $id
+ * @property int $order_id
+ * @property int $project_id
+ * @property int $attribute_id
+ * @property string $value
+ * @property-read Order $order
+ * @property-read Project $project
+ * @method static Builder|ProjectValue newModelQuery()
+ * @method static Builder|ProjectValue newQuery()
+ * @method static Builder|ProjectValue query()
+ * @method static Builder|ProjectValue whereAttributeId($value)
+ * @method static Builder|ProjectValue whereId($value)
+ * @method static Builder|ProjectValue whereOrderId($value)
+ * @method static Builder|ProjectValue whereProjectId($value)
+ * @method static Builder|ProjectValue whereValue($value)
+ */
+	class ProjectValue extends Eloquent {}
+}
+
 namespace App\Models\Projects{
 
     use Eloquent;
@@ -51,7 +147,6 @@ namespace App\Models\Projects{
  * @property int $id
  * @property string $name
  * @property string $type
- * @property int $required
  * @property array $variants
  * @property int $sort
  * @method static Builder|Attribute newModelQuery()
@@ -59,7 +154,6 @@ namespace App\Models\Projects{
  * @method static Builder|Attribute query()
  * @method static Builder|Attribute whereId($value)
  * @method static Builder|Attribute whereName($value)
- * @method static Builder|Attribute whereRequired($value)
  * @method static Builder|Attribute whereSort($value)
  * @method static Builder|Attribute whereType($value)
  * @method static Builder|Attribute whereVariants($value)
@@ -80,7 +174,6 @@ namespace App\Models\Projects{
  * App\Models\Projects\Project
  *
  * @property int $id
- * @property int $user_id
  * @property string $title
  * @property string $slug
  * @property string $description
@@ -93,7 +186,7 @@ namespace App\Models\Projects{
  * @property-read Collection|Image[] $images
  * @property-read int|null $images_count
  * @property-read User $user
- * @property-read Collection|ProjectValue[] $values
+ * @property-read Collection|Value[] $values
  * @property-read int|null $values_count
  * @method static Builder|Project active()
  * @method static Builder|Project favoredByUser(User $user)
@@ -109,7 +202,6 @@ namespace App\Models\Projects{
  * @method static Builder|Project whereStatus($value)
  * @method static Builder|Project whereTitle($value)
  * @method static Builder|Project whereUpdatedAt($value)
- * @method static Builder|Project whereUserId($value)
  */
 	class Project extends Eloquent {}
 }
@@ -122,15 +214,19 @@ namespace App\Models\Projects{
     /**
  * App\Models\Projects\Value
  *
+ * @property int $id
+ * @property int $order_id
  * @property int $project_id
  * @property int $attribute_id
  * @property string $value
- * @method static Builder|ProjectValue newModelQuery()
- * @method static Builder|ProjectValue newQuery()
- * @method static Builder|ProjectValue query()
- * @method static Builder|ProjectValue whereAttributeId($value)
- * @method static Builder|ProjectValue whereProjectId($value)
- * @method static Builder|ProjectValue whereValue($value)
+ * @method static Builder|Value newModelQuery()
+ * @method static Builder|Value newQuery()
+ * @method static Builder|Value query()
+ * @method static Builder|Value whereAttributeId($value)
+ * @method static Builder|Value whereId($value)
+ * @method static Builder|Value whereOrderId($value)
+ * @method static Builder|Value whereProjectId($value)
+ * @method static Builder|Value whereValue($value)
  */
 	class Value extends Eloquent {}
 }
@@ -154,6 +250,39 @@ namespace App\Models{
  * @method static Builder|Region whereSlug($value)
  */
 	class Region extends Eloquent {}
+}
+
+namespace App\Models{
+
+    use App\Models\Projects\Project;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\SavedProject
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $project_id
+ * @property string $data
+ * @property array $values_data
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Project $project
+ * @property-read User $user
+ * @method static Builder|SavedProject newModelQuery()
+ * @method static Builder|SavedProject newQuery()
+ * @method static Builder|SavedProject query()
+ * @method static Builder|SavedProject whereCreatedAt($value)
+ * @method static Builder|SavedProject whereData($value)
+ * @method static Builder|SavedProject whereId($value)
+ * @method static Builder|SavedProject whereProjectId($value)
+ * @method static Builder|SavedProject whereUpdatedAt($value)
+ * @method static Builder|SavedProject whereUserId($value)
+ * @method static Builder|SavedProject whereValuesData($value)
+ */
+	class SavedProject extends Eloquent {}
 }
 
 namespace App\Models{
