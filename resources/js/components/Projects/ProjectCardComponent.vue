@@ -5,6 +5,13 @@
         </div>
         <div class="card-body">
             {{ this.project.description }}
+            <hr>
+            <div
+                v-for="(value, label) in this.projectValues"
+            >
+                {{ label }} : {{ value }}
+                <br>
+            </div>
         </div>
     </div>
 </template>
@@ -13,7 +20,9 @@
 export default {
     props: [
         'project',
-        'projectLink'
+        'projectLink',
+        'projectImages',
+        'projectValues'
     ]
 };
 </script>

@@ -93,6 +93,7 @@ namespace App\Models\Orders{
  * @property string $type
  * @property array $variants
  * @property int $sort
+ * @property int $required
  * @property float $price
  * @method static Builder|ProjectAttribute newModelQuery()
  * @method static Builder|ProjectAttribute newQuery()
@@ -100,6 +101,7 @@ namespace App\Models\Orders{
  * @method static Builder|ProjectAttribute whereId($value)
  * @method static Builder|ProjectAttribute whereName($value)
  * @method static Builder|ProjectAttribute wherePrice($value)
+ * @method static Builder|ProjectAttribute whereRequired($value)
  * @method static Builder|ProjectAttribute whereSort($value)
  * @method static Builder|ProjectAttribute whereType($value)
  * @method static Builder|ProjectAttribute whereVariants($value)
@@ -177,11 +179,13 @@ namespace App\Models\Projects{
  * @property string $type
  * @property array $variants
  * @property int $sort
+ * @property int $required
  * @method static Builder|Attribute newModelQuery()
  * @method static Builder|Attribute newQuery()
  * @method static Builder|Attribute query()
  * @method static Builder|Attribute whereId($value)
  * @method static Builder|Attribute whereName($value)
+ * @method static Builder|Attribute whereRequired($value)
  * @method static Builder|Attribute whereSort($value)
  * @method static Builder|Attribute whereType($value)
  * @method static Builder|Attribute whereVariants($value)

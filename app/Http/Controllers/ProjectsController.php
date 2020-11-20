@@ -6,6 +6,7 @@ use App\Http\Requests\Projects\SearchRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use App\Services\Search\SearchService;
+use Storage;
 
 class ProjectsController extends Controller
 {
@@ -31,6 +32,10 @@ class ProjectsController extends Controller
             abort(404);
         }
 
-        return view('projects.show', compact('project'));
+        $images = $project->getImagesInJson();
+        $created_at = $project->created_at->format('d-m-Y');
+        $values = $project->getValuesInJson();
+
+        return view('projects.show', compact('project', 'images', 'created_at', 'values'));
     }
 }

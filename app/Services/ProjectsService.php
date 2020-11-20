@@ -27,6 +27,12 @@ class ProjectsService
                 'status' => Project::STATUS_ACTIVE
             ]);
 
+            foreach ($request['images'] as $file) {
+                $project->images()->create([
+                    'file' => $file->store('projects', 'public')
+                ]);
+            }
+
             foreach (Attribute::all() as $attribute) {
                 $value = $request['attributes'][$attribute->id] ?? null;
                 if (!empty($value)) {
@@ -41,20 +47,6 @@ class ProjectsService
 
         });
 
-    }
-
-    public function addPhotos($id, PhotosRequest $request) {
-        $project = $this->getProject($id);
-
-        DB::transaction(function() use ($request, $project) {
-            foreach ($request['files'] as $file) {
-                $project->images()->create([
-                    'file' => $file->store('projects', 'public')
-                ]);
-            }
-
-            $project->update();
-        });
     }
 
     public function edit($id, EditRequest $request) {

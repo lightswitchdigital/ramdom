@@ -3,7 +3,7 @@
 @section('content')
     @include('admin._nav', ['route' => 'projects'])
 
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+    <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
 
         <div class="card mb-3">
@@ -32,6 +32,14 @@
                     <label for="price" class="col-form-label">Стартовая цена</label>
                     <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
                     @error('price')
+                        <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="images" class="col-form-label">Картинки</label>
+                    <input id="images" type="file" multiple class="form-control-file @error('images') is-invalid @enderror" name="images[]">
+                    @error('images')
                         <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                     @enderror
                 </div>
