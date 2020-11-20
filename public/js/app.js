@@ -2006,23 +2006,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!_this.$v.$invalid) {
-                  _context.next = 3;
-                  break;
+                if (_this.$v.$invalid) {
+                  _this.$v.$touch();
                 }
 
-                _this.$v.$touch();
-
-                return _context.abrupt("return");
-
-              case 3:
                 formData = {
                   email: _this.email,
                   password: _this.password,
                   _token: _this.csrfToken
                 };
                 axios.post('/login', formData).then(function (response) {
-                  if (response.status == 200) {
+                  if (response.status === 204) {
                     alert('вы успешно вошли в свой аккаунт');
 
                     _this.$router.push('/');
@@ -2031,7 +2025,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 5:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -2186,7 +2180,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _token: _this.csrfToken
                 };
                 axios.post('/register', formData).then(function (response) {
-                  if (response.status == 200) {
+                  if (response.status === 204) {
                     alert('вы успешно зарегестрировались');
 
                     _this.$router.push('/');
@@ -39284,7 +39278,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", [
     _c(
       "form",
       {

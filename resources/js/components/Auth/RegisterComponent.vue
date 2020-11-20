@@ -46,7 +46,6 @@
             
             <button class="btn btn-primary" type="submit">Войти</button>
         </form>
-    <div>
     </div>
 </template>
 
@@ -98,7 +97,7 @@ export default {
             }
 
             axios.post('/register' , formData).then(response => {
-                if(response.status == 200){
+                if(response.status === 204){
                     alert('вы успешно зарегестрировались')
                     this.$router.push('/')
                 }
