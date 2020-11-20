@@ -23,10 +23,10 @@ class SearchService
             return !empty($value['equals']) || !empty($value['from']) || !empty($value['to']);
         });
 
-        $response = $this->client->search([
+        $searchArray = [
             'index' => 'projects',
             'body' => [
-//                '_source' => ['id'],
+                '_source' => ['id'],
                 'from' => ($page - 1) * $perPage,
                 'size' => $perPage,
                 'sort' => empty($request['text']) ? [
@@ -35,9 +35,9 @@ class SearchService
                 'query' => [
                     'bool' => [
                         'must' => array_merge(
-//                            [
-//                                ['term' => ['status' => Project::STATUS_ACTIVE]],
-//                            ],
+                            [
+                                ['term' => ['status' => Project::STATUS_ACTIVE]],
+                            ],
                             array_filter([
                                 !empty($request['text']) ? ['multi_match' => [
                                     'query' => $request['text'],
@@ -65,7 +65,8 @@ class SearchService
                     ],
                 ],
             ]
-        ]);
+        ];
+        $response = $this->client->search($searchArray);
 
         $ids = array_column($response['hits']['hits'], '_id');
 
@@ -73,7 +74,6 @@ class SearchService
             $items = Project::whereIn('id', $ids)
                 ->orderBy(new Expression('FIELD(id,' . implode(',', $ids) . ')'))
                 ->get();
-//            dd($items, $response['hits']['total'], $perPage, $page);
             $pagination = new LengthAwarePaginator($items, $response['hits']['total']['value'], $perPage, $page);
         }else {
             $pagination = new LengthAwarePaginator([], 0, $perPage, $page);

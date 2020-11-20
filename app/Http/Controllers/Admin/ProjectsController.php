@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Projects\AttributesRequest;
 use App\Http\Requests\Admin\Projects\CreateRequest;
-use App\Http\Requests\Admin\Projects\UpdateRequest;
+use App\Http\Requests\Admin\Projects\EditRequest;
+use App\Http\Requests\Admin\Projects\PhotosRequest;
+use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use App\Services\ProjectsService;
+use DomainException;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
@@ -49,8 +53,9 @@ class ProjectsController extends Controller
     public function create()
     {
         $statusesList = Project::statusesList();
+        $attributes = Attribute::all();
 
-        return view('admin.projects.create', compact('statusesList'));
+        return view('admin.projects.create', compact('statusesList', 'attributes'));
     }
 
 
@@ -64,7 +69,8 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        $attributes = Attribute::all();
+        return view('admin.projects.show', compact('project', 'attributes'));
     }
 
 
@@ -75,15 +81,52 @@ class ProjectsController extends Controller
         return view('admin.projects.edit', compact('project', 'statusesList'));
     }
 
-
-    public function update(UpdateRequest $request, Project $project)
+    public function update(EditRequest $request, Project $project)
     {
-        $project->update($request->all());
+        try {
+            $this->service->edit($project->id, $request);
+        } catch (DomainException $e) {
+            return redirect()->back()
+                ->with('error', $e->getMessage());
+        }
 
         return redirect()->route('admin.projects.show', $project)
             ->with('success', 'Проект успешно обновлен.');
     }
 
+    public function editPhotos(Project $project) {
+        return view('admin.projects.edit-photos', compact('project'));
+    }
+
+    public function updatePhotos(Project $project, PhotosRequest $request) {
+
+        try {
+            $this->service->editPhotos($project->id, $request);
+        }catch (DomainException $e) {
+            return redirect()->back()
+                ->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('admin.projects.show', $project)
+            ->with('success', 'Проект успешно обновлен.');
+    }
+
+    public function editAttributes(Project $project) {
+        return view('admin.projects.edit-attributes', compact('project'));
+    }
+
+    public function updateAttributes(Project $project, AttributesRequest $request) {
+
+        try {
+            $this->service->editAttributes($project->id, $request);
+        }catch (DomainException $e) {
+            return redirect()->back()
+                ->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('admin.projects.show', $project)
+            ->with('success', 'Проект успешно обновлен.');
+    }
 
     public function destroy(Project $project)
     {

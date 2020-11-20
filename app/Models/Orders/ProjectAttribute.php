@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Models\Projects;
+namespace App\Models\Orders;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use function count;
 
-class Attribute extends Model
+class ProjectAttribute extends Model
 {
-
     public const TYPE_STRING = 'string';
     public const TYPE_INTEGER = 'integer';
     public const TYPE_FLOAT = 'float';
 
-    protected $table = 'project_attributes';
+    protected $table = 'order_project_attributes';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'type', 'required', 'default', 'variants', 'sort'
+        'name', 'type', 'required', 'default', 'variants', 'sort', 'price'
     ];
 
     protected $casts = [
@@ -31,10 +29,6 @@ class Attribute extends Model
             self::TYPE_INTEGER => 'Число',
             self::TYPE_FLOAT => 'Дробное',
         ];
-    }
-
-    public function getType() {
-        return self::typesList()[$this->type];
     }
 
     public function isString(): bool

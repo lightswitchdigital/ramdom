@@ -42,12 +42,10 @@
         </form>
 
         @foreach($projects as $project)
-            <div class="card mx-4" style="width: 30%; float: left">
-                <div class="card-header">{{ $project->title }}</div>
-                <div class="card-body">
-                    {{ $project->description }}
-                </div>
-            </div>
+            <project-card
+                :project="{{ $project }}"
+                :project-link="'{{ route('projects.show', $project) }}'"
+            ></project-card>
         @endforeach
     </div>
 

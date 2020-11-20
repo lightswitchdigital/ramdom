@@ -4,23 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectAttributesTable extends Migration
+class CreateOrderProjectAttributes extends Migration
 {
 
     public function up()
     {
-        Schema::create('project_attributes', function (Blueprint $table) {
+        Schema::create('order_project_attributes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('type');
             $table->json('variants');
             $table->integer('sort');
             $table->boolean('required')->default(false);
+            $table->double('price', 8, 2)->default(0);
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('project_attributes');
+        Schema::dropIfExists('order_project_attributes');
     }
 }

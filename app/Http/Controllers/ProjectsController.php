@@ -26,7 +26,7 @@ class ProjectsController extends Controller
     }
 
     public function show($slug) {
-        $project = Project::where('slug', $slug)->with(['images', 'values'])->get();
+        $project = Project::where('slug', $slug)->with(['images', 'values'])->first();
         if (!$project) {
             abort(404);
         }

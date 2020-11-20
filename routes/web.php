@@ -86,7 +86,7 @@ Route::group([
 
     });
 
-    Route::get('/', 'ProfileController@index')->name('index');
+    Route::get('/', 'HomeController@index')->name('index');
 
 });
 
@@ -111,7 +111,14 @@ Route::group([
         'as' => 'projects.'
     ], function() {
 
+        Route::group([
+            'prefix' => 'attributes',
+            'as' => 'attributes.'
+        ], function() {
 
+
+        });
+        Route::resource('attributes', 'AttributesController');
 
     });
     Route::resource('projects', 'ProjectsController');
@@ -127,3 +134,5 @@ Route::group([
     Route::resource('users', 'UsersController');
 
 });
+
+Route::get('/excel', 'DocumentsController@index');

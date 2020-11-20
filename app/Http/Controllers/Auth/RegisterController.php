@@ -7,22 +7,15 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Services\UsersService;
+use Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -44,6 +37,11 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request) {
         $this->service->register($request);
 
-        return redirect()->route('login');
+        return new JsonResponse([], 204);
+    }
+
+    public function registered(Request $request, $user) {
+        session()->flash('success', 'Вы успешно зарегистрировались. Перед входом пожалуйста подтвердите свою почту.');
+        Auth::logout();
     }
 }

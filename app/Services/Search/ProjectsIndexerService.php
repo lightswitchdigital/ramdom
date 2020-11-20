@@ -38,13 +38,13 @@ class ProjectsIndexerService
                 'description' => $project->description,
                 'status' => $project->status,
                 'price' => (int)$project->price,
-//                'values' => array_map(function (Value $value) {
-//                    return [
-//                        'attribute' => $value->attribute_id,
-//                        'value_string' => (string)$value->value,
-//                        'value_int' => (int)$value->value,
-//                    ];
-//                }, $project->values()->getModels())
+                'values' => array_map(function (Value $value) {
+                    return [
+                        'attribute' => $value->attribute_id,
+                        'value_string' => (string)$value->value,
+                        'value_int' => (int)$value->value,
+                    ];
+                }, $project->values()->getModels())
             ]
         ]);
     }
