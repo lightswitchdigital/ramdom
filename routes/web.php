@@ -134,3 +134,5 @@ Route::group([
     Route::resource('users', 'UsersController');
 
 });
+
+Route::get('/excel', 'DocumentsController@index');

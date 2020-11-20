@@ -1,9 +1,7 @@
 <template>
-    <div class="card mx-4" style="width: 30%; float: left">
-        <div class="card-header">
-            <a :href="this.projectLink">{{ this.project.title }}</a>
-        </div>
-        <div class="card-body">
+    <div class="container">
+        <h2>{{ this.project.title }}</h2>
+        <div class="description">
             {{ this.project.description }}
         </div>
     </div>
@@ -12,8 +10,11 @@
 <script>
 export default {
     props: [
-        'project',
-        'projectLink'
+        'project'
     ]
-};
+}
 </script>
+
+<style scoped>
+
+</style>

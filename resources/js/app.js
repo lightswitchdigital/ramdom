@@ -12,6 +12,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuelidate from 'vuelidate'
+import ProjectCardComponent from "./components/Projects/ProjectCardComponent";
 import ProjectComponent from "./components/Projects/ProjectComponent";
 
 Vue.use(Vuelidate)
@@ -30,6 +31,7 @@ Vue.use(Vuelidate)
 Vue.component('login', LoginComponent);
 Vue.component('register', RegisterComponent);
 
+Vue.component('project-card', ProjectCardComponent);
 Vue.component('project', ProjectComponent);
 
 /**

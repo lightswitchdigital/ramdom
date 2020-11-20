@@ -19,35 +19,27 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:dev" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="phone is now unique, added some fields to registration">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AttributesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_15_101636_create_order_project_values_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/attributes/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/attributes/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/attributes/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/attributes/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/edit-photos.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/projects/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectCardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/Search/InitCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/Search/InitCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/Projects/CreateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Projects/CreateRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ProjectsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Search/ProjectsIndexerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Search/ProjectsIndexerService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Search/SearchService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Search/SearchService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_30_145039_create_project_attributes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_30_145039_create_project_attributes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_02_164922_create_order_project_values_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_15_063640_create_order_project_attributes.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_15_063640_create_order_project_attributes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/projects/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/projects/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/projects/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/projects/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/projects/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/CredentialsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/CredentialsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +50,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -194,6 +193,12 @@
       <path value="$PROJECT_DIR$/vendor/ezimuel/ringphp" />
       <path value="$PROJECT_DIR$/vendor/ezimuel/guzzlestreams" />
       <path value="$PROJECT_DIR$/vendor/elasticsearch/elasticsearch" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jTDVdIShQfLP7INkjISecZrgR0" />
@@ -221,6 +226,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/app/Models/Project" />
       <recent name="$PROJECT_DIR$/resources/views" />
     </key>
@@ -256,6 +262,8 @@
       <workItem from="1605327281944" duration="198000" />
       <workItem from="1605341244675" duration="7937000" />
       <workItem from="1605382261959" duration="9835000" />
+      <workItem from="1605684386898" duration="2141000" />
+      <workItem from="1605854649024" duration="1628000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -348,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605420890926</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Attribute management done, search fixed">
+      <created>1605438187091</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1605438187092</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,6 +375,17 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
               <option name="COLUMN_WIDTH">
                 <map>
                   <entry key="2" value="74" />
@@ -390,7 +416,8 @@
     <MESSAGE value="project component added" />
     <MESSAGE value="auth return codes modified" />
     <MESSAGE value="phone is now unique, added some fields to registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="phone is now unique, added some fields to registration" />
+    <MESSAGE value="Attribute management done, search fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attribute management done, search fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -413,10 +440,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="145" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1605354090735" />
-    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605377268371">
+    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605686490698">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1605377268371" />
+    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1605686490698" />
     <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1605436342624">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -451,10 +478,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="97" y="1" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1603990408269" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1605383452794">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1605438367806">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605383452794" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605438367806" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1605435455975">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
