@@ -2016,7 +2016,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _token: _this.csrfToken
                 };
                 axios.post('/login', formData).then(function (response) {
-                  if (response.status == 200) {
+                  if (response.status === 204) {
                     alert('вы успешно вошли в свой аккаунт');
 
                     _this.$router.push('/');
