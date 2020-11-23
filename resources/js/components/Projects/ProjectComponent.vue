@@ -16,6 +16,35 @@
             </tr>
             </tbody>
         </table>
+        <hr>
+        <h3>Заказать проект</h3>
+        <form :action="this.createOrderLink" method="post">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Характеристики
+                </div>
+                <div class="card-body pb-2">
+
+                    <div class="form-group" v-for="attribute in this.orderAttributes">
+                        <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
+
+                        <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="form-control" :name="'order_attributes['+attribute.id+']'">
+                            <option v-if="attribute.required" value=""></option>
+
+                            <option v-for="variant in attribute.variants" :value="variant">
+                                {{ variant }}
+                            </option>
+                        </select>
+
+                        <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
+
+                        <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -25,8 +54,13 @@ export default {
         'project',
         'images',
         'createdAt',
-        'values'
-    ]
+        'values',
+        'createOrderLink',
+        'orderAttributes'
+    ],
+    created() {
+        console.log(this.orderAttributes)
+    }
 }
 </script>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Projects\SearchRequest;
+use App\Models\Orders\ProjectAttribute;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use App\Services\Search\SearchService;
@@ -36,6 +37,8 @@ class ProjectsController extends Controller
         $created_at = $project->created_at->format('d-m-Y');
         $values = $project->getValuesInJson();
 
-        return view('projects.show', compact('project', 'images', 'created_at', 'values'));
+        $order_attributes = ProjectAttribute::all()->toJson();
+
+        return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes'));
     }
 }

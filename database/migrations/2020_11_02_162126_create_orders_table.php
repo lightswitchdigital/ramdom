@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_email');
             $table->string('order_phone');
 
-            $table->double('amount', 8, 2);
+            $table->double('price', 8, 2);
             $table->string('status');
 
             $table->timestamps();

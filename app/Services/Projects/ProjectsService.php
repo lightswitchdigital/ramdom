@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Projects;
 
 use App\Http\Requests\Admin\Projects\AttributesRequest;
 use App\Http\Requests\Admin\Projects\CreateRequest;

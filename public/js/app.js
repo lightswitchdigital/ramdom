@@ -2260,6 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['project', 'projectLink', 'projectImages', 'projectValues']
 });
@@ -2296,8 +2297,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['project', 'images', 'createdAt', 'values']
+  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'orderAttributes'],
+  created: function created() {
+    console.log(this.orderAttributes);
+  }
 });
 
 /***/ }),
@@ -39864,8 +39897,9 @@ var render = function() {
                   _vm._s(label) +
                   " : " +
                   _vm._s(value) +
-                  "\n        "
-              )
+                  "\n            "
+              ),
+              _c("br")
             ])
           })
         ],
@@ -39926,6 +39960,81 @@ var render = function() {
         }),
         0
       )
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Заказать проект")]),
+    _vm._v(" "),
+    _c("form", { attrs: { action: this.createOrderLink, method: "post" } }, [
+      _c("div", { staticClass: "card mb-3" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n                Характеристики\n            ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body pb-2" },
+          _vm._l(this.orderAttributes, function(attribute) {
+            return _c("div", { staticClass: "form-group" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-form-label",
+                  attrs: { for: "order_attribute_" + attribute.id }
+                },
+                [_vm._v(_vm._s(attribute.name))]
+              ),
+              _vm._v(" "),
+              attribute.variants.length > 0
+                ? _c(
+                    "select",
+                    {
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "order_attribute_" + attribute.id,
+                        name: "order_attributes[" + attribute.id + "]"
+                      }
+                    },
+                    [
+                      attribute.required
+                        ? _c("option", { attrs: { value: "" } })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(attribute.variants, function(variant) {
+                        return _c("option", { domProps: { value: variant } }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(variant) +
+                              "\n                        "
+                          )
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : attribute.type === "number"
+                ? _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "order_attribute_" + attribute.id,
+                      type: "number",
+                      name: "order_attributes[" + attribute.id + "]"
+                    }
+                  })
+                : _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "order_attribute_" + attribute.id,
+                      type: "text",
+                      name: "order_attributes[" + attribute.id + "]"
+                    }
+                  })
+            ])
+          }),
+          0
+        )
+      ])
     ])
   ])
 }
