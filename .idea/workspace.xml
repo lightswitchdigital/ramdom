@@ -29,35 +29,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="project card component added">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Editor/AttributesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Editor/EditorController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Projects/OrderRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/OrderService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/editor/attributes/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/editor/attributes/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/editor/attributes/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/editor/attributes/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/editor/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Plans/Plan.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Plans/PlanSubscription.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_24_063809_create_plans_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_24_064104_create_plan_subscriptions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AttributesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Projects/AttributesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Projects/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Orders/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Orders/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Orders/ProjectAttribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Orders/ProjectAttribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_02_162126_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_02_162126_create_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/_nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,11 +226,11 @@
       <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Models/Plans" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin/Projects" />
       <recent name="$PROJECT_DIR$/app/Services/Projects" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/app/Models/Project" />
-      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -288,6 +268,7 @@
       <workItem from="1605854649024" duration="7802000" />
       <workItem from="1605899032515" duration="2934000" />
       <workItem from="1606138685307" duration="9948000" />
+      <workItem from="1606199590754" duration="5358000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -449,7 +430,8 @@
     <MESSAGE value="phone is now unique, added some fields to registration" />
     <MESSAGE value="Attribute management done, search fixed" />
     <MESSAGE value="project card component added" />
-    <option name="LAST_COMMIT_MESSAGE" value="project card component added" />
+    <MESSAGE value="order attributes management" />
+    <option name="LAST_COMMIT_MESSAGE" value="order attributes management" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -514,10 +496,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="97" y="1" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1603990408269" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1605903683433">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1606162944072">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605903683433" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1606162944072" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1606155896314">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
