@@ -72,8 +72,7 @@ export default {
 
             axios.post('/login' , formData).then(response => {
                 if(response.status === 204){
-                    alert('вы успешно вошли в свой аккаунт')
-                    this.$router.push('/')
+                    router.push('/')
                 }
             })
             .catch(error => {

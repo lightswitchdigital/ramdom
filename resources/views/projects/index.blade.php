@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container projects-wrapper mt-5">
+    <div class="container projects-wrapper projects-section mt-5">
 
         <form action="?">
             <div class="div">
@@ -40,13 +40,14 @@
 
             <button class="btn btn-success">Искать</button>
         </form>
-
+        <div class="flex-box">
         @foreach($projects as $project)
             <project-card
                 :project="{{ $project }}"
                 :project-link="'{{ route('projects.show', $project) }}'"
             ></project-card>
         @endforeach
+        </div>
     </div>
 
 @endsection

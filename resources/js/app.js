@@ -11,10 +11,13 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
 import ProjectCardComponent from "./components/Projects/ProjectCardComponent";
 import ProjectComponent from "./components/Projects/ProjectComponent";
 
+
+Vue.use(VueRouter)
 Vue.use(Vuelidate)
 
 /**
