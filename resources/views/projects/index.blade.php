@@ -1,27 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container projects-wrapper projects-section mt-5">
 
-        <form action="?">
-            <div class="div">
-                @foreach ($attributes as $attribute)
-                    @if ($attribute->isSelect() || $attribute->isNumber())
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="col-form-label">{{ $attribute->name }}</label>
+        @include('common.search', ['route' => route('projects.index'), 'attributes' => $attributes])
 
-                                @if ($attribute->isSelect())
-                                    <select class="form-control" name="attrs[{{ $attribute->id }}][equals]">
-                                        <option value=""></option>
-                                        @foreach ($attribute->variants as $variant)
-                                            <option value="{{ $variant }}"{{ $variant === request()->input('attrs.' . $attribute->id . '.equals') ? ' selected' : '' }}>
-                                                {{ $variant }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+        <section class="section-projects">
+            @foreach($projects as $project)
+                <project-card
+                    :project="{{ $project }}"
+                    :project-images="{{ $project->getImagesInJson() }}"
+                    :project-values="{{ $project->getValuesInJson() }}"
+                    :project-link="'{{ route('projects.show', $project) }}'"
+                ></project-card>
+            @endforeach
+        </section>
 
+<<<<<<< HEAD
                                 @elseif ($attribute->isNumber())
                                     <div class="row">
                                         <div class="col-md-6">
@@ -48,6 +43,8 @@
             ></project-card>
         @endforeach
         </div>
+=======
+>>>>>>> ff8e82f1228794102b035ad5950001d54c1bb0cf
     </div>
 
 @endsection

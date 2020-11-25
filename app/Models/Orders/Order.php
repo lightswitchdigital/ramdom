@@ -15,7 +15,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id', 'project_id', 'order_name', 'order_email', 'order_phone', 'amount', 'status'
+        'user_id', 'project_id', 'order_name', 'order_email', 'order_phone', 'price', 'status'
     ];
 
     public $timestamps = true;
@@ -23,7 +23,7 @@ class Order extends Model
     public static function statusesList() {
         return [
             self::STATUS_CREATED => 'Создан',
-            self::STATUS_FINISHED => 'Произведен'
+            self::STATUS_FINISHED => 'Закончен'
         ];
     }
 
@@ -33,6 +33,10 @@ class Order extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function values() {
+        return $this->hasMany(ProjectValue::class, 'project_id', 'id');
     }
 
     public function project() {

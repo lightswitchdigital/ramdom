@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Projects;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Projects\AttributesRequest;
@@ -9,9 +9,8 @@ use App\Http\Requests\Admin\Projects\EditRequest;
 use App\Http\Requests\Admin\Projects\PhotosRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
-use App\Services\ProjectsService;
+use App\Services\Projects\ProjectsService;
 use DomainException;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller

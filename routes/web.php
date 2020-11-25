@@ -16,10 +16,11 @@ Route::group([
     Route::get('/{project}', 'ProjectsController@show')->name('show');
 
     Route::group([
+        'prefix' => '{project}',
         'middleware' => ['auth'],
     ], function() {
 
-
+        Route::post('/order', 'OrderController@order')->name('order');
 
     });
 
@@ -108,7 +109,8 @@ Route::group([
 
     Route::group([
         'prefix' => 'projects',
-        'as' => 'projects.'
+        'as' => 'projects.',
+        'namespace' => 'Projects'
     ], function() {
 
         Route::group([
@@ -121,7 +123,26 @@ Route::group([
         Route::resource('attributes', 'AttributesController');
 
     });
-    Route::resource('projects', 'ProjectsController');
+    Route::resource('projects', 'Projects\ProjectsController');
+
+    Route::group([
+        'prefix' => 'editor',
+        'as' => 'editor.',
+        'namespace' => 'Editor'
+    ], function () {
+
+        Route::get('/', 'EditorController@index')->name('index');
+
+        Route::group([
+            'prefix' => 'attributes',
+            'as' => 'attributes.'
+        ], function() {
+
+
+        });
+        Route::resource('attributes', 'AttributesController');
+
+    });
 
     Route::group([
         'prefix' => 'users',

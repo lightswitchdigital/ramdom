@@ -7,6 +7,7 @@ use App\Models\User;
 use DomainException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Project extends Model
 {
@@ -59,6 +60,28 @@ class Project extends Model
     public function hasInFavorites($id): bool
     {
         return $this->favorites()->where('id', $id)->exists();
+    }
+
+    public function getImagesInJson(): string
+    {
+        $images = [];
+        foreach ($this->images as $image) {
+            $images[] = Storage::disk('public')->url($image->file);
+        }
+        $images = json_encode($images, JSON_UNESCAPED_UNICODE);
+
+        return $images;
+    }
+
+    public function getValuesInJson() {
+        $values = [];
+        $attributes = Attribute::all();
+        foreach ($attributes as $attribute) {
+            $values[$attribute->name] = $this->getValue($attribute->id);
+        }
+        $values = json_encode($values, JSON_UNESCAPED_UNICODE);
+
+        return $values;
     }
 
     public function user()

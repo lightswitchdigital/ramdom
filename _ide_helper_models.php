@@ -46,6 +46,7 @@ namespace App\Models\Orders{
     use App\Models\User;
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Support\Carbon;
 
     /**
@@ -57,21 +58,23 @@ namespace App\Models\Orders{
  * @property string $order_name
  * @property string $order_email
  * @property string $order_phone
- * @property float $amount
+ * @property float $price
  * @property string $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Project $project
  * @property-read User $user
+ * @property-read Collection|ProjectValue[] $values
+ * @property-read int|null $values_count
  * @method static Builder|Order newModelQuery()
  * @method static Builder|Order newQuery()
  * @method static Builder|Order query()
- * @method static Builder|Order whereAmount($value)
  * @method static Builder|Order whereCreatedAt($value)
  * @method static Builder|Order whereId($value)
  * @method static Builder|Order whereOrderEmail($value)
  * @method static Builder|Order whereOrderName($value)
  * @method static Builder|Order whereOrderPhone($value)
+ * @method static Builder|Order wherePrice($value)
  * @method static Builder|Order whereProjectId($value)
  * @method static Builder|Order whereStatus($value)
  * @method static Builder|Order whereUpdatedAt($value)
@@ -93,6 +96,7 @@ namespace App\Models\Orders{
  * @property string $type
  * @property array $variants
  * @property int $sort
+ * @property int $required
  * @property float $price
  * @method static Builder|ProjectAttribute newModelQuery()
  * @method static Builder|ProjectAttribute newQuery()
@@ -100,6 +104,7 @@ namespace App\Models\Orders{
  * @method static Builder|ProjectAttribute whereId($value)
  * @method static Builder|ProjectAttribute whereName($value)
  * @method static Builder|ProjectAttribute wherePrice($value)
+ * @method static Builder|ProjectAttribute whereRequired($value)
  * @method static Builder|ProjectAttribute whereSort($value)
  * @method static Builder|ProjectAttribute whereType($value)
  * @method static Builder|ProjectAttribute whereVariants($value)
@@ -164,6 +169,79 @@ namespace App\Models\Orders{
 	class ProjectValue extends Eloquent {}
 }
 
+namespace App\Models\Plans{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\Plans\Plan
+ *
+ * @property int $id
+ * @property string $slug
+ * @property string $name
+ * @property float $price
+ * @property string $interval
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @method static Builder|Plan newModelQuery()
+ * @method static Builder|Plan newQuery()
+ * @method static Builder|Plan query()
+ * @method static Builder|Plan whereCreatedAt($value)
+ * @method static Builder|Plan whereDeletedAt($value)
+ * @method static Builder|Plan whereId($value)
+ * @method static Builder|Plan whereInterval($value)
+ * @method static Builder|Plan whereName($value)
+ * @method static Builder|Plan wherePrice($value)
+ * @method static Builder|Plan whereSlug($value)
+ * @method static Builder|Plan whereUpdatedAt($value)
+ */
+	class Plan extends Eloquent {}
+}
+
+namespace App\Models\Plans{
+
+    use App\Models\User;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\Plans\PlanSubscription
+ *
+ * @property int $id
+ * @property int $plan_id
+ * @property int $user_id
+ * @property int $active
+ * @property Carbon|null $starts_at
+ * @property Carbon|null $ends_at
+ * @property Carbon|null $cancels_at
+ * @property Carbon|null $canceled_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Plan $plan
+ * @property-read User $user
+ * @method static Builder|PlanSubscription findEndedPeriod()
+ * @method static Builder|PlanSubscription findEndingPeriod($dayRange = 3)
+ * @method static Builder|PlanSubscription newModelQuery()
+ * @method static Builder|PlanSubscription newQuery()
+ * @method static Builder|PlanSubscription query()
+ * @method static Builder|PlanSubscription whereActive($value)
+ * @method static Builder|PlanSubscription whereCanceledAt($value)
+ * @method static Builder|PlanSubscription whereCancelsAt($value)
+ * @method static Builder|PlanSubscription whereCreatedAt($value)
+ * @method static Builder|PlanSubscription whereEndsAt($value)
+ * @method static Builder|PlanSubscription whereId($value)
+ * @method static Builder|PlanSubscription wherePlanId($value)
+ * @method static Builder|PlanSubscription whereStartsAt($value)
+ * @method static Builder|PlanSubscription whereUpdatedAt($value)
+ * @method static Builder|PlanSubscription whereUserId($value)
+ */
+	class PlanSubscription extends Eloquent {}
+}
+
 namespace App\Models\Projects{
 
     use Eloquent;
@@ -177,11 +255,13 @@ namespace App\Models\Projects{
  * @property string $type
  * @property array $variants
  * @property int $sort
+ * @property int $required
  * @method static Builder|Attribute newModelQuery()
  * @method static Builder|Attribute newQuery()
  * @method static Builder|Attribute query()
  * @method static Builder|Attribute whereId($value)
  * @method static Builder|Attribute whereName($value)
+ * @method static Builder|Attribute whereRequired($value)
  * @method static Builder|Attribute whereSort($value)
  * @method static Builder|Attribute whereType($value)
  * @method static Builder|Attribute whereVariants($value)
@@ -313,6 +393,7 @@ namespace App\Models{
 
 namespace App\Models{
 
+    use App\Models\Plans\PlanSubscription;
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Notifications\DatabaseNotification;
@@ -347,6 +428,7 @@ namespace App\Models{
  * @property string $status
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read PlanSubscription|null $subscription
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  * @method static Builder|User query()

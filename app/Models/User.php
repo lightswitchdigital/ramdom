@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Plans\PlanSubscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -123,5 +124,9 @@ class User extends Authenticatable
 
     public function isActive() {
         return $this->status === self::STATUS_ACTIVE;
+    }
+
+    public function subscription() {
+        return $this->hasOne(PlanSubscription::class);
     }
 }

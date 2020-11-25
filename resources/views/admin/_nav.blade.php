@@ -2,4 +2,5 @@
     <li class="nav-item"><a class="nav-link {{ ($route == 'home')?'active':'' }}" href="{{ route('admin.index') }}">Главная</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'users')?'active':'' }}" href="{{ route('admin.users.index') }}">Пользователи</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'projects')?'active':'' }}" href="{{ route('admin.projects.index') }}">Проекты</a></li>
+    <li class="nav-item"><a class="nav-link {{ ($route == 'editor')?'active':'' }}" href="{{ route('admin.editor.index') }}">Редактор</a></li>
 </ul>

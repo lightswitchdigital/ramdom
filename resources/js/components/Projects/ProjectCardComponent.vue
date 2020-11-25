@@ -7,12 +7,10 @@
         <div class="card-body">
         <div class="card-price">от {{ this.project.price }} <span class="rub">₽</span></div>
         <h5 class="card-title">{{ this.project.title }}</h5>
-            <ul class="card-text">
-            <li><span>Площадь</span><span>100м</span></li>
-            <li><span>Материал</span><span>каркасник</span></li>
-            <li><span>Фундамент</span><span>сваи</span></li>
-            <li><span>Высота</span><span>8</span></li>
-            </ul>
+            <div :v-for="(value, label) in this.projectValues">
+                {{ label }} : {{ value }}
+                <br>
+            </div>
         </div>
     </a>
 </template>
@@ -21,7 +19,9 @@
 export default {
     props: [
         'project',
-        'projectLink'
+        'projectLink',
+        'projectImages',
+        'projectValues'
     ]
 };
 </script>
