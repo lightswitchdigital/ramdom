@@ -1,5 +1,8 @@
 <template>
     <div class="container register-block">
+        <div v-if="message != ''" class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
         <div class="card form-card">
             <div class="row">
                 <div class="col-md">
@@ -12,7 +15,7 @@
                                 v-model.trim="name"
                                 class="form-control"
                                 placeholder="Имя *"
-                                :class="{invalid: $v.name.$dirty && !$v.name.required}">
+                                :class="{'is-invalid': $v.name.$dirty && !$v.name.required}">
                             <small class="error-text" v-if="$v.name.$dirty && !$v.name.required">
                                 Введите имя</small>
                         </div>
@@ -21,7 +24,7 @@
                                 v-model.trim="last_name"
                                 class="form-control"
                                 placeholder="Фамилия *"
-                                :class="{invalid: $v.last_name.$dirty && !$v.last_name.required}">
+                                :class="{'is-invalid': $v.last_name.$dirty && !$v.last_name.required}">
                             <small class="error-text" v-if="$v.last_name.$dirty && !$v.last_name.required">
                                 Введите фамилию</small>
                         </div>
@@ -36,27 +39,29 @@
                                 v-model.trim="phone"
                                 class="form-control"
                                 placeholder="Телефон"
-                                :class="{invalid: $v.phone.$dirty && !$v.phone.required}">
+                                :class="{'is-invalid': ($v.phone.$dirty && !$v.phone.required) || errors.phone}">
                             <small class="error-text" v-if="$v.phone.$dirty && !$v.phone.required">
                                 Введите телефон</small>
+                            <small class="error-text" :v-if="errors.phone" v-for="(item , index) in errors.phone" :key="index">{{ item }}</small>
                         </div>
                         <div class="form-group">
                             <input type="text" id="login"
                                 v-model.trim="email"
                                 class="form-control"
                                 placeholder="E-mail *"
-                                :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}">
+                                :class="{'is-invalid' : ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) || errors.email}">
                             <small class="error-text" v-if="$v.email.$dirty && !$v.email.required">
                                 Введите email</small>
                             <small class="error-text" v-else-if="$v.email.$dirty && !$v.email.email">
                                 Email не коректен</small>
+                            <small class="error-text" :v-if="errors.email" v-for="(item , index) in errors.email" :key="index">{{ item }}</small>
                         </div>
                         <div class="form-group">
                             <input type="password" id="password"
                                     v-model.trim="password"
                                     class="form-control"
                                     placeholder="Пароль *"
-                                    :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}">
+                                    :class="{'is-invalid': ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}">
                             <small class="error-text" v-if="$v.password.$dirty && !$v.password.required">
                                 Введите пароль</small>
                             <small class="error-text" v-else-if="$v.password.$dirty && !$v.password.minLength">
@@ -67,11 +72,12 @@
                                     v-model.trim="password_confirmation"
                                     class="form-control"
                                     placeholder="Подтвердить пароль *"
-                                    :class="{invalid: ($v.password_confirmation.$dirty && !$v.password_confirmation.required) || ($v.password_confirmation.$dirty && !$v.password_confirmation.minLength)}">
+                                    :class="{'is-invalid': ($v.password_confirmation.$dirty && !$v.password_confirmation.required) || ($v.password_confirmation.$dirty && !$v.password_confirmation.minLength) || errors.password}">
                             <small class="error-text" v-if="$v.password_confirmation.$dirty && !$v.password_confirmation.required">
                                 Введите пароль</small>
                             <small class="error-text" v-else-if="$v.password_confirmation.$dirty && !$v.password_confirmation.minLength">
                                 Пароль не должен быть короче {{$v.password_confirmation.$params.minLength.min}} символов</small>
+                            <small class="error-text" :v-if="errors.password" v-for="(item , index) in errors.password" :key="index">{{ item }}</small>
                         </div>
                         <p class="radio-title">Укажите тип пользователя *</p>
                         <div class="form-group radio-group">
@@ -117,6 +123,8 @@ export default {
         type: undefined,
         password: '',
         password_confirmation: '',
+        message: '',  // Сообщение об ошибке
+        errors: '',
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -151,12 +159,11 @@ export default {
 
             axios.post('/register' , formData).then(response => {
                 if(response.status === 204){
-                    alert('вы успешно зарегестрировались')
-                    this.$router.push('/')
+                    window.location.href = '/'
                 }
-            })
-            .catch(error => {
-                console.log(error);
+            }).catch(error => {
+                this.message = error.response.data.message
+                this.errors = error.response.data.errors
             })
         }
     }

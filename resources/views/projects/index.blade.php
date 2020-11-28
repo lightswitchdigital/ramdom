@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container projects-wrapper projects-section mt-5">
+    <div class="container mt-5">
 
         @include('common.search', ['route' => route('projects.index'), 'attributes' => $attributes])
 
-        <section class="section-projects">
+        <section class="section-projects projects-wrapper projects-section d-flex">
             @foreach($projects as $project)
                 <project-card
                     :project="{{ $project }}"

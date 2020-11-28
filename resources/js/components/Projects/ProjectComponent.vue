@@ -6,11 +6,11 @@
             {{ project.description }}
         </div>
         <div class="images">
-            <img width="250px" v-for="image in images" :src="image" :alt="project.title">
+            <img width="250px" :v-for="image in images" :src="image" :alt="project.title">
         </div>
         <table class="table table-bordered">
             <tbody>
-            <tr v-for="(value, label) in values">
+            <tr :v-for="(value, label) in values">
                 <th>{{ label }}</th>
                 <td>{{ value }}</td>
             </tr>
@@ -25,13 +25,13 @@
                 </div>
                 <div class="card-body pb-2">
 
-                    <div class="form-group" v-for="attribute in this.orderAttributes">
+                    <div class="form-group" :v-for="attribute in this.orderAttributes">
                         <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
 
                         <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="form-control" :name="'order_attributes['+attribute.id+']'">
                             <option v-if="attribute.required" value=""></option>
 
-                            <option v-for="variant in attribute.variants" :value="variant">
+                            <option :v-for="variant in attribute.variants" :value="variant">
                                 {{ variant }}
                             </option>
                         </select>

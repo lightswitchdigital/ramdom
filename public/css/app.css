@@ -11147,11 +11147,16 @@ body {
 }
 
 .projects-section .card .card-img-top img {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+
+.register-block .form-group {
+  margin-bottom: 24px !important;
 }
 
 .register-block .form-card {
@@ -11183,6 +11188,9 @@ body {
 
 .register-block .error-text {
   color: red;
+  display: block;
+  margin-bottom: -19px;
+  position: relative;
 }
 
 .register-block label {
@@ -11229,7 +11237,6 @@ body {
   padding: 25px 40px;
   box-sizing: border-box;
   border-radius: 16px;
-  border: 1px solid #E0DFDF;
 }
 
 .register-block input[type=text]:focus,
