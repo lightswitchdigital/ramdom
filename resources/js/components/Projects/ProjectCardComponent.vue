@@ -7,7 +7,7 @@
         <div class="card-body">
         <div class="card-price">от {{ this.project.price }} <span class="rub">₽</span></div>
         <h5 class="card-title">{{ this.project.title }}</h5>
-        <ul class="card-text" :v-for="(value, label) in this.projectValues">
+        <ul class="card-text" v-for="(value, label) in this.projectValues">
             <li><span>{{ label }}</span><span>{{ value }}</span></li>
         </ul>
         </div>
@@ -19,7 +19,7 @@ export default {
     props: [
         'project',
         'projectLink',
-        'projectImages',
+        'projectImages'
         'projectValues'
     ]
 };

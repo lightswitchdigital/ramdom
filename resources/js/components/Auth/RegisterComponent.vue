@@ -97,7 +97,8 @@
                                 Выберите тип лица</small>
                         </div>
 
-                        <button class="btn btn-submit yellow-btn" type="submit">Зарегистрироваться</button>
+                        <button class="btn btn-submit yellow-btn" v-bind:disabled='this.isDisabled' type="submit">Зарегистрироваться</button>
+                        <p v-if="this.isDisabled">Вы успешно зарегистрировались</p>
                     </form>
                 </div>
                 <div class="col-md form-img-col">
@@ -125,6 +126,7 @@ export default {
         password_confirmation: '',
         message: '',  // Сообщение об ошибке
         errors: '',
+        isDisabled: false
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -159,7 +161,11 @@ export default {
 
             axios.post('/register' , formData).then(response => {
                 if(response.status === 204){
-                    window.location.href = '/'
+                    this.isDisabled = true 
+                    setTimeout(() => {
+                        window.location.href = '/'
+                    } , 2000)
+                    
                 }
             }).catch(error => {
                 this.message = error.response.data.message
