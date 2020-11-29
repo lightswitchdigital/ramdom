@@ -61,7 +61,7 @@ class PlanSubscription extends Model
 
         DB::transaction(function () use ($subscription) {
 
-            $subscription->setNewPeriod();
+            $subscription->setNewInterval();
             $subscription->canceled_at = null;
             $subscription->save();
 
@@ -76,16 +76,16 @@ class PlanSubscription extends Model
         $this->save();
 
         if ($this->plan->interval !== $plan->interval) {
-            $this->setNewPeriod();
+            $this->setNewInterval();
         }
 
     }
 
-    public function setNewPeriod() {
+    public function setNewInterval() {
         $interval = $this->plan->getIntervalInDays();
 
-        $this->starts_at = Carbon::now();
-        $this->ends_at = Carbon::now()->addDays($interval);
+        $starts_at = $this->starts_at;
+        $this->ends_at = $starts_at->addDays($interval);
 
         $this->update();
     }

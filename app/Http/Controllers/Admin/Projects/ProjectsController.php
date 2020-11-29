@@ -76,8 +76,10 @@ class ProjectsController extends Controller
     public function edit(Project $project)
     {
         $statusesList = Project::statusesList();
+        $attributes = Attribute::all();
+        $values = $project->getValuesWithID();
 
-        return view('admin.projects.edit', compact('project', 'statusesList'));
+        return view('admin.projects.edit', compact('project', 'statusesList', 'attributes', 'values'));
     }
 
     public function update(EditRequest $request, Project $project)
@@ -85,40 +87,6 @@ class ProjectsController extends Controller
         try {
             $this->service->edit($project->id, $request);
         } catch (DomainException $e) {
-            return redirect()->back()
-                ->with('error', $e->getMessage());
-        }
-
-        return redirect()->route('admin.projects.show', $project)
-            ->with('success', 'Проект успешно обновлен.');
-    }
-
-    public function editPhotos(Project $project) {
-        return view('admin.projects.edit-photos', compact('project'));
-    }
-
-    public function updatePhotos(Project $project, PhotosRequest $request) {
-
-        try {
-            $this->service->editPhotos($project->id, $request);
-        }catch (DomainException $e) {
-            return redirect()->back()
-                ->with('error', $e->getMessage());
-        }
-
-        return redirect()->route('admin.projects.show', $project)
-            ->with('success', 'Проект успешно обновлен.');
-    }
-
-    public function editAttributes(Project $project) {
-        return view('admin.projects.edit-attributes', compact('project'));
-    }
-
-    public function updateAttributes(Project $project, AttributesRequest $request) {
-
-        try {
-            $this->service->editAttributes($project->id, $request);
-        }catch (DomainException $e) {
             return redirect()->back()
                 ->with('error', $e->getMessage());
         }

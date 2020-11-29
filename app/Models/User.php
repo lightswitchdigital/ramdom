@@ -79,6 +79,10 @@ class User extends Authenticatable
         return self::statusesList()[$this->status];
     }
 
+    public function getFullName() {
+        return implode(' ', [$this->middle_name, $this->name, $this->last_name]);
+    }
+
     public static function register($name, $last_name, $email, $phone, $role, $type, $password) {
         return static::create([
             'name' => $name,

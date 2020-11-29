@@ -21,10 +21,7 @@
             <th>Название</th><td>{{ $project->title }}</td>
         </tr>
         <tr>
-            <th>Slug</th><td>{{ $project->slug }}</td>
-        </tr>
-        <tr>
-            <th>Стартовая цена</th><td>{{ $project->price }}</td>
+            <th>Цена</th><td>{{ $project->price }}</td>
         </tr>
         <tr>
             <th>Статус</th><td>{{ $project->getStatus() }}</td>

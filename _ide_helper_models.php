@@ -173,6 +173,7 @@ namespace App\Models\Plans{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Support\Carbon;
 
     /**
@@ -186,6 +187,8 @@ namespace App\Models\Plans{
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
+ * @property-read Collection|PlanSubscription[] $subscriptions
+ * @property-read int|null $subscriptions_count
  * @method static Builder|Plan newModelQuery()
  * @method static Builder|Plan newQuery()
  * @method static Builder|Plan query()

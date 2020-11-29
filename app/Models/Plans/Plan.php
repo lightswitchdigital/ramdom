@@ -47,4 +47,14 @@ class Plan extends Model
     public function isIntervalYear() {
         return $this->interval === self::INTERVAL_YEAR;
     }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function subscriptions() {
+        return $this->hasMany(PlanSubscription::class);
+    }
 }

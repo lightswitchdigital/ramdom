@@ -126,6 +126,17 @@ Route::group([
     Route::resource('projects', 'Projects\ProjectsController');
 
     Route::group([
+        'prefix' => 'plans',
+        'as' => 'plans.',
+        'namespace' => 'Plans'
+    ], function() {
+
+
+
+    });
+    Route::resource('plans', 'Plans\PlansController')->except(['create', 'store', 'destroy']);
+
+    Route::group([
         'prefix' => 'editor',
         'as' => 'editor.',
         'namespace' => 'Editor'

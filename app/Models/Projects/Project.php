@@ -73,6 +73,16 @@ class Project extends Model
         return $images;
     }
 
+    public function getValuesWithID() {
+        $values = [];
+        $attributes = Attribute::all();
+        foreach ($attributes as $attribute) {
+            $values[$attribute->id] = $this->getValue($attribute->id);
+        }
+
+        return $values;
+    }
+
     public function getValuesInJson() {
         $values = [];
         $attributes = Attribute::all();
