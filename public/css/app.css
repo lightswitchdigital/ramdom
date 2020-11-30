@@ -10916,6 +10916,7 @@ body {
 .navbar {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   height: 100px;
+  color: #000;
 }
 
 .navbar .logo-bg {
@@ -10936,8 +10937,55 @@ body {
 }
 
 .navbar .nav-link + .active {
+  font-weight: bold;
   padding-bottom: 2px;
   border-bottom: 1px solid #FFD977;
+}
+
+footer .navbar {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  height: 100px;
+  color: #fff;
+}
+
+footer .navbar .nav-link {
+  color: #fff;
+}
+
+footer .navbar .nav-link + .active {
+  font-weight: bold;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #FFD977;
+}
+
+footer .social {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  padding-bottom: 60px;
+}
+
+footer .social ul {
+  display: flex;
+  list-style: none;
+}
+
+footer .social ul li {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  color: #fff;
+  background: #6a6a6a;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+
+footer .social ul li a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .yellow-line {
