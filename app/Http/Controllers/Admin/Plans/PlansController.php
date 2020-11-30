@@ -51,7 +51,7 @@ class PlansController extends Controller
         ]);
 
         try {
-            $plan = $this->service->update($request, $plan);
+            $plan = $this->service->update($request, $plan->id);
         } catch (DomainException $e) {
             return redirect()->back()
                 ->with('error', $e->getMessage());

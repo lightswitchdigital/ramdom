@@ -10,10 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlanSubscription extends Model
 {
+
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_ACTIVE = 'active';
+
     protected $table = 'plan_subscriptions';
 
     protected $fillable = [
-        'plan_id', 'user_id', 'active', 'starts_at', 'ends_at', 'cancels_at', 'canceled_at'
+        'plan_id', 'user_id', 'active', 'starts_at', 'ends_at', 'canceled_at'
     ];
 
     public $timestamps = true;
@@ -21,9 +25,19 @@ class PlanSubscription extends Model
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
-        'cancels_at' => 'datetime',
         'canceled_at' => 'datetime',
     ];
+
+    public static function statusesList() {
+        return [
+            self::STATUS_INACTIVE => 'Не активна',
+            self::STATUS_ACTIVE => 'Активна'
+        ];
+    }
+
+    public function getStatus() {
+        return self::statusesList()[$this->status];
+    }
 
     public function isActive() {
         return $this->active;

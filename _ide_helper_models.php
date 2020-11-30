@@ -220,7 +220,6 @@ namespace App\Models\Plans{
  * @property int $active
  * @property Carbon|null $starts_at
  * @property Carbon|null $ends_at
- * @property Carbon|null $cancels_at
  * @property Carbon|null $canceled_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -233,7 +232,6 @@ namespace App\Models\Plans{
  * @method static Builder|PlanSubscription query()
  * @method static Builder|PlanSubscription whereActive($value)
  * @method static Builder|PlanSubscription whereCanceledAt($value)
- * @method static Builder|PlanSubscription whereCancelsAt($value)
  * @method static Builder|PlanSubscription whereCreatedAt($value)
  * @method static Builder|PlanSubscription whereEndsAt($value)
  * @method static Builder|PlanSubscription whereId($value)

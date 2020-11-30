@@ -20,7 +20,6 @@ class CreatePlanSubscriptionsTable extends Migration
             $table->boolean('active')->default(false);
             $table->dateTime('starts_at')->nullable();
             $table->dateTime('ends_at')->nullable();
-            $table->dateTime('cancels_at')->nullable();
             $table->dateTime('canceled_at')->nullable();
 
             $table->timestamps();

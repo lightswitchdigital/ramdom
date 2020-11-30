@@ -40,7 +40,7 @@
         use Illuminate\Bus\Batch;
         use Illuminate\Bus\PendingBatch;
         use Illuminate\Cache\CacheManager;
-        use Illuminate\Cache\FileStore;
+        use Illuminate\Cache\RedisStore;
         use Illuminate\Cache\TaggedCache;
         use Illuminate\Config\Repository;
         use Illuminate\Console\Application;
@@ -99,8 +99,9 @@
         use Illuminate\Mail\MailManager;
         use Illuminate\Mail\PendingMail;
         use Illuminate\Notifications\ChannelManager;
+        use Illuminate\Queue\Jobs\RedisJob;
         use Illuminate\Queue\QueueManager;
-        use Illuminate\Queue\SyncQueue;
+        use Illuminate\Queue\RedisQueue;
         use Illuminate\Routing\Exceptions\UrlGenerationException;
         use Illuminate\Routing\PendingResourceRegistration;
         use Illuminate\Routing\Redirector;
@@ -3104,8 +3105,6 @@
             /**
      *
      *
-     * @method static Lock lock(string $name, int $seconds = 0, mixed $owner = null)
-     * @method static Lock restoreLock(string $name, string $owner)
      * @see \Illuminate\Cache\CacheManager
      * @see \Illuminate\Cache\Repository
      */
@@ -3686,6 +3685,33 @@
                         return $instance->macroCall($method, $parameters);
         }
                     /**
+         * Get a lock instance.
+         *
+         * @param string $name
+         * @param int $seconds
+         * @param string|null $owner
+         * @return Lock
+         * @static
+         */
+        public static function lock($name, $seconds = 0, $owner = null)
+        {
+                        /** @var RedisStore $instance */
+                        return $instance->lock($name, $seconds, $owner);
+        }
+                    /**
+         * Restore a lock instance using the owner identifier.
+         *
+         * @param string $name
+         * @param string $owner
+         * @return Lock
+         * @static
+         */
+        public static function restoreLock($name, $owner)
+        {
+                        /** @var RedisStore $instance */
+                        return $instance->restoreLock($name, $owner);
+        }
+                    /**
          * Remove all items from the cache.
          *
          * @return bool
@@ -3693,30 +3719,42 @@
          */
         public static function flush()
         {
-                        /** @var FileStore $instance */
+                        /** @var RedisStore $instance */
                         return $instance->flush();
         }
                     /**
-         * Get the Filesystem instance.
+         * Get the Redis connection instance.
          *
-         * @return Filesystem
+         * @return \Illuminate\Redis\Connections\Connection
          * @static
          */
-        public static function getFilesystem()
+        public static function connection()
         {
-                        /** @var FileStore $instance */
-                        return $instance->getFilesystem();
+                        /** @var RedisStore $instance */
+                        return $instance->connection();
         }
                     /**
-         * Get the working directory of the cache.
+         * Set the connection name to be used.
          *
-         * @return string
+         * @param string $connection
+         * @return void
          * @static
          */
-        public static function getDirectory()
+        public static function setConnection($connection)
         {
-                        /** @var FileStore $instance */
-                        return $instance->getDirectory();
+                        /** @var RedisStore $instance */
+                        $instance->setConnection($connection);
+        }
+                    /**
+         * Get the Redis database instance.
+         *
+         * @return \Illuminate\Contracts\Redis\Factory
+         * @static
+         */
+        public static function getRedis()
+        {
+                        /** @var RedisStore $instance */
+                        return $instance->getRedis();
         }
                     /**
          * Get the cache key prefix.
@@ -3726,8 +3764,20 @@
          */
         public static function getPrefix()
         {
-                        /** @var FileStore $instance */
+                        /** @var RedisStore $instance */
                         return $instance->getPrefix();
+        }
+                    /**
+         * Set the cache key prefix.
+         *
+         * @param string $prefix
+         * @return void
+         * @static
+         */
+        public static function setPrefix($prefix)
+        {
+                        /** @var RedisStore $instance */
+                        $instance->setPrefix($prefix);
         }
 
     }
@@ -8115,6 +8165,92 @@
                         return $instance->setConnectionName($name);
         }
                     /**
+         * Migrate the delayed jobs that are ready to the regular queue.
+         *
+         * @param string $from
+         * @param string $to
+         * @return array
+         * @static
+         */
+        public static function migrateExpiredJobs($from, $to)
+        {
+                        /** @var RedisQueue $instance */
+                        return $instance->migrateExpiredJobs($from, $to);
+        }
+                    /**
+         * Delete a reserved job from the queue.
+         *
+         * @param string $queue
+         * @param RedisJob $job
+         * @return void
+         * @static
+         */
+        public static function deleteReserved($queue, $job)
+        {
+                        /** @var RedisQueue $instance */
+                        $instance->deleteReserved($queue, $job);
+        }
+                    /**
+         * Delete a reserved job from the reserved queue and release it.
+         *
+         * @param string $queue
+         * @param RedisJob $job
+         * @param int $delay
+         * @return void
+         * @static
+         */
+        public static function deleteAndRelease($queue, $job, $delay)
+        {
+                        /** @var RedisQueue $instance */
+                        $instance->deleteAndRelease($queue, $job, $delay);
+        }
+                    /**
+         * Delete all of the jobs from the queue.
+         *
+         * @param string $queue
+         * @return int
+         * @static
+         */
+        public static function clear($queue)
+        {
+                        /** @var RedisQueue $instance */
+                        return $instance->clear($queue);
+        }
+                    /**
+         * Get the queue or return the default.
+         *
+         * @param string|null $queue
+         * @return string
+         * @static
+         */
+        public static function getQueue($queue)
+        {
+                        /** @var RedisQueue $instance */
+                        return $instance->getQueue($queue);
+        }
+                    /**
+         * Get the connection for the queue.
+         *
+         * @return \Illuminate\Redis\Connections\Connection
+         * @static
+         */
+        public static function getConnection()
+        {
+                        /** @var RedisQueue $instance */
+                        return $instance->getConnection();
+        }
+                    /**
+         * Get the underlying Redis instance.
+         *
+         * @return \Illuminate\Contracts\Redis\Factory
+         * @static
+         */
+        public static function getRedis()
+        {
+                        /** @var RedisQueue $instance */
+                        return $instance->getRedis();
+        }
+                    /**
          * Get the backoff for an object-based queue handler.
          *
          * @param mixed $job
@@ -8123,7 +8259,7 @@
          */
         public static function getJobBackoff($job)
         {            //Method inherited from \Illuminate\Queue\Queue
-                        /** @var SyncQueue $instance */
+                        /** @var RedisQueue $instance */
                         return $instance->getJobBackoff($job);
         }
                     /**
@@ -8135,7 +8271,7 @@
          */
         public static function getJobExpiration($job)
         {            //Method inherited from \Illuminate\Queue\Queue
-                        /** @var SyncQueue $instance */
+                        /** @var RedisQueue $instance */
                         return $instance->getJobExpiration($job);
         }
                     /**
@@ -8147,7 +8283,7 @@
          */
         public static function createPayloadUsing($callback)
         {            //Method inherited from \Illuminate\Queue\Queue
-                        SyncQueue::createPayloadUsing($callback);
+                        RedisQueue::createPayloadUsing($callback);
         }
                     /**
          * Set the IoC container instance.
@@ -8158,7 +8294,7 @@
          */
         public static function setContainer($container)
         {            //Method inherited from \Illuminate\Queue\Queue
-                        /** @var SyncQueue $instance */
+                        /** @var RedisQueue $instance */
                         $instance->setContainer($container);
         }
 
