@@ -7,63 +7,72 @@
                     <VueSlickCarousel
                         ref="preview"
                         :asNavFor="$refs.miniPreview"
-                        :focusOnSelect="true">
+                        :focusOnSelect="true"
+                        :fade="true"
+                        :arrow="false">
+                        <!-- <div class="preview-slide" v-for="image in images">
+                            <img :src="image" alt="{{project.title}}">
+                        </div> -->
                         <div class="preview-slide">
-                            <img 
-                            src="https://i.pinimg.com/736x/8d/5d/e6/8d5de6df9018f01eb7062c964cc17e01.jpg" alt="">
+                                <img 
+                                src="https://archello.s3.eu-central-1.amazonaws.com/images/2018/05/11/tobiarchitects1.1526035990.6946.jpg">
                         </div>
                         <div class="preview-slide">
                             <img 
-                            src="https://garant-bud.com/design/dom/images/slider/header_bg_1_1.jpg" alt="">
+                            src="https://i.pinimg.com/originals/29/8d/f1/298df1cac168231b7572f2b4e75a269c.jpg">
                         </div>
                         <div class="preview-slide">
                             <img 
-                            src="https://lh3.googleusercontent.com/proxy/RM6K_DpBzIANIvsyL7XUSkUskCBNKzGIcrRUw0Gc_UN9jeZJr1WMY0sfCqg6BjYvQNNVUaccXTt58tc_MzoXNUMDOzbSs_nLCAmXl1b5D6ZZrmVaXG1QQ1q7udiAgFnbjrEzVt8" alt="">
+                            src="https://www.iconhomes.com.au/wp-content/uploads/2019/06/Double-Storey-Modern-Facade-Tampa-30-e1559625132419.jpg">
                         </div>
                         <div class="preview-slide">
                             <img 
-                            src="https://lh3.googleusercontent.com/proxy/O4NZOf7cWTy5feE92tLKMMoJa2DFYJD30KSNhb90TbZqgtNVxL7U6MJEk0q9zDvwXOsSAtI8X3IZGjwixJzccKQd7bOSyjglmFyh_8DD1Hxc8nLGsdgriB5T6NlUqY-Z1TREYdQ" alt="">
+                            src="https://www.contemporist.com/wp-content/uploads/2020/08/modern-house-lighting-architecture-260820-1114-02.jpg">
                         </div>
                     </VueSlickCarousel>
                 </div>
-                    <div class="mini-slider">
-                        <VueSlickCarousel
-                            ref="miniPreview"
-                            :asNavFor="$refs.preview"
-                            :slidesToShow="1"
-                            :variableWidth="true"
-                            :focusOnSelect="true">
-                            <div class="mini-preview">
-                                <img 
-                                src="https://i.pinimg.com/736x/8d/5d/e6/8d5de6df9018f01eb7062c964cc17e01.jpg" alt="">
+                <div class="mini-slider">
+                    <VueSlickCarousel
+                        ref="miniPreview"
+                        :slidesToShow="1"
+                        :variableWidth="true"
+                        :focusOnSelect="true"
+                        :arrow="true"
+                        :centerMode="true">
+                        <!-- <div class="mini-preview" v-for="image in images">
+                            <img :src="image" alt="{{project.title}}">
+                        </div> -->
+                        <div class="mini-preview">
+                            <img 
+                            src="https://archello.s3.eu-central-1.amazonaws.com/images/2018/05/11/tobiarchitects1.1526035990.6946.jpg">
+                        </div>
+                        <div class="mini-preview">
+                            <img 
+                            src="https://i.pinimg.com/originals/29/8d/f1/298df1cac168231b7572f2b4e75a269c.jpg">
+                        </div>
+                        <div class="mini-preview">
+                            <img 
+                            src="https://www.iconhomes.com.au/wp-content/uploads/2019/06/Double-Storey-Modern-Facade-Tampa-30-e1559625132419.jpg">
+                        </div>
+                        <div class="mini-preview">
+                            <img 
+                            src="https://www.contemporist.com/wp-content/uploads/2020/08/modern-house-lighting-architecture-260820-1114-02.jpg">
+                        </div>
+                        <template #prevArrow>
+                            <div class="btn-prev">
+                                <i class="fas fa-chevron-left"></i>
                             </div>
-                            <div class="mini-preview">
-                                <img 
-                                src="https://garant-bud.com/design/dom/images/slider/header_bg_1_1.jpg" alt="">
+                        </template>
+                        <template #nextArrow>
+                            <div class="btn-next">
+                                <i class="fas fa-chevron-right"></i>
                             </div>
-                            <div class="mini-preview">
-                                <img 
-                                src="https://lh3.googleusercontent.com/proxy/RM6K_DpBzIANIvsyL7XUSkUskCBNKzGIcrRUw0Gc_UN9jeZJr1WMY0sfCqg6BjYvQNNVUaccXTt58tc_MzoXNUMDOzbSs_nLCAmXl1b5D6ZZrmVaXG1QQ1q7udiAgFnbjrEzVt8" alt="">
-                            </div>
-                            <div class="mini-preview">
-                                <img 
-                                src="https://lh3.googleusercontent.com/proxy/O4NZOf7cWTy5feE92tLKMMoJa2DFYJD30KSNhb90TbZqgtNVxL7U6MJEk0q9zDvwXOsSAtI8X3IZGjwixJzccKQd7bOSyjglmFyh_8DD1Hxc8nLGsdgriB5T6NlUqY-Z1TREYdQ" alt="">
-                            </div>
-                            <template #prevArrow>
-                                <div class="btn-prev">
-                                    <i class="fas fa-chevron-left"></i>
-                                </div>
-                            </template>
-                            <template #nextArrow>
-                                <div class="btn-next">
-                                    <i class="fas fa-chevron-right"></i>
-                                </div>
-                            </template>
-                        </VueSlickCarousel>
-                    </div>
-                    <div class="card desc-card">
-                        {{ project.description }}
-                    </div>
+                        </template>
+                    </VueSlickCarousel>
+                </div>
+                <div class="card desc-card">
+                    {{ project.description }}
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
@@ -82,11 +91,11 @@
                     </table>  
                     <div class="price-block">
                         <strong>Стоимость строительства</strong>
-                        <div class="price">2 110 000₽</div>
+                        <div class="price">{{project.price}}</div>
                     </div>
                     <div class="price-block">
                         <strong>Стоимость проекта</strong>
-                        <div class="price">90 000₽</div>
+                        <div class="price">{{project.price}}</div>
                     </div>
                     <div class="btn-block">
                         <a href="#" class="yellow-outline-btn">Купить проект</a>
@@ -113,10 +122,12 @@
                 </div>
             </div>
         </div>
+        <Recommend />
     </div>
 </template>
 
 <script>
+import Recommend from '../common/Recommend'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
@@ -124,30 +135,30 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
     name: "ProjectComponent",
     data:() => ({
-        values: {
-            'Общая площадь': '140 кв.м', 
-            'Площадь застройки': '200 м2', 
-            'Кубатура': '1170 м2', 
-            'Высота': '7.06 м', 
-            'Угол наклона кровли': '30', 
-            'Площадь крыши': '267 м2', 
-            'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м', 
-            'Материал': 'кирпич', 
-            'Фундамент': 'ленточный', 
-            'Внешняя отделка': 'кирпич облицовочный', 
-            'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой', 
-            'Покрытие': 'плита ЖБИ', 
-            'Материал кровли': 'металлочерепица', 
-            'Утеплитель кровли': 'доска сухая 150 мм', 
-            'Материал стропил': 'пенопласт', 
-        },
+        // values: {
+        //     'Общая площадь': '140 кв.м', 
+        //     'Площадь застройки': '200 м2', 
+        //     'Кубатура': '1170 м2', 
+        //     'Высота': '7.06 м', 
+        //     'Угол наклона кровли': '30', 
+        //     'Площадь крыши': '267 м2', 
+        //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м', 
+        //     'Материал': 'кирпич', 
+        //     'Фундамент': 'ленточный', 
+        //     'Внешняя отделка': 'кирпич облицовочный', 
+        //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой', 
+        //     'Покрытие': 'плита ЖБИ', 
+        //     'Материал кровли': 'металлочерепица', 
+        //     'Утеплитель кровли': 'доска сухая 150 мм', 
+        //     'Материал стропил': 'пенопласт', 
+        // },
         favoritesUrl: '',
     }),
     props: [
         'project',
         'images',
         'createdAt',
-        // 'values',
+        'values',
         'createOrderLink',
         'orderAttributes',
         'favoritesAddLink',
@@ -159,7 +170,7 @@ export default {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
         console.log(this.orderAttributes)
     }, 
-    components: { VueSlickCarousel },
+    components: { VueSlickCarousel , Recommend },
     // methods: {
     //     liked = () => {
     //         if(this.isInFavorites){
@@ -177,10 +188,5 @@ export default {
     //     }
     // }
 }
-</script>
 
-<style scoped>
-    image {
-        width: 250px;
-    }
-</style>
+</script>

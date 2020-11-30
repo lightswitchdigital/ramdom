@@ -19,7 +19,7 @@ export default {
     props: [
         'project',
         'projectLink',
-        'projectImages'
+        'projectImages',
         'projectValues'
     ]
 };
