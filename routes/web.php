@@ -165,6 +165,16 @@ Route::group([
     });
     Route::resource('users', 'UsersController');
 
+    Route::group([
+        'prefix' => 'payments',
+        'as' => 'payments.'
+    ], function() {
+
+
+
+    });
+    Route::resource('payments', 'PaymentsController')->only(['index', 'show']);
+
 });
 
 Route::get('/excel', 'DocumentsController@index');

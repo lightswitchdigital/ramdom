@@ -4,4 +4,5 @@
     <li class="nav-item"><a class="nav-link {{ ($route == 'projects')?'active':'' }}" href="{{ route('admin.projects.index') }}">Проекты</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'editor')?'active':'' }}" href="{{ route('admin.editor.index') }}">Редактор</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'plans')?'active':'' }}" href="{{ route('admin.plans.index') }}">Планы</a></li>
+    <li class="nav-item"><a class="nav-link {{ ($route == 'payments')?'active':'' }}" href="{{ route('admin.payments.index') }}">Платежи</a></li>
 </ul>

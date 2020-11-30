@@ -169,6 +169,41 @@ namespace App\Models\Orders{
 	class ProjectValue extends Eloquent {}
 }
 
+namespace App\Models{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\Payment
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property float $amount
+ * @property string $gateway
+ * @property string $status
+ * @property Carbon|null $expires_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read User $user
+ * @method static Builder|Payment created()
+ * @method static Builder|Payment findExpired()
+ * @method static Builder|Payment newModelQuery()
+ * @method static Builder|Payment newQuery()
+ * @method static Builder|Payment query()
+ * @method static Builder|Payment whereAmount($value)
+ * @method static Builder|Payment whereCreatedAt($value)
+ * @method static Builder|Payment whereExpiresAt($value)
+ * @method static Builder|Payment whereGateway($value)
+ * @method static Builder|Payment whereId($value)
+ * @method static Builder|Payment whereStatus($value)
+ * @method static Builder|Payment whereUpdatedAt($value)
+ * @method static Builder|Payment whereUserId($value)
+ */
+	class Payment extends Eloquent {}
+}
+
 namespace App\Models\Plans{
 
     use Eloquent;
