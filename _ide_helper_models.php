@@ -169,10 +169,46 @@ namespace App\Models\Orders{
 	class ProjectValue extends Eloquent {}
 }
 
+namespace App\Models{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
+
+    /**
+ * App\Models\Payment
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property float $amount
+ * @property string $gateway
+ * @property string $status
+ * @property Carbon|null $expires_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read User $user
+ * @method static Builder|Payment created()
+ * @method static Builder|Payment findExpired()
+ * @method static Builder|Payment newModelQuery()
+ * @method static Builder|Payment newQuery()
+ * @method static Builder|Payment query()
+ * @method static Builder|Payment whereAmount($value)
+ * @method static Builder|Payment whereCreatedAt($value)
+ * @method static Builder|Payment whereExpiresAt($value)
+ * @method static Builder|Payment whereGateway($value)
+ * @method static Builder|Payment whereId($value)
+ * @method static Builder|Payment whereStatus($value)
+ * @method static Builder|Payment whereUpdatedAt($value)
+ * @method static Builder|Payment whereUserId($value)
+ */
+	class Payment extends Eloquent {}
+}
+
 namespace App\Models\Plans{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Support\Carbon;
 
     /**
@@ -186,6 +222,8 @@ namespace App\Models\Plans{
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
+ * @property-read Collection|PlanSubscription[] $subscriptions
+ * @property-read int|null $subscriptions_count
  * @method static Builder|Plan newModelQuery()
  * @method static Builder|Plan newQuery()
  * @method static Builder|Plan query()
@@ -217,7 +255,6 @@ namespace App\Models\Plans{
  * @property int $active
  * @property Carbon|null $starts_at
  * @property Carbon|null $ends_at
- * @property Carbon|null $cancels_at
  * @property Carbon|null $canceled_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -230,7 +267,6 @@ namespace App\Models\Plans{
  * @method static Builder|PlanSubscription query()
  * @method static Builder|PlanSubscription whereActive($value)
  * @method static Builder|PlanSubscription whereCanceledAt($value)
- * @method static Builder|PlanSubscription whereCancelsAt($value)
  * @method static Builder|PlanSubscription whereCreatedAt($value)
  * @method static Builder|PlanSubscription whereEndsAt($value)
  * @method static Builder|PlanSubscription whereId($value)

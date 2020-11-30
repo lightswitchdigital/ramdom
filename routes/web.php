@@ -126,6 +126,17 @@ Route::group([
     Route::resource('projects', 'Projects\ProjectsController');
 
     Route::group([
+        'prefix' => 'plans',
+        'as' => 'plans.',
+        'namespace' => 'Plans'
+    ], function() {
+
+
+
+    });
+    Route::resource('plans', 'Plans\PlansController')->except(['create', 'store', 'destroy']);
+
+    Route::group([
         'prefix' => 'editor',
         'as' => 'editor.',
         'namespace' => 'Editor'
@@ -153,6 +164,16 @@ Route::group([
 
     });
     Route::resource('users', 'UsersController');
+
+    Route::group([
+        'prefix' => 'payments',
+        'as' => 'payments.'
+    ], function() {
+
+
+
+    });
+    Route::resource('payments', 'PaymentsController')->only(['index', 'show']);
 
 });
 

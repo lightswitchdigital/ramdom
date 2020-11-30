@@ -6,27 +6,11 @@
     <div class="d-flex flex-row mb-3">
         <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary mr-1">Изменить</a>
 
-{{--        @if ($user->isWait())--}}
-{{--            <form method="POST" action="{{ route('admin.users.verify', $user) }}" class="mr-1">--}}
-{{--                @csrf--}}
-{{--                <button class="btn btn-success">Подтвердить</button>--}}
-{{--            </form>--}}
-{{--        @endif--}}
-
         <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="mr-1">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger">Удалить</button>
         </form>
-    </div>
-
-    <div class="d-flex flex-row mb-3">
-{{--        <a href="{{ route('admin.users.balance.show', $user) }}" class="btn btn-secondary mr-1">Баланс</a>--}}
-{{--        <a href="{{ route('admin.users.deposits.show', $user) }}" class="btn btn-secondary mr-1">Депозиты</a>--}}
-{{--        <a href="{{ route('admin.users.referrals.show', $user) }}" class="btn btn-secondary mr-1">Партнеры</a>--}}
-{{--        <a href="{{ route('admin.users.documents.show', $user) }}" class="btn btn-secondary mr-1">Документы</a>--}}
-{{--        <a href="{{ route('admin.users.payments.show', $user) }}" class="btn btn-secondary mr-1">Платежи</a>--}}
-{{--        <a href="{{ route('admin.users.activity.show', $user) }}" class="btn btn-secondary mr-1">История активности</a>--}}
     </div>
 
     <table class="table table-bordered table-striped">

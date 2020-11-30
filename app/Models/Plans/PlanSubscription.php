@@ -10,10 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlanSubscription extends Model
 {
+
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_ACTIVE = 'active';
+
     protected $table = 'plan_subscriptions';
 
     protected $fillable = [
-        'plan_id', 'user_id', 'active', 'starts_at', 'ends_at', 'cancels_at', 'canceled_at'
+        'plan_id', 'user_id', 'active', 'starts_at', 'ends_at', 'canceled_at'
     ];
 
     public $timestamps = true;
@@ -21,9 +25,19 @@ class PlanSubscription extends Model
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
-        'cancels_at' => 'datetime',
         'canceled_at' => 'datetime',
     ];
+
+    public static function statusesList() {
+        return [
+            self::STATUS_INACTIVE => 'Не активна',
+            self::STATUS_ACTIVE => 'Активна'
+        ];
+    }
+
+    public function getStatus() {
+        return self::statusesList()[$this->status];
+    }
 
     public function isActive() {
         return $this->active;
@@ -61,7 +75,7 @@ class PlanSubscription extends Model
 
         DB::transaction(function () use ($subscription) {
 
-            $subscription->setNewPeriod();
+            $subscription->setNewInterval();
             $subscription->canceled_at = null;
             $subscription->save();
 
@@ -76,16 +90,16 @@ class PlanSubscription extends Model
         $this->save();
 
         if ($this->plan->interval !== $plan->interval) {
-            $this->setNewPeriod();
+            $this->setNewInterval();
         }
 
     }
 
-    public function setNewPeriod() {
+    public function setNewInterval() {
         $interval = $this->plan->getIntervalInDays();
 
-        $this->starts_at = Carbon::now();
-        $this->ends_at = Carbon::now()->addDays($interval);
+        $starts_at = $this->starts_at;
+        $this->ends_at = $starts_at->addDays($interval);
 
         $this->update();
     }

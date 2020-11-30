@@ -69,7 +69,7 @@
         </div>
 
         <div class="form-group">
-            <label for="status" class="col-form-label">Тип</label>
+            <label for="status" class="col-form-label">Статус</label>
             <select id="status" class="form-control @error('status') is-invalid @enderror" name="status">
                 @foreach ($statuses as $value => $label)
                     <option value="{{ $value }}"{{ $value === old('status', $user->status) ? ' selected' : '' }}>{{ $label }}</option>

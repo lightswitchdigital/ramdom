@@ -52,14 +52,6 @@ class ProjectsService
     public function edit($id, EditRequest $request) {
         $project = $this->getProject($id);
 
-        $project->update($request->only([
-            'title', 'description', 'price'
-        ]));
-    }
-
-    public function editAttributes($id, AttributesRequest $request) {
-        $project = $this->getProject($id);
-
         DB::transaction(function() use ($request, $project) {
             $project->values()->delete();
             foreach (Attribute::all() as $attribute) {
@@ -71,25 +63,21 @@ class ProjectsService
                     ]);
                 }
             }
-            $project->update();
-        });
-    }
-
-    public function editPhotos($id, PhotosRequest $request) {
-        $project = $this->getProject($id);
-
-        DB::transaction(function() use ($request, $project) {
-            foreach ($project->images as $image) {
-                Storage::disk('public')->delete($image->file);
-            }
-            $project->images()->delete();
-            foreach ($request['files'] as $file) {
-                $project->images()->create([
-                    'file' => $file->store('projects', 'public')
-                ]);
+            if ($request['images']) {
+                foreach ($project->images as $image) {
+                    Storage::disk('public')->delete($image->file);
+                }
+                $project->images()->delete();
+                foreach ($request['files'] as $file) {
+                    $project->images()->create([
+                        'file' => $file->store('projects', 'public')
+                    ]);
+                }
             }
 
-            $project->update();
+            $project->update($request->only([
+                'title', 'description', 'price'
+            ]));
         });
     }
 
