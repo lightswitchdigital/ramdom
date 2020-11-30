@@ -1,27 +1,33 @@
 <template>
     <div>
+        
         <form class="mx-auto" @submit.prevent='onSubmit'>
+            <div v-if="message != ''" class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
             <div class="form-group">
                 <label for="login">Эл. почта</label>
                 <input type="text" id="login"
                     v-model.trim="email"
                     class="form-control"
-                    :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}">
+                    :class="{'is-invalid': ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) || errors.email}">
                 <small class="error-text" v-if="$v.email.$dirty && !$v.email.required">
                     введите email</small>
                 <small class="error-text" v-else-if="$v.email.$dirty && !$v.email.email">
                     email не коректен</small>
+                <small class="error-text" :v-if="errors.email" v-for="(item , index) in errors.email" :key="index">{{ item }}</small>
             </div>
             <div class="form-group">
                 <label for="password">Пароль</label>
                 <input type="password" id="password"
                         v-model.trim="password"
                         class="form-control"
-                        :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}">
+                        :class="{'is-invalid': ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength) || errors.password}">
                 <small class="error-text" v-if="$v.password.$dirty && !$v.password.required">
                     введите пароль</small>
                 <small class="error-text" v-else-if="$v.password.$dirty && !$v.password.minLength">
                     пароль не должен быть короче {{$v.password.$params.minLength.min}} символов</small>
+                <small class="error-text" :v-if="errors.password" v-for="(item , index) in errors.password" :key="index">{{ item }}</small>
             </div>
 
             <button class="btn btn-primary" type="submit">Войти</button>
@@ -49,7 +55,9 @@ export default {
     name: 'login',
     data: () => ({
         email: '',
-        password: ''
+        password: '',
+        errors: '',
+        message: '' // Сообщение об ошибке
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -72,11 +80,11 @@ export default {
 
             axios.post('/login' , formData).then(response => {
                 if(response.status === 204){
-                    router.push('/')
+                    window.location.href = '/'
                 }
-            })
-            .catch(error => {
-                console.log(error);
+            }).catch(error => {
+                this.message = error.response.data.message
+                this.errors = error.response.data.errors
             })
         }
     }
