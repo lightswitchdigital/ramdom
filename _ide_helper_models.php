@@ -327,6 +327,8 @@ namespace App\Models\Projects{
  * @property Carbon|null $updated_at
  * @property-read Collection|User[] $favorites
  * @property-read int|null $favorites_count
+ * @property-read mixed $is_in_favorites
+ * @property-read mixed $route
  * @property-read Collection|Image[] $images
  * @property-read int|null $images_count
  * @property-read User $user
