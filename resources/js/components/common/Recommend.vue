@@ -1,13 +1,14 @@
 <template>
     <div class="recommend-block">
         <h3 class="title">Похожие проекты</h3>
-        <VueSlickCarousel 
-        ref="recommend" 
+        <VueSlickCarousel
+        ref="recommend"
         v-bind="settings">
-        <ProjectCardComponent 
+        <ProjectCardComponent
         v-for="project in projects"
+        :key="project.id"
         :project="project"
-        :projectLink="'#'" 
+        :projectLink="'#'"
         :projectValues="[]"/>
             <template #prevArrow>
                 <div class="btn-prev">
