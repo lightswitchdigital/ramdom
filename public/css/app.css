@@ -11510,7 +11510,7 @@ footer .social ul li a {
   box-sizing: border-box;
   width: 100%;
   background: #FFFFFF;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
   padding: 30px;
   border: none;
@@ -11533,7 +11533,7 @@ footer .social ul li a {
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .project-view .preview img {
@@ -11571,7 +11571,7 @@ footer .social ul li a {
 
 .project-view .info-card {
   position: relative;
-  padding: 60px 40px;
+  padding: 80px 50px;
   padding-top: 100px;
 }
 
@@ -11601,7 +11601,7 @@ footer .social ul li a {
 .project-view .info-card .like-block + .active .like {
   color: #FFD977;
   background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 .project-view .mini-preview {
@@ -11610,7 +11610,7 @@ footer .social ul li a {
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
   margin: 0 10px;
 }
 
@@ -11625,10 +11625,13 @@ footer .social ul li a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 40px 0;
 }
 
 .project-view .price-block .price {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   color: white;
   background: #353535;
   padding: 10px 30px;
@@ -11643,6 +11646,11 @@ footer .social ul li a {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
+}
+
+.project-view .btn-block .yellow-btn {
+  box-shadow: none;
+  line-height: 100%;
 }
 
 .project-view .btn-block .yellow-outline-btn {

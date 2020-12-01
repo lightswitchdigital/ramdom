@@ -38,6 +38,7 @@
                         :variableWidth="true"
                         :focusOnSelect="true"
                         :arrow="true"
+                        :asNavFor="$refs.preview"
                         :centerMode="true">
                         <!-- <div class="mini-preview" v-for="image in images">
                             <img :src="image" alt="{{project.title}}">
@@ -81,6 +82,7 @@
                         <span v-else>В избранном</span> 
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
+
                     <table class="table">
                         <tbody>
                         <tr v-for="(value, label) in values">
@@ -90,12 +92,18 @@
                         </tbody>
                     </table>  
                     <div class="price-block">
-                        <strong>Стоимость строительства</strong>
-                        <div class="price">{{project.price}}</div>
-                    </div>
-                    <div class="price-block">
-                        <strong>Стоимость проекта</strong>
-                        <div class="price">{{project.price}}</div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Стоимость строительства</strong></td>
+                                    <td><div class="price">{{project.price}}</div></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Стоимость проекта</strong></td>
+                                    <td><div class="price">{{project.price}}</div></td>
+                                </tr>
+                            </tbody>
+                        </table>  
                     </div>
                     <div class="btn-block">
                         <a href="#" class="yellow-outline-btn">Купить проект</a>
@@ -127,8 +135,6 @@
 </template>
 
 <script>
-import Recommend from '../common/Recommend'
-import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
@@ -170,7 +176,13 @@ export default {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
         console.log(this.orderAttributes)
     }, 
-    components: { VueSlickCarousel , Recommend },
+    mounted() {
+        this.$nextTick(this.$forceUpdate);
+    },
+    components: {
+         'VueSlickCarousel': () => import('vue-slick-carousel') , 
+         'Recommend': () => import('../common/Recommend') 
+    },
     // methods: {
     //     liked = () => {
     //         if(this.isInFavorites){

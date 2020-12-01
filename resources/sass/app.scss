@@ -529,7 +529,7 @@ footer{
         box-sizing: border-box;
         width: 100%;
         background: #FFFFFF;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
         border-radius: 16px;
         padding: 30px;
         border: none;
@@ -548,7 +548,7 @@ footer{
         border-radius: 16px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
         img{
             object-fit: cover;
             width: 100%;
@@ -580,7 +580,7 @@ footer{
     }
     .info-card{
         position: relative;
-        padding: 60px 40px;
+        padding: 80px 50px;
         padding-top: 100px;
         .like-block{
             position: absolute;
@@ -606,7 +606,7 @@ footer{
                 .like{
                     color: #FFD977;
                     background: #fff;
-                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
                 }
             }
         }
@@ -617,7 +617,7 @@ footer{
         border-radius: 16px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
         margin: 0 10px;
         img{
             object-fit: cover;
@@ -629,8 +629,9 @@ footer{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 40px 0;
         .price{
+            width: fit-content;
             color: white;
             background: #353535;
             padding: 10px 30px;
@@ -644,6 +645,10 @@ footer{
         margin-top: 40px;
         display: flex;
         justify-content: space-between;
+        .yellow-btn{
+            box-shadow: none;
+            line-height: 100%;
+        }
         .yellow-outline-btn {
             background: #fff;
             border: 2px solid #FFD977;
