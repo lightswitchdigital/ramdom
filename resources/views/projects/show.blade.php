@@ -8,5 +8,7 @@
         :values="{{ $values }}"
         :create-order-link="'{{ route('projects.order', $project) }}'"
         :order-attributes="{{ $order_attributes }}"
+        :is-authenticated="{{ json_encode($isAuthenticated) }}"
+        :is-in-favorites="{{ json_encode($isInFavorites) }}"
     ></project>
 @endsection

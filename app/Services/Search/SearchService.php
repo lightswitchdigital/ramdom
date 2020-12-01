@@ -17,7 +17,7 @@ class SearchService
         $this->client = $client;
     }
 
-    public function search(SearchRequest $request, $perPage, $page): LengthAwarePaginator {
+    public function searchProjects(SearchRequest $request, $perPage, $page): LengthAwarePaginator {
 
         $values = array_filter((array)$request->input('attrs'), function($value) {
             return !empty($value['equals']) || !empty($value['from']) || !empty($value['to']);
@@ -80,5 +80,13 @@ class SearchService
         }
 
         return $pagination;
+    }
+
+    public function searchRaw($searchArray) {
+        $response = $this->client->search($searchArray);
+
+        $hits = $response['hits']['hits'];
+
+        return $hits;
     }
 }

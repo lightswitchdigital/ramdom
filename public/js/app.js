@@ -2545,38 +2545,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2584,26 +2552,26 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // values: {
-      //     'Общая площадь': '140 кв.м', 
-      //     'Площадь застройки': '200 м2', 
-      //     'Кубатура': '1170 м2', 
-      //     'Высота': '7.06 м', 
-      //     'Угол наклона кровли': '30', 
-      //     'Площадь крыши': '267 м2', 
-      //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м', 
-      //     'Материал': 'кирпич', 
-      //     'Фундамент': 'ленточный', 
-      //     'Внешняя отделка': 'кирпич облицовочный', 
-      //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой', 
-      //     'Покрытие': 'плита ЖБИ', 
-      //     'Материал кровли': 'металлочерепица', 
-      //     'Утеплитель кровли': 'доска сухая 150 мм', 
-      //     'Материал стропил': 'пенопласт', 
+      //     'Общая площадь': '140 кв.м',
+      //     'Площадь застройки': '200 м2',
+      //     'Кубатура': '1170 м2',
+      //     'Высота': '7.06 м',
+      //     'Угол наклона кровли': '30',
+      //     'Площадь крыши': '267 м2',
+      //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м',
+      //     'Материал': 'кирпич',
+      //     'Фундамент': 'ленточный',
+      //     'Внешняя отделка': 'кирпич облицовочный',
+      //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой',
+      //     'Покрытие': 'плита ЖБИ',
+      //     'Материал кровли': 'металлочерепица',
+      //     'Утеплитель кровли': 'доска сухая 150 мм',
+      //     'Материал стропил': 'пенопласт',
       // },
       favoritesUrl: ''
     };
   },
-  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isInFavorites', 'isAuthenticated'],
+  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isAuthenticated'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     console.log(this.orderAttributes);
@@ -2616,7 +2584,7 @@ __webpack_require__.r(__webpack_exports__);
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.t.bind(null, /*! vue-slick-carousel */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel.umd.js", 7));
     },
     'Recommend': function Recommend() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../common/Recommend */ "./resources/js/components/common/Recommend.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../common/RecommendComponent */ "./resources/js/components/common/RecommendComponent.vue"));
     }
   } // methods: {
   //     liked = () => {
@@ -40481,43 +40449,12 @@ var render = function() {
                     arrow: false
                   }
                 },
-                [
-                  _c("div", { staticClass: "preview-slide" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://archello.s3.eu-central-1.amazonaws.com/images/2018/05/11/tobiarchitects1.1526035990.6946.jpg"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "preview-slide" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://i.pinimg.com/originals/29/8d/f1/298df1cac168231b7572f2b4e75a269c.jpg"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "preview-slide" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://www.iconhomes.com.au/wp-content/uploads/2019/06/Double-Storey-Modern-Facade-Tampa-30-e1559625132419.jpg"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "preview-slide" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://www.contemporist.com/wp-content/uploads/2020/08/modern-house-lighting-architecture-260820-1114-02.jpg"
-                      }
-                    })
+                _vm._l(_vm.images, function(image) {
+                  return _c("div", { staticClass: "preview-slide" }, [
+                    _c("img", { attrs: { src: image, alt: _vm.project.title } })
                   ])
-                ]
+                }),
+                0
               )
             ],
             1
@@ -40541,17 +40478,6 @@ var render = function() {
                   },
                   scopedSlots: _vm._u([
                     {
-                      key: "prevArrow",
-                      fn: function() {
-                        return [
-                          _c("div", { staticClass: "btn-prev" }, [
-                            _c("i", { staticClass: "fas fa-chevron-left" })
-                          ])
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
                       key: "nextArrow",
                       fn: function() {
                         return [
@@ -40561,46 +40487,26 @@ var render = function() {
                         ]
                       },
                       proxy: true
+                    },
+                    {
+                      key: "prevArrow",
+                      fn: function() {
+                        return [
+                          _c("div", { staticClass: "btn-prev" }, [
+                            _c("i", { staticClass: "fas fa-chevron-left" })
+                          ])
+                        ]
+                      },
+                      proxy: true
                     }
                   ])
                 },
-                [
-                  _c("div", { staticClass: "mini-preview" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://archello.s3.eu-central-1.amazonaws.com/images/2018/05/11/tobiarchitects1.1526035990.6946.jpg"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "mini-preview" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://i.pinimg.com/originals/29/8d/f1/298df1cac168231b7572f2b4e75a269c.jpg"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "mini-preview" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://www.iconhomes.com.au/wp-content/uploads/2019/06/Double-Storey-Modern-Facade-Tampa-30-e1559625132419.jpg"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "mini-preview" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://www.contemporist.com/wp-content/uploads/2020/08/modern-house-lighting-architecture-260820-1114-02.jpg"
-                      }
-                    })
+                _vm._l(_vm.images, function(image) {
+                  return _c("div", { staticClass: "mini-preview" }, [
+                    _c("img", { attrs: { src: image, alt: _vm.project.title } })
                   ])
-                ]
+                }),
+                0
               )
             ],
             1
@@ -40608,9 +40514,9 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card desc-card" }, [
             _vm._v(
-              "\n                " +
+              "\n                    " +
                 _vm._s(_vm.project.description) +
-                "\n            "
+                "\n                "
             )
           ])
         ]),
@@ -40622,7 +40528,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "like-block",
-                    class: { active: _vm.isInFavorites },
+                    class: { active: _vm.project.isInFavorites },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -40631,7 +40537,7 @@ var render = function() {
                     }
                   },
                   [
-                    !_vm.isInFavorites
+                    !_vm.project.isInFavorites
                       ? _c("span", [_vm._v("Добавить в избранное")])
                       : _c("span", [_vm._v("В избранном")]),
                     _vm._v(" "),

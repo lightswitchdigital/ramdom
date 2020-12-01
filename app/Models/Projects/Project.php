@@ -4,6 +4,7 @@ namespace App\Models\Projects;
 
 use App\Models\Image;
 use App\Models\User;
+use Auth;
 use DomainException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,10 @@ class Project extends Model
 
     protected $fillable = [
         'user_id', 'title', 'slug', 'description', 'price', 'status'
+    ];
+
+    protected $appends = [
+        'route', 'isInFavorites'
     ];
 
     public $timestamps = true;
@@ -42,6 +47,14 @@ class Project extends Model
             }
         }
         return null;
+    }
+
+    public function getRouteAttribute() {
+        return route('projects.show', $this);
+    }
+
+    public function getIsInFavoritesAttribute() {
+        return Auth::check()? Auth::user()->hasInFavorites($this) : false;
     }
 
     public function addToFavorites($id): void

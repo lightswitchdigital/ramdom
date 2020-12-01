@@ -10,24 +10,8 @@
                         :focusOnSelect="true"
                         :fade="true"
                         :arrow="false">
-                        <!-- <div class="preview-slide" v-for="image in images">
-                            <img :src="image" alt="{{project.title}}">
-                        </div> -->
-                        <div class="preview-slide">
-                                <img 
-                                src="https://archello.s3.eu-central-1.amazonaws.com/images/2018/05/11/tobiarchitects1.1526035990.6946.jpg">
-                        </div>
-                        <div class="preview-slide">
-                            <img 
-                            src="https://i.pinimg.com/originals/29/8d/f1/298df1cac168231b7572f2b4e75a269c.jpg">
-                        </div>
-                        <div class="preview-slide">
-                            <img 
-                            src="https://www.iconhomes.com.au/wp-content/uploads/2019/06/Double-Storey-Modern-Facade-Tampa-30-e1559625132419.jpg">
-                        </div>
-                        <div class="preview-slide">
-                            <img 
-                            src="https://www.contemporist.com/wp-content/uploads/2020/08/modern-house-lighting-architecture-260820-1114-02.jpg">
+                        <div class="preview-slide" v-for="image in images">
+                            <img :src="image" :alt="project.title">
                         </div>
                     </VueSlickCarousel>
                 </div>
@@ -40,33 +24,17 @@
                         :arrow="true"
                         :asNavFor="$refs.preview"
                         :centerMode="true">
-                        <!-- <div class="mini-preview" v-for="image in images">
-                            <img :src="image" alt="{{project.title}}">
-                        </div> -->
-                        <div class="mini-preview">
-                            <img 
-                            src="https://archello.s3.eu-central-1.amazonaws.com/images/2018/05/11/tobiarchitects1.1526035990.6946.jpg">
+                        <div class="mini-preview" v-for="image in images">
+                            <img :src="image" :alt="project.title">
                         </div>
-                        <div class="mini-preview">
-                            <img 
-                            src="https://i.pinimg.com/originals/29/8d/f1/298df1cac168231b7572f2b4e75a269c.jpg">
-                        </div>
-                        <div class="mini-preview">
-                            <img 
-                            src="https://www.iconhomes.com.au/wp-content/uploads/2019/06/Double-Storey-Modern-Facade-Tampa-30-e1559625132419.jpg">
-                        </div>
-                        <div class="mini-preview">
-                            <img 
-                            src="https://www.contemporist.com/wp-content/uploads/2020/08/modern-house-lighting-architecture-260820-1114-02.jpg">
-                        </div>
-                        <template #prevArrow>
-                            <div class="btn-prev">
-                                <i class="fas fa-chevron-left"></i>
-                            </div>
-                        </template>
                         <template #nextArrow>
                             <div class="btn-next">
                                 <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </template>
+                        <template #prevArrow>
+                            <div class="btn-prev">
+                                <i class="fas fa-chevron-left"></i>
                             </div>
                         </template>
                     </VueSlickCarousel>
@@ -77,9 +45,9 @@
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
-                    <div v-if="isAuthenticated" class="like-block" :class="{active : isInFavorites}" @click.prevent="liked">
-                        <span v-if="!isInFavorites">Добавить в избранное</span> 
-                        <span v-else>В избранном</span> 
+                    <div v-if="isAuthenticated" class="like-block" :class="{active : project.isInFavorites}" @click.prevent="liked">
+                        <span v-if="!project.isInFavorites">Добавить в избранное</span>
+                        <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
 
@@ -90,7 +58,7 @@
                             <td>{{ value }}</td>
                         </tr>
                         </tbody>
-                    </table>  
+                    </table>
                     <div class="price-block">
                         <table class="table">
                             <tbody>
@@ -109,24 +77,24 @@
                         <a href="#" class="yellow-outline-btn">Купить проект</a>
                         <a href="#" class="yellow-btn">Купить строительство</a>
                     </div>
-                    <!-- <h3>Заказать проект</h3>
-                    <form :action="this.createOrderLink" method="post">
-                        <div class="form-group" v-for="attribute in this.orderAttributes">
-                            <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
+<!--                    <h3>Заказать проект</h3>-->
+<!--                    <form :action="this.createOrderLink" method="post">-->
+<!--                        <div class="form-group" v-for="attribute in this.orderAttributes">-->
+<!--                            <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>-->
 
-                            <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="form-control" :name="'order_attributes['+attribute.id+']'">
-                                <option v-if="attribute.required" value=""></option>
+<!--                            <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="form-control" :name="'order_attributes['+attribute.id+']'">-->
+<!--                                <option v-if="attribute.required" value=""></option>-->
 
-                                <option v-for="variant in attribute.variants" :value="variant">
-                                    {{ variant }}
-                                </option>
-                            </select>
+<!--                                <option v-for="variant in attribute.variants" :value="variant">-->
+<!--                                    {{ variant }}-->
+<!--                                </option>-->
+<!--                            </select>-->
 
-                            <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
+<!--                            <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">-->
 
-                            <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
-                        </div>
-                    </form> -->
+<!--                            <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">-->
+<!--                        </div>-->
+<!--                    </form>-->
                 </div>
             </div>
         </div>
@@ -142,21 +110,21 @@ export default {
     name: "ProjectComponent",
     data:() => ({
         // values: {
-        //     'Общая площадь': '140 кв.м', 
-        //     'Площадь застройки': '200 м2', 
-        //     'Кубатура': '1170 м2', 
-        //     'Высота': '7.06 м', 
-        //     'Угол наклона кровли': '30', 
-        //     'Площадь крыши': '267 м2', 
-        //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м', 
-        //     'Материал': 'кирпич', 
-        //     'Фундамент': 'ленточный', 
-        //     'Внешняя отделка': 'кирпич облицовочный', 
-        //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой', 
-        //     'Покрытие': 'плита ЖБИ', 
-        //     'Материал кровли': 'металлочерепица', 
-        //     'Утеплитель кровли': 'доска сухая 150 мм', 
-        //     'Материал стропил': 'пенопласт', 
+        //     'Общая площадь': '140 кв.м',
+        //     'Площадь застройки': '200 м2',
+        //     'Кубатура': '1170 м2',
+        //     'Высота': '7.06 м',
+        //     'Угол наклона кровли': '30',
+        //     'Площадь крыши': '267 м2',
+        //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м',
+        //     'Материал': 'кирпич',
+        //     'Фундамент': 'ленточный',
+        //     'Внешняя отделка': 'кирпич облицовочный',
+        //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой',
+        //     'Покрытие': 'плита ЖБИ',
+        //     'Материал кровли': 'металлочерепица',
+        //     'Утеплитель кровли': 'доска сухая 150 мм',
+        //     'Материал стропил': 'пенопласт',
         // },
         favoritesUrl: '',
     }),
@@ -169,7 +137,6 @@ export default {
         'orderAttributes',
         'favoritesAddLink',
         'favoritesRemoveLink',
-        'isInFavorites',
         'isAuthenticated'
     ],
     created() {
@@ -181,7 +148,7 @@ export default {
     },
     components: {
          'VueSlickCarousel': () => import('vue-slick-carousel') , 
-         'Recommend': () => import('../common/Recommend') 
+         'Recommend': () => import('../common/RecommendComponent') 
     },
     // methods: {
     //     liked = () => {
