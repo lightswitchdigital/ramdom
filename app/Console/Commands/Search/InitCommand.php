@@ -23,6 +23,16 @@ class InitCommand extends Command
     public function handle()
     {
 
+        $this->initProjects();
+        $this->initFavorites();
+
+        $this->info('ElasticSearch indices has been successfully set');
+
+        return true;
+    }
+
+    public function initProjects() {
+
         try {
             $this->client->indices()->delete([
                 'index' => 'projects'
@@ -120,8 +130,47 @@ class InitCommand extends Command
             ],
         ]);
 
-        $this->info('ElasticSearch indices has been successfully set');
+    }
 
-        return true;
+    public function initFavorites() {
+
+        try {
+            $this->client->indices()->delete([
+                'index' => 'favorites'
+            ]);
+        }catch(Missing404Exception $e) {
+
+        }
+
+        $this->client->indices()->create([
+            'index' => 'favorites',
+            'body' => [
+                'mappings' => [
+                    '_source' => [
+                        'enabled' => true,
+                    ],
+                    'properties' => [
+                        'id' => [
+                            'type' => 'integer'
+                        ],
+                        'favorites' => [
+                            'type' => 'nested',
+                            'properties' => [
+                                'id' => [
+                                    'type' => 'integer'
+                                ],
+                                'title' => [
+                                    'type' => 'keyword'
+                                ],
+                                'price' => [
+                                    'type' => 'integer'
+                                ]
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
     }
 }

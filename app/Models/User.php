@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Plans\PlanSubscription;
+use App\Models\Projects\Project;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -130,7 +131,24 @@ class User extends Authenticatable
         return $this->status === self::STATUS_ACTIVE;
     }
 
+    public function hasInFavorites(Project $project): bool
+    {
+        return $this->favorites()->where('id', $project->id)->exists();
+    }
+
     public function subscription() {
         return $this->hasOne(PlanSubscription::class);
+    }
+
+    public function favorites() {
+        return $this->belongsToMany(Project::class, 'project_favorites', 'user_id', 'project_id');
+    }
+
+    public function scopeActive($query) {
+        return $query->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function scopeHasFavorites($query) {
+        return $query->has('favorites');
     }
 }

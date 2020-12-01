@@ -39,8 +39,8 @@
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
-                    <div v-if="isAuthenticated" class="like-block" :class="{active : isInFavorites}" @click.prevent="liked">
-                        <span v-if="!isInFavorites">Добавить в избранное</span>
+                    <div v-if="isAuthenticated" class="like-block" :class="{active : project.isInFavorites}" @click.prevent="liked">
+                        <span v-if="!project.isInFavorites">Добавить в избранное</span>
                         <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import Recommend from '../common/Recommend'
+import Recommend from '../Common/RecommendComponent'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
@@ -126,7 +126,6 @@ export default {
         'orderAttributes',
         'favoritesAddLink',
         'favoritesRemoveLink',
-        'isInFavorites',
         'isAuthenticated'
     ],
     created() {

@@ -6,20 +6,25 @@ use App\Http\Requests\Projects\SearchRequest;
 use App\Models\Orders\ProjectAttribute;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
+use App\Services\Projects\RecommendationsService;
 use App\Services\Search\SearchService;
+use Auth;
+use DomainException;
 use Storage;
 
 class ProjectsController extends Controller
 {
-    private $service;
+    private $search;
+    private $recommendations;
 
-    public function __construct(SearchService $service) {
-        $this->service = $service;
+    public function __construct(SearchService $search, RecommendationsService $recommendations) {
+        $this->search = $search;
+        $this->recommendations = $recommendations;
     }
 
     public function index(SearchRequest $request) {
 
-        $projects = $this->service->search($request, 20, $request->get('page', 1));
+        $projects = $this->search->searchProjects($request, 20, $request->get('page', 1));
 
         $attributes = Attribute::all();
 
@@ -36,9 +41,23 @@ class ProjectsController extends Controller
         $images = $project->getImagesInJson();
         $created_at = $project->created_at->format('d-m-Y');
         $values = $project->getValuesInJson();
-
         $order_attributes = ProjectAttribute::all()->toJson();
+        $isAuthenticated = Auth::check();
+        $isInFavorites = Auth::check()? Auth::user()->hasInFavorites($project): false;
 
-        return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes'));
+        return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes', 'isAuthenticated', 'isInFavorites'));
+    }
+
+    public function recommendations(Project $project) {
+
+        try {
+            $items = $this->recommendations->getRecommendations($project->id);
+        }catch(DomainException $e) {
+
+            return response('', 503);
+
+        }
+
+        return $items->toJson();
     }
 }

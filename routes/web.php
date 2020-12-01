@@ -22,6 +22,8 @@ Route::group([
 
         Route::post('/order', 'OrderController@order')->name('order');
 
+        Route::get('/recommendations', 'ProjectsController@recommendations')->name('recommendations');
+
     });
 
 });

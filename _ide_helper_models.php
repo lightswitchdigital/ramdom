@@ -430,8 +430,10 @@ namespace App\Models{
 namespace App\Models{
 
     use App\Models\Plans\PlanSubscription;
+    use App\Models\Projects\Project;
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Notifications\DatabaseNotification;
     use Illuminate\Notifications\DatabaseNotificationCollection;
     use Illuminate\Support\Carbon;
@@ -462,9 +464,13 @@ namespace App\Models{
  * @property string|null $company_inn
  * @property string|null $company_account
  * @property string $status
+ * @property-read Collection|Project[] $favorites
+ * @property-read int|null $favorites_count
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read PlanSubscription|null $subscription
+ * @method static Builder|User active()
+ * @method static Builder|User hasFavorites()
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  * @method static Builder|User query()
