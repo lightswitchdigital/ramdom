@@ -150,22 +150,22 @@ export default {
          'VueSlickCarousel': () => import('vue-slick-carousel') , 
          'Recommend': () => import('../common/RecommendComponent') 
     },
-    // methods: {
-    //     liked = () => {
-    //         if(this.isInFavorites){
-    //             this.favoritesUrl = this.favoritesAddLink
-    //         }else{
-    //             this.favoritesUrl = this.favoritesRemoveLink
-    //         }
-    //         axios.post(`/${this.favoritesUrl}` , this.csrfToken).then(response => {
-    //             if(response.status === 204){
-    //                 console.log('is ok');
-    //             }
-    //         }).catch(error => {
-    //             console.log(error);
-    //         })
-    //     }
-    // }
+    methods: {
+        liked() {
+            if(this.isInFavorites){
+                this.favoritesUrl = this.favoritesAddLink
+            }else{
+                this.favoritesUrl = this.favoritesRemoveLink
+            }
+            axios.post(`/${this.favoritesUrl}` , this.csrfToken).then(response => {
+                if(response.status === 204){
+                    console.log('is ok');
+                }
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    }
 }
 
 </script>

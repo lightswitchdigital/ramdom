@@ -11083,6 +11083,8 @@ footer .social ul li a {
 
 .projects-section {
   margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .projects-section .sorting-block {
@@ -11172,6 +11174,10 @@ footer .social ul li a {
   width: fit-content;
   padding-bottom: 1px;
   border-bottom: 2px solid #FFD977;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .projects-section .card .card-text {

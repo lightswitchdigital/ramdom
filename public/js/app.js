@@ -2586,23 +2586,24 @@ __webpack_require__.r(__webpack_exports__);
     'Recommend': function Recommend() {
       return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../common/RecommendComponent */ "./resources/js/components/common/RecommendComponent.vue"));
     }
-  } // methods: {
-  //     liked = () => {
-  //         if(this.isInFavorites){
-  //             this.favoritesUrl = this.favoritesAddLink
-  //         }else{
-  //             this.favoritesUrl = this.favoritesRemoveLink
-  //         }
-  //         axios.post(`/${this.favoritesUrl}` , this.csrfToken).then(response => {
-  //             if(response.status === 204){
-  //                 console.log('is ok');
-  //             }
-  //         }).catch(error => {
-  //             console.log(error);
-  //         })
-  //     }
-  // }
+  },
+  methods: {
+    liked: function liked() {
+      if (this.isInFavorites) {
+        this.favoritesUrl = this.favoritesAddLink;
+      } else {
+        this.favoritesUrl = this.favoritesRemoveLink;
+      }
 
+      axios.post("/".concat(this.favoritesUrl), this.csrfToken).then(function (response) {
+        if (response.status === 204) {
+          console.log('is ok');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
