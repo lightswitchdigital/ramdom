@@ -1,11 +1,11 @@
 <template>
     <div class="recommend-block">
-        <h3 class="title">Похожие проекты</h3>
+        <h3 class="title">Вам может понравиться</h3>
         <VueSlickCarousel
         ref="recommend"
         v-bind="settings">
         <ProjectCardComponent
-        v-for="project in projects"
+        v-for="project in this.recommendations"
         :key="project.id"
         :project="project"
         :projectLink="'#'"
@@ -25,25 +25,13 @@
 </template>
 
 <script>
-import ProjectCardComponent from '../Projects/ProjectCardComponent'
+import ProjectCardComponent from './ProjectCardComponent'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
     data:() => ({
-        projects: [
-            {title: 'Project 1' , price: '1000000'},
-            {title: 'Project 2' , price: '1200000'},
-            {title: 'Project 3' , price: '1300000'},
-            {title: 'Project 4' , price: '1100000'},
-            {title: 'Project 5' , price: '1200000'},
-            {title: 'Project 6' , price: '1300000'},
-            {title: 'Project 7' , price: '1400000'},
-            {title: 'Project 8' , price: '1000000'},
-            {title: 'Project 9' , price: '1500000'},
-            {title: 'Project 10' , price: '1300000'}
-        ],
         settings: {
             "infinite" : true,
             "slidesToShow": 4,
@@ -71,6 +59,9 @@ export default {
             ]
         }
     }),
+    props: [
+        'recommendations'
+    ],
     components: { ProjectCardComponent , VueSlickCarousel }
 }
 </script>

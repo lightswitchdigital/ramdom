@@ -38,16 +38,14 @@ class ProjectsController extends Controller
             abort(404);
         }
 
-        $images = $project->getImagesInJson();
         $created_at = $project->created_at->format('d-m-Y');
-        $values = $project->getValuesInJson();
         $order_attributes = ProjectAttribute::all()->toJson();
         $isAuthenticated = Auth::check();
         $isInFavorites = Auth::check()? Auth::user()->hasInFavorites($project): false;
 
         $recommendations = $this->recommendations->getRecommendations($project->id)->toJson();
 
-        return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes', 'isAuthenticated', 'isInFavorites', 'recommendations'));
+        return view('projects.show', compact('project', 'created_at', 'order_attributes', 'isAuthenticated', 'isInFavorites', 'recommendations'));
     }
 
     public function addToFavorites(Project $project) {

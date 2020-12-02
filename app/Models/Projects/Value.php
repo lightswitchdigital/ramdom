@@ -13,4 +13,12 @@ class Value extends Model
     protected $fillable = [
         'project_id', 'attribute_id', 'value'
     ];
+
+    public function project() {
+        $this->belongsTo(Project::class);
+    }
+
+    public function attribute() {
+        return $this->belongsTo(Attribute::class);
+    }
 }

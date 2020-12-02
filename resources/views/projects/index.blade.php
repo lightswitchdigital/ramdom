@@ -9,9 +9,6 @@
             @foreach($projects as $project)
                 <project-card
                     :project="{{ $project }}"
-                    :project-images="{{ $project->getImagesInJson() }}"
-                    :project-values="{{ $project->getValuesInJson() }}"
-                    :project-link="'{{ route('projects.show', $project) }}'"
                 ></project-card>
             @endforeach
         </section>

@@ -3,9 +3,7 @@
 @section('content')
     <project
         :project="{{ $project }}"
-        :images="{{ $images }}"
         :created-at="'{{ $created_at }}'"
-        :values="{{ $values }}"
         :create-order-link="'{{ route('projects.order', $project) }}'"
         :order-attributes="{{ $order_attributes }}"
         :is-authenticated="{{ json_encode($isAuthenticated) }}"
