@@ -81,6 +81,8 @@ class RecommendationsService
         if (!empty($ids)) {
             $items = Project::whereIn('id', $ids)
                 ->inRandomOrder()
+                ->with('images')
+                ->with('values')
                 ->get();
         }
 

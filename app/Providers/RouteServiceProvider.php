@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
 
     /**
      * The controller namespace for the application.
@@ -26,13 +26,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-     protected $namespace = 'App\\Http\\Controllers\\Api';
+     protected $namespace = 'App\\Http\\Controllers';
 
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
+
     public function boot()
     {
         $this->configureRateLimiting();
@@ -41,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::prefix('api')
                 ->middleware('api')
                 ->as('api.')
-                ->namespace($this->namespace)
+                ->namespace($this->namespace.'\\Api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
