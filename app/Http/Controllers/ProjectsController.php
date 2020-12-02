@@ -24,7 +24,8 @@ class ProjectsController extends Controller
 
     public function index(SearchRequest $request) {
 
-        $projects = $this->service->searchProjects($request, 20, $request->get('page', 1));
+        $projects = $this->service->searchProjects($request, env('PROJECTS_PAGINATION'), $request->get('page', 1));
+        $projects->setPath('/projects');
 
         $attributes = Attribute::all();
 
@@ -41,11 +42,10 @@ class ProjectsController extends Controller
         $created_at = $project->created_at->format('d-m-Y');
         $order_attributes = ProjectAttribute::all()->toJson();
         $isAuthenticated = Auth::check();
-        $isInFavorites = Auth::check()? Auth::user()->hasInFavorites($project): false;
 
         $recommendations = $this->recommendations->getRecommendations($project->id)->toJson();
 
-        return view('projects.show', compact('project', 'created_at', 'order_attributes', 'isAuthenticated', 'isInFavorites', 'recommendations'));
+        return view('projects.show', compact('project', 'created_at', 'order_attributes', 'isAuthenticated', 'recommendations'));
     }
 
     public function addToFavorites(Project $project) {

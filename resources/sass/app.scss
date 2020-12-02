@@ -168,7 +168,7 @@ footer{
 
 
 
-.projects-section{
+.projects-wrapper{
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
@@ -251,7 +251,7 @@ footer{
             max-width: 100%;
         }
         .card-text{
-            list-style: none; 
+            list-style: none;
             margin: 0;
             padding: 0;
             li{
@@ -337,7 +337,7 @@ footer{
             border-bottom: 2px solid #FFD977;
         }
         .card-text{
-            list-style: none; 
+            list-style: none;
             margin: 0;
             padding: 0;
             li{
@@ -450,7 +450,7 @@ footer{
         margin-bottom: 40px;
     }
     .with-border{
-        padding-bottom: 2px;  
+        padding-bottom: 2px;
         border-bottom: 2px solid #FFD977;
     }
     .form-img-col{
@@ -605,8 +605,8 @@ footer{
                 justify-content: center;
                 align-items: center;
                 background: #FFD977;
-                border-radius: 50%;  
-                margin-left: 10px;   
+                border-radius: 50%;
+                margin-left: 10px;
             }
             +.active{
                 .like{

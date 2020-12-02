@@ -23,7 +23,8 @@ class Project extends Model
     ];
 
     protected $appends = [
-        'route', 'isInFavorites', 'jsonImages', 'jsonValues'
+        'route', 'isInFavorites', 'jsonImages', 'jsonValues',
+        'addToFavoritesLink', 'removeFromFavoritesLink'
     ];
 
     public $timestamps = true;
@@ -74,6 +75,14 @@ class Project extends Model
         }
 
         return $values;
+    }
+
+    public function getAddToFavoritesLinkAttribute() {
+        return route('projects.favorites.add', $this);
+    }
+
+    public function getRemoveFromFavoritesLinkAttribute() {
+        return route('projects.favorites.remove', $this);
     }
 
     public function addToFavorites($id): void

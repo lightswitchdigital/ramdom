@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
-                    <div v-if="isAuthenticated" class="like-block" :class="{active : project.isInFavorites}" @click.prevent="liked">
+                    <div v-if="isAuthenticated" class="like-block" :class="{active : project.isInFavorites}" @click.prevent="toggleFavorites">
                         <span v-if="!project.isInFavorites">Добавить в избранное</span>
                         <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
@@ -111,7 +111,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
     name: "ProjectComponent",
     data:() => ({
-        favoritesUrl: '',
+        toggleFavoritesUrl: '',
     }),
     props: [
         'project',
@@ -119,8 +119,6 @@ export default {
         'createOrderLink',
         'recommendations',
         'orderAttributes',
-        'favoritesAddLink',
-        'favoritesRemoveLink',
         'isAuthenticated'
     ],
     created() {
@@ -135,13 +133,14 @@ export default {
          'Recommend': () => import('./RecommendationsComponent')
     },
     methods: {
-        liked() {
-            if(this.isInFavorites){
-                this.favoritesUrl = this.favoritesAddLink
+        toggleFavorites() {
+            if(this.project.isInFavorites){
+                this.toggleFavoritesUrl = this.project.removeFromFavoritesLink
             }else{
-                this.favoritesUrl = this.favoritesRemoveLink
+                this.toggleFavoritesUrl = this.project.addToFavoritesLink
             }
-            axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
+            this.project.isInFavorites = !this.project.isInFavorites
+            axios.post(this.toggleFavoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
                     console.log('is ok');
                 }

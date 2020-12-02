@@ -327,7 +327,11 @@ namespace App\Models\Projects{
  * @property Carbon|null $updated_at
  * @property-read Collection|User[] $favorites
  * @property-read int|null $favorites_count
+ * @property-read mixed $add_to_favorites_link
  * @property-read mixed $is_in_favorites
+ * @property-read mixed $json_images
+ * @property-read mixed $json_values
+ * @property-read mixed $remove_from_favorites_link
  * @property-read mixed $route
  * @property-read Collection|Image[] $images
  * @property-read int|null $images_count
@@ -364,6 +368,7 @@ namespace App\Models\Projects{
  * @property int $project_id
  * @property int $attribute_id
  * @property string $value
+ * @property-read Attribute $attribute
  * @method static Builder|Value newModelQuery()
  * @method static Builder|Value newQuery()
  * @method static Builder|Value query()
