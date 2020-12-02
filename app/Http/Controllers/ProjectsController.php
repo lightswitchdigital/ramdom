@@ -15,9 +15,11 @@ use Storage;
 class ProjectsController extends Controller
 {
     private $service;
+    private $recommendations;
 
-    public function __construct(SearchService $service) {
+    public function __construct(SearchService $service, RecommendationsService $recommendations) {
         $this->service = $service;
+        $this->recommendations = $recommendations;
     }
 
     public function index(SearchRequest $request) {
@@ -43,7 +45,9 @@ class ProjectsController extends Controller
         $isAuthenticated = Auth::check();
         $isInFavorites = Auth::check()? Auth::user()->hasInFavorites($project): false;
 
-        return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes', 'isAuthenticated', 'isInFavorites'));
+        $recommendations = $this->recommendations->getRecommendations($project->id)->toJson();
+
+        return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes', 'isAuthenticated', 'isInFavorites', 'recommendations'));
     }
 
     public function addToFavorites(Project $project) {
