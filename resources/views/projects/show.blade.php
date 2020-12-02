@@ -12,6 +12,6 @@
         :is-in-favorites="{{ json_encode($isInFavorites) }}"
         :favorites-add-link="'{{ route('projects.favorites.add', $project) }}'"
         :favorites-remove-link="'{{ route('projects.favorites.remove', $project) }}'"
-        :recommendations-link="'{{ route('api.projects.recommendations', $project) }}'"
+        :recommendations="{{ $recommendations }}"
     ></project>
 @endsection
