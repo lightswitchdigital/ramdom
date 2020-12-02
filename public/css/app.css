@@ -11138,12 +11138,17 @@ footer .social ul li a {
   width: 35px;
   height: 35px;
   font-size: 17px;
-  color: #FFD977;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: #FFD977;
   border-radius: 50%;
+}
+
+.projects-section .card .like-block + .active {
+  color: #FFD977;
+  background: #fff;
 }
 
 .projects-section .card .card-price {

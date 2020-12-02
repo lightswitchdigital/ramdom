@@ -2422,8 +2422,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['project', 'projectLink', 'projectImages', 'projectValues']
+  props: ['project', 'projectLink', 'projectImages', 'projectValues', 'favoritesAddLink', 'favoritesRemoveLink'],
+  created: function created() {
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  },
+  methods: {
+    liked: function liked() {
+      if (this.project.isInFavorites) {
+        this.favoritesUrl = this.favoritesAddLink;
+      } else {
+        this.favoritesUrl = this.favoritesRemoveLink;
+      }
+
+      axios.post(this.favoritesUrl, {
+        '_token': this.csrfToken
+      }).then(function (response) {
+        if (response.status === 204) {
+          console.log('is ok');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2551,30 +2575,13 @@ __webpack_require__.r(__webpack_exports__);
   name: "ProjectComponent",
   data: function data() {
     return {
-      // values: {
-      //     'Общая площадь': '140 кв.м',
-      //     'Площадь застройки': '200 м2',
-      //     'Кубатура': '1170 м2',
-      //     'Высота': '7.06 м',
-      //     'Угол наклона кровли': '30',
-      //     'Площадь крыши': '267 м2',
-      //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м',
-      //     'Материал': 'кирпич',
-      //     'Фундамент': 'ленточный',
-      //     'Внешняя отделка': 'кирпич облицовочный',
-      //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой',
-      //     'Покрытие': 'плита ЖБИ',
-      //     'Материал кровли': 'металлочерепица',
-      //     'Утеплитель кровли': 'доска сухая 150 мм',
-      //     'Материал стропил': 'пенопласт',
-      // },
       favoritesUrl: ''
     };
   },
-  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isAuthenticated'],
+  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'recommendationsLink', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isAuthenticated'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    console.log(this.orderAttributes);
+    console.log(this.project.isInFavorites);
   },
   mounted: function mounted() {
     this.$nextTick(this.$forceUpdate);
@@ -2589,13 +2596,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     liked: function liked() {
-      if (this.isInFavorites) {
+      if (this.project.isInFavorites) {
         this.favoritesUrl = this.favoritesAddLink;
       } else {
         this.favoritesUrl = this.favoritesRemoveLink;
       }
 
-      axios.post("/".concat(this.favoritesUrl), this.csrfToken).then(function (response) {
+      axios.post(this.favoritesUrl, {
+        '_token': this.csrfToken
+      }).then(function (response) {
         if (response.status === 204) {
           console.log('is ok');
         }
@@ -40351,59 +40360,58 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("a", { staticClass: "card", attrs: { href: this.projectLink } }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "card-body" },
-      [
-        _c("div", { staticClass: "card-price" }, [
-          _vm._v("от " + _vm._s(this.project.price) + " "),
-          _c("span", { staticClass: "rub" }, [_vm._v("₽")])
-        ]),
-        _vm._v(" "),
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(this.project.title))
-        ]),
-        _vm._v(" "),
-        _vm._l(this.projectValues, function(value, label) {
-          return _c("ul", { staticClass: "card-text" }, [
-            _c("li", [
-              _c("span", [_vm._v(_vm._s(label))]),
-              _c("span", [_vm._v(_vm._s(value))])
-            ])
-          ])
-        })
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "like-block" }, [
-      _c("i", { staticClass: "far fa-heart" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-img-top" }, [
+      {
+        staticClass: "like-block",
+        class: { active: _vm.project.isInFavorites },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.liked($event)
+          }
+        }
+      },
+      [_c("i", { staticClass: "fas fa-heart" })]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-img-top" }, [
       _c("img", {
         attrs: {
           src:
-            "https://cdn.homedit.com/wp-content/uploads/2012/03/modern-high-tech-property.jpg"
+            _vm.projectImages[0] ||
+            "https://image.freepik.com/free-vector/drawing-of-a-home-on-blueprint_23-2148307947.jpg"
         }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "card-price" }, [
+        _vm._v("от " + _vm._s(this.project.price) + " "),
+        _c("span", { staticClass: "rub" }, [_vm._v("₽")])
+      ]),
+      _vm._v(" "),
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v(_vm._s(this.project.title))
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "card-text" },
+        _vm._l(_vm.projectValues, function(value, label, index) {
+          return index <= 4
+            ? _c("li", [
+                _c("span", [_vm._v(_vm._s(label))]),
+                _c("span", [_vm._v(_vm._s(value))])
+              ])
+            : _vm._e()
+        }),
+        0
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -136,7 +136,7 @@ export default {
     },
     methods: {
         liked() {
-            if(this.isInFavorites){
+            if(this.project.isInFavorites){
                 this.favoritesUrl = this.favoritesAddLink
             }else{
                 this.favoritesUrl = this.favoritesRemoveLink

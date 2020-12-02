@@ -49,37 +49,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      projects: [{
-        title: 'Project 1',
-        price: '1000000'
-      }, {
-        title: 'Project 2',
-        price: '1200000'
-      }, {
-        title: 'Project 3',
-        price: '1300000'
-      }, {
-        title: 'Project 4',
-        price: '1100000'
-      }, {
-        title: 'Project 5',
-        price: '1200000'
-      }, {
-        title: 'Project 6',
-        price: '1300000'
-      }, {
-        title: 'Project 7',
-        price: '1400000'
-      }, {
-        title: 'Project 8',
-        price: '1000000'
-      }, {
-        title: 'Project 9',
-        price: '1500000'
-      }, {
-        title: 'Project 10',
-        price: '1300000'
-      }],
+      recommendetions: [],
       settings: {
         "infinite": true,
         "slidesToShow": 4,
@@ -167,7 +137,7 @@ var render = function() {
           _vm.settings,
           false
         ),
-        _vm._l(_vm.projects, function(project) {
+        _vm._l(_vm.recommendetions, function(project) {
           return _c("ProjectCardComponent", {
             key: project.id,
             attrs: { project: project, projectLink: "#", projectValues: [] }

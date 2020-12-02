@@ -1,14 +1,16 @@
 <template>
     <a class="card" :href="this.projectLink">
-        <div class="like-block"><i class="far fa-heart"></i></div>
+        <div :class="{active : project.isInFavorites}" @click.prevent="liked" class="like-block"><i class="fas fa-heart"></i></div>
         <div class="card-img-top">
-            <img src="https://cdn.homedit.com/wp-content/uploads/2012/03/modern-high-tech-property.jpg">
+            <img :src="projectImages[0]">
         </div>
         <div class="card-body">
         <div class="card-price">от {{ this.project.price }} <span class="rub">₽</span></div>
         <h5 class="card-title">{{ this.project.title }}</h5>
-        <ul class="card-text" v-for="(value, label) in this.projectValues">
-            <li><span>{{ label }}</span><span>{{ value }}</span></li>
+        <ul class="card-text">
+            <li v-for="(value, label, index) in projectValues" v-if="index <= 4">
+                <span>{{ label }}</span><span>{{ value }}</span>
+            </li>
         </ul>
         </div>
     </a>
@@ -20,7 +22,28 @@ export default {
         'project',
         'projectLink',
         'projectImages',
-        'projectValues'
-    ]
+        'projectValues',
+        'favoritesAddLink',
+        'favoritesRemoveLink'
+    ],
+    created() {
+        this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+    },
+    methods: {
+        liked() {
+            if(this.project.isInFavorites){
+                this.favoritesUrl = this.favoritesAddLink
+            }else{
+                this.favoritesUrl = this.favoritesRemoveLink
+            }
+            axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
+                if(response.status === 204){
+                    console.log('is ok');
+                }
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    }
 };
 </script>
