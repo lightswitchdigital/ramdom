@@ -134,6 +134,7 @@ export default {
         'createdAt',
         'values',
         'createOrderLink',
+        'recommendationsLink',
         'orderAttributes',
         'favoritesAddLink',
         'favoritesRemoveLink',

@@ -14,17 +14,15 @@ use Storage;
 
 class ProjectsController extends Controller
 {
-    private $search;
-    private $recommendations;
+    private $service;
 
-    public function __construct(SearchService $search, RecommendationsService $recommendations) {
-        $this->search = $search;
-        $this->recommendations = $recommendations;
+    public function __construct(SearchService $service) {
+        $this->service = $service;
     }
 
     public function index(SearchRequest $request) {
 
-        $projects = $this->search->searchProjects($request, 20, $request->get('page', 1));
+        $projects = $this->service->searchProjects($request, 20, $request->get('page', 1));
 
         $attributes = Attribute::all();
 
@@ -46,18 +44,5 @@ class ProjectsController extends Controller
         $isInFavorites = Auth::check()? Auth::user()->hasInFavorites($project): false;
 
         return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes', 'isAuthenticated', 'isInFavorites'));
-    }
-
-    public function recommendations(Project $project) {
-
-        try {
-            $items = $this->recommendations->getRecommendations($project->id);
-        }catch(DomainException $e) {
-
-            return response('', 503);
-
-        }
-
-        return $items->toJson();
     }
 }
