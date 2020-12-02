@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo.png">
+                    <img src="{{ asset('/images/logo.png') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -40,38 +40,27 @@
                     <ul class="navbar-nav ml-auto mr-4">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Проекты</a>
+                            <a class="nav-link" href="{{ route('projects.index') }}">Проекты</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">О нас</a>
+                            <a class="nav-link" href="{{ route('about') }}">О нас</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"> Мои проекты</a>
+                            <a class="nav-link" href="{{ route('faq') }}">Вопрос-Ответ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Вопрос-Ответ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Советы по строительству</a>
+                            <a class="nav-link" href="{{ route('advice') }}">Советы по строительству</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-heart"></i></a>
-                        </li>
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-user-alt"></i></a>
+                                <a class="nav-link" href="{{ route('login') }}">Войти</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
-                                </li>
-                            @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('profile.favorites.index') }}"><i class="fas fa-heart"></i></a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -134,7 +123,7 @@
                     </ul>
                 </div>
             </div>
-            
+
         </footer>
     </div>
 </body>
