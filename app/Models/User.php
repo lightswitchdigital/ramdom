@@ -136,6 +136,24 @@ class User extends Authenticatable
         return $this->favorites()->where('id', $project->id)->exists();
     }
 
+    public function addToFavorites($project_id) {
+        $project = Project::find($project_id);
+
+        if (!$project)
+            abort(404);
+
+        $this->favorites()->attach($project_id);
+    }
+
+    public function removeFromFavorites($project_id) {
+        $project = Project::find($project_id);
+
+        if (!$project)
+            abort(404);
+
+        $this->favorites()->detach($project_id);
+    }
+
     public function subscription() {
         return $this->hasOne(PlanSubscription::class);
     }

@@ -21,10 +21,13 @@ Route::group([
     ], function() {
 
         Route::post('/order', 'OrderController@order')->name('order');
-
-        Route::get('/recommendations', 'ProjectsController@recommendations')->name('recommendations');
+        Route::post('/favorites/add', 'ProjectsController@addToFavorites')->name('favorites.add');
+        Route::post('/favorites/remove', 'ProjectsController@removeFromFavorites')->name('favorites.remove');
 
     });
+
+    Route::get('/{project}/recommendations', 'ProjectsController@recommendations')->name('recommendations');
+
 
 });
 

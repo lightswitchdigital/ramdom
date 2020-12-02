@@ -24,15 +24,6 @@ Route::group([
         'prefix' => '{project}',
     ], function() {
 
-        Route::group([
-            'middleware' => ['auth']
-        ], function() {
-
-            Route::post('/favorites/add', 'FavoritesController@add')->name('favorites.add');
-            Route::post('/favorites/remove', 'FavoritesController@remove')->name('favorites.remove');
-
-        });
-
         Route::get('/get-recommendations', 'ProjectsController@recommendations')->name('recommendations');
 
     });

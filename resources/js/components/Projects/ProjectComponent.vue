@@ -71,7 +71,7 @@
                                     <td><div class="price">{{project.price}}</div></td>
                                 </tr>
                             </tbody>
-                        </table>  
+                        </table>
                     </div>
                     <div class="btn-block">
                         <a href="#" class="yellow-outline-btn">Купить проект</a>
@@ -109,23 +109,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
     name: "ProjectComponent",
     data:() => ({
-        // values: {
-        //     'Общая площадь': '140 кв.м',
-        //     'Площадь застройки': '200 м2',
-        //     'Кубатура': '1170 м2',
-        //     'Высота': '7.06 м',
-        //     'Угол наклона кровли': '30',
-        //     'Площадь крыши': '267 м2',
-        //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м',
-        //     'Материал': 'кирпич',
-        //     'Фундамент': 'ленточный',
-        //     'Внешняя отделка': 'кирпич облицовочный',
-        //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой',
-        //     'Покрытие': 'плита ЖБИ',
-        //     'Материал кровли': 'металлочерепица',
-        //     'Утеплитель кровли': 'доска сухая 150 мм',
-        //     'Материал стропил': 'пенопласт',
-        // },
         favoritesUrl: '',
     }),
     props: [
@@ -142,14 +125,14 @@ export default {
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
-        console.log(this.orderAttributes)
-    }, 
+        console.log(this.project.isInFavorites)
+    },
     mounted() {
         this.$nextTick(this.$forceUpdate);
     },
     components: {
-         'VueSlickCarousel': () => import('vue-slick-carousel') , 
-         'Recommend': () => import('../common/RecommendComponent') 
+         'VueSlickCarousel': () => import('vue-slick-carousel') ,
+         'Recommend': () => import('../common/RecommendComponent')
     },
     methods: {
         liked() {
@@ -158,7 +141,7 @@ export default {
             }else{
                 this.favoritesUrl = this.favoritesRemoveLink
             }
-            axios.post(`/${this.favoritesUrl}` , this.csrfToken).then(response => {
+            axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
                     console.log('is ok');
                 }

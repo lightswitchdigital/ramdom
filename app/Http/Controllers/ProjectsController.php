@@ -45,4 +45,20 @@ class ProjectsController extends Controller
 
         return view('projects.show', compact('project', 'images', 'created_at', 'values', 'order_attributes', 'isAuthenticated', 'isInFavorites'));
     }
+
+    public function addToFavorites(Project $project) {
+        $user = Auth::user();
+
+        $user->addToFavorites($project->id);
+
+        return response('', 204);
+    }
+
+    public function removeFromFavorites(Project $project) {
+        $user = Auth::user();
+
+        $user->removeFromFavorites($project->id);
+
+        return response('', 204);
+    }
 }
