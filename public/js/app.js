@@ -2431,7 +2431,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     liked: function liked() {
-      if (this.project.isInFavorites) {
+      if (!this.project.isInFavorites) {
         this.favoritesUrl = this.favoritesAddLink;
       } else {
         this.favoritesUrl = this.favoritesRemoveLink;
@@ -2569,6 +2569,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2578,7 +2579,7 @@ __webpack_require__.r(__webpack_exports__);
       favoritesUrl: ''
     };
   },
-  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'recommendationsLink', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isAuthenticated'],
+  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'recommendationsLink', 'recommendations', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isAuthenticated'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     console.log(this.project.isInFavorites);
@@ -2591,12 +2592,14 @@ __webpack_require__.r(__webpack_exports__);
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.t.bind(null, /*! vue-slick-carousel */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel.umd.js", 7));
     },
     'Recommend': function Recommend() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../common/RecommendComponent */ "./resources/js/components/common/RecommendComponent.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../common/RecommendComponent */ "./resources/js/components/common/RecommendComponent.vue"));
     }
   },
   methods: {
     liked: function liked() {
-      if (this.project.isInFavorites) {
+      var _this = this;
+
+      if (!this.project.isInFavorites) {
         this.favoritesUrl = this.favoritesAddLink;
       } else {
         this.favoritesUrl = this.favoritesRemoveLink;
@@ -2606,7 +2609,7 @@ __webpack_require__.r(__webpack_exports__);
         '_token': this.csrfToken
       }).then(function (response) {
         if (response.status === 204) {
-          console.log('is ok');
+          console.log(_this.project.isInFavorites + 'favorites');
         }
       })["catch"](function (error) {
         console.log(error);
@@ -40359,57 +40362,53 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { staticClass: "card", attrs: { href: this.projectLink } }, [
-    _c(
-      "div",
-      {
-        staticClass: "like-block",
-        class: { active: _vm.project.isInFavorites },
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.liked($event)
-          }
-        }
-      },
-      [_c("i", { staticClass: "fas fa-heart" })]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-img-top" }, [
-      _c("img", {
-        attrs: {
-          src:
-            _vm.projectImages[0] ||
-            "https://image.freepik.com/free-vector/drawing-of-a-home-on-blueprint_23-2148307947.jpg"
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "card-price" }, [
-        _vm._v("от " + _vm._s(this.project.price) + " "),
-        _c("span", { staticClass: "rub" }, [_vm._v("₽")])
-      ]),
-      _vm._v(" "),
-      _c("h5", { staticClass: "card-title" }, [
-        _vm._v(_vm._s(this.project.title))
-      ]),
-      _vm._v(" "),
+  return _c(
+    "a",
+    { staticClass: "card project-card", attrs: { href: this.projectLink } },
+    [
       _c(
-        "ul",
-        { staticClass: "card-text" },
-        _vm._l(_vm.projectValues, function(value, label, index) {
-          return index <= 4
-            ? _c("li", [
-                _c("span", [_vm._v(_vm._s(label))]),
-                _c("span", [_vm._v(_vm._s(value))])
-              ])
-            : _vm._e()
-        }),
-        0
-      )
-    ])
-  ])
+        "div",
+        {
+          staticClass: "like-block",
+          class: { active: _vm.project.isInFavorites },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.liked($event)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-heart" })]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-img-top" }, [
+        _c("img", { attrs: { src: _vm.projectImages[0] } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "card-price" }, [
+          _vm._v("от " + _vm._s(this.project.price) + " "),
+          _c("span", { staticClass: "rub" }, [_vm._v("₽")])
+        ]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "card-title" }, [
+          _vm._v(_vm._s(this.project.title))
+        ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "card-text" },
+          _vm._l(_vm.projectValues, function(value, label, index) {
+            return _c("li", { key: index, attrs: { "v-if": index <= 4 } }, [
+              _c("span", [_vm._v(_vm._s(label))]),
+              _c("span", [_vm._v(_vm._s(value))])
+            ])
+          }),
+          0
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40458,10 +40457,16 @@ var render = function() {
                     arrow: false
                   }
                 },
-                _vm._l(_vm.images, function(image) {
-                  return _c("div", { staticClass: "preview-slide" }, [
-                    _c("img", { attrs: { src: image, alt: _vm.project.title } })
-                  ])
+                _vm._l(_vm.images, function(image, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "preview-slide" },
+                    [
+                      _c("img", {
+                        attrs: { src: image, alt: _vm.project.title }
+                      })
+                    ]
+                  )
                 }),
                 0
               )
@@ -40510,10 +40515,16 @@ var render = function() {
                     }
                   ])
                 },
-                _vm._l(_vm.images, function(image) {
-                  return _c("div", { staticClass: "mini-preview" }, [
-                    _c("img", { attrs: { src: image, alt: _vm.project.title } })
-                  ])
+                _vm._l(_vm.images, function(image, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "mini-preview" },
+                    [
+                      _c("img", {
+                        attrs: { src: image, alt: _vm.project.title }
+                      })
+                    ]
+                  )
                 }),
                 0
               )
@@ -40558,8 +40569,8 @@ var render = function() {
             _c("table", { staticClass: "table" }, [
               _c(
                 "tbody",
-                _vm._l(_vm.values, function(value, label) {
-                  return _c("tr", [
+                _vm._l(_vm.values, function(value, label, index) {
+                  return _c("tr", { key: index }, [
                     _c("td", [_vm._v(_vm._s(label))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(value))])
@@ -40600,7 +40611,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("Recommend")
+      _c("Recommend", { attrs: { recommendations: _vm.recommendationsLink } })
     ],
     1
   )

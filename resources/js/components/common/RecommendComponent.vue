@@ -5,8 +5,8 @@
         ref="recommend"
         v-bind="settings">
         <ProjectCardComponent
-        v-for="project in recommendetions"
-        :key="project.id"
+        v-for="(project , index) in recommendations"
+        :key="index"
         :project="project"
         :projectLink="'#'"
         :projectValues="[]"/>
@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import ProjectCardComponent from '../Projects/ProjectCardComponent'
-import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
+    props: [
+        'recommendations'
+    ],
     data:() => ({
-        recommendetions: [],
         settings: {
             "infinite" : true,
             "slidesToShow": 4,
@@ -60,6 +60,9 @@ export default {
             ]
         }
     }),
-    components: { ProjectCardComponent , VueSlickCarousel }
+    components: { 
+        'ProjectCardComponent': () => import('../Projects/ProjectCardComponent') ,
+        'VueSlickCarousel': () => import('vue-slick-carousel')
+    }
 }
 </script>

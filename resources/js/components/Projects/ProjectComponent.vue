@@ -10,7 +10,7 @@
                         :focusOnSelect="true"
                         :fade="true"
                         :arrow="false">
-                        <div class="preview-slide" v-for="image in images">
+                        <div class="preview-slide" v-for="(image , index) in images" :key="index">
                             <img :src="image" :alt="project.title">
                         </div>
                     </VueSlickCarousel>
@@ -24,7 +24,7 @@
                         :arrow="true"
                         :asNavFor="$refs.preview"
                         :centerMode="true">
-                        <div class="mini-preview" v-for="image in images">
+                        <div class="mini-preview" v-for="(image , index) in images" :key="index">
                             <img :src="image" :alt="project.title">
                         </div>
                         <template #nextArrow>
@@ -45,7 +45,8 @@
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
-                    <div v-if="isAuthenticated" class="like-block" :class="{active : project.isInFavorites}" @click.prevent="liked">
+                    <div v-if="isAuthenticated" class="like-block" 
+                    :class="{active : project.isInFavorites}" @click.prevent="liked">
                         <span v-if="!project.isInFavorites">Добавить в избранное</span>
                         <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
@@ -53,7 +54,7 @@
 
                     <table class="table">
                         <tbody>
-                        <tr v-for="(value, label) in values">
+                        <tr v-for="(value, label , index) in values" :key="index">
                             <td>{{ label }}</td>
                             <td>{{ value }}</td>
                         </tr>
@@ -98,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <Recommend />
+        <Recommend :recommendations='recommendations'/>
     </div>
 </template>
 
@@ -118,6 +119,7 @@ export default {
         'values',
         'createOrderLink',
         'recommendationsLink',
+        'recommendations',
         'orderAttributes',
         'favoritesAddLink',
         'favoritesRemoveLink',
@@ -136,14 +138,14 @@ export default {
     },
     methods: {
         liked() {
-            if(this.project.isInFavorites){
+            if(!this.project.isInFavorites){
                 this.favoritesUrl = this.favoritesAddLink
             }else{
                 this.favoritesUrl = this.favoritesRemoveLink
             }
             axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
-                    console.log('is ok');
+                    console.log(this.project.isInFavorites + 'favorites');
                 }
             }).catch(error => {
                 console.log(error);

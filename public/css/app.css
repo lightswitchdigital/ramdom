@@ -11081,6 +11081,104 @@ footer .social ul li a {
   display: none;
 }
 
+a.project-card {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 15px 15px;
+  text-decoration: none;
+  color: #000;
+  border: none;
+}
+
+a.project-card .like-block {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 10;
+  width: 35px;
+  height: 35px;
+  font-size: 17px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFD977;
+  border-radius: 50%;
+}
+
+a.project-card .like-block.active {
+  color: #FFD977;
+  background: #fff;
+}
+
+a.project-card .card-price {
+  width: auto;
+  padding: 5px 20px;
+  height: 30px;
+  background: #32323293;
+  position: absolute;
+  top: -30px;
+  color: #fff;
+  right: 0;
+}
+
+a.project-card .card-price .rub {
+  font-size: 11px;
+  color: #FFD977;
+}
+
+a.project-card .card-body {
+  padding: 25px;
+  padding-bottom: 35px;
+  position: relative;
+}
+
+a.project-card .card-title {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-bottom: 1px;
+  border-bottom: 2px solid #FFD977;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+a.project-card .card-text {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a.project-card .card-text li {
+  font-size: 12px;
+  line-height: 120%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+}
+
+a.project-card .card-img-top {
+  width: 100%;
+  height: 178px;
+  position: relative;
+  overflow: hidden;
+}
+
+a.project-card .card-img-top img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
 .projects-section {
   margin-top: 50px;
   display: flex;
@@ -11117,102 +11215,8 @@ footer .social ul li a {
   flex-wrap: wrap;
 }
 
-.projects-section .card {
-  position: relative;
-  display: block;
+.projects-section .project-card {
   flex: 0 0 calc(25% - 30px);
-  border-radius: 16px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  box-sizing: border-box;
-  margin: 15px 15px;
-  text-decoration: none;
-  color: #000;
-}
-
-.projects-section .card .like-block {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  z-index: 10;
-  width: 35px;
-  height: 35px;
-  font-size: 17px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #FFD977;
-  border-radius: 50%;
-}
-
-.projects-section .card .like-block + .active {
-  color: #FFD977;
-  background: #fff;
-}
-
-.projects-section .card .card-price {
-  width: auto;
-  padding: 5px 20px;
-  height: 30px;
-  background: #32323293;
-  position: absolute;
-  top: -30px;
-  color: #fff;
-  right: 0;
-}
-
-.projects-section .card .card-price .rub {
-  font-size: 11px;
-  color: #FFD977;
-}
-
-.projects-section .card .card-body {
-  padding: 25px;
-  padding-bottom: 35px;
-  position: relative;
-}
-
-.projects-section .card .card-title {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding-bottom: 1px;
-  border-bottom: 2px solid #FFD977;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 100%;
-}
-
-.projects-section .card .card-text {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.projects-section .card .card-text li {
-  font-size: 12px;
-  line-height: 120%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0;
-}
-
-.projects-section .card .card-img-top {
-  width: 100%;
-  height: 178px;
-  position: relative;
-  overflow: hidden;
-}
-
-.projects-section .card .card-img-top img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
 }
 
 .recommend-block {
@@ -11227,94 +11231,10 @@ footer .social ul li a {
   padding: 20px 0;
 }
 
-.recommend-block .card {
-  position: relative;
-  display: block;
-  border-radius: 16px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  box-sizing: border-box;
+.recommend-block .project-card {
   margin: 0 15px;
-  text-decoration: none;
-  color: #000;
   max-width: 240px;
   padding: 0 !important;
-}
-
-.recommend-block .card .like-block {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  z-index: 10;
-  width: 35px;
-  height: 35px;
-  font-size: 17px;
-  color: #FFD977;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  border-radius: 50%;
-}
-
-.recommend-block .card .card-price {
-  width: auto;
-  padding: 5px 20px;
-  height: 30px;
-  background: #32323293;
-  position: absolute;
-  top: -30px;
-  color: #fff;
-  right: 0;
-}
-
-.recommend-block .card .card-price .rub {
-  font-size: 11px;
-  color: #FFD977;
-}
-
-.recommend-block .card .card-body {
-  padding: 25px;
-  padding-bottom: 35px;
-  position: relative;
-}
-
-.recommend-block .card .card-title {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding-bottom: 1px;
-  border-bottom: 2px solid #FFD977;
-}
-
-.recommend-block .card .card-text {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.recommend-block .card .card-text li {
-  font-size: 12px;
-  line-height: 120%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0;
-}
-
-.recommend-block .card .card-img-top {
-  width: 100%;
-  height: 178px;
-  position: relative;
-  overflow: hidden;
-}
-
-.recommend-block .card .card-img-top img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
 }
 
 .register-block .form-group {
@@ -11609,7 +11529,7 @@ footer .social ul li a {
   margin-left: 10px;
 }
 
-.project-view .info-card .like-block + .active .like {
+.project-view .info-card .like-block.active .like {
   color: #FFD977;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);

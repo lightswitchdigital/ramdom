@@ -166,6 +166,89 @@ footer{
     .columns-flex input{display: none;}
 }
 
+a.project-card{
+    position: relative;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 15px 15px;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    .like-block{
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        z-index: 10;
+        width: 35px;
+        height: 35px;
+        font-size: 17px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #FFD977;
+        border-radius: 50%;
+        &.active{
+            color: #FFD977;
+            background: #fff;
+        }
+    }
+    .card-price{
+        width: auto;
+        padding: 5px 20px;
+        height: 30px;
+        background: #32323293;
+        position: absolute;
+        top: -30px;
+        color: #fff;
+        right: 0;
+        .rub{
+            font-size: 11px;
+            color: #FFD977;
+        }
+    }
+    .card-body{
+        padding: 25px;
+        padding-bottom: 35px;
+        position: relative;
+    }
+    .card-title{
+        width: fit-content;
+        padding-bottom: 1px;
+        border-bottom: 2px solid #FFD977;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+    }
+    .card-text{
+        list-style: none; 
+        margin: 0;
+        padding: 0;
+        li{
+            font-size: 12px;
+            line-height: 120%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+    }
+    .card-img-top{
+        width: 100%;
+        height: 178px;
+        position: relative;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
 
 
 .projects-section{
@@ -196,88 +279,8 @@ footer{
         flex-direction: row;
         flex-wrap: wrap;
     }
-    .card{
-        position: relative;
-        display: block;
+    .project-card{
         flex: 0 0 calc(25% - 30px);
-        border-radius: 16px;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-        overflow: hidden;
-        box-sizing: border-box;
-        margin: 15px 15px;
-        text-decoration: none;
-        color: #000;
-        .like-block{
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            z-index: 10;
-            width: 35px;
-            height: 35px;
-            font-size: 17px;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #FFD977;
-            border-radius: 50%;
-            +.active{
-                color: #FFD977;
-                background: #fff;
-            }
-        }
-        .card-price{
-            width: auto;
-            padding: 5px 20px;
-            height: 30px;
-            background: #32323293;
-            position: absolute;
-            top: -30px;
-            color: #fff;
-            right: 0;
-            .rub{
-                font-size: 11px;
-                color: #FFD977;
-            }
-        }
-        .card-body{
-            padding: 25px;
-            padding-bottom: 35px;
-            position: relative;
-        }
-        .card-title{
-            width: fit-content;
-            padding-bottom: 1px;
-            border-bottom: 2px solid #FFD977;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 100%;
-        }
-        .card-text{
-            list-style: none; 
-            margin: 0;
-            padding: 0;
-            li{
-                font-size: 12px;
-                line-height: 120%;
-                display: flex;
-                justify-content: space-between;
-                margin-top: 0;
-            }
-        }
-        .card-img-top{
-            width: 100%;
-            height: 178px;
-            position: relative;
-            overflow: hidden;
-            img{
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-        }
     }
 }
 
@@ -289,81 +292,10 @@ footer{
     .slick-track{
         padding: 20px 0;
     }
-    .card{
-        position: relative;
-        display: block;
-        border-radius: 16px;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-        overflow: hidden;
-        box-sizing: border-box;
+    .project-card{
         margin: 0 15px;
-        text-decoration: none;
-        color: #000;
         max-width: 240px;
         padding: 0 !important;
-        .like-block{
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            z-index: 10;
-            width: 35px;
-            height: 35px;
-            font-size: 17px;
-            color: #FFD977;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #fff;
-            border-radius: 50%;
-        }
-        .card-price{
-            width: auto;
-            padding: 5px 20px;
-            height: 30px;
-            background: #32323293;
-            position: absolute;
-            top: -30px;
-            color: #fff;
-            right: 0;
-            .rub{
-                font-size: 11px;
-                color: #FFD977;
-            }
-        }
-        .card-body{
-            padding: 25px;
-            padding-bottom: 35px;
-            position: relative;
-        }
-        .card-title{
-            width: fit-content;
-            padding-bottom: 1px;
-            border-bottom: 2px solid #FFD977;
-        }
-        .card-text{
-            list-style: none; 
-            margin: 0;
-            padding: 0;
-            li{
-                font-size: 12px;
-                line-height: 120%;
-                display: flex;
-                justify-content: space-between;
-                margin-top: 0;
-            }
-        }
-        .card-img-top{
-            width: 100%;
-            height: 178px;
-            position: relative;
-            overflow: hidden;
-            img{
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-        }
     }
 }
 
@@ -612,7 +544,7 @@ footer{
                 border-radius: 50%;  
                 margin-left: 10px;   
             }
-            +.active{
+            &.active{
                 .like{
                     color: #FFD977;
                     background: #fff;
