@@ -41,7 +41,7 @@ class SearchService
                             array_filter([
                                 !empty($request['text']) ? ['multi_match' => [
                                     'query' => $request['text'],
-                                    'fields' => [ 'title^3' ]
+                                    'fields' => [ 'title^3', 'description']
                                 ]] : false,
                             ]),
                             array_map(function ($value, $id) {
@@ -73,6 +73,7 @@ class SearchService
         if ($ids) {
             $items = Project::whereIn('id', $ids)
                 ->orderBy(new Expression('FIELD(id,' . implode(',', $ids) . ')'))
+                ->with(['images', 'values', 'values.attribute'])
                 ->get();
             $pagination = new LengthAwarePaginator($items, $response['hits']['total']['value'], $perPage, $page);
         }else {

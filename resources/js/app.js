@@ -6,6 +6,8 @@
 
 import LoginComponent from "./components/Auth/LoginComponent";
 import RegisterComponent from "./components/Auth/RegisterComponent";
+import SequentialEntrance from 'vue-sequential-entrance'
+import 'vue-sequential-entrance/vue-sequential-entrance.css'
 
 require('./bootstrap');
 
@@ -19,6 +21,7 @@ import ProjectComponent from "./components/Projects/ProjectComponent";
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
+Vue.use(SequentialEntrance);
 
 /**
  * The following block of code may be used to automatically register your

@@ -182,4 +182,6 @@ Route::group([
 
 });
 
-Route::get('/excel', 'DocumentsController@index');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/faq', 'HomeController@faq')->name('faq');
+Route::get('/advice', 'HomeController@advice')->name('advice');

@@ -23,7 +23,8 @@ class Project extends Model
     ];
 
     protected $appends = [
-        'route', 'isInFavorites'
+        'route', 'isInFavorites', 'jsonImages', 'jsonValues',
+        'addToFavoritesLink', 'removeFromFavoritesLink'
     ];
 
     public $timestamps = true;
@@ -57,6 +58,33 @@ class Project extends Model
         return Auth::check()? Auth::user()->hasInFavorites($this) : false;
     }
 
+    public function getJsonImagesAttribute() {
+        $images = [];
+        foreach ($this->images as $image) {
+            $images[] = Storage::disk('public')->url($image->file);
+        }
+
+        return $images;
+    }
+
+    public function getJsonValuesAttribute() {
+        $values = [];
+        $attributes = Attribute::all();
+        foreach ($attributes as $attribute) {
+            $values[$attribute->name] = $this->getValue($attribute->id);
+        }
+
+        return $values;
+    }
+
+    public function getAddToFavoritesLinkAttribute() {
+        return route('projects.favorites.add', $this);
+    }
+
+    public function getRemoveFromFavoritesLinkAttribute() {
+        return route('projects.favorites.remove', $this);
+    }
+
     public function addToFavorites($id): void
     {
         if ($this->hasInFavorites($id)) {
@@ -73,17 +101,6 @@ class Project extends Model
     public function hasInFavorites($id): bool
     {
         return $this->favorites()->where('id', $id)->exists();
-    }
-
-    public function getImagesInJson(): string
-    {
-        $images = [];
-        foreach ($this->images as $image) {
-            $images[] = Storage::disk('public')->url($image->file);
-        }
-        $images = json_encode($images, JSON_UNESCAPED_UNICODE);
-
-        return $images;
     }
 
     public function getValuesWithID() {

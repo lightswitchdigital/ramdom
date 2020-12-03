@@ -251,7 +251,7 @@ a.project-card{
 }
 
 
-.projects-section{
+.projects-wrapper{
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
@@ -386,7 +386,7 @@ a.project-card{
         margin-bottom: 40px;
     }
     .with-border{
-        padding-bottom: 2px;  
+        padding-bottom: 2px;
         border-bottom: 2px solid #FFD977;
     }
     .form-img-col{
@@ -541,8 +541,8 @@ a.project-card{
                 justify-content: center;
                 align-items: center;
                 background: #FFD977;
-                border-radius: 50%;  
-                margin-left: 10px;   
+                border-radius: 50%;
+                margin-left: 10px;
             }
             &.active{
                 .like{
