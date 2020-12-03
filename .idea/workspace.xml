@@ -28,13 +28,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="project card component added">
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="recommendations logic added, routes moved to api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/common/Recommend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/common/Recommend.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,15 +218,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/Projects" />
       <recent name="$PROJECT_DIR$/app/Models/Plans" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin/Projects" />
       <recent name="$PROJECT_DIR$/app/Services/Projects" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
-      <recent name="$PROJECT_DIR$/app/Models/Project" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
   </component>
   <component name="RunManager">
@@ -266,7 +265,11 @@
       <workItem from="1605899032515" duration="2934000" />
       <workItem from="1606138685307" duration="9948000" />
       <workItem from="1606199590754" duration="5358000" />
-      <workItem from="1606800814296" duration="1521000" />
+      <workItem from="1606800814296" duration="14102000" />
+      <workItem from="1606830482624" duration="6363000" />
+      <workItem from="1606900333759" duration="13421000" />
+      <workItem from="1607001194992" duration="46000" />
+      <workItem from="1607004987538" duration="3666000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -380,7 +383,84 @@
       <option name="project" value="LOCAL" />
       <updated>1606761942352</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="vue fixed">
+      <created>1606803763723</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606803763723</updated>
+    </task>
+    <task id="LOCAL-00018" summary="basic recommendation system">
+      <created>1606823748153</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606823748153</updated>
+    </task>
+    <task id="LOCAL-00019" summary="recommendations logic added, routes moved to api">
+      <created>1606837752976</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1606837752976</updated>
+    </task>
+    <task id="LOCAL-00020" summary="region middleware, fixed issue with loading recommended projects images">
+      <created>1606904226904</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1606904226904</updated>
+    </task>
+    <task id="LOCAL-00021" summary="favorites logic moved to main controller">
+      <created>1606915734710</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1606915734710</updated>
+    </task>
+    <task id="LOCAL-00022" summary="recommendations moved to main controller">
+      <created>1606916245225</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1606916245225</updated>
+    </task>
+    <task id="LOCAL-00023" summary="projects components refactored">
+      <created>1606922601469</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1606922601469</updated>
+    </task>
+    <task id="LOCAL-00024" summary="projects components refactored">
+      <created>1606922925359</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1606922925359</updated>
+    </task>
+    <task id="LOCAL-00025" summary="navbar fixed">
+      <created>1606924845398</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1606924845399</updated>
+    </task>
+    <task id="LOCAL-00026" summary="code cleanup">
+      <created>1606928225073</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1606928225073</updated>
+    </task>
+    <task id="LOCAL-00027" summary="removed excessive attributes fields, project price type now bigger">
+      <created>1607008570605</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1607008570605</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,9 +500,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="initial commit" />
-    <MESSAGE value="auth added" />
-    <MESSAGE value="added user information and credentials" />
     <MESSAGE value="basic profile markup added" />
     <MESSAGE value="elasticsearch added" />
     <MESSAGE value="project attributes, values" />
@@ -437,7 +514,18 @@
     <MESSAGE value="project card component added" />
     <MESSAGE value="order attributes management" />
     <MESSAGE value="local changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="local changes" />
+    <MESSAGE value="vue fixed" />
+    <MESSAGE value="basic recommendation system" />
+    <MESSAGE value="recommendations logic added, routes moved to api" />
+    <MESSAGE value="region middleware, fixed issue with recommended projects images" />
+    <MESSAGE value="region middleware, fixed issue with loading recommended projects images" />
+    <MESSAGE value="favorites logic moved to main controller" />
+    <MESSAGE value="recommendations moved to main controller" />
+    <MESSAGE value="projects components refactored" />
+    <MESSAGE value="navbar fixed" />
+    <MESSAGE value="code cleanup" />
+    <MESSAGE value="removed excessive attributes fields, project price type now bigger" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed excessive attributes fields, project price type now bigger" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -452,27 +540,27 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="257" y="109" width="978" height="681" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1603822713746" />
-    <state x="391" y="242" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606157602433">
+    <state x="391" y="242" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607014033558">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="391" y="242" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1606157602433" />
-    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605427700296">
+    <state x="391" y="242" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1607014033558" />
+    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606816478423">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1605427700296" />
+    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1606816478423" />
     <state x="392" y="145" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605354090735">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="145" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1605354090735" />
-    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606157186282">
+    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606816382612">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1606157186282" />
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1606761942169">
+    <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1606816382612" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607008570291">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1606761942169" />
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1605858907426" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607008570291" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1606837751745" />
     <state x="394" y="29" key="Diagram.Print.Preview.Dialog" timestamp="1605384777804">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -498,38 +586,46 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1388" height="232" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1606798322807" />
-    <state x="144" y="79" key="MergeDialog" timestamp="1605356835098">
+    <state x="144" y="79" key="MergeDialog" timestamp="1606913622569">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1605356835098" />
+    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1606913622569" />
     <state x="269" y="162" key="MultipleFileMergeDialog" timestamp="1606762025038">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="269" y="162" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1606762025038" />
-    <state x="345" y="130" key="NewPhpClassDialog" timestamp="1606143834960">
+    <state x="345" y="130" key="NewPhpClassDialog" timestamp="1606816371175">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="345" y="130" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1606143834960" />
-    <state x="493" y="365" key="NewPhpFileDialog" timestamp="1603997457241">
+    <state x="345" y="130" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1606816371175" />
+    <state x="493" y="365" key="NewPhpFileDialog" timestamp="1606811379589">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="493" y="365" key="NewPhpFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1603997457241" />
+    <state x="493" y="365" key="NewPhpFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1606811379589" />
+    <state x="366" y="43" key="RollbackChangesDialog" timestamp="1606923044083">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="366" y="43" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1606923044083" />
     <state x="97" y="1" key="SettingsEditor" timestamp="1603990408269">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="97" y="1" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1603990408269" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1606162944072">
+    <state x="371" y="305" width="463" height="193" key="VCS.ChangelistChooser" timestamp="1606922666731">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1606162944072" />
+    <state x="371" y="305" width="463" height="193" key="VCS.ChangelistChooser/0.0.1440.900@0.0.1440.900" timestamp="1606922666731" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607008577493">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607008577493" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1606155896314">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1606155896314" />
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606762011001">
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607025004858">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1606762011001" />
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607025004858" />
     <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1604337648019">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

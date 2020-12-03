@@ -2423,7 +2423,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['project', 'projectLink', 'projectImages', 'projectValues']
+  props: ['project'],
+  created: function created() {
+    console.log(this.project.jsonImages, this.project.jsonValues);
+  }
 });
 
 /***/ }),
@@ -2545,36 +2548,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProjectComponent",
   data: function data() {
     return {
-      // values: {
-      //     'Общая площадь': '140 кв.м',
-      //     'Площадь застройки': '200 м2',
-      //     'Кубатура': '1170 м2',
-      //     'Высота': '7.06 м',
-      //     'Угол наклона кровли': '30',
-      //     'Площадь крыши': '267 м2',
-      //     'Рекомендованные минимальные размеры участка': 'ширина 23.71 м длина 22.01 м',
-      //     'Материал': 'кирпич',
-      //     'Фундамент': 'ленточный',
-      //     'Внешняя отделка': 'кирпич облицовочный',
-      //     'Пол 1 этажа': 'монолит, бетон, 150 мм 1 слой',
-      //     'Покрытие': 'плита ЖБИ',
-      //     'Материал кровли': 'металлочерепица',
-      //     'Утеплитель кровли': 'доска сухая 150 мм',
-      //     'Материал стропил': 'пенопласт',
-      // },
-      favoritesUrl: ''
+      toggleFavoritesUrl: ''
     };
   },
-  props: ['project', 'images', 'createdAt', 'values', 'createOrderLink', 'orderAttributes', 'favoritesAddLink', 'favoritesRemoveLink', 'isAuthenticated'],
+  props: ['project', 'createdAt', 'createOrderLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    console.log(this.orderAttributes);
+    console.log(this.project.isInFavorites);
   },
   mounted: function mounted() {
     this.$nextTick(this.$forceUpdate);
@@ -2584,18 +2572,21 @@ __webpack_require__.r(__webpack_exports__);
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.t.bind(null, /*! vue-slick-carousel */ "./node_modules/vue-slick-carousel/dist/vue-slick-carousel.umd.js", 7));
     },
     'Recommend': function Recommend() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../common/RecommendComponent */ "./resources/js/components/common/RecommendComponent.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./RecommendationsComponent */ "./resources/js/components/Projects/RecommendationsComponent.vue"));
     }
   },
   methods: {
-    liked: function liked() {
-      if (this.isInFavorites) {
-        this.favoritesUrl = this.favoritesAddLink;
+    toggleFavorites: function toggleFavorites() {
+      if (this.project.isInFavorites) {
+        this.toggleFavoritesUrl = this.project.removeFromFavoritesLink;
       } else {
-        this.favoritesUrl = this.favoritesRemoveLink;
+        this.toggleFavoritesUrl = this.project.addToFavoritesLink;
       }
 
-      axios.post("/".concat(this.favoritesUrl), this.csrfToken).then(function (response) {
+      this.project.isInFavorites = !this.project.isInFavorites;
+      axios.post(this.toggleFavoritesUrl, {
+        '_token': this.csrfToken
+      }).then(function (response) {
         if (response.status === 204) {
           console.log('is ok');
         }
@@ -7032,6 +7023,25 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-sequential-entrance/vue-sequential-entrance.css":
+/*!**********************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-sequential-entrance/vue-sequential-entrance.css ***!
+  \**********************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".entranceFromTop {\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n  -webkit-animation-name: entranceFromTop;\n          animation-name: entranceFromTop;\n}\n\n@-webkit-keyframes entranceFromTop {\n  from {\n    opacity: 0;\n    transform: translateY(-80px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n@keyframes entranceFromTop {\n  from {\n    opacity: 0;\n    transform: translateY(-80px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.entranceFromBottom {\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n  -webkit-animation-name: entranceFromBottom;\n          animation-name: entranceFromBottom;\n}\n\n@-webkit-keyframes entranceFromBottom {\n  from {\n    opacity: 0;\n    transform: translateY(80px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n@keyframes entranceFromBottom {\n  from {\n    opacity: 0;\n    transform: translateY(80px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.entranceFromLeft {\n  -webkit-animation-name: entranceFromLeft;\n          animation-name: entranceFromLeft;\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n}\n\n@-webkit-keyframes entranceFromLeft {\n  from {\n    opacity: 0;\n    transform: translate3d(-100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    transform: translate3d(0, 0, 0);\n  }\n}\n\n@keyframes entranceFromLeft {\n  from {\n    opacity: 0;\n    transform: translate3d(-100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    transform: translate3d(0, 0, 0);\n  }\n}\n\n.entranceFromRight {\n  -webkit-animation-name: entranceFromRight;\n          animation-name: entranceFromRight;\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n}\n\n@-webkit-keyframes entranceFromRight {\n  from {\n    opacity: 0;\n    transform: translate3d(100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    transform: translate3d(0, 0, 0);\n  }\n}\n\n@keyframes entranceFromRight {\n  from {\n    opacity: 0;\n    transform: translate3d(100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    transform: translate3d(0, 0, 0);\n  }\n}\n", ""]);
+
+// exports
 
 
 /***/ }),
@@ -39303,7 +39313,7 @@ function addStyle (obj, options) {
 	// If a transform function was defined, run it on the css
 	if (options.transform && obj.css) {
 	    result = typeof options.transform === 'function'
-		 ? options.transform(obj.css) 
+		 ? options.transform(obj.css)
 		 : options.transform.default(obj.css);
 
 	    if (result) {
@@ -40350,10 +40360,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { staticClass: "card", attrs: { href: this.projectLink } }, [
+  return _c("a", { staticClass: "card", attrs: { href: this.project.route } }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "card-img-top" }, [
+      _c("img", { attrs: { src: this.project.jsonImages[0] } })
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -40368,7 +40380,7 @@ var render = function() {
           _vm._v(_vm._s(this.project.title))
         ]),
         _vm._v(" "),
-        _vm._l(this.projectValues, function(value, label) {
+        _vm._l(this.project.jsonValues, function(value, label) {
           return _c("ul", { staticClass: "card-text" }, [
             _c("li", [
               _c("span", [_vm._v(_vm._s(label))]),
@@ -40388,19 +40400,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "like-block" }, [
       _c("i", { staticClass: "far fa-heart" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-img-top" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "https://cdn.homedit.com/wp-content/uploads/2012/03/modern-high-tech-property.jpg"
-        }
-      })
     ])
   }
 ]
@@ -40450,7 +40449,7 @@ var render = function() {
                     arrow: false
                   }
                 },
-                _vm._l(_vm.images, function(image) {
+                _vm._l(_vm.project.jsonImages, function(image) {
                   return _c("div", { staticClass: "preview-slide" }, [
                     _c("img", { attrs: { src: image, alt: _vm.project.title } })
                   ])
@@ -40502,7 +40501,7 @@ var render = function() {
                     }
                   ])
                 },
-                _vm._l(_vm.images, function(image) {
+                _vm._l(_vm.project.jsonImages, function(image) {
                   return _c("div", { staticClass: "mini-preview" }, [
                     _c("img", { attrs: { src: image, alt: _vm.project.title } })
                   ])
@@ -40515,9 +40514,9 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card desc-card" }, [
             _vm._v(
-              "\n                    " +
+              "\n                " +
                 _vm._s(_vm.project.description) +
-                "\n                "
+                "\n            "
             )
           ])
         ]),
@@ -40533,7 +40532,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        return _vm.liked($event)
+                        return _vm.toggleFavorites($event)
                       }
                     }
                   },
@@ -40550,7 +40549,7 @@ var render = function() {
             _c("table", { staticClass: "table" }, [
               _c(
                 "tbody",
-                _vm._l(_vm.values, function(value, label) {
+                _vm._l(_vm.project.jsonValues, function(value, label) {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(label))]),
                     _vm._v(" "),
@@ -40587,12 +40586,81 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(3),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Заказать проект")]),
+            _vm._v(" "),
+            _c(
+              "form",
+              { attrs: { action: this.createOrderLink, method: "post" } },
+              _vm._l(this.orderAttributes, function(attribute) {
+                return _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-form-label",
+                      attrs: { for: "order_attribute_" + attribute.id }
+                    },
+                    [_vm._v(_vm._s(attribute.name))]
+                  ),
+                  _vm._v(" "),
+                  attribute.variants.length > 0
+                    ? _c(
+                        "select",
+                        {
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "order_attribute_" + attribute.id,
+                            name: "order_attributes[" + attribute.id + "]"
+                          }
+                        },
+                        [
+                          attribute.required
+                            ? _c("option", { attrs: { value: "" } })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(attribute.variants, function(variant) {
+                            return _c(
+                              "option",
+                              { domProps: { value: variant } },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(variant) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    : attribute.type === "number"
+                    ? _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "order_attribute_" + attribute.id,
+                          type: "number",
+                          name: "order_attributes[" + attribute.id + "]"
+                        }
+                      })
+                    : _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "order_attribute_" + attribute.id,
+                          type: "text",
+                          name: "order_attributes[" + attribute.id + "]"
+                        }
+                      })
+                ])
+              }),
+              0
+            )
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("Recommend")
+      _c("recommend", { attrs: { recommendations: _vm.recommendations } })
     ],
     1
   )
@@ -43827,6 +43895,98 @@ if (inBrowser && window.Vue) {
 
 /* harmony default export */ __webpack_exports__["default"] = (VueRouter);
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-sequential-entrance/SequentialEntrance.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-sequential-entrance/SequentialEntrance.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  functional: true,
+  render(createElement, { props, data, children })
+  {
+    let delay = props.delay || 250;
+    let tag = props.tag || "span";
+    let animation = props.animation || "entranceFromRight";
+
+    if(props.fromTop != undefined) animation = 'entranceFromTop'
+    if(props.fromRight != undefined) animation = 'entranceFromRight'
+    if(props.fromBottom != undefined) animation = 'entranceFromBottom'
+    if(props.fromLeft != undefined) animation = 'entranceFromLeft'
+
+    if (children) {
+      children.forEach((child, index) => {
+        child.data.staticStyle = {
+          opacity: 0,
+          animationFillMode: "forwards",
+          animationDelay: index * delay + "ms"
+        };
+        child.data.staticClass += " " + animation;
+      });
+    }
+    return createElement(tag,children);
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-sequential-entrance/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/vue-sequential-entrance/index.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SequentialEntrance_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SequentialEntrance.js */ "./node_modules/vue-sequential-entrance/SequentialEntrance.js");
+
+
+const VueSequentialEntrance = {
+  install(Vue, options) {
+    Vue.component("sequential-entrance", _SequentialEntrance_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VueSequentialEntrance);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-sequential-entrance/vue-sequential-entrance.css":
+/*!**************************************************************************!*\
+  !*** ./node_modules/vue-sequential-entrance/vue-sequential-entrance.css ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../css-loader??ref--7-1!../postcss-loader/src??ref--7-2!./vue-sequential-entrance.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-sequential-entrance/vue-sequential-entrance.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -57888,16 +58048,21 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Auth/LoginComponent */ "./resources/js/components/Auth/LoginComponent.vue");
 /* harmony import */ var _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Auth/RegisterComponent */ "./resources/js/components/Auth/RegisterComponent.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Projects/ProjectCardComponent */ "./resources/js/components/Projects/ProjectCardComponent.vue");
-/* harmony import */ var _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Projects/ProjectComponent */ "./resources/js/components/Projects/ProjectComponent.vue");
+/* harmony import */ var vue_sequential_entrance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-sequential-entrance */ "./node_modules/vue-sequential-entrance/index.js");
+/* harmony import */ var vue_sequential_entrance_vue_sequential_entrance_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-sequential-entrance/vue-sequential-entrance.css */ "./node_modules/vue-sequential-entrance/vue-sequential-entrance.css");
+/* harmony import */ var vue_sequential_entrance_vue_sequential_entrance_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_sequential_entrance_vue_sequential_entrance_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Projects/ProjectCardComponent */ "./resources/js/components/Projects/ProjectCardComponent.vue");
+/* harmony import */ var _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Projects/ProjectComponent */ "./resources/js/components/Projects/ProjectComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
 
 
 
@@ -57908,8 +58073,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_3___default.a);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_5___default.a);
+Vue.use(vue_sequential_entrance__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -57922,8 +58088,8 @@ Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_3___default.a);
 
 Vue.component('login', _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('register', _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_1__["default"]);
-Vue.component('project-card', _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('project-card', _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -58004,7 +58170,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -58024,7 +58190,7 @@ component.options.__file = "resources/js/components/Auth/LoginComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoginComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/LoginComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -58089,7 +58255,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -58109,7 +58275,7 @@ component.options.__file = "resources/js/components/Auth/RegisterComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./RegisterComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Auth/RegisterComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -58158,7 +58324,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -58178,7 +58344,7 @@ component.options.__file = "resources/js/components/Projects/ProjectCardComponen
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectCardComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Projects/ProjectCardComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -58227,7 +58393,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -58247,7 +58413,7 @@ component.options.__file = "resources/js/components/Projects/ProjectComponent.vu
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Projects/ProjectComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -58298,9 +58464,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
