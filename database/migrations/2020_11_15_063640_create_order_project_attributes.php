@@ -15,8 +15,6 @@ class CreateOrderProjectAttributes extends Migration
             $table->string('type');
             $table->json('variants');
             $table->integer('sort');
-            $table->boolean('required')->default(false);
-            $table->double('price', 8, 2)->default(0);
         });
     }
 

@@ -27,7 +27,7 @@
             <select id="type" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type">
                 @foreach ($types as $type => $label)
                     <option value="{{ $type }}"{{ $type == old('type') ? ' selected' : '' }}>{{ $label }}</option>
-                @endforeach;
+                @endforeach
             </select>
             @if ($errors->has('type'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('type') }}</strong></span>
@@ -39,18 +39,6 @@
             <textarea id="variants" type="text" class="form-control{{ $errors->has('sort') ? ' is-invalid' : '' }}" name="variants">{{ old('variants') }}</textarea>
             @if ($errors->has('variants'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('variants') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <input type="hidden" name="required" value="0">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="required" {{ old('required') ? 'checked' : '' }}> Обязателен
-                </label>
-            </div>
-            @if ($errors->has('required'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('required') }}</strong></span>
             @endif
         </div>
 
