@@ -16,7 +16,7 @@ class ProjectAttribute extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'type', 'required', 'default', 'variants', 'sort', 'price'
+        'name', 'type', 'default', 'variants', 'sort'
     ];
 
     protected $casts = [

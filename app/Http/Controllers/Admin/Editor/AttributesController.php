@@ -29,17 +29,15 @@ class AttributesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255', Rule::in(array_keys(ProjectAttribute::typesList()))],
-            'required' => 'nullable|string|max:255',
-            'variants' => 'nullable|string',
-            'sort' => 'required|integer',
+            'variants' => ['nullable', 'string'],
+            'sort' => ['required', 'integer'],
         ]);
 
         $attribute = ProjectAttribute::create([
             'name' => $request['name'],
             'type' => $request['type'],
-            'required' => (bool)$request['required'],
             'variants' => array_map('trim', preg_split('#[\r\n]+#', $request['variants'])),
             'sort' => $request['sort'],
         ]);

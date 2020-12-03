@@ -44,18 +44,6 @@
         </div>
 
         <div class="form-group">
-            <input type="hidden" name="required" value="0">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="required" {{ old('required', $attribute->required) ? 'checked' : '' }}> Обязателен
-                </label>
-            </div>
-            @if ($errors->has('required'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('required') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
     </form>

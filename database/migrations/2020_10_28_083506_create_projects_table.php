@@ -15,7 +15,7 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->double('price', 8, 2);
+            $table->double('price', 16, 2);
             $table->string('status');
 
             $table->timestamps();
