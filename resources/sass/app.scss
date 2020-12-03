@@ -424,6 +424,62 @@ a.project-card{
 
 
 .project-view{
+    .agree-form{
+        max-width: 100%;
+        .switch-block{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            label{
+                margin-right: 40px;
+            }
+        }
+        .yellow-btn{
+            box-shadow: none;
+            width: fit-content;
+            margin: 70px auto;
+            display: block;
+            padding: 25px 70px;
+        }
+        .passport-block{
+            margin-top: 55px;
+        }
+        input[type=text]{
+            border: none;
+            border-bottom: 1px solid #353535;
+            padding: 30px 20px;
+            outline: none;
+            width: 100%;
+            margin: 10px 0;
+        }
+        input[type=checkbox]{
+            display: none;
+            &:checked+label.switch{
+                &::after{
+                    transform: translateX(100%);
+                    background: #FFD977;
+                }
+            }
+        }
+        label.switch{
+            position: relative;
+            width: 100px;
+            height: 35px;
+            border-radius: 35px;
+            background: #787878;
+            &::after{
+                content: '';
+                width: 53px;
+                height: 35px;
+                border-radius: 35px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: #a7a7a7;
+                transition: 0.5s;
+            }
+        }
+    }
     .btn-next{
         width: 37px;
         height: 37px;
@@ -524,6 +580,11 @@ a.project-card{
         position: relative;
         padding: 80px 50px;
         padding-top: 100px;
+        table{
+            select{
+                border: none;
+            }
+        }
         .like-block{
             position: absolute;
             top: 30px;

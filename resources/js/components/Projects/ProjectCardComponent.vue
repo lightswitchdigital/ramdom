@@ -1,6 +1,6 @@
 <template>
-    <a class="card" :href="this.project.route">
-        <div :class="{active : project.isInFavorites}" @click.prevent="liked" class="like-block"><i class="fas fa-heart"></i></div>
+    <a class="card project-card" :href="this.project.route">
+        <div class="like-block"><i class="fas fa-heart"></i></div>
         <div class="card-img-top">
             <img :src="this.project.jsonImages[0]">
         </div>
@@ -19,10 +19,10 @@
 <script>
 export default {
     props: [
-        'project',
+        'project'
     ],
     created() {
-        this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+        // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
         console.log(this.project.jsonImages, this.project.jsonValues)
     },
     methods: {

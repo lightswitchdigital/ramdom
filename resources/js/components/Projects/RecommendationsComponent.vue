@@ -5,13 +5,8 @@
         ref="recommend"
         v-bind="settings">
         <ProjectCardComponent
-<<<<<<< HEAD:resources/js/components/common/RecommendComponent.vue
-        v-for="(project , index) in recommendations"
+        v-for="(project , index) in this.recommendations"
         :key="index"
-=======
-        v-for="project in this.recommendations"
-        :key="project.id"
->>>>>>> c9707408d306d6b4ef8058aec69b07be1095d28d:resources/js/components/Projects/RecommendationsComponent.vue
         :project="project"
         :projectLink="'#'"
         :projectValues="[]"/>
@@ -30,11 +25,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD:resources/js/components/common/RecommendComponent.vue
-=======
-import ProjectCardComponent from './ProjectCardComponent'
-import VueSlickCarousel from 'vue-slick-carousel'
->>>>>>> c9707408d306d6b4ef8058aec69b07be1095d28d:resources/js/components/Projects/RecommendationsComponent.vue
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
@@ -70,16 +60,9 @@ export default {
             ]
         }
     }),
-<<<<<<< HEAD:resources/js/components/common/RecommendComponent.vue
     components: { 
-        'ProjectCardComponent': () => import('../Projects/ProjectCardComponent') ,
+        'ProjectCardComponent': () => import('./ProjectCardComponent') ,
         'VueSlickCarousel': () => import('vue-slick-carousel')
     }
-=======
-    props: [
-        'recommendations'
-    ],
-    components: { ProjectCardComponent , VueSlickCarousel }
->>>>>>> c9707408d306d6b4ef8058aec69b07be1095d28d:resources/js/components/Projects/RecommendationsComponent.vue
 }
 </script>

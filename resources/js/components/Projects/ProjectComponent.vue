@@ -59,6 +59,27 @@
                         </tr>
                         </tbody>
                     </table>
+                    
+                    <form :action="this.createOrderLink" method="post" v-if="editMode">
+                        <table class="table">
+                            <tr class="form-group" v-for="(attribute , index) in this.orderAttributes" :key="index">
+                                <td>
+                                    <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
+                                </td>
+                                <td>
+                                    <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="custom-select" :name="'order_attributes['+attribute.id+']'">
+                                        <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
+                                            {{ variant }}
+                                        </option>
+                                    </select>
+
+                                    <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
+
+                                    <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                     <div class="price-block">
                         <table class="table">
                             <tbody>
@@ -73,36 +94,64 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="btn-block">
-                        <a href="#" class="yellow-outline-btn">Купить проект</a>
+                    <div class="btn-block" v-if="!editMode">
+                        <a href="#" class="yellow-outline-btn" @click.prevent="addEditMode">Купить проект</a>
                         <a href="#" class="yellow-btn">Купить строительство</a>
                     </div>
-                    <h3>Заказать проект</h3>
-                    <form :action="this.createOrderLink" method="post">
-                        <div class="form-group" v-for="(attribute , index) in this.orderAttributes" :key="index">
-                            <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
-
-                            <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="form-control" :name="'order_attributes['+attribute.id+']'">
-                                <option v-if="attribute.required" value=""></option>
-
-                                <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
-                                    {{ variant }}
-                                </option>
-                            </select>
-
-                            <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
-
-                            <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
-        <Recommend :recommendations='recommendations'/>
+        <form class="row agree-form mt-4" v-if="editMode">
+            <div class="col-md">
+                <div class="switch-block">
+                    <input type="checkbox" name="entity" id="entity">
+                    <label for="entity" class="switch"></label>
+                    <label for="entity"><h5>Оформить как юр.лицо</h5></label>
+                </div>
+                
+                <input type="text" name="fullName" placeholder="ФИО">
+                <div>
+                    <div class="passport-block">
+                        <h4>Паспортные данные</h4>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" name="passportSireas" placeholder="Серия">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="passportNumber" placeholder="Номер">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="text" name="" placeholder="Кем выдан">
+                    <input type="text" name="" placeholder="Когда выдан">
+                </div>
+            </div>
+            <div class="col-md">
+                <h4>Контактная информация</h4>
+                <input type="text" name="phone" v-model.trim="phone" placeholder="Телефон">
+                <input type="text" name="email" v-model.trim="eamil" placeholder="E-mail">
+                <input type="text" name="place" placeholder="Населённый пункт">
+                <input type="text" name="street" placeholder="Улица">
+                <div class="row">
+                        <div class="col">
+                            <input type="text" placeholder="Дом">
+                        </div>
+                        <div class="col">
+                            <input type="text" placeholder="Квартира">
+                        </div>
+                </div>
+                <input type="text" name="street" placeholder="Почтовый индекс">
+                <button type="submit" class="btn yellow-btn">Оплатить проект</button>
+            </div>
+        </form>
+        <Recommend v-if="!editMode" :recommendations='recommendations'/>
     </div>
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import Recommend from './RecommendationsComponent'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
@@ -110,6 +159,7 @@ export default {
     name: "ProjectComponent",
     data:() => ({
         toggleFavoritesUrl: '',
+        editMode: false
     }),
     props: [
         'project',
@@ -127,20 +177,23 @@ export default {
         this.$nextTick(this.$forceUpdate);
     },
     components: {
-         'VueSlickCarousel': () => import('vue-slick-carousel') ,
-         'Recommend': () => import('./RecommendationsComponent')
+        VueSlickCarousel ,
+        Recommend
     },
     methods: {
+        addEditMode() {
+            this.editMode = true;
+        },
         toggleFavorites() {
             if(!this.project.isInFavorites){
-                this.favoritesUrl = this.favoritesAddLink
-            }else{
                 this.toggleFavoritesUrl = this.project.addToFavoritesLink
+            }else{
+                this.toggleFavoritesUrl = this.project.removeFromFavoritesLink
             }
             this.project.isInFavorites = !this.project.isInFavorites
             axios.post(this.toggleFavoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
-                    console.log(this.project.isInFavorites + 'favorites');
+                    console.log(this.project.isInFavorites + ' favorites');
                 }
             }).catch(error => {
                 console.log(error);

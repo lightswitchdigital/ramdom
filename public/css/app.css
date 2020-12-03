@@ -11179,19 +11179,19 @@ a.project-card .card-img-top img {
      object-position: center;
 }
 
-.projects-section {
+.projects-wrapper {
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.projects-section .sorting-block {
+.projects-wrapper .sorting-block {
   font-weight: bold;
   font-size: 20px;
   line-height: 110.69%;
 }
 
-.projects-section .sorting-block select {
+.projects-wrapper .sorting-block select {
   display: inline-block;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -11202,12 +11202,12 @@ a.project-card .card-img-top img {
   margin-top: -4px;
 }
 
-.projects-section .sorting-block select:focus {
+.projects-wrapper .sorting-block select:focus {
   outline: none;
   box-shadow: none;
 }
 
-.projects-section .flex-box {
+.projects-wrapper .flex-box {
   margin: 0 -15px;
   margin-top: 30px;
   display: flex;
@@ -11215,7 +11215,7 @@ a.project-card .card-img-top img {
   flex-wrap: wrap;
 }
 
-.projects-section .project-card {
+.projects-wrapper .project-card {
   flex: 0 0 calc(25% - 30px);
 }
 
@@ -11386,6 +11386,72 @@ a.project-card .card-img-top img {
   }
 }
 
+.project-view .agree-form {
+  max-width: 100%;
+}
+
+.project-view .agree-form .switch-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.project-view .agree-form .switch-block label {
+  margin-right: 40px;
+}
+
+.project-view .agree-form .yellow-btn {
+  box-shadow: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 70px auto;
+  display: block;
+  padding: 25px 70px;
+}
+
+.project-view .agree-form .passport-block {
+  margin-top: 55px;
+}
+
+.project-view .agree-form input[type=text] {
+  border: none;
+  border-bottom: 1px solid #353535;
+  padding: 30px 20px;
+  outline: none;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.project-view .agree-form input[type=checkbox] {
+  display: none;
+}
+
+.project-view .agree-form input[type=checkbox]:checked + label.switch::after {
+  transform: translateX(100%);
+  background: #FFD977;
+}
+
+.project-view .agree-form label.switch {
+  position: relative;
+  width: 100px;
+  height: 35px;
+  border-radius: 35px;
+  background: #787878;
+}
+
+.project-view .agree-form label.switch::after {
+  content: "";
+  width: 53px;
+  height: 35px;
+  border-radius: 35px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #a7a7a7;
+  transition: 0.5s;
+}
+
 .project-view .btn-next {
   width: 37px;
   height: 37px;
@@ -11504,6 +11570,10 @@ a.project-card .card-img-top img {
   position: relative;
   padding: 80px 50px;
   padding-top: 100px;
+}
+
+.project-view .info-card table select {
+  border: none;
 }
 
 .project-view .info-card .like-block {
