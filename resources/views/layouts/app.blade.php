@@ -21,6 +21,38 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<div class="modal fade" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Выберите регион</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a>Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a>Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a>Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a>Санкт-Петербург</a>
+            </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <div id="app">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -33,9 +65,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <button type="button" class="region-toggle mr-auto " data-toggle="modal" data-target="#regionModal">
+                        Самара
+                    </button>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto mr-4">
                         <!-- Authentication Links -->

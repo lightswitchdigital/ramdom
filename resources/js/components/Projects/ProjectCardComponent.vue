@@ -25,21 +25,21 @@ export default {
         // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
         console.log(this.project.jsonImages, this.project.jsonValues)
     },
-    methods: {
-        // liked() {
-        //     if(!this.project.isInFavorites){
-        //         this.favoritesUrl = this.favoritesAddLink
-        //     }else{
-        //         this.favoritesUrl = this.favoritesRemoveLink
-        //     }
-        //     axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
-        //         if(response.status === 204){
-        //             console.log('is ok');
-        //         }
-        //     }).catch(error => {
-        //         console.log(error);
-        //     })
-        // }
-    }
+    // methods: {
+    //     liked() {
+    //         if(!this.project.isInFavorites){
+    //             this.favoritesUrl = this.favoritesAddLink
+    //         }else{
+    //             this.favoritesUrl = this.favoritesRemoveLink
+    //         }
+    //         axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
+    //             if(response.status === 204){
+    //                 console.log('is ok');
+    //             }
+    //         }).catch(error => {
+    //             console.log(error);
+    //         })
+    //     }
+    // }
 };
 </script>

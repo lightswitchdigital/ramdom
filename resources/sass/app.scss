@@ -20,6 +20,41 @@ body{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     height: 100px;
     color: #000;
+    select{
+        width: fit-content;
+        background: none;
+        font-weight: bold;
+        border: none;
+        background-image: url('https://image.flaticon.com/icons/png/512/25/25623.png');
+        background-size: 10px 10px;
+        background-position: right center;
+        background-repeat: no-repeat;
+        padding: 0 10px;
+        margin-left: 40px;
+        color: #000;
+        &:focus{
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    .region-toggle{
+        display: block;
+        background-color: #fff !important;
+        background-image: url('https://image.flaticon.com/icons/png/512/25/25623.png');
+        background-size: 10px 10px;
+        background-position: right center;
+        background-repeat: no-repeat;
+        width: fit-content;
+        border: none;
+        padding: 0 20px;
+
+        margin-left: 20px;
+        font-weight: bold;
+        &:focus{
+            box-shadow: none;
+            outline: none;
+        }
+    }
     .logo-bg{
         position: absolute;
         height: 100%;
@@ -250,28 +285,33 @@ a.project-card{
     }
 }
 
+.filter-block{
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 110.69%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 16px;
+    color: #ffffff;
+
+    select{
+        display: inline-block;
+        width: fit-content;
+        border: 0;
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: -4px;
+        &:focus{
+            outline: none;
+            box-shadow: none;
+        }
+    }
+}
 
 .projects-wrapper{
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    .sorting-block{
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 110.69%;
-        select{
-            display: inline-block;
-            width: fit-content;
-            border: 0;
-            font-weight: bold;
-            font-size: 20px;
-            margin-top: -4px;
-            &:focus{
-                outline: none;
-                box-shadow: none;
-            }
-        }
-    }
     .flex-box{
         margin: 0 -15px;
         margin-top: 30px;
@@ -422,6 +462,118 @@ a.project-card{
     }
 }
 
+.projects-pagination{
+    margin-left: 15px;
+    .page-link{
+        font-size: 18px;
+        border: none;
+        color: #000;
+    }
+    .btn-next{
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        background: #FFD977;
+        font-size: 16px;
+        z-index: 100;
+        &:hover, &:active{
+            background: #fccb51;
+            color: #333;
+        }
+    }
+    .btn-prev{
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        background: #FFD977;
+        font-size: 16px;
+        z-index: 100;
+        &:hover, &:active{
+            background: #fccb51;
+            color: #333;
+        }
+    }
+}
+
+.login-block{
+    max-width: 550px;
+    position: relative;
+    padding: 70px 80px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    .error-text{
+        color: red;
+        margin-top: -18px;
+    }
+    input{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 30px 40px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        &:focus{
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    .title{
+        font-size: 20px;
+        font-weight: bold;
+        padding-bottom: 3px;
+        border-bottom: 2px solid #FFD977;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+    .forgot-block {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        width: 100%;
+        .forgot-link{
+            display: block;
+            font-size: 16px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid #FFD977;   
+            color: #000;
+            text-decoration: none;
+        }
+    }
+    .yellow-btn{
+        display: block;
+        padding: 20px;
+        width: 100%;
+        margin: 20 0;
+        margin-top: 20px;
+        box-shadow: none;
+        border-radius: 16px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .register-link{
+        width: fit-content;
+        font-size: 15px;
+        font-weight: 500;
+        margin: 10px auto;
+        border-bottom: 2px solid #FFD977;
+        padding-bottom: 2px;
+        display: block;
+        color: #000;
+        text-decoration: none;
+    }
+}
 
 .project-view{
     .agree-form{
@@ -583,6 +735,17 @@ a.project-card{
         table{
             select{
                 border: none;
+                margin: 0;
+                padding: 0;
+                background-image: url('https://image.flaticon.com/icons/png/512/25/25623.png');
+                background-size: 10px 10px;
+                background-position: right center;
+                background-repeat: no-repeat;
+                color: #000;
+                &:focus{
+                    box-shadow: none;
+                    outline: none;
+                }
             }
         }
         .like-block{
@@ -597,19 +760,20 @@ a.project-card{
                 width: 35px;
                 height: 35px;
                 font-size: 17px;
-                color: #fff;
+                color: #FFD977;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: #FFD977;
+                background: #fff;
                 border-radius: 50%;
                 margin-left: 10px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
             }
             &.active{
                 .like{
-                    color: #FFD977;
-                    background: #fff;
-                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+                    color: #fff;
+                    background: #FFD977;
+                    box-shadow: none;
                 }
             }
         }
@@ -633,6 +797,9 @@ a.project-card{
         justify-content: space-between;
         align-items: center;
         margin-top: 40px 0;
+        td{
+            vertical-align: center;
+        }
         .price{
             width: fit-content;
             color: white;

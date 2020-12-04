@@ -50,36 +50,38 @@
                         <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
-
-                    <table class="table">
-                        <tbody>
-                        <tr v-for="(value, label , index) in project.jsonValues" :key="index">
-                            <td>{{ label }}</td>
-                            <td>{{ value }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    
-                    <form :action="this.createOrderLink" method="post" v-if="editMode">
+                    <form :action="this.createOrderLink" method="post">
                         <table class="table">
-                            <tr class="form-group" v-for="(attribute , index) in this.orderAttributes" :key="index">
-                                <td>
-                                    <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
-                                </td>
-                                <td>
-                                    <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="custom-select" :name="'order_attributes['+attribute.id+']'">
-                                        <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
-                                            {{ variant }}
-                                        </option>
-                                    </select>
+                            <tbody>
+                                <tr v-for="(value, label , index) in project.jsonValues" :key="index">
+                                    <td>{{ label }}</td>
+                                    <td>{{ value }}</td>
+                                </tr>
+                                <tr v-for="(attribute , index) in this.orderAttributes" :key="index">
+                                    <td>
+                                        <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
+                                    </td>
+                                    <td>
+                                        <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="custom-select" :name="'order_attributes['+attribute.id+']'">
+                                            <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
+                                                {{ variant }}
+                                            </option>
+                                        </select>
 
-                                    <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
+                                        <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
 
-                                    <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
-                                </td>
-                            </tr>
+                                        <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
+                                    </td>
+                                </tr>  
+                            </tbody>
+                            
                         </table>
                     </form>
+                    <!-- <table class="table">
+                        <tbody>
+                        
+                        </tbody>
+                    </table> -->
                     <div class="price-block">
                         <table class="table">
                             <tbody>
@@ -94,14 +96,14 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="btn-block" v-if="!editMode">
-                        <a href="#" class="yellow-outline-btn" @click.prevent="addEditMode">Купить проект</a>
+                    <div class="btn-block">
+                        <a href="#" class="yellow-outline-btn">Купить проект</a>
                         <a href="#" class="yellow-btn">Купить строительство</a>
                     </div>
                 </div>
             </div>
         </div>
-        <form class="row agree-form mt-4" v-if="editMode">
+        <!-- <form class="row agree-form mt-4" v-if="editMode">
             <div class="col-md">
                 <div class="switch-block">
                     <input type="checkbox" name="entity" id="entity">
@@ -144,8 +146,8 @@
                 <input type="text" name="street" placeholder="Почтовый индекс">
                 <button type="submit" class="btn yellow-btn">Оплатить проект</button>
             </div>
-        </form>
-        <Recommend v-if="!editMode" :recommendations='recommendations'/>
+        </form> -->
+        <Recommend :recommendations='recommendations'/>
     </div>
 </template>
 
@@ -159,7 +161,6 @@ export default {
     name: "ProjectComponent",
     data:() => ({
         toggleFavoritesUrl: '',
-        editMode: false
     }),
     props: [
         'project',
@@ -181,9 +182,6 @@ export default {
         Recommend
     },
     methods: {
-        addEditMode() {
-            this.editMode = true;
-        },
         toggleFavorites() {
             if(!this.project.isInFavorites){
                 this.toggleFavoritesUrl = this.project.addToFavoritesLink
