@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Models\Orders;
+namespace App\Models;
 
 use App\Models\Projects\Project;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -15,7 +14,11 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id', 'project_id', 'order_name', 'order_email', 'order_phone', 'price', 'status'
+        'user_id', 'project_id', 'developer_id',
+        'order_name', 'order_email', 'order_phone', 'order_city', 'order_address', 'order_postal_code',
+        'order_passport_serial', 'order_passport_number', 'order_passport_issue', 'order_passport_issue_date',
+        'order_company_name', 'order_company_address', 'order_company_inn', 'order_company_kpp', 'order_company_payment_account', 'order_company_correspondent_account',
+        'price', 'status'
     ];
 
     public $timestamps = true;
@@ -35,11 +38,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function values() {
-        return $this->hasMany(ProjectValue::class, 'project_id', 'id');
-    }
-
     public function project() {
         return $this->belongsTo(Project::class);
+    }
+
+    public function developer() {
+        return $this->belongsTo(User::class);
     }
 }

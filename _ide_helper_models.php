@@ -40,17 +40,15 @@ namespace App\Models{
 	class Image extends Eloquent {}
 }
 
-namespace App\Models\Orders{
+namespace App\Models{
 
     use App\Models\Projects\Project;
-    use App\Models\User;
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
-    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Support\Carbon;
 
     /**
- * App\Models\Orders\Order
+ * App\Models\Order
  *
  * @property int $id
  * @property int $user_id
@@ -62,10 +60,9 @@ namespace App\Models\Orders{
  * @property string $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read User $developer
  * @property-read Project $project
  * @property-read User $user
- * @property-read Collection|ProjectValue[] $values
- * @property-read int|null $values_count
  * @method static Builder|Order newModelQuery()
  * @method static Builder|Order newQuery()
  * @method static Builder|Order query()
@@ -81,92 +78,6 @@ namespace App\Models\Orders{
  * @method static Builder|Order whereUserId($value)
  */
 	class Order extends Eloquent {}
-}
-
-namespace App\Models\Orders{
-
-    use Eloquent;
-    use Illuminate\Database\Eloquent\Builder;
-
-    /**
- * App\Models\Orders\ProjectAttribute
- *
- * @property int $id
- * @property string $name
- * @property string $type
- * @property array $variants
- * @property int $sort
- * @property int $required
- * @property float $price
- * @method static Builder|ProjectAttribute newModelQuery()
- * @method static Builder|ProjectAttribute newQuery()
- * @method static Builder|ProjectAttribute query()
- * @method static Builder|ProjectAttribute whereId($value)
- * @method static Builder|ProjectAttribute whereName($value)
- * @method static Builder|ProjectAttribute wherePrice($value)
- * @method static Builder|ProjectAttribute whereRequired($value)
- * @method static Builder|ProjectAttribute whereSort($value)
- * @method static Builder|ProjectAttribute whereType($value)
- * @method static Builder|ProjectAttribute whereVariants($value)
- */
-	class ProjectAttribute extends Eloquent {}
-}
-
-namespace App\Models\Orders{
-
-    use App\Models\Projects\Project;
-    use Eloquent;
-    use Illuminate\Database\Eloquent\Builder;
-
-    /**
- * App\Models\Orders\ProjectData
- *
- * @property int $id
- * @property int $order_id
- * @property int $project_id
- * @property string $data
- * @property float $total_price
- * @property-read Order $order
- * @property-read Project $project
- * @method static Builder|ProjectData newModelQuery()
- * @method static Builder|ProjectData newQuery()
- * @method static Builder|ProjectData query()
- * @method static Builder|ProjectData whereData($value)
- * @method static Builder|ProjectData whereId($value)
- * @method static Builder|ProjectData whereOrderId($value)
- * @method static Builder|ProjectData whereProjectId($value)
- * @method static Builder|ProjectData whereTotalPrice($value)
- */
-	class ProjectData extends Eloquent {}
-}
-
-namespace App\Models\Orders{
-
-    use App\Models\Projects\Project;
-    use Eloquent;
-    use Illuminate\Database\Eloquent\Builder;
-
-    /**
- * App\Models\Orders\ProjectValue
- *
- * @property int $id
- * @property int $order_id
- * @property int $project_id
- * @property int $attribute_id
- * @property string $value
- * @property-read ProjectAttribute $attribute
- * @property-read Order $order
- * @property-read Project $project
- * @method static Builder|ProjectValue newModelQuery()
- * @method static Builder|ProjectValue newQuery()
- * @method static Builder|ProjectValue query()
- * @method static Builder|ProjectValue whereAttributeId($value)
- * @method static Builder|ProjectValue whereId($value)
- * @method static Builder|ProjectValue whereOrderId($value)
- * @method static Builder|ProjectValue whereProjectId($value)
- * @method static Builder|ProjectValue whereValue($value)
- */
-	class ProjectValue extends Eloquent {}
 }
 
 namespace App\Models{
@@ -291,13 +202,11 @@ namespace App\Models\Projects{
  * @property string $type
  * @property array $variants
  * @property int $sort
- * @property int $required
  * @method static Builder|Attribute newModelQuery()
  * @method static Builder|Attribute newQuery()
  * @method static Builder|Attribute query()
  * @method static Builder|Attribute whereId($value)
  * @method static Builder|Attribute whereName($value)
- * @method static Builder|Attribute whereRequired($value)
  * @method static Builder|Attribute whereSort($value)
  * @method static Builder|Attribute whereType($value)
  * @method static Builder|Attribute whereVariants($value)
@@ -356,6 +265,82 @@ namespace App\Models\Projects{
 	class Project extends Eloquent {}
 }
 
+namespace App\Models\Projects\Purchase{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Projects\Purchase\PurchaseAttribute
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $type
+ * @property array $variants
+ * @property int $sort
+ * @method static Builder|PurchaseAttribute newModelQuery()
+ * @method static Builder|PurchaseAttribute newQuery()
+ * @method static Builder|PurchaseAttribute query()
+ * @method static Builder|PurchaseAttribute whereId($value)
+ * @method static Builder|PurchaseAttribute whereName($value)
+ * @method static Builder|PurchaseAttribute whereSort($value)
+ * @method static Builder|PurchaseAttribute whereType($value)
+ * @method static Builder|PurchaseAttribute whereVariants($value)
+ */
+	class PurchaseAttribute extends Eloquent {}
+}
+
+namespace App\Models\Projects\Purchase{
+
+    use App\Models\Projects\Project;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Projects\Purchase\PurchaseValue
+ *
+ * @property int $id
+ * @property int $order_id
+ * @property int $project_id
+ * @property int $attribute_id
+ * @property string $value
+ * @property-read PurchaseAttribute $attribute
+ * @property-read Project $project
+ * @property-read PurchasedProject $purchased_project
+ * @method static Builder|PurchaseValue newModelQuery()
+ * @method static Builder|PurchaseValue newQuery()
+ * @method static Builder|PurchaseValue query()
+ * @method static Builder|PurchaseValue whereAttributeId($value)
+ * @method static Builder|PurchaseValue whereId($value)
+ * @method static Builder|PurchaseValue whereOrderId($value)
+ * @method static Builder|PurchaseValue whereProjectId($value)
+ * @method static Builder|PurchaseValue whereValue($value)
+ */
+	class PurchaseValue extends Eloquent {}
+}
+
+namespace App\Models\Projects\Purchase{
+
+    use App\Models\Projects\Project;
+    use App\Models\User;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
+
+    /**
+ * App\Models\Projects\Purchase\PurchasedProject
+ *
+ * @property-read Project $project
+ * @property-read User $user
+ * @property-read Collection|PurchaseValue[] $values
+ * @property-read int|null $values_count
+ * @method static Builder|PurchasedProject newModelQuery()
+ * @method static Builder|PurchasedProject newQuery()
+ * @method static Builder|PurchasedProject query()
+ */
+	class PurchasedProject extends Eloquent {}
+}
+
 namespace App\Models\Projects{
 
     use Eloquent;
@@ -378,6 +363,21 @@ namespace App\Models\Projects{
  * @method static Builder|Value whereValue($value)
  */
 	class Value extends Eloquent {}
+}
+
+namespace App\Models\Purchase{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Purchase\PurchasedProject
+ *
+ * @method static Builder|PurchasedProject newModelQuery()
+ * @method static Builder|PurchasedProject newQuery()
+ * @method static Builder|PurchasedProject query()
+ */
+	class PurchasedProject extends Eloquent {}
 }
 
 namespace App\Models{

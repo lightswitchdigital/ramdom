@@ -2,29 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Projects\BuyRequest;
 use App\Http\Requests\Projects\SearchRequest;
-use App\Models\Orders\ProjectAttribute;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
+use App\Models\Projects\Purchase\PurchaseAttribute;
+use App\Services\Projects\ProjectsService;
 use App\Services\Projects\RecommendationsService;
 use App\Services\Search\SearchService;
 use Auth;
 use DomainException;
-use Storage;
 
 class ProjectsController extends Controller
 {
     private $service;
+    private $search;
     private $recommendations;
 
-    public function __construct(SearchService $service, RecommendationsService $recommendations) {
+    public function __construct(ProjectsService $service, SearchService $search, RecommendationsService $recommendations) {
         $this->service = $service;
+        $this->search = $search;
         $this->recommendations = $recommendations;
     }
 
     public function index(SearchRequest $request) {
 
-        $projects = $this->service->searchProjects($request, env('PROJECTS_PAGINATION'), $request->get('page', 1));
+        $projects = $this->search->searchProjects($request, env('PROJECTS_PAGINATION'), $request->get('page', 1));
         $projects->setPath('/projects');
 
         $attributes = Attribute::all();
@@ -40,12 +43,12 @@ class ProjectsController extends Controller
         }
 
         $created_at = $project->created_at->format('d-m-Y');
-        $order_attributes = ProjectAttribute::all()->toJson();
+        $purchase_attributes = PurchaseAttribute::all()->toJson();
         $isAuthenticated = Auth::check();
 
         $recommendations = $this->recommendations->getRecommendations($project->id)->toJson();
 
-        return view('projects.show', compact('project', 'created_at', 'order_attributes', 'isAuthenticated', 'recommendations'));
+        return view('projects.show', compact('project', 'created_at', 'purchase_attributes', 'isAuthenticated', 'recommendations'));
     }
 
     public function addToFavorites(Project $project) {
@@ -62,5 +65,19 @@ class ProjectsController extends Controller
         $user->removeFromFavorites($project->id);
 
         return response('', 204);
+    }
+
+    public function buy(Project $project, BuyRequest $request) {
+        $user = Auth::user();
+
+        try {
+            $this->service->buy($user->id, $project->id, $request);
+        }catch (DomainException $e) {
+            return redirect()->back()
+                ->with('error', $e->getMessage());
+        }
+
+        return redirect()->back()
+            ->with('success', 'Проект успешно куплен. Вы можете найти его в личном кабинете');
     }
 }

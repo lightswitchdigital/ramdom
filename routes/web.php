@@ -20,6 +20,7 @@ Route::group([
         'middleware' => ['auth'],
     ], function() {
 
+        Route::post('/buy', 'ProjectsController@buy')->name('buy');
         Route::post('/order', 'OrderController@order')->name('order');
         Route::post('/favorites/add', 'ProjectsController@addToFavorites')->name('favorites.add');
         Route::post('/favorites/remove', 'ProjectsController@removeFromFavorites')->name('favorites.remove');
