@@ -4,8 +4,8 @@
 namespace App\Services;
 
 use App\Http\Requests\Projects\OrderRequest;
+use App\Models\Orders\Attribute;
 use App\Models\Orders\Order;
-use App\Models\Orders\ProjectAttribute;
 use App\Models\Orders\ProjectData;
 use App\Models\Projects\Project;
 use App\Services\Projects\SmetaGateway;
@@ -49,7 +49,7 @@ class OrderService
             ]);
             $projectData->save();
 
-            foreach (ProjectAttribute::all() as $attribute) {
+            foreach (Attribute::all() as $attribute) {
                 $value = $request['order_attributes'][$attribute->id] ?? null;
                 if (!empty($value)) {
                     $order->values()->create([

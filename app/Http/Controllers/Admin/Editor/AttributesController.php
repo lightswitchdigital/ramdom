@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Editor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Orders\ProjectAttribute;
+use App\Models\Projects\Purchase\PurchaseAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -12,7 +12,7 @@ class AttributesController extends Controller
 
     public function index()
     {
-        $attributes = ProjectAttribute::all();
+        $attributes = PurchaseAttribute::all();
 
         return view('admin.editor.attributes.index', compact('attributes'));
     }
@@ -20,7 +20,7 @@ class AttributesController extends Controller
 
     public function create()
     {
-        $types = ProjectAttribute::typesList();
+        $types = PurchaseAttribute::typesList();
 
         return view('admin.editor.attributes.create', compact( 'types'));
     }
@@ -30,12 +30,12 @@ class AttributesController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(ProjectAttribute::typesList()))],
+            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(PurchaseAttribute::typesList()))],
             'variants' => ['nullable', 'string'],
             'sort' => ['required', 'integer'],
         ]);
 
-        $attribute = ProjectAttribute::create([
+        $attribute = PurchaseAttribute::create([
             'name' => $request['name'],
             'type' => $request['type'],
             'variants' => array_map('trim', preg_split('#[\r\n]+#', $request['variants'])),
@@ -46,31 +46,31 @@ class AttributesController extends Controller
     }
 
 
-    public function show(ProjectAttribute $attribute)
+    public function show(PurchaseAttribute $attribute)
     {
         return view('admin.editor.attributes.show', compact('attribute'));
     }
 
 
-    public function edit(ProjectAttribute $attribute)
+    public function edit(PurchaseAttribute $attribute)
     {
-        $types = ProjectAttribute::typesList();
+        $types = PurchaseAttribute::typesList();
 
         return view('admin.projects.attributes.edit', compact( 'attribute', 'types'));
     }
 
 
-    public function update(Request $request, ProjectAttribute $attribute)
+    public function update(Request $request, PurchaseAttribute $attribute)
     {
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(ProjectAttribute::typesList()))],
+            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(PurchaseAttribute::typesList()))],
             'required' => 'nullable|string|max:255',
             'variants' => 'nullable|string',
             'sort' => 'required|integer',
         ]);
 
-        ProjectAttribute::findOrFail($attribute->id)->update([
+        PurchaseAttribute::findOrFail($attribute->id)->update([
             'name' => $request['name'],
             'type' => $request['type'],
             'required' => (bool)$request['required'],
@@ -82,7 +82,7 @@ class AttributesController extends Controller
     }
 
 
-    public function destroy(ProjectAttribute $attribute)
+    public function destroy(PurchaseAttribute $attribute)
     {
         $attribute->delete();
 

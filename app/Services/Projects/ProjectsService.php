@@ -3,18 +3,53 @@
 
 namespace App\Services\Projects;
 
-use App\Http\Requests\Admin\Projects\AttributesRequest;
 use App\Http\Requests\Admin\Projects\CreateRequest;
 use App\Http\Requests\Admin\Projects\EditRequest;
-use App\Http\Requests\Admin\Projects\PhotosRequest;
+use App\Http\Requests\Projects\BuyRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
+use App\Models\Projects\Purchase\PurchaseAttribute;
+use App\Models\Projects\Purchase\PurchasedProject;
+use App\Models\User;
 use DB;
 use Illuminate\Support\Str;
 use Storage;
 
 class ProjectsService
 {
+
+    public function buy($user_id, $project_id, BuyRequest $request) {
+
+        $user = $this->getUser($user_id);
+        $project = $this->getProject($project_id);
+
+        DB::transaction(function() use($user, $project, $request) {
+
+            $purchased_project = PurchasedProject::make([
+                'data' => '',
+                'price' => $project->price
+            ]);
+
+            $purchased_project->user()->associate($user);
+            $purchased_project->project()->associate($project);
+
+            $purchased_project->save();
+
+            foreach (PurchaseAttribute::all() as $attribute) {
+                $value = $request['purchase_attributes'][$attribute->id] ?? null;
+                if (!empty($value)) {
+                    $purchased_project->values()->create([
+                        'attribute_id' => $attribute->id,
+                        'value' => $value
+                    ]);
+                }
+            }
+
+            return $purchased_project;
+
+        });
+    }
+
     public function create(CreateRequest $request): Project {
 
         return DB::transaction(function () use ($request) {
@@ -84,6 +119,11 @@ class ProjectsService
     public function remove($id) {
         $project = $this->getProject($id);
         $project->delete();
+    }
+
+    public function getUser($id): User
+    {
+        return User::findOrFail($id);
     }
 
     public function getProject($id): Project

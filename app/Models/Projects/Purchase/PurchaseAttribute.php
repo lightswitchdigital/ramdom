@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Models\Orders;
+namespace App\Models\Projects\Purchase;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectAttribute extends Model
+class PurchaseAttribute extends Model
 {
     public const TYPE_STRING = 'string';
     public const TYPE_INTEGER = 'integer';
     public const TYPE_FLOAT = 'float';
 
-    protected $table = 'order_project_attributes';
+    protected $table = 'purchase_project_attributes';
 
     public $timestamps = false;
 
