@@ -1,15 +1,15 @@
 <template>
-    <div>
-        
+    <div class="login-block">
         <form class="mx-auto" @submit.prevent='onSubmit'>
+            <h1 class="title">Вход в личный кабинет</h1>
             <div v-if="message != ''" class="alert alert-danger" role="alert">
                 {{message}}
             </div>
             <div class="form-group">
-                <label for="login">Эл. почта</label>
                 <input type="text" id="login"
                     v-model.trim="email"
                     class="form-control"
+                    placeholder="E-mail *"
                     :class="{'is-invalid': ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) || errors.email}">
                 <small class="error-text" v-if="$v.email.$dirty && !$v.email.required">
                     введите email</small>
@@ -18,10 +18,10 @@
                 <small class="error-text" :v-if="errors.email" v-for="(item , index) in errors.email" :key="index">{{ item }}</small>
             </div>
             <div class="form-group">
-                <label for="password">Пароль</label>
                 <input type="password" id="password"
                         v-model.trim="password"
                         class="form-control"
+                        placeholder="Пароль *"
                         :class="{'is-invalid': ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength) || errors.password}">
                 <small class="error-text" v-if="$v.password.$dirty && !$v.password.required">
                     введите пароль</small>
@@ -29,24 +29,16 @@
                     пароль не должен быть короче {{$v.password.$params.minLength.min}} символов</small>
                 <small class="error-text" :v-if="errors.password" v-for="(item , index) in errors.password" :key="index">{{ item }}</small>
             </div>
-
-            <button class="btn btn-primary" type="submit">Войти</button>
+            <div class="forgot-block">
+                <span></span>
+                <a href="#" class="forgot-link">Забыли пароль?</a>
+            </div>
+            
+            <button class="btn yellow-btn" type="submit">Войти</button>
+            <a href="#" class="register-link">Регистрация</a>
         </form>
     </div>
 </template>
-
-<style>
-    form{
-        max-width: 400px;
-    }
-    .invalid{
-        border-color: red;
-        outline-color: tomato;
-    }
-    .error-text{
-        color: red;
-    }
-</style>
 
 <script>
 import {required , email , minLength} from 'vuelidate/lib/validators'
