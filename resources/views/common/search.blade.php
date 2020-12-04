@@ -10,6 +10,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" name="price[from]" value="{{ request()->input('price.from') }}" placeholder="От">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" name="price[to]" value="{{ request()->input('price.to') }}" placeholder="До">
+                        </div>
+                    </div>
 
                     <div class="row">
                         @foreach ($attributes as $attribute)
