@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
-                    <div v-if="isAuthenticated" class="like-block" :class="{active : project.isInFavorites}" @click.prevent="toggleFavorites">
+                    <div v-if="isAuthenticated" class="like-block" :class="[{active : project.isInFavorites} , favoritesClass]" @click.prevent="toggleFavorites">
                         <span v-if="!project.isInFavorites">Добавить в избранное</span>
                         <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
@@ -161,6 +161,7 @@ export default {
     name: "ProjectComponent",
     data:() => ({
         toggleFavoritesUrl: '',
+        favoritesClass: '',
     }),
     props: [
         'project',
@@ -192,6 +193,9 @@ export default {
             axios.post(this.toggleFavoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
                     console.log(this.project.isInFavorites + ' favorites');
+                    this.$nextTick(this.$forceUpdate);
+                    this.favoritesClass = 'animated'
+                    setTimeout(() => {this.favoritesClass = ''}, 200)
                 }
             }).catch(error => {
                 console.log(error);
