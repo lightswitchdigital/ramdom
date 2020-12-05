@@ -103,7 +103,7 @@ class ProjectsService
                     Storage::disk('public')->delete($image->file);
                 }
                 $project->images()->delete();
-                foreach ($request['files'] as $file) {
+                foreach ($request['images'] as $file) {
                     $project->images()->create([
                         'file' => $file->store('projects', 'public')
                     ]);
