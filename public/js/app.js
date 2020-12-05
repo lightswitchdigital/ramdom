@@ -2336,28 +2336,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      toggleFavoritesUrl: '',
+      favoritesClass: '',
+      btnDisabled: false
+    };
+  },
   props: ['project'],
   created: function created() {
     // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
     console.log(this.project.jsonImages, this.project.jsonValues);
-  } // methods: {
-  //     liked() {
-  //         if(!this.project.isInFavorites){
-  //             this.favoritesUrl = this.favoritesAddLink
-  //         }else{
-  //             this.favoritesUrl = this.favoritesRemoveLink
-  //         }
-  //         axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
-  //             if(response.status === 204){
-  //                 console.log('is ok');
-  //             }
-  //         }).catch(error => {
-  //             console.log(error);
-  //         })
-  //     }
-  // }
+  },
+  methods: {
+    toggleFavorites: function toggleFavorites() {
+      var _this = this;
 
+      this.btnDisabled = true;
+
+      if (!this.project.isInFavorites) {
+        this.toggleFavoritesUrl = this.project.addToFavoritesLink;
+      } else {
+        this.toggleFavoritesUrl = this.project.removeFromFavoritesLink;
+      }
+
+      this.project.isInFavorites = !this.project.isInFavorites;
+      axios.post(this.toggleFavoritesUrl, {
+        '_token': this.csrfToken
+      }).then(function (response) {
+        if (response.status === 204) {
+          _this.btnDisabled = false;
+          console.log(_this.project.isInFavorites + ' favorites');
+
+          _this.$nextTick(_this.$forceUpdate);
+
+          _this.favoritesClass = 'animated';
+          setTimeout(function () {
+            _this.favoritesClass = '';
+          }, 200);
+        }
+      })["catch"](function (error) {
+        _this.btnDisabled = false;
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2531,6 +2559,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2540,7 +2573,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       toggleFavoritesUrl: '',
-      favoritesClass: ''
+      favoritesClass: '',
+      btnDisabled: false
     };
   },
   props: ['project', 'createdAt', 'createOrderLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
@@ -2559,6 +2593,8 @@ __webpack_require__.r(__webpack_exports__);
     toggleFavorites: function toggleFavorites() {
       var _this = this;
 
+      this.btnDisabled = true;
+
       if (!this.project.isInFavorites) {
         this.toggleFavoritesUrl = this.project.addToFavoritesLink;
       } else {
@@ -2570,6 +2606,7 @@ __webpack_require__.r(__webpack_exports__);
         '_token': this.csrfToken
       }).then(function (response) {
         if (response.status === 204) {
+          _this.btnDisabled = false;
           console.log(_this.project.isInFavorites + ' favorites');
 
           _this.$nextTick(_this.$forceUpdate);
@@ -2580,6 +2617,7 @@ __webpack_require__.r(__webpack_exports__);
           }, 200);
         }
       })["catch"](function (error) {
+        _this.btnDisabled = false;
         console.log(error);
       });
     }
@@ -40465,7 +40503,21 @@ var render = function() {
     "a",
     { staticClass: "card project-card", attrs: { href: this.project.route } },
     [
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "like-block",
+          class: [{ active: _vm.project.isInFavorites }, _vm.favoritesClass],
+          attrs: { disabled: _vm.btnDisabled },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.toggleFavorites($event)
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-heart" })]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "card-img-top" }, [
         _c("img", { attrs: { src: this.project.jsonImages[0] } })
@@ -40496,16 +40548,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "like-block" }, [
-      _c("i", { staticClass: "fas fa-heart" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40647,6 +40690,7 @@ var render = function() {
                       { active: _vm.project.isInFavorites },
                       _vm.favoritesClass
                     ],
+                    attrs: { disabled: _vm.btnDisabled },
                     on: {
                       click: function($event) {
                         $event.preventDefault()

@@ -11144,17 +11144,28 @@ a.project-card .like-block {
   width: 35px;
   height: 35px;
   font-size: 17px;
-  color: #fff;
+  color: #FFD977;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #FFD977;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
 }
 
 a.project-card .like-block.active {
-  color: #FFD977;
-  background: #fff;
+  color: #fff;
+  background: #FFD977;
+  box-shadow: none;
+}
+
+a.project-card .like-block.animated {
+  font-size: 14px;
+  transform: translateY(5px);
+}
+
+a.project-card .like-block:disabled {
+  opacity: 0.6;
 }
 
 a.project-card .card-price {
@@ -11800,6 +11811,10 @@ a.project-card .card-img-top img {
 .project-view .info-card .like-block.animated .like {
   font-size: 14px;
   transform: translateY(5px);
+}
+
+.project-view .info-card .like-block:disabled {
+  opacity: 0.6;
 }
 
 .project-view .mini-preview {

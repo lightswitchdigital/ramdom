@@ -220,15 +220,24 @@ a.project-card{
         width: 35px;
         height: 35px;
         font-size: 17px;
-        color: #fff;
+        color: #FFD977;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #FFD977;
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         border-radius: 50%;
         &.active{
-            color: #FFD977;
-            background: #fff;
+            color: #fff;
+            background: #FFD977;
+            box-shadow: none;
+        }
+        &.animated{
+            font-size: 14px;
+            transform: translateY(5px);
+        }
+        &:disabled{
+            opacity: 0.6;
         }
     }
     .card-price{
@@ -782,6 +791,9 @@ a.project-card{
                     font-size: 14px;
                     transform: translateY(5px);
                 }
+            }
+            &:disabled{
+                opacity: 0.6;
             }
         }
     }

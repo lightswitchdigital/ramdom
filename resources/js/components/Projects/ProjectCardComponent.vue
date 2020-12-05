@@ -1,6 +1,10 @@
 <template>
     <a class="card project-card" :href="this.project.route">
-        <div class="like-block"><i class="fas fa-heart"></i></div>
+        <div class="like-block" 
+        :disabled="btnDisabled"
+        :class="[{active : project.isInFavorites} , favoritesClass]" 
+        @click.prevent="toggleFavorites"
+        ><i class="fas fa-heart"></i></div>
         <div class="card-img-top">
             <img :src="this.project.jsonImages[0]">
         </div>
@@ -18,6 +22,11 @@
 
 <script>
 export default {
+    data:() => ({
+        toggleFavoritesUrl: '',
+        favoritesClass: '',
+        btnDisabled: false
+    }),
     props: [
         'project'
     ],
@@ -25,21 +34,28 @@ export default {
         // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
         console.log(this.project.jsonImages, this.project.jsonValues)
     },
-    // methods: {
-    //     liked() {
-    //         if(!this.project.isInFavorites){
-    //             this.favoritesUrl = this.favoritesAddLink
-    //         }else{
-    //             this.favoritesUrl = this.favoritesRemoveLink
-    //         }
-    //         axios.post(this.favoritesUrl , {'_token' : this.csrfToken}).then(response => {
-    //             if(response.status === 204){
-    //                 console.log('is ok');
-    //             }
-    //         }).catch(error => {
-    //             console.log(error);
-    //         })
-    //     }
-    // }
+    methods: {
+        toggleFavorites() {
+            this.btnDisabled = true
+            if(!this.project.isInFavorites){
+                this.toggleFavoritesUrl = this.project.addToFavoritesLink
+            }else{
+                this.toggleFavoritesUrl = this.project.removeFromFavoritesLink
+            }
+            this.project.isInFavorites = !this.project.isInFavorites
+            axios.post(this.toggleFavoritesUrl , {'_token' : this.csrfToken}).then(response => {
+                if(response.status === 204){
+                    this.btnDisabled = false
+                    console.log(this.project.isInFavorites + ' favorites');
+                    this.$nextTick(this.$forceUpdate);
+                    this.favoritesClass = 'animated'
+                    setTimeout(() => {this.favoritesClass = ''}, 200)
+                }
+            }).catch(error => {
+                this.btnDisabled = false
+                console.log(error);
+            })
+        }
+    }
 };
 </script>

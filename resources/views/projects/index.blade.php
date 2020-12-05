@@ -17,7 +17,7 @@
 
             <div class="projects-pagination">
 
-                {{ $projects->links() }}
+                {{-- {{ $projects->links() }} --}}
 
 {{--                <nav aria-label="Page navigation example">--}}
 {{--                    <ul class="pagination">--}}
