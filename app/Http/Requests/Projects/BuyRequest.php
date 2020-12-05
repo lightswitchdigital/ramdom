@@ -2,29 +2,45 @@
 
 namespace App\Http\Requests\Projects;
 
+use App\Models\Projects\Purchase\PurchaseAttribute;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BuyRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
-        return [
-            //
-        ];
+        $items = [];
+
+        foreach (PurchaseAttribute::all() as $attribute) {
+            $rules = [
+                'required',
+            ];
+            if ($attribute->isInteger()) {
+                $rules[] = 'integer';
+            } elseif ($attribute->isFloat()) {
+                $rules[] = 'numeric';
+            } else {
+                $rules[] = 'string';
+                $rules[] = 'max:255';
+            }
+            if ($attribute->isSelect()) {
+                $rules[] = Rule::in($attribute->variants);
+            }
+            $items['purchase_attributes.' . $attribute->id] = $rules;
+        }
+
+        return $items;
+//        return array_merge([
+//            'title' => ['required', 'string', 'max:255'],
+//            'description' => ['required', 'string'],
+//            'price' => ['required', 'numeric']
+//        ], $items);
     }
 }

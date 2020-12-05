@@ -44,14 +44,14 @@ class SearchService
                                     'fields' => [ 'title^3', 'description']
                                 ]] : false,
                             ]),
-                            [
-                                ['range' => [
+                            array_filter([
+                                !empty($request['price']) ? ['range' => [
                                     'price' => [
                                         'gte' => $request['price']['from'],
                                         'lte' => $request['price']['to'],
                                     ]
-                                ]]
-                            ],
+                                ]] : false,
+                            ]),
                             array_map(function ($value, $id) {
                                 return [
                                     'nested' => [
