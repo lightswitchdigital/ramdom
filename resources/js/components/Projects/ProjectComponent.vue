@@ -200,7 +200,6 @@ export default {
             axios.post(this.toggleFavoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
                     this.btnDisabled = false
-                    console.log(this.project.isInFavorites + ' favorites');
                     this.$nextTick(this.$forceUpdate);
                     this.favoritesClass = 'animated'
                     setTimeout(() => {this.favoritesClass = ''}, 200)

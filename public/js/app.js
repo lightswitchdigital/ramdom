@@ -2607,7 +2607,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.status === 204) {
           _this.btnDisabled = false;
-          console.log(_this.project.isInFavorites + ' favorites');
 
           _this.$nextTick(_this.$forceUpdate);
 

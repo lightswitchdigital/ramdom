@@ -11151,6 +11151,7 @@ a.project-card .like-block {
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
+  transition: 0.2s;
 }
 
 a.project-card .like-block.active {
