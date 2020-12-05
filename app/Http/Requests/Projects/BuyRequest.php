@@ -37,10 +37,5 @@ class BuyRequest extends FormRequest
         }
 
         return $items;
-//        return array_merge([
-//            'title' => ['required', 'string', 'max:255'],
-//            'description' => ['required', 'string'],
-//            'price' => ['required', 'numeric']
-//        ], $items);
     }
 }

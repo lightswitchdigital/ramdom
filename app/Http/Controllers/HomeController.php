@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Projects;
-use Illuminate\Contracts\Support\Renderable;
+use App\Models\Advice;
 
 class HomeController extends Controller
 {
@@ -22,6 +21,8 @@ class HomeController extends Controller
     }
 
     public function advice() {
-        return view('advice');
+        $advice = Advice::paginate(env('ADVICE_PAGINATION'));
+
+        return view('advice', compact('advice'));
     }
 }

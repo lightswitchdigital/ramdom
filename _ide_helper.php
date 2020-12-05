@@ -13,7 +13,8 @@
 
     namespace Illuminate\Support\Facades {
 
-        use use App\Console\Kernel;
+        use;
+        use App\Console\Kernel;
         use App\Models\User;
         use BadMethodCallException;
         use Closure;
@@ -53,7 +54,8 @@
         use Illuminate\Contracts\Cache\Lock;
         use Illuminate\Contracts\Container\BindingResolutionException;
         use Illuminate\Contracts\Container\Container;
-        use Illuminate\Contracts\Container\ContextualBindingBuilder;use Illuminate\Contracts\Cookie\QueueingFactory;
+        use Illuminate\Contracts\Container\ContextualBindingBuilder;
+        use Illuminate\Contracts\Cookie\QueueingFactory;
         use Illuminate\Contracts\Encryption\DecryptException;
         use Illuminate\Contracts\Encryption\EncryptException;
         use Illuminate\Contracts\Events\Dispatcher;
@@ -115,7 +117,8 @@
         use Illuminate\Session\Store;
         use Illuminate\Support\Collection;
         use Illuminate\Support\LazyCollection;
-        use Illuminate\Support\ServiceProvider;use Illuminate\Support\Testing\Fakes\BusFake;
+        use Illuminate\Support\ServiceProvider;
+        use Illuminate\Support\Testing\Fakes\BusFake;
         use Illuminate\Support\Testing\Fakes\EventFake;
         use Illuminate\Support\Testing\Fakes\MailFake;
         use Illuminate\Support\Testing\Fakes\NotificationFake;
@@ -147,7 +150,9 @@
         use Symfony\Component\HttpFoundation\BinaryFileResponse;
         use Symfony\Component\HttpFoundation\ParameterBag;
         use Symfony\Component\HttpFoundation\StreamedResponse;
-        use Symfony\Component\HttpKernel\Exception\HttpException;use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;use Symfony\Component\Routing\Exception\RouteNotFoundException;
+        use Symfony\Component\HttpKernel\Exception\HttpException;
+        use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+        use Symfony\Component\Routing\Exception\RouteNotFoundException;
         use Throwable;
 
         /**
@@ -14702,9 +14707,16 @@
 
         namespace Barryvdh\Debugbar {
 
-            use use Closure;use DebugBar\DataCollectorInterface;use DebugBar\HttpDriverInterface;
+            use;
+            use Closure;
+            use DebugBar\DataCollectorInterface;
+            use DebugBar\HttpDriverInterface;
             use DebugBar\RequestIdGeneratorInterface;
-            use DebugBar\StorageInterface;use ErrorException;use Exception;use Symfony\Component\HttpFoundation\Request;use Symfony\Component\HttpFoundation\Response;
+            use DebugBar\StorageInterface;
+            use ErrorException;
+            use Exception;
+            use Symfony\Component\HttpFoundation\Request;
+            use Symfony\Component\HttpFoundation\Response;
 
             /**
      *

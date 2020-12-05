@@ -4,8 +4,15 @@
     <div class="building-advice">
         <div class="container">
             <h1 class="title">Советы по строительству</h1>
-            <advice></advice>
-        </div>    
+            @foreach($advice as $item)
+                <advice
+                    :advice="{{ $item }}"
+                >
+                </advice>
+            @endforeach
+
+            {{ $advice->links() }}
+        </div>
     </div>
 
 @endsection

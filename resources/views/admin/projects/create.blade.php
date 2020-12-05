@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="price" class="col-form-label">Стартовая цена</label>
+                    <label for="price" class="col-form-label">Цена</label>
                     <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
                     @error('price')
                         <span class="invalid-feedback"><strong>{{ $message }}</strong></span>

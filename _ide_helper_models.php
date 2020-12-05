@@ -14,6 +14,23 @@ namespace App\Models{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\Advice
+ *
+ * @property-read mixed $json_image
+ * @property-read Image|null $image
+ * @method static Builder|Advice newModelQuery()
+ * @method static Builder|Advice newQuery()
+ * @method static Builder|Advice query()
+ */
+	class Advice extends Eloquent {}
+}
+
+namespace App\Models{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Support\Carbon;
 
@@ -52,10 +69,24 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
- * @property int $project_id
+ * @property int $purchased_project_id
+ * @property int $developer_id
  * @property string $order_name
  * @property string $order_email
  * @property string $order_phone
+ * @property string $order_city
+ * @property string $order_address
+ * @property string $order_postal_code
+ * @property string|null $order_passport_serial
+ * @property string|null $order_passport_number
+ * @property string|null $order_passport_issue
+ * @property string|null $order_passport_issue_date
+ * @property string|null $order_company_name
+ * @property string|null $order_company_address
+ * @property string|null $order_company_inn
+ * @property string|null $order_company_kpp
+ * @property string|null $order_company_payment_account
+ * @property string|null $order_company_correspondent_account
  * @property float $price
  * @property string $status
  * @property Carbon|null $created_at
@@ -67,12 +98,26 @@ namespace App\Models{
  * @method static Builder|Order newQuery()
  * @method static Builder|Order query()
  * @method static Builder|Order whereCreatedAt($value)
+ * @method static Builder|Order whereDeveloperId($value)
  * @method static Builder|Order whereId($value)
+ * @method static Builder|Order whereOrderAddress($value)
+ * @method static Builder|Order whereOrderCity($value)
+ * @method static Builder|Order whereOrderCompanyAddress($value)
+ * @method static Builder|Order whereOrderCompanyCorrespondentAccount($value)
+ * @method static Builder|Order whereOrderCompanyInn($value)
+ * @method static Builder|Order whereOrderCompanyKpp($value)
+ * @method static Builder|Order whereOrderCompanyName($value)
+ * @method static Builder|Order whereOrderCompanyPaymentAccount($value)
  * @method static Builder|Order whereOrderEmail($value)
  * @method static Builder|Order whereOrderName($value)
+ * @method static Builder|Order whereOrderPassportIssue($value)
+ * @method static Builder|Order whereOrderPassportIssueDate($value)
+ * @method static Builder|Order whereOrderPassportNumber($value)
+ * @method static Builder|Order whereOrderPassportSerial($value)
  * @method static Builder|Order whereOrderPhone($value)
+ * @method static Builder|Order whereOrderPostalCode($value)
  * @method static Builder|Order wherePrice($value)
- * @method static Builder|Order whereProjectId($value)
+ * @method static Builder|Order wherePurchasedProjectId($value)
  * @method static Builder|Order whereStatus($value)
  * @method static Builder|Order whereUpdatedAt($value)
  * @method static Builder|Order whereUserId($value)
@@ -300,7 +345,7 @@ namespace App\Models\Projects\Purchase{
  * App\Models\Projects\Purchase\PurchaseValue
  *
  * @property int $id
- * @property int $order_id
+ * @property int $purchased_project_id
  * @property int $project_id
  * @property int $attribute_id
  * @property string $value
@@ -312,8 +357,8 @@ namespace App\Models\Projects\Purchase{
  * @method static Builder|PurchaseValue query()
  * @method static Builder|PurchaseValue whereAttributeId($value)
  * @method static Builder|PurchaseValue whereId($value)
- * @method static Builder|PurchaseValue whereOrderId($value)
  * @method static Builder|PurchaseValue whereProjectId($value)
+ * @method static Builder|PurchaseValue wherePurchasedProjectId($value)
  * @method static Builder|PurchaseValue whereValue($value)
  */
 	class PurchaseValue extends Eloquent {}
@@ -326,10 +371,18 @@ namespace App\Models\Projects\Purchase{
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Collection;
+    use Illuminate\Support\Carbon;
 
     /**
  * App\Models\Projects\Purchase\PurchasedProject
  *
+ * @property int $id
+ * @property int $user_id
+ * @property int $project_id
+ * @property string $data
+ * @property float $price
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Project $project
  * @property-read User $user
  * @property-read Collection|PurchaseValue[] $values
@@ -337,6 +390,13 @@ namespace App\Models\Projects\Purchase{
  * @method static Builder|PurchasedProject newModelQuery()
  * @method static Builder|PurchasedProject newQuery()
  * @method static Builder|PurchasedProject query()
+ * @method static Builder|PurchasedProject whereCreatedAt($value)
+ * @method static Builder|PurchasedProject whereData($value)
+ * @method static Builder|PurchasedProject whereId($value)
+ * @method static Builder|PurchasedProject wherePrice($value)
+ * @method static Builder|PurchasedProject whereProjectId($value)
+ * @method static Builder|PurchasedProject whereUpdatedAt($value)
+ * @method static Builder|PurchasedProject whereUserId($value)
  */
 	class PurchasedProject extends Eloquent {}
 }
@@ -369,13 +429,28 @@ namespace App\Models\Purchase{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
 
     /**
  * App\Models\Purchase\PurchasedProject
  *
+ * @property int $id
+ * @property int $user_id
+ * @property int $project_id
+ * @property string $data
+ * @property float $price
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static Builder|PurchasedProject newModelQuery()
  * @method static Builder|PurchasedProject newQuery()
  * @method static Builder|PurchasedProject query()
+ * @method static Builder|PurchasedProject whereCreatedAt($value)
+ * @method static Builder|PurchasedProject whereData($value)
+ * @method static Builder|PurchasedProject whereId($value)
+ * @method static Builder|PurchasedProject wherePrice($value)
+ * @method static Builder|PurchasedProject whereProjectId($value)
+ * @method static Builder|PurchasedProject whereUpdatedAt($value)
+ * @method static Builder|PurchasedProject whereUserId($value)
  */
 	class PurchasedProject extends Eloquent {}
 }
