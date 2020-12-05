@@ -143,6 +143,16 @@ Route::group([
     Route::resource('plans', 'Plans\PlansController')->except(['create', 'store', 'destroy']);
 
     Route::group([
+        'prefix' => 'advice',
+        'as' => 'advice'
+    ], function() {
+
+
+
+    });
+    Route::resource('advice', 'AdviceController');
+
+    Route::group([
         'prefix' => 'editor',
         'as' => 'editor.',
         'namespace' => 'Editor'

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Auth;
 
 class FavoritesController extends Controller
 {
     public function index() {
-        return view('profile.favorites.index');
+        $user = Auth::user();
+        $projects = $user->favorites()->paginate(8);
+
+        return view('profile.favorites.index', compact('projects'));
     }
 }
