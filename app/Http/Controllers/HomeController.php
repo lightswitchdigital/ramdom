@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advice;
+use App\Models\FAQ;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,9 @@ class HomeController extends Controller
     }
 
     public function faq() {
-        return view('faq');
+        $faq = FAQ::all();
+
+        return view('faq', compact('faq'));
     }
 
     public function advice() {

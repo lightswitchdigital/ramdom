@@ -75,9 +75,6 @@
                             <a class="nav-link" href="{{ route('projects.index') }}">Проекты</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">О нас</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('faq') }}">Вопрос-Ответ</a>
                         </li>
                         <li class="nav-item">
@@ -119,25 +116,23 @@
         <main class="py-4 content">
             @yield('content')
         </main>
+
         <footer style="background: #353535; color: #fff;">
            <div class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/logo-light.png">
+                        <img src="{{ asset('/images/logo-light.png') }}">
                     </a>
                     <ul class="mr-auto"></ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Проекты</a>
+                            <a class="nav-link" href="{{ route('projects.index') }}">Проекты</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">О нас</a>
+                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Стать партнёром</a>
+                            <a class="nav-link" href="{{ route('register') }}">Стать партнёром</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Политика и конфиденциальность</a>

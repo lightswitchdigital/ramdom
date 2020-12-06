@@ -14,17 +14,49 @@ namespace App\Models{
 
     use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Support\Carbon;
 
     /**
  * App\Models\Advice
  *
- * @property-read mixed $json_image
+ * @property int $id
+ * @property string $title
+ * @property string $content
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read mixed $image_url
  * @property-read Image|null $image
  * @method static Builder|Advice newModelQuery()
  * @method static Builder|Advice newQuery()
  * @method static Builder|Advice query()
+ * @method static Builder|Advice whereContent($value)
+ * @method static Builder|Advice whereCreatedAt($value)
+ * @method static Builder|Advice whereId($value)
+ * @method static Builder|Advice whereTitle($value)
+ * @method static Builder|Advice whereUpdatedAt($value)
  */
 	class Advice extends Eloquent {}
+}
+
+namespace App\Models{
+
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
+
+    /**
+ * App\Models\FAQ
+ *
+ * @property int $id
+ * @property string $question
+ * @property string $answer
+ * @method static Builder|FAQ newModelQuery()
+ * @method static Builder|FAQ newQuery()
+ * @method static Builder|FAQ query()
+ * @method static Builder|FAQ whereAnswer($value)
+ * @method static Builder|FAQ whereId($value)
+ * @method static Builder|FAQ whereQuestion($value)
+ */
+	class FAQ extends Eloquent {}
 }
 
 namespace App\Models{

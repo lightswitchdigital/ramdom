@@ -153,6 +153,16 @@ Route::group([
     Route::resource('advice', 'AdviceController');
 
     Route::group([
+        'prefix' => 'faq',
+        'as' => 'faq'
+    ], function() {
+
+
+
+    });
+    Route::resource('faq', 'FAQController');
+
+    Route::group([
         'prefix' => 'editor',
         'as' => 'editor.',
         'namespace' => 'Editor'
