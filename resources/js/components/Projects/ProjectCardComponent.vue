@@ -1,6 +1,7 @@
 <template>
     <a class="card project-card" :href="this.project.route">
-        <div class="like-block" 
+        <div class="like-block"
+        v-if="isAuthenticated" 
         :disabled="btnDisabled"
         :class="[{active : project.isInFavorites} , favoritesClass]" 
         @click.prevent="toggleFavorites"
@@ -28,7 +29,8 @@ export default {
         btnDisabled: false
     }),
     props: [
-        'project'
+        'project',
+        'isAuthenticated'
     ],
     created() {
         // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content

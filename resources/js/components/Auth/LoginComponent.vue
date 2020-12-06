@@ -34,7 +34,8 @@
                 <a href="#" class="forgot-link">Забыли пароль?</a>
             </div>
             
-            <button class="btn yellow-btn" type="submit">Войти</button>
+            <button class="btn yellow-btn" type="submit" :disabled='isDisabled'>Войти</button>
+            <p v-if="isDisabled">Вы успешно вошли</p>
             <a href="#" class="register-link">Регистрация</a>
         </form>
     </div>
@@ -49,7 +50,8 @@ export default {
         email: '',
         password: '',
         errors: '',
-        message: '' // Сообщение об ошибке
+        message: '',
+        isDisabled: false // Сообщение об ошибке
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -72,7 +74,10 @@ export default {
 
             axios.post('/login' , formData).then(response => {
                 if(response.status === 204){
-                    window.location.href = '/'
+                   this.isDisabled = true 
+                    setTimeout(() => {
+                        window.location.href = '/'
+                    } , 2000)
                 }
             }).catch(error => {
                 this.message = error.response.data.message

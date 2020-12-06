@@ -11136,6 +11136,12 @@ a.project-card {
   border: none;
 }
 
+a.project-card:focus,
+a.project-card:active {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
 a.project-card .like-block {
   position: absolute;
   top: 10px;
@@ -11562,6 +11568,10 @@ a.project-card .card-img-top img {
   font-weight: bold;
 }
 
+.login-block .yellow-btn:desabled {
+  background: #fcdd8d;
+}
+
 .login-block .register-link {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -11786,6 +11796,7 @@ a.project-card .card-img-top img {
   z-index: 10;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .project-view .info-card .like-block .like {
@@ -11826,6 +11837,12 @@ a.project-card .card-img-top img {
   overflow: hidden;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
   margin: 0 10px;
+}
+
+.project-view .mini-preview:focus,
+.project-view .mini-preview:active {
+  outline: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 .project-view .mini-preview img {
