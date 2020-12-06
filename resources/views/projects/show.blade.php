@@ -5,6 +5,7 @@
         :project="{{ $project }}"
         :created-at="'{{ $created_at }}'"
         :create-order-link="'{{ route('projects.order', $project) }}'"
+        :buy-link="'{{ route('projects.buy', $project) }}'"
         :order-attributes="{{ $purchase_attributes }}"
         :is-authenticated="{{ json_encode($isAuthenticated) }}"
         :favorites-add-link="'{{ route('projects.favorites.add', $project) }}'"

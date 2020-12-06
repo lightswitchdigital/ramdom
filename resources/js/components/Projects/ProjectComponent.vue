@@ -45,17 +45,19 @@
             </div>
             <div class="col-md-6">
                 <div class="card info-card">
-                    <div 
-                    v-if="isAuthenticated" 
-                    class="like-block" 
+                    <div
+                    v-if="isAuthenticated"
+                    class="like-block"
                     :disabled="btnDisabled"
-                    :class="[{active : project.isInFavorites} , favoritesClass]" 
+                    :class="[{active : project.isInFavorites} , favoritesClass]"
                     @click.prevent="toggleFavorites">
                         <span v-if="!project.isInFavorites">Добавить в избранное</span>
                         <span v-else>В избранном</span>
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
-                    <form :action="this.createOrderLink" method="post">
+
+                    <form :action="this.buyLink" method="post">
+                        <input type="hidden" name="_token" :value="this.csrfToken">
                         <table class="table">
                             <tbody>
                                 <tr v-for="(value, label , index) in project.jsonValues" :key="index">
@@ -64,47 +66,44 @@
                                 </tr>
                                 <tr v-for="(attribute , index) in this.orderAttributes" :key="index">
                                     <td>
-                                        <label :for="'order_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
+                                        <label :for="'purchase_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
                                     </td>
                                     <td>
-                                        <select v-if="attribute.variants.length > 0" :id="'order_attribute_'+attribute.id" class="custom-select" :name="'order_attributes['+attribute.id+']'">
+                                        <select v-if="attribute.variants.length > 0" :id="'purchase_attribute_'+attribute.id" class="custom-select" :name="'purchase_attributes['+attribute.id+']'">
                                             <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
                                                 {{ variant }}
                                             </option>
                                         </select>
 
-                                        <input v-else-if="attribute.type === 'number'" :id="'order_attribute_'+attribute.id" type="number" class="form-control" :name="'order_attributes['+attribute.id+']'">
+                                        <input v-else-if="attribute.type === 'number'" :id="'purchase_attribute_'+attribute.id" type="number" class="form-control" :name="'purchase_attributes['+attribute.id+']'">
 
-                                        <input v-else :id="'order_attribute_'+attribute.id" type="text" class="form-control" :name="'order_attributes['+attribute.id+']'">
+                                        <input v-else :id="'purchase_attribute_'+attribute.id" type="text" class="form-control" :name="'purchase_attributes['+attribute.id+']'">
                                     </td>
-                                </tr>  
-                            </tbody>
-                            
-                        </table>
-                    </form>
-                    <!-- <table class="table">
-                        <tbody>
-                        
-                        </tbody>
-                    </table> -->
-                    <div class="price-block">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td><strong>Стоимость строительства</strong></td>
-                                    <td><div class="price">{{ project.price }}</div></td>
                                 </tr>
+                            </tbody>
+
+                        </table>
+
+                        <div class="price-block">
+                            <table class="table">
+                                <tbody>
                                 <tr>
                                     <td><strong>Стоимость проекта</strong></td>
                                     <td><div class="price">{{ project.price }}</div></td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="btn-block">
-                        <a href="#" class="yellow-outline-btn">Купить проект</a>
-                        <a href="#" class="yellow-btn">Купить строительство</a>
-                    </div>
+                                <tr>
+                                    <td><strong>Стоимость строительства</strong></td>
+                                    <td><div class="price">{{ project.price }}</div></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-block">
+                            <button class="yellow-outline-btn">Купить проект</button>
+                            <a href="#" class="yellow-btn">Купить строительство</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -115,7 +114,7 @@
                     <label for="entity" class="switch"></label>
                     <label for="entity"><h5>Оформить как юр.лицо</h5></label>
                 </div>
-                
+
                 <input type="text" name="fullName" placeholder="ФИО">
                 <div>
                     <div class="passport-block">
@@ -129,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <input type="text" name="" placeholder="Кем выдан">
                     <input type="text" name="" placeholder="Когда выдан">
                 </div>
@@ -173,6 +172,7 @@ export default {
         'project',
         'createdAt',
         'createOrderLink',
+        'buyLink',
         'recommendations',
         'orderAttributes',
         'isAuthenticated'
