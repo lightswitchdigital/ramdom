@@ -18,6 +18,7 @@ import Vuelidate from 'vuelidate'
 import ProjectCardComponent from "./components/Projects/ProjectCardComponent";
 import ProjectComponent from "./components/Projects/ProjectComponent";
 import AdviceComponent from "./components/AdviceComponent"
+import Recommend from './components/Projects/RecommendationsComponent'
 
 
 Vue.use(VueRouter)
@@ -40,6 +41,7 @@ Vue.component('register', RegisterComponent);
 
 Vue.component('project-card', ProjectCardComponent);
 Vue.component('project', ProjectComponent);
+Vue.component('reccomendation', Recommend);
 
 Vue.component('advice', AdviceComponent);
 

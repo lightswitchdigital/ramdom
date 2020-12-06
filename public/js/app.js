@@ -2357,8 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['project', 'isAuthenticated'],
   created: function created() {
-    // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
-    console.log(this.project.jsonImages, this.project.jsonValues);
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
   methods: {
     toggleFavorites: function toggleFavorites() {
@@ -40545,7 +40544,7 @@ var render = function() {
           "ul",
           { staticClass: "card-text" },
           _vm._l(this.project.jsonValues, function(value, label, index) {
-            return _c("li", { key: index, attrs: { "v-if": index <= 4 } }, [
+            return _c("li", { key: index, attrs: { "v-if": index < 4 } }, [
               _c("span", [_vm._v(_vm._s(label))]),
               _c("span", [_vm._v(_vm._s(value))])
             ])
@@ -69368,6 +69367,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Projects/ProjectCardComponent */ "./resources/js/components/Projects/ProjectCardComponent.vue");
 /* harmony import */ var _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Projects/ProjectComponent */ "./resources/js/components/Projects/ProjectComponent.vue");
 /* harmony import */ var _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AdviceComponent */ "./resources/js/components/AdviceComponent.vue");
+/* harmony import */ var _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Projects/RecommendationsComponent */ "./resources/js/components/Projects/RecommendationsComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -69381,6 +69381,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -69403,6 +69404,7 @@ Vue.component('login', _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_
 Vue.component('register', _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('project-card', _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('reccomendation', _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
 Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
 var app = new Vue({
   el: '#app'
