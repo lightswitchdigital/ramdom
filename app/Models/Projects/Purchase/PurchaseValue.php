@@ -10,7 +10,7 @@ class PurchaseValue extends Model
     protected $table = 'purchase_project_values';
 
     protected $fillable = [
-        'order_id', 'project_id', 'attribute_id', 'value'
+        'order_id', 'purchased_project_id', 'attribute_id', 'value'
     ];
 
     public $timestamps = false;

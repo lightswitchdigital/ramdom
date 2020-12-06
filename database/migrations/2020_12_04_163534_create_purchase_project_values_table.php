@@ -14,8 +14,6 @@ class CreatePurchaseProjectValuesTable extends Migration
             $table->unsignedBigInteger('purchased_project_id');
             $table->foreign('purchased_project_id')->references('id')->on('purchased_projects');
 
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('CASCADE');
             $table->unsignedBigInteger('attribute_id');
             $table->foreign('attribute_id')->references('id')->on('purchase_project_attributes')->onDelete('CASCADE');
             $table->string('value');

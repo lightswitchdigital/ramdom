@@ -2570,7 +2570,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2584,7 +2583,7 @@ __webpack_require__.r(__webpack_exports__);
       btnDisabled: false
     };
   },
-  props: ['project', 'createdAt', 'createOrderLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
+  props: ['project', 'createdAt', 'createOrderLink', 'buyLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     console.log(this.project.isInFavorites);
@@ -40717,130 +40716,133 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c(
-              "form",
-              { attrs: { action: this.createOrderLink, method: "post" } },
-              [
-                _c("table", { staticClass: "table" }, [
-                  _c(
-                    "tbody",
-                    [
-                      _vm._l(_vm.project.jsonValues, function(
-                        value,
-                        label,
-                        index
-                      ) {
-                        return _c("tr", { key: index }, [
-                          _c("td", [_vm._v(_vm._s(label))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value))])
-                        ])
-                      }),
-                      _vm._v(" "),
-                      _vm._l(this.orderAttributes, function(attribute, index) {
-                        return _c("tr", { key: index }, [
-                          _c("td", [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-form-label",
-                                attrs: {
-                                  for: "order_attribute_" + attribute.id
-                                }
-                              },
-                              [_vm._v(_vm._s(attribute.name))]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            attribute.variants.length > 0
-                              ? _c(
-                                  "select",
-                                  {
-                                    staticClass: "custom-select",
-                                    attrs: {
-                                      id: "order_attribute_" + attribute.id,
-                                      name:
-                                        "order_attributes[" + attribute.id + "]"
-                                    }
-                                  },
-                                  _vm._l(attribute.variants, function(
-                                    variant,
-                                    index
-                                  ) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: index,
-                                        domProps: { value: variant }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                            " +
-                                            _vm._s(variant) +
-                                            "\n                                        "
-                                        )
-                                      ]
-                                    )
-                                  }),
-                                  0
-                                )
-                              : attribute.type === "number"
-                              ? _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    id: "order_attribute_" + attribute.id,
-                                    type: "number",
-                                    name:
-                                      "order_attributes[" + attribute.id + "]"
-                                  }
-                                })
-                              : _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    id: "order_attribute_" + attribute.id,
-                                    type: "text",
-                                    name:
-                                      "order_attributes[" + attribute.id + "]"
-                                  }
-                                })
-                          ])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "price-block" }, [
+            _c("form", { attrs: { action: this.buyLink, method: "post" } }, [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: this.csrfToken }
+              }),
+              _vm._v(" "),
               _c("table", { staticClass: "table" }, [
-                _c("tbody", [
-                  _c("tr", [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("div", { staticClass: "price" }, [
-                        _vm._v(_vm._s(_vm.project.price))
+                _c(
+                  "tbody",
+                  [
+                    _vm._l(_vm.project.jsonValues, function(
+                      value,
+                      label,
+                      index
+                    ) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(label))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value))])
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _vm._m(2),
+                    }),
                     _vm._v(" "),
-                    _c("td", [
-                      _c("div", { staticClass: "price" }, [
-                        _vm._v(_vm._s(_vm.project.price))
+                    _vm._l(this.orderAttributes, function(attribute, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: {
+                                for: "purchase_attribute_" + attribute.id
+                              }
+                            },
+                            [_vm._v(_vm._s(attribute.name))]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          attribute.variants.length > 0
+                            ? _c(
+                                "select",
+                                {
+                                  staticClass: "custom-select",
+                                  attrs: {
+                                    id: "purchase_attribute_" + attribute.id,
+                                    name:
+                                      "purchase_attributes[" +
+                                      attribute.id +
+                                      "]"
+                                  }
+                                },
+                                _vm._l(attribute.variants, function(
+                                  variant,
+                                  index
+                                ) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: index,
+                                      domProps: { value: variant }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(variant) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            : attribute.type === "number"
+                            ? _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "purchase_attribute_" + attribute.id,
+                                  type: "number",
+                                  name:
+                                    "purchase_attributes[" + attribute.id + "]"
+                                }
+                              })
+                            : _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "purchase_attribute_" + attribute.id,
+                                  type: "text",
+                                  name:
+                                    "purchase_attributes[" + attribute.id + "]"
+                                }
+                              })
+                        ])
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "price-block" }, [
+                _c("table", { staticClass: "table" }, [
+                  _c("tbody", [
+                    _c("tr", [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("div", { staticClass: "price" }, [
+                          _vm._v(_vm._s(_vm.project.price))
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("div", { staticClass: "price" }, [
+                          _vm._v(_vm._s(_vm.project.price))
+                        ])
                       ])
                     ])
                   ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
           ])
         ])
       ]),
@@ -40863,20 +40865,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("Стоимость строительства")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("td", [_c("strong", [_vm._v("Стоимость проекта")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Стоимость строительства")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "btn-block" }, [
-      _c("a", { staticClass: "yellow-outline-btn", attrs: { href: "#" } }, [
+      _c("button", { staticClass: "yellow-outline-btn" }, [
         _vm._v("Купить проект")
       ]),
       _vm._v(" "),

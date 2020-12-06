@@ -56,7 +56,7 @@ class AttributesController extends Controller
     {
         $types = PurchaseAttribute::typesList();
 
-        return view('admin.projects.attributes.edit', compact( 'attribute', 'types'));
+        return view('admin.editor.attributes.edit', compact( 'attribute', 'types'));
     }
 
 
@@ -70,7 +70,7 @@ class AttributesController extends Controller
             'sort' => 'required|integer',
         ]);
 
-        PurchaseAttribute::findOrFail($attribute->id)->update([
+        $attribute->update([
             'name' => $request['name'],
             'type' => $request['type'],
             'required' => (bool)$request['required'],

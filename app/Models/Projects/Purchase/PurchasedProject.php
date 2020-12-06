@@ -35,6 +35,6 @@ class PurchasedProject extends Model
 
 
     public function values() {
-        return $this->hasMany(PurchaseValue::class, 'project_id', 'id');
+        return $this->hasMany(PurchaseValue::class, 'purchased_project_id', 'id');
     }
 }
