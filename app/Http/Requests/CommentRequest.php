@@ -9,13 +9,15 @@ class CommentRequest extends FormRequest
 
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     public function rules()
     {
         return [
-
+            'captcha' => ['required', 'captcha'],
+            'text' => ['required', 'string'],
+            'anonymous' => ['nullable', 'boolean']
         ];
     }
 }

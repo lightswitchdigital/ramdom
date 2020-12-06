@@ -2,6 +2,7 @@
 
 namespace App\Models\Projects;
 
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\User;
 use Auth;
@@ -136,6 +137,10 @@ class Project extends Model
 
     public function images() {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function favorites()

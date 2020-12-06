@@ -6,31 +6,33 @@ namespace App\Services;
 
 use App\Http\Requests\CommentRequest;
 use App\Models\Advice;
-use App\Models\User;
+use Auth;
 
 class AdviceService
 {
-    public function add($user_id, $advice_id, CommentRequest $request) {
-        $user = $this->getUser($user_id);
+
+    public function addComment($advice_id, CommentRequest $request) {
+
         $advice = $this->getAdvice($advice_id);
+        $authenticated = Auth::check();
 
+        $comment = $advice->comments()->make([
+            'text' => $request['text'],
+            'anonymous' => $authenticated? $request['anonymous'] : false
+        ]);
 
+        if ($authenticated) {
+            $user = Auth::user();
+            $comment->user()->associate($user);
+        }
+
+        $comment->save();
+
+        return $comment;
     }
 
-    public function delete($comment_id) {
-
-    }
-
-
-    private function getUser($user_id) {
-        return User::findOrFail($user_id);
-    }
 
     private function getAdvice($advice_id) {
         return Advice::findOrFail($advice_id);
-    }
-
-    public function getComment($comment_id) {
-
     }
 }

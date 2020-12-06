@@ -93,6 +93,15 @@ Route::group([
 
     });
 
+    Route::group([
+        'prefix' => 'settings',
+        'as' => 'settings.'
+    ], function() {
+
+        Route::get('/', 'SettingsController@index')->name('index');
+
+    });
+
     Route::get('/', 'HomeController@index')->name('index');
 
 });
@@ -205,4 +214,14 @@ Route::group([
 
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/faq', 'HomeController@faq')->name('faq');
-Route::get('/advice', 'HomeController@advice')->name('advice');
+
+Route::group([
+    'prefix' => 'advice',
+    'as' => 'advice.'
+], function() {
+
+    Route::get('/', 'AdviceController@index')->name('index');
+    Route::get('/{advice}', 'AdviceController@show')->name('show');
+    Route::post('/{advice}/comment', 'AdviceController@addComment')->name('comment');
+
+});

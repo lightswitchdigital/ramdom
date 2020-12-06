@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Advice;
 use App\Models\FAQ;
 
 class HomeController extends Controller
@@ -23,9 +22,5 @@ class HomeController extends Controller
         return view('faq', compact('faq'));
     }
 
-    public function advice() {
-        $advice = Advice::paginate(env('ADVICE_PAGINATION'));
 
-        return view('advice', compact('advice'));
-    }
 }
