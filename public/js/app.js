@@ -2582,7 +2582,7 @@ __webpack_require__.r(__webpack_exports__);
       btnDisabled: false
     };
   },
-  props: ['project', 'createdAt', 'createOrderLink', 'buyLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
+  props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     console.log(this.project.isInFavorites);

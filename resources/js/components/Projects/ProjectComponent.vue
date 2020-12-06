@@ -171,8 +171,8 @@ export default {
     props: [
         'project',
         'createdAt',
-        'createOrderLink',
         'buyLink',
+        'orderLink',
         'recommendations',
         'orderAttributes',
         'isAuthenticated'

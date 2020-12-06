@@ -78,7 +78,7 @@
                             <a class="nav-link" href="{{ route('faq') }}">Вопрос-Ответ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('advice') }}">Советы по строительству</a>
+                            <a class="nav-link" href="{{ route('advice.index') }}">Советы по строительству</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -87,19 +87,23 @@
                                 <a class="nav-link" href="{{ route('login') }}">Войти</a>
                             </li>
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.favorites.index') }}"><i class="fas fa-heart"></i></a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a href="{{ route('profile.projects.index') }}" class="dropdown-item">Мои проекты</a>
+                                    <a href="{{ route('profile.favorites.index') }}" class="dropdown-item">Избранное</a>
+                                    <a href="{{ route('profile.building.index') }}" class="dropdown-item">Строительство</a>
+                                    <a href="{{ route('profile.discounts.index') }}" class="dropdown-item">Акции и скидки</a>
+                                    <a href="{{ route('profile.settings.index') }}" class="dropdown-item">Настройки</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Выйти
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
