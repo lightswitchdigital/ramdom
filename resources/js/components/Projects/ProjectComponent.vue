@@ -210,9 +210,9 @@ export default {
             })
         },
         onSubmit() {
-            axios.post(this.orderLink , {'_token' : this.csrfToken}).then(response => {
+            axios.post(this.buyLink , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204 || response.status === 200){
-                    alert('вы успешно заказали стройку')
+                    alert('вы успешно купили проект')
                 }
             }).catch(error => {
                 console.log(error);

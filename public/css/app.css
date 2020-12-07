@@ -10913,6 +10913,50 @@ body {
   min-height: calc(100vh - 200px);
 }
 
+.alert {
+  position: relative;
+  padding-left: 25px !important;
+}
+
+.alert:before {
+  content: "";
+  position: absolute;
+  height: calc(100% - 10px);
+  width: 5px;
+  border-radius: 5px;
+  opacity: 0.7;
+  top: 5px;
+  left: 5px;
+}
+
+.alert.alert-primary:before {
+  background: #004085;
+}
+
+.alert.alert-secondary:before {
+  background: #383d41;
+}
+
+.alert.alert-success:before {
+  background: #155724;
+}
+
+.alert.alert-danger:before {
+  background: #721c24;
+}
+
+.alert.alert-warning:before {
+  background: #856404;
+}
+
+.alert.alert-info:before {
+  background: #0c5460;
+}
+
+.alert.alert-dark:before {
+  background: #333;
+}
+
 .region-modal .modal-content {
   border-radius: 16px;
   border: none;
@@ -10936,6 +10980,7 @@ body {
 
 .region-modal ul li {
   width: 200px;
+  border: none;
 }
 
 .region-modal ul li a {
@@ -11952,15 +11997,15 @@ a.project-card .card-img-top img {
   line-height: 100%;
 }
 
-.project-view .btn-block .yellow-outline-btn,
-.project-view .btn-block button.yellow-outline-btn {
+.project-view .btn-block .yellow-outline-btn {
   background: #fff;
   border: 2px solid #FFD977;
   border-radius: 100px;
   box-shadow: 0;
 }
 
-.project-view .btn-block a {
+.project-view .btn-block a,
+.project-view .btn-block button {
   display: block;
   position: relative;
   padding: 20px 40px;

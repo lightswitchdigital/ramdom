@@ -1,0 +1,113 @@
+.alert {
+  position: relative;
+  padding: 0 !important;
+  min-width: 250px;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+.alert button.close {
+  margin: 0.45rem 1rem;
+  opacity: 0.75;
+}
+.alert button.close:hover {
+  opacity: 1;
+}
+.alert-icon,
+.alert-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+.alert-icon {
+  min-width: 40px;
+  text-align: center;
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  padding: 1rem;
+}
+.alert-text {
+  color: #2d3a51 !important;
+  padding: 10px 2.4rem !important;
+  width: 100%;
+}
+.alert-text > h5 {
+  margin-top: 0;
+  font-weight: 600;
+}
+.alert .alert-link {
+  font-weight: normal;
+  color: #4790e6 !important;
+}
+.alert ul {
+  margin: 0;
+}
+.alert ul li {
+  margin-bottom: 0.2rem !important;
+}
+.alert ul li:last-child {
+  margin-bottom: 0;
+}
+.alert-warning {
+  background-color: #fff8f5 !important;
+  border-color: #ffccb3 !important;
+}
+.alert-warning .alert-text h5 {
+  color: #ff5400 !important;
+}
+.alert-warning button.close {
+  color: #ff5400 !important;
+}
+.alert-warning .alert-icon {
+  background-color: #ff5400 !important;
+}
+.alert-help {
+  background-color: #fffcf5;
+  border-color: #ffe4ad !important;
+}
+.alert-help .alert-text h5 {
+  color: #ffab00 !important;
+}
+.alert-help button.close {
+  color: #ffab00 !important;
+}
+.alert-help .alert-icon {
+  background-color: #ffab00 !important;
+}
+.alert-info {
+  background-color: #f7fbff !important;
+  border-color: #cee5ff !important;
+}
+.alert-info .alert-text h5 {
+  color: #3592ff !important;
+}
+.alert-info button.close {
+  color: #3592ff !important;
+}
+.alert-info .alert-icon {
+  background-color: #3592ff !important;
+}
+.alert-danger {
+  background-color: #fdf5f5 !important;
+  border-color: #f6d3d3 !important;
+}
+.alert-danger .alert-text h5 {
+  color: #d33534 !important;
+}
+.alert-danger button.close {
+  color: #d33534 !important;
+}
+.alert-danger .alert-icon {
+  background-color: #d33534 !important;
+}
+.alert-success {
+  background-color: #edf8ed !important;
+  border-color: #b9e4b9 !important;
+}
+.alert-success .alert-text h5 {
+  color: #42ae42 !important;
+}
+.alert-success button.close {
+  color: #42ae42 !important;
+}
+.alert-success .alert-icon {
+  background-color: #42ae42 !important;
+}

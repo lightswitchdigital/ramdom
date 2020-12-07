@@ -2625,11 +2625,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onSubmit: function onSubmit() {
-      axios.post(this.orderLink, {
+      axios.post(this.buyLink, {
         '_token': this.csrfToken
       }).then(function (response) {
         if (response.status === 204 || response.status === 200) {
-          alert('вы успешно заказали стройку');
+          alert('вы успешно купили проект');
         }
       })["catch"](function (error) {
         console.log(error);
