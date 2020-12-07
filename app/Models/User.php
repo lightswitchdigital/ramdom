@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Plans\PlanSubscription;
 use App\Models\Projects\Project;
+use App\Models\Projects\Purchase\PurchasedProject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -166,8 +167,16 @@ class User extends Authenticatable
         return $this->hasMany(BalanceOperation::class);
     }
 
+    public function purchasedProjects() {
+        return $this->hasMany(PurchasedProject::class);
+    }
+
     public function scopeActive($query) {
         return $query->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function scopeDevelopers($query) {
+        return $query->where('role', self::ROLE_DEVELOPER);
     }
 
     public function scopeHasFavorites($query) {

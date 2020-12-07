@@ -491,8 +491,11 @@ namespace App\Models{
  * @property-read int|null $favorites_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchasedProject[] $purchasedProjects
+ * @property-read int|null $purchased_projects_count
  * @property-read \App\Models\Plans\PlanSubscription|null $subscription
  * @method static \Illuminate\Database\Eloquent\Builder|User active()
+ * @method static \Illuminate\Database\Eloquent\Builder|User developers()
  * @method static \Illuminate\Database\Eloquent\Builder|User hasFavorites()
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Projects\Project;
+use App\Models\Projects\Purchase\PurchasedProject;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -14,7 +14,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id', 'project_id', 'developer_id',
+        'user_id', 'purchased_project_id', 'developer_id',
         'order_name', 'order_email', 'order_phone', 'order_city', 'order_address', 'order_postal_code',
         'order_passport_serial', 'order_passport_number', 'order_passport_issue', 'order_passport_issue_date',
         'order_company_name', 'order_company_address', 'order_company_inn', 'order_company_kpp', 'order_company_payment_account', 'order_company_correspondent_account',
@@ -39,7 +39,7 @@ class Order extends Model
     }
 
     public function project() {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(PurchasedProject::class);
     }
 
     public function developer() {

@@ -28,9 +28,18 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeders/PlansSeeder.php" afterDir="false" />
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="plans seeder">
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/common/partials.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/projects/order.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +284,7 @@
       <workItem from="1607237158662" duration="658000" />
       <workItem from="1607243302813" duration="1234000" />
       <workItem from="1607255584160" duration="6202000" />
-      <workItem from="1607336147830" duration="11123000" />
+      <workItem from="1607336147830" duration="14324000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -550,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607356744801</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="plans seeder">
+      <created>1607357427309</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1607357427309</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +620,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="project card component added" />
     <MESSAGE value="order attributes management" />
     <MESSAGE value="local changes" />
     <MESSAGE value="vue fixed" />
@@ -629,7 +644,8 @@
     <MESSAGE value="user's balance logic" />
     <MESSAGE value="user's plans logic" />
     <MESSAGE value="user's settings logic, plan subscription patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="user's settings logic, plan subscription patch" />
+    <MESSAGE value="plans seeder" />
+    <option name="LAST_COMMIT_MESSAGE" value="plans seeder" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -660,10 +676,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1607147220512" />
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607356744606">
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607367373337">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607356744606" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607367373337" />
     <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1607166215854" />
     <state x="394" y="29" key="Diagram.Print.Preview.Dialog" timestamp="1605384777804">
       <screen x="0" y="0" width="1440" height="900" />
@@ -718,10 +734,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="371" y="305" width="463" height="193" key="VCS.ChangelistChooser/0.0.1440.900@0.0.1440.900" timestamp="1606922666731" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607356750623">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607357429552">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607356750623" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607357429552" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607350732953">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
