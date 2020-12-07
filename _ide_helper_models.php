@@ -35,12 +35,40 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\BalanceOperation
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $type
+ * @property float $amount
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation typeAdd()
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereUserId($value)
+ */
+	class BalanceOperation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Comment
  *
  * @property int $id
  * @property int|null $user_id
  * @property string $text
  * @property int $anonymous
+ * @property int $active
  * @property int $commentable_id
  * @property string $commentable_type
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -49,6 +77,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereAnonymous($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableType($value)
@@ -162,36 +191,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
  */
 	class Order extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Payment
- *
- * @property int $id
- * @property int $user_id
- * @property float $amount
- * @property string $gateway
- * @property string $status
- * @property \Illuminate\Support\Carbon|null $expires_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|Payment created()
- * @method static \Illuminate\Database\Eloquent\Builder|Payment findExpired()
- * @method static \Illuminate\Database\Eloquent\Builder|Payment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Payment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Payment query()
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereExpiresAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereGateway($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUserId($value)
- */
-	class Payment extends \Eloquent {}
 }
 
 namespace App\Models\Plans{
@@ -485,6 +484,9 @@ namespace App\Models{
  * @property string|null $company_inn
  * @property string|null $company_account
  * @property string $status
+ * @property float $balance
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BalanceOperation[] $balanceOperations
+ * @property-read int|null $balance_operations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Project[] $favorites
  * @property-read int|null $favorites_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -496,6 +498,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBalance($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyAccount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyInn($value)

@@ -4,44 +4,52 @@
 namespace App\Services;
 
 
-use App\Models\Payment;
+use App\Models\BalanceOperation;
 use App\Models\User;
 
 class PaymentsService
 {
 
-    public function create($user_id, $gateway, $amount) {
+    public function create($user_id, $amount) {
 
         $user = $this->getUser($user_id);
 
-        $payment = Payment::make([
-            'gateway' => $gateway,
-            'amount' => $amount
+        $user->balanceOperations()->create([
+            'type' => BalanceOperation::TYPE_ADD,
+            'amount' => $amount,
+            'status' => BalanceOperation::STATUS_PENDING
         ]);
-        $payment->user()->associate($user);
 
-        $payment->save();
+        $user->update();
+    }
+
+    public function pay($user_id, $amount) {
+        $user = $this->getUser($user_id);
+
+        $user->balanceOperations()->create([
+            'type' => BalanceOperation::TYPE_PROJECT_BOUGHT,
+            'amount' => $amount,
+            'status' => BalanceOperation::STATUS_FINISHED
+        ]);
+
+        $user->update();
+    }
+
+    public function accept($payment_id) {
+        $payment = $this->getPayment($payment_id);
+
+        $payment->update([
+            'status' => BalanceOperation::STATUS_FINISHED,
+        ]);
 
         return $payment;
     }
 
-    public function finish($payment_id) {
+    public function reject($payment_id) {
         $payment = $this->getPayment($payment_id);
 
         $payment->update([
-            'status' => Payment::STATUS_FINISHED,
-            'expires_at' => null
-        ]);
-
-        return $payment;
-    }
-
-    public function expire($payment_id) {
-        $payment = $this->getPayment($payment_id);
-
-        $payment->update([
-            'status' => Payment::STATUS_EXPIRED,
-            'expires_at' => null
+            'status' => BalanceOperation::STATUS_REJECTED,
         ]);
 
         return $payment;
@@ -53,8 +61,9 @@ class PaymentsService
         return User::findOrFail($id);
     }
 
-    private function getPayment($id): Payment
+    public function getPayment($id): BalanceOperation
     {
-        return Payment::findOrFail($id);
+        return BalanceOperation::findOrFail($id);
     }
+
 }

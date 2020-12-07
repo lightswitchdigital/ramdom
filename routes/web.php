@@ -205,10 +205,11 @@ Route::group([
         'as' => 'payments.'
     ], function() {
 
-
+        Route::post('/{payment}/accept', 'PaymentsController@accept')->name('accept');
+        Route::post('/{payment}/reject', 'PaymentsController@reject')->name('reject');
 
     });
-    Route::resource('payments', 'PaymentsController')->only(['index', 'show']);
+    Route::resource('payments', 'PaymentsController')->only(['index']);
 
 });
 
