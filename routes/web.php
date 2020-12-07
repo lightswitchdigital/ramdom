@@ -58,6 +58,17 @@ Route::group([
     });
 
     Route::group([
+        'prefix' => 'balance',
+        'as' => 'balance.'
+    ], function() {
+
+        Route::get('/', 'BalanceController@index')->name('index');
+        Route::get('/add', 'BalanceController@add')->name('add');
+        Route::post('/add/check', 'BalanceController@check')->name('add.check');
+
+    });
+
+    Route::group([
         'prefix' => 'favorites',
         'as' => 'favorites.'
     ], function() {
