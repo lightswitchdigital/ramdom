@@ -13,6 +13,7 @@
                 <p class="card-text">
                     {{ advice.content }}
                 </p>
+                <a :href="advice.id" class="yellow-btn">Подробнее</a>
             </div>
             </div>
         </div>
@@ -23,6 +24,9 @@ export default {
     name: 'advice',
     props: [
         'advice'
-    ]
+    ],
+    mounted() {
+        console.log(this.advice)
+    }
 }
 </script>
