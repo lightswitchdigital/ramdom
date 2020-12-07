@@ -54,6 +54,8 @@ Route::group([
     ], function() {
 
         Route::get('/', 'ProjectsController@index')->name('index');
+        Route::get('/{project}/order', 'ProjectsController@order')->name('order');
+        Route::post('/{project}/order/{developer}/submit')->name('order.submit');
 
     });
 

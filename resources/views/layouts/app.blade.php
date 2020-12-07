@@ -122,6 +122,9 @@
         </nav>
 
         <main class="py-4 content">
+
+            @include('layouts.common.partials')
+
             @yield('content')
         </main>
 

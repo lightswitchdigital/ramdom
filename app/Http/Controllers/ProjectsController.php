@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Projects\BuyRequest;
+use App\Http\Requests\Projects\OrderRequest;
 use App\Http\Requests\Projects\SearchRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
