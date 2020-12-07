@@ -171,6 +171,10 @@ class User extends Authenticatable
         return $this->hasMany(PurchasedProject::class);
     }
 
+    public function savedProjects() {
+        return $this->hasMany(SavedProject::class);
+    }
+
     public function scopeActive($query) {
         return $query->where('status', self::STATUS_ACTIVE);
     }
