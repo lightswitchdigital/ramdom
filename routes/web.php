@@ -69,6 +69,15 @@ Route::group([
     });
 
     Route::group([
+        'prefix' => 'plans',
+        'as' => 'plans.'
+    ], function() {
+
+        Route::get('/', 'PlansController@index')->name('index');
+
+    });
+
+    Route::group([
         'prefix' => 'favorites',
         'as' => 'favorites.'
     ], function() {
