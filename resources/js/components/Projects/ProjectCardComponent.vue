@@ -1,6 +1,7 @@
 <template>
     <a class="card project-card" :href="this.project.route">
-        <div class="like-block" 
+        <div class="like-block"
+        v-if="isAuthenticated" 
         :disabled="btnDisabled"
         :class="[{active : project.isInFavorites} , favoritesClass]" 
         @click.prevent="toggleFavorites"
@@ -12,7 +13,7 @@
         <div class="card-price">от {{ this.project.price }} <span class="rub">₽</span></div>
         <h5 class="card-title">{{ this.project.title }}</h5>
         <ul class="card-text">
-            <li v-for="(value, label , index) in this.project.jsonValues" :v-if="index <= 4" :key="index">
+            <li v-for="(value, label , index) in this.project.jsonValues" :v-if="index < 4" :key="index">
                 <span>{{ label }}</span><span>{{ value }}</span>
             </li>
         </ul>
@@ -28,11 +29,11 @@ export default {
         btnDisabled: false
     }),
     props: [
-        'project'
+        'project',
+        'isAuthenticated'
     ],
     created() {
-        // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
-        console.log(this.project.jsonImages, this.project.jsonValues)
+        this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
     },
     methods: {
         toggleFavorites() {

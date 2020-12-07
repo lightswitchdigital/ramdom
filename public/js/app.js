@@ -2008,6 +2008,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'login',
@@ -2016,7 +2017,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       email: '',
       password: '',
       errors: '',
-      message: '' // Сообщение об ошибке
+      message: '',
+      isDisabled: false // Сообщение об ошибке
 
     };
   },
@@ -2054,7 +2056,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 axios.post('/login', formData).then(function (response) {
                   if (response.status === 204) {
-                    window.location.href = '/';
+                    _this.isDisabled = true;
+                    setTimeout(function () {
+                      window.location.href = '/';
+                    }, 2000);
                   }
                 })["catch"](function (error) {
                   _this.message = error.response.data.message;
@@ -2341,6 +2346,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2349,10 +2355,9 @@ __webpack_require__.r(__webpack_exports__);
       btnDisabled: false
     };
   },
-  props: ['project'],
+  props: ['project', 'isAuthenticated'],
   created: function created() {
-    // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
-    console.log(this.project.jsonImages, this.project.jsonValues);
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
   methods: {
     toggleFavorites: function toggleFavorites() {
@@ -39917,9 +39922,14 @@ var render = function() {
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn yellow-btn", attrs: { type: "submit" } },
+          {
+            staticClass: "btn yellow-btn",
+            attrs: { type: "submit", disabled: _vm.isDisabled }
+          },
           [_vm._v("Войти")]
         ),
+        _vm._v(" "),
+        _vm.isDisabled ? _c("p", [_vm._v("Вы успешно вошли")]) : _vm._e(),
         _vm._v(" "),
         _c("a", { staticClass: "register-link", attrs: { href: "#" } }, [
           _vm._v("Регистрация")
@@ -40495,21 +40505,26 @@ var render = function() {
     "a",
     { staticClass: "card project-card", attrs: { href: this.project.route } },
     [
-      _c(
-        "div",
-        {
-          staticClass: "like-block",
-          class: [{ active: _vm.project.isInFavorites }, _vm.favoritesClass],
-          attrs: { disabled: _vm.btnDisabled },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.toggleFavorites($event)
-            }
-          }
-        },
-        [_c("i", { staticClass: "fas fa-heart" })]
-      ),
+      _vm.isAuthenticated
+        ? _c(
+            "div",
+            {
+              staticClass: "like-block",
+              class: [
+                { active: _vm.project.isInFavorites },
+                _vm.favoritesClass
+              ],
+              attrs: { disabled: _vm.btnDisabled },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.toggleFavorites($event)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fas fa-heart" })]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "card-img-top" }, [
         _c("img", { attrs: { src: this.project.jsonImages[0] } })
@@ -40529,7 +40544,7 @@ var render = function() {
           "ul",
           { staticClass: "card-text" },
           _vm._l(this.project.jsonValues, function(value, label, index) {
-            return _c("li", { key: index, attrs: { "v-if": index <= 4 } }, [
+            return _c("li", { key: index, attrs: { "v-if": index < 4 } }, [
               _c("span", [_vm._v(_vm._s(label))]),
               _c("span", [_vm._v(_vm._s(value))])
             ])
@@ -69352,6 +69367,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Projects/ProjectCardComponent */ "./resources/js/components/Projects/ProjectCardComponent.vue");
 /* harmony import */ var _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Projects/ProjectComponent */ "./resources/js/components/Projects/ProjectComponent.vue");
 /* harmony import */ var _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/AdviceComponent */ "./resources/js/components/AdviceComponent.vue");
+/* harmony import */ var _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Projects/RecommendationsComponent */ "./resources/js/components/Projects/RecommendationsComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -69365,6 +69381,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -69387,6 +69404,7 @@ Vue.component('login', _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_
 Vue.component('register', _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('project-card', _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('reccomendation', _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
 Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
 var app = new Vue({
   el: '#app'
@@ -69882,9 +69900,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
