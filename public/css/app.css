@@ -11053,12 +11053,13 @@ footer .social ul li a {
 }
 
 .bg-section .yellow-btn {
+  padding: 20px 30px;
   margin-top: 50px;
 }
 
 .bg-section .bg-section__title {
   font-weight: bold;
-  font-size: 60px;
+  font-size: 48px;
   line-height: 110.69%;
   color: #000;
   margin-top: 70px;
@@ -11066,7 +11067,7 @@ footer .social ul li a {
 
 .bg-section .bg-section__subtitle {
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 110.69%;
   color: #000000;
 }
@@ -11275,7 +11276,7 @@ a.project-card .card-img-top img {
 
 .filter-block .price input {
   display: inline-block;
-  width: 230px;
+  max-width: 230px;
   border-radius: 30px;
   border: none;
   background: #f5f5f5;
