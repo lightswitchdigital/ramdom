@@ -21,8 +21,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="modal fade" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-scrollable">
+<div class="modal fade region-modal" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Выберите регион</h5>
@@ -33,22 +33,102 @@
       <div class="modal-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-                <a>Москва</a>
+                <a href="/moscow">Москва</a>
             </li>
             <li class="list-group-item">
-                <a>Сибирь</a>
+                <a href="/siberia">Сибирь</a>
             </li>
             <li class="list-group-item">
-                <a>Оренбург</a>
+                <a href="/orenburg">Оренбург</a>
             </li>
             <li class="list-group-item">
-                <a>Санкт-Петербург</a>
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+             <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/moscow">Москва</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/siberia">Сибирь</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/orenburg">Оренбург</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/saint-peterburg">Санкт-Петербург</a>
             </li>
         </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

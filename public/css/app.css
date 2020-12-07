@@ -10913,6 +10913,39 @@ body {
   min-height: calc(100vh - 200px);
 }
 
+.region-modal .modal-content {
+  border-radius: 16px;
+  border: none;
+}
+
+.region-modal .modal-content .modal-title {
+  padding-bottom: 2px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-bottom: 2px solid #FFD977;
+}
+
+.region-modal ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 400px;
+  align-content: baseline;
+}
+
+.region-modal ul li {
+  width: 200px;
+}
+
+.region-modal ul li a {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #000;
+}
+
 .navbar {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   height: 100px;
@@ -11053,12 +11086,13 @@ footer .social ul li a {
 }
 
 .bg-section .yellow-btn {
+  padding: 20px 30px;
   margin-top: 50px;
 }
 
 .bg-section .bg-section__title {
   font-weight: bold;
-  font-size: 60px;
+  font-size: 48px;
   line-height: 110.69%;
   color: #000;
   margin-top: 70px;
@@ -11066,7 +11100,7 @@ footer .social ul li a {
 
 .bg-section .bg-section__subtitle {
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 110.69%;
   color: #000000;
 }
@@ -11085,42 +11119,6 @@ footer .social ul li a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.filter-block {
-  width: calc(100% - 200px);
-  margin: 50px auto;
-  background: rgba(0, 0, 0, 0.65);
-  border-radius: 16px;
-  padding: 60px 115px;
-  position: relative;
-  display: none;
-}
-
-.filter-block ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-}
-
-.filter-block h5 {
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 110.69%;
-  color: #FFFFFF;
-  padding-bottom: 3px;
-  border-bottom: 2px solid #FFD977;
-}
-
-.filter-block .columns-flex {
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 110.69%;
-  color: #FFFFFF;
-}
-
-.filter-block .columns-flex input {
-  display: none;
 }
 
 a.project-card {
@@ -11240,29 +11238,95 @@ a.project-card .card-img-top img {
 }
 
 .filter-block {
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 110.69%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.65);
+  background: #fff;
   border-radius: 16px;
-  color: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px 50px;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
-.filter-block select {
+.filter-block input:focus,
+.filter-block input:active,
+.filter-block button:focus,
+.filter-block button:active,
+.filter-block select:focus,
+.filter-block select:active {
+  box-shadow: none;
+  outline: none;
+}
+
+.filter-block .search-input {
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  background: #f5f5f5;
+  padding: 18px 20px;
+  margin-right: 30px;
+}
+
+.filter-block .selectors-block {
+  margin-top: 30px;
+}
+
+.filter-block .selectors-block .form-control-custom {
+  min-width: calc(25% - 10px);
   display: inline-block;
+}
+
+.filter-block .selectors-block select {
+  height: auto;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border: 0;
+  border: none;
+  padding: 2px 0;
+  padding-right: 25px;
+  border-bottom: 2px solid #FFD977;
+  border-radius: 0;
+  background-image: url("https://image.flaticon.com/icons/png/512/25/25623.png");
+  background-size: 10px 10px;
+  margin-right: 30px;
+  color: #000;
+  font-size: 14px;
   font-weight: bold;
-  font-size: 20px;
-  margin-top: -4px;
+  background-position: right;
+  margin-bottom: 20px;
 }
 
-.filter-block select:focus {
-  outline: none;
+.filter-block .price .title {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 1px;
+  border-bottom: 2px solid #FFD977;
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 20px;
+}
+
+.filter-block .price input {
+  display: inline-block;
+  max-width: 230px;
+  border-radius: 30px;
+  border: none;
+  background: #f5f5f5;
+  padding: 15px 20px;
+  margin-right: 30px;
+  margin-top: 10px;
+}
+
+.filter-block .yellow-btn {
+  padding: 10px 40px;
   box-shadow: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+  margin: 10px auto;
+  font-size: 18px;
 }
 
 .projects-wrapper {
@@ -11888,7 +11952,8 @@ a.project-card .card-img-top img {
   line-height: 100%;
 }
 
-.project-view .btn-block .yellow-outline-btn {
+.project-view .btn-block .yellow-outline-btn,
+.project-view .btn-block button.yellow-outline-btn {
   background: #fff;
   border: 2px solid #FFD977;
   border-radius: 100px;

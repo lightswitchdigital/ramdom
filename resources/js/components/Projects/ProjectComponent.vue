@@ -56,8 +56,8 @@
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
 
-                    <form :action="this.buyLink" method="post">
-                        <input type="hidden" name="_token" :value="this.csrfToken">
+                    <form @submit.prevent='onSubmit'>
+                        <!-- <input type="hidden" name="_token" :value="this.csrfToken"> -->
                         <table class="table">
                             <tbody>
                                 <tr v-for="(value, label , index) in project.jsonValues" :key="index">
@@ -100,8 +100,7 @@
                         </div>
 
                         <div class="btn-block">
-                            <button class="yellow-outline-btn">Купить проект</button>
-                            <a href="#" class="yellow-btn">Купить строительство</a>
+                            <button type="submit" class="yellow-outline-btn">Купить проект</button>
                         </div>
                     </form>
                 </div>
@@ -166,7 +165,8 @@ export default {
     data:() => ({
         toggleFavoritesUrl: '',
         favoritesClass: '',
-        btnDisabled: false
+        btnDisabled: false,
+        linkForBuy: ''
     }),
     props: [
         'project',
@@ -199,13 +199,22 @@ export default {
             this.project.isInFavorites = !this.project.isInFavorites
             axios.post(this.toggleFavoritesUrl , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204){
-                    this.btnDisabled = false
                     this.$nextTick(this.$forceUpdate);
                     this.favoritesClass = 'animated'
                     setTimeout(() => {this.favoritesClass = ''}, 200)
+                    this.btnDisabled = false
                 }
             }).catch(error => {
                 this.btnDisabled = false
+                console.log(error);
+            })
+        },
+        onSubmit() {
+            axios.post(this.orderLink , {'_token' : this.csrfToken}).then(response => {
+                if(response.status === 204 || response.status === 200){
+                    alert('вы успешно заказали стройку')
+                }
+            }).catch(error => {
                 console.log(error);
             })
         }
