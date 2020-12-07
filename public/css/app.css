@@ -10913,6 +10913,39 @@ body {
   min-height: calc(100vh - 200px);
 }
 
+.region-modal .modal-content {
+  border-radius: 16px;
+  border: none;
+}
+
+.region-modal .modal-content .modal-title {
+  padding-bottom: 2px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-bottom: 2px solid #FFD977;
+}
+
+.region-modal ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 400px;
+  align-content: baseline;
+}
+
+.region-modal ul li {
+  width: 200px;
+}
+
+.region-modal ul li a {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #000;
+}
+
 .navbar {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   height: 100px;
@@ -11919,7 +11952,8 @@ a.project-card .card-img-top img {
   line-height: 100%;
 }
 
-.project-view .btn-block .yellow-outline-btn {
+.project-view .btn-block .yellow-outline-btn,
+.project-view .btn-block button.yellow-outline-btn {
   background: #fff;
   border: 2px solid #FFD977;
   border-radius: 100px;

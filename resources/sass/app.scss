@@ -16,6 +16,33 @@ body{
     min-height: calc(100vh - 200px);
 }
 
+.region-modal{
+    .modal-content{
+        border-radius: 16px;
+        border: none;
+        .modal-title{
+            padding-bottom: 2px;
+            width: fit-content;
+            border-bottom: 2px solid #FFD977;
+        }
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 400px;
+        align-content: baseline;
+        li{
+            width: 200px;
+            a{
+                display: block;
+                width: fit-content;
+                color: #000;
+            }
+        }
+    }
+}
+
 .navbar{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     height: 100px;
@@ -874,7 +901,7 @@ a.project-card{
             box-shadow: none;
             line-height: 100%;
         }
-        .yellow-outline-btn {
+        .yellow-outline-btn ,  button.yellow-outline-btn{
             background: #fff;
             border: 2px solid #FFD977;
             border-radius: 100px;

@@ -2568,7 +2568,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2631,17 +2630,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.status === 204 || response.status === 200) {
           alert('вы успешно заказали стройку');
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    buySubmit: function buySubmit() {
-      axios.post(this.buyLink, {
-        '_token': this.csrfToken
-      }).then(function (response) {
-        if (response.status === 204 || response.status === 200) {
-          alert('вы успешно преобрели проект');
         }
       })["catch"](function (error) {
         console.log(error);
@@ -40871,30 +40859,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "btn-block" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "yellow-outline-btn",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("Купить проект")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "yellow-btn",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.buySubmit($event)
-                        }
-                      }
-                    },
-                    [_vm._v("Купить строительство")]
-                  )
-                ])
+                _vm._m(3)
               ]
             )
           ])
@@ -40926,6 +40891,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [_c("strong", [_vm._v("Стоимость строительства")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "btn-block" }, [
+      _c(
+        "button",
+        { staticClass: "yellow-outline-btn", attrs: { type: "submit" } },
+        [_vm._v("Купить проект")]
+      )
+    ])
   }
 ]
 render._withStripped = true

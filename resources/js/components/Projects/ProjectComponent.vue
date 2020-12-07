@@ -101,7 +101,6 @@
 
                         <div class="btn-block">
                             <button type="submit" class="yellow-outline-btn">Купить проект</button>
-                            <button class="yellow-btn" @click.prevent="buySubmit">Купить строительство</button>
                         </div>
                     </form>
                 </div>
@@ -214,15 +213,6 @@ export default {
             axios.post(this.orderLink , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 204 || response.status === 200){
                     alert('вы успешно заказали стройку')
-                }
-            }).catch(error => {
-                console.log(error);
-            })
-        },
-        buySubmit() {
-            axios.post(this.buyLink , {'_token' : this.csrfToken}).then(response => {
-                if(response.status === 204 || response.status === 200){
-                    alert('вы успешно преобрели проект')
                 }
             }).catch(error => {
                 console.log(error);
