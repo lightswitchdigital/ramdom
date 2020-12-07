@@ -845,6 +845,9 @@ a.project-card{
         margin: 25px 0;
         height: 475px;
         overflow-y: hidden;
+        @media screen and (max-width: 768px){
+            height: fit-content;
+        }
     }
     .info-card{
         position: relative;
