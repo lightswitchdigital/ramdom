@@ -29,29 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AdviceController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/SettingsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Comment.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_06_144959_create_comments_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/profile/settings/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeders/PlansSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CommentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CommentRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/AdviceService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AdviceService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/advice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/advice/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +274,8 @@
       <workItem from="1607142339153" duration="16842000" />
       <workItem from="1607237158662" duration="658000" />
       <workItem from="1607243302813" duration="1234000" />
-      <workItem from="1607255584160" duration="6063000" />
+      <workItem from="1607255584160" duration="6202000" />
+      <workItem from="1607336147830" duration="11123000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -535,7 +515,42 @@
       <option name="project" value="LOCAL" />
       <updated>1607245080967</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="comments backend">
+      <created>1607270351372</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1607270351372</updated>
+    </task>
+    <task id="LOCAL-00036" summary="payments refactored, added user balance">
+      <created>1607351811178</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1607351811178</updated>
+    </task>
+    <task id="LOCAL-00037" summary="user's balance logic">
+      <created>1607353859573</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1607353859573</updated>
+    </task>
+    <task id="LOCAL-00038" summary="user's plans logic">
+      <created>1607355344135</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1607355344135</updated>
+    </task>
+    <task id="LOCAL-00039" summary="user's settings logic, plan subscription patch">
+      <created>1607356744801</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1607356744801</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,16 +584,26 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="Matveyx25" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="gitignore public folder added added" />
-    <MESSAGE value="project component added" />
-    <MESSAGE value="auth return codes modified" />
-    <MESSAGE value="phone is now unique, added some fields to registration" />
-    <MESSAGE value="Attribute management done, search fixed" />
     <MESSAGE value="project card component added" />
     <MESSAGE value="order attributes management" />
     <MESSAGE value="local changes" />
@@ -599,7 +624,12 @@
     <MESSAGE value="advice management added" />
     <MESSAGE value="faq added" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="comments backend" />
+    <MESSAGE value="payments refactored, added user balance" />
+    <MESSAGE value="user's balance logic" />
+    <MESSAGE value="user's plans logic" />
+    <MESSAGE value="user's settings logic, plan subscription patch" />
+    <option name="LAST_COMMIT_MESSAGE" value="user's settings logic, plan subscription patch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -618,10 +648,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="391" y="242" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1607014033558" />
-    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607101767136">
+    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607352369265">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1607101767136" />
+    <state x="356" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1607352369265" />
     <state x="392" y="145" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605354090735">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -630,10 +660,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1607147220512" />
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607245080492">
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607356744606">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607245080492" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607356744606" />
     <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1607166215854" />
     <state x="394" y="29" key="Diagram.Print.Preview.Dialog" timestamp="1605384777804">
       <screen x="0" y="0" width="1440" height="900" />
@@ -688,25 +718,25 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="371" y="305" width="463" height="193" key="VCS.ChangelistChooser/0.0.1440.900@0.0.1440.900" timestamp="1606922666731" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607245088932">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607356750623">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607245088932" />
-    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607106216843">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607356750623" />
+    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607350732953">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1607106216843" />
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607166487464">
+    <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1607350732953" />
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607351825601">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607166487464" />
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607351825601" />
     <state x="301" y="207" key="run.anything.popup" timestamp="1607151428846">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="301" y="207" key="run.anything.popup/0.0.1440.900@0.0.1440.900" timestamp="1607151428846" />
-    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1604337648019">
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1607352390848">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1604337648019" />
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1607352390848" />
   </component>
 </project>

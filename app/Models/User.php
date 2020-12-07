@@ -24,7 +24,7 @@ class User extends Authenticatable
     public const STATUS_ACTIVE = 'active';
 
     protected $fillable = [
-        'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status'
+        'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status', 'balance'
     ];
 
     protected $hidden = [
@@ -160,6 +160,10 @@ class User extends Authenticatable
 
     public function favorites() {
         return $this->belongsToMany(Project::class, 'project_favorites', 'user_id', 'project_id');
+    }
+
+    public function balanceOperations() {
+        return $this->hasMany(BalanceOperation::class);
     }
 
     public function scopeActive($query) {

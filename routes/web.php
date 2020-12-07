@@ -58,6 +58,26 @@ Route::group([
     });
 
     Route::group([
+        'prefix' => 'balance',
+        'as' => 'balance.'
+    ], function() {
+
+        Route::get('/', 'BalanceController@index')->name('index');
+        Route::get('/add', 'BalanceController@add')->name('add');
+        Route::post('/add/check', 'BalanceController@check')->name('add.check');
+
+    });
+
+    Route::group([
+        'prefix' => 'plans',
+        'as' => 'plans.'
+    ], function() {
+
+        Route::get('/', 'PlansController@index')->name('index');
+
+    });
+
+    Route::group([
         'prefix' => 'favorites',
         'as' => 'favorites.'
     ], function() {
@@ -205,10 +225,11 @@ Route::group([
         'as' => 'payments.'
     ], function() {
 
-
+        Route::post('/{payment}/accept', 'PaymentsController@accept')->name('accept');
+        Route::post('/{payment}/reject', 'PaymentsController@reject')->name('reject');
 
     });
-    Route::resource('payments', 'PaymentsController')->only(['index', 'show']);
+    Route::resource('payments', 'PaymentsController')->only(['index']);
 
 });
 

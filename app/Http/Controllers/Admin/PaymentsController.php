@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Payment;
+use App\Models\BalanceOperation;
 use App\Services\PaymentsService;
 use Illuminate\Http\Request;
 
@@ -16,10 +16,14 @@ class PaymentsController extends Controller
     }
 
     public function index(Request $request) {
-        $query = Payment::orderByDesc('id');
+        $query = BalanceOperation::typeAdd()->orderByDesc('id');
 
         if (!empty($value = $request->get('id'))) {
             $query->where('id', $value);
+        }
+
+        if (!empty($value = $request->get('user_id'))) {
+            $query->where('user_id', $value);
         }
 
         if (!empty($value = $request->get('status'))) {
@@ -30,18 +34,23 @@ class PaymentsController extends Controller
             $query->where('amount', $value);
         }
 
-        if (!empty($value = $request->get('gateway'))) {
-            $query->where('gateway', $value);
-        }
-
         $payments = $query->paginate(config('ADMIN_PAGINATION'));
-        $statuses = Payment::statusesList();
-        $gateways = Payment::gatewaysList();
+        $statuses = BalanceOperation::statusesList();
 
-        return view('admin.payments.index', compact('payments', 'statuses', 'gateways'));
+        return view('admin.payments.index', compact('payments', 'statuses'));
     }
 
-    public function show(Payment $payment) {
-        return view('admin.payments.show', compact('payment'));
+    public function accept(BalanceOperation $payment) {
+        $this->service->accept($payment->id);
+
+        return redirect()->route('admin.payments.index')
+            ->with('success', 'Оплата успешно подтверждена');
+    }
+
+    public function reject(BalanceOperation $payment) {
+        $this->service->reject($payment->id);
+
+        return redirect()->route('admin.payments.index')
+            ->with('success', 'Оплата успешно отклонена');
     }
 }

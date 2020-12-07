@@ -95,8 +95,12 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a href="{{ route('profile.projects.index') }}" class="dropdown-item">Мои проекты</a>
+                                    @if(Auth::user()->isDeveloper())
+                                        <a href="{{ route('profile.building.index') }}" class="dropdown-item">Строительство</a>
+                                    @endif
+                                    <a href="{{ route('profile.balance.index') }}" class="dropdown-item">Баланс</a>
+                                    <a href="{{ route('profile.plans.index') }}" class="dropdown-item">Планы</a>
                                     <a href="{{ route('profile.favorites.index') }}" class="dropdown-item">Избранное</a>
-                                    <a href="{{ route('profile.building.index') }}" class="dropdown-item">Строительство</a>
                                     <a href="{{ route('profile.discounts.index') }}" class="dropdown-item">Акции и скидки</a>
                                     <a href="{{ route('profile.settings.index') }}" class="dropdown-item">Настройки</a>
 
