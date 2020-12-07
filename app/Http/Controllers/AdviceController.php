@@ -20,6 +20,10 @@ class AdviceController extends Controller
         return view('advice.index', compact('advice'));
     }
 
+    public function show(Advice $advice) {
+        return view('advice.show', compact('advice'));
+    }
+
     public function addComment(Advice $advice, CommentRequest $request) {
         $this->service->addComment($advice->id, $request);
 

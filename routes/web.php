@@ -9,7 +9,8 @@ Auth::routes();
 
 Route::group([
     'prefix' => 'projects',
-    'as' => 'projects.'
+    'as' => 'projects.',
+    'namespace' => 'Projects'
 ], function() {
 
     Route::get('/', 'ProjectsController@index')->name('index');
@@ -24,6 +25,15 @@ Route::group([
         Route::post('/order', 'OrderController@order')->name('order');
         Route::post('/favorites/add', 'ProjectsController@addToFavorites')->name('favorites.add');
         Route::post('/favorites/remove', 'ProjectsController@removeFromFavorites')->name('favorites.remove');
+
+        Route::group([
+            'prefix' => 'modify',
+            'as' => 'modify.'
+        ], function() {
+
+            Route::post('/save', 'ModifyController@save')->name('save');
+
+        });
 
     });
 

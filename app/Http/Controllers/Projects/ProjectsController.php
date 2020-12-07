@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Projects;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\BuyRequest;
-use App\Http\Requests\Projects\OrderRequest;
 use App\Http\Requests\Projects\SearchRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
@@ -47,9 +47,22 @@ class ProjectsController extends Controller
         $purchase_attributes = PurchaseAttribute::all()->toJson();
         $isAuthenticated = Auth::check();
 
+        $canEdit = true;
+        if ($user = Auth::user()) {
+            switch (true) {
+                case $user->isCustomer():
+                    if ($user->savedProjects()->exists())
+                        $canEdit = false;
+                    break;
+                case $user->isPro():
+                case $user->isDeveloper():
+                    break;
+            }
+        }
+
         $recommendations = $this->recommendations->getRecommendations($project->id)->toJson();
 
-        return view('projects.show', compact('project', 'created_at', 'purchase_attributes', 'isAuthenticated', 'recommendations'));
+        return view('projects.show', compact('project', 'created_at', 'purchase_attributes', 'isAuthenticated', 'recommendations', 'canEdit'));
     }
 
     public function addToFavorites(Project $project) {
