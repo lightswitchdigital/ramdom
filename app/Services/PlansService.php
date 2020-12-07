@@ -10,6 +10,7 @@ use App\Models\Plans\Plan;
 use App\Models\Plans\PlanSubscription;
 use App\Models\User;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class PlansService
@@ -20,25 +21,33 @@ class PlansService
         $user = $this->getUser($user_id);
         $plan = $this->getPlan($plan_id);
 
-        if ($user->subscription) {
-            $user->subscription->changePlan($plan);
+        DB::transaction(function () use ($user, $plan) {
 
-            return;
-        }
+            if ($user->subscription) {
+                $user->subscription->changePlan($plan);
 
-        $starts_at = Carbon::now();
-        $ends_at = $starts_at->addDays($plan->getIntervalInDays());
+                return;
+            }
 
-        $subscription = PlanSubscription::make([
-            'starts_at' => $starts_at,
-            'ends_at' => $ends_at,
-            'status' => PlanSubscription::STATUS_ACTIVE
-        ]);
+            $starts_at = Carbon::now();
+            $ends_at = $starts_at->addDays($plan->getIntervalInDays());
 
-        $subscription->plan()->associate($plan);
-        $subscription->user()->associate($user);
+            $subscription = PlanSubscription::make([
+                'starts_at' => $starts_at,
+                'ends_at' => $ends_at,
+                'status' => PlanSubscription::STATUS_ACTIVE
+            ]);
 
-        $subscription->save();
+            $subscription->plan()->associate($plan);
+            $subscription->user()->associate($user);
+
+            $user->update([
+                'role' => $subscription->plan->slug
+            ]);
+
+            $subscription->save();
+
+        });
     }
 
     public function cancel($user_id) {
