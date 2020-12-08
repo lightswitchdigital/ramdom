@@ -12300,6 +12300,8 @@ a.project-card .card-img-top img {
   margin: 30px auto;
   border: none;
   margin-bottom: 100px;
+  text-decoration: none;
+  color: #000;
   cursor: pointer;
 }
 
