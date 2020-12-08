@@ -7,6 +7,9 @@
         :order-link="'{{ route('projects.order', $project) }}'"
         :buy-link="'{{ route('projects.buy', $project) }}'"
         :save-link="'{{ route('projects.modify.save', $project) }}'"
+        @if($saveFile)
+        :save-file="{{ $saveFile }}"
+        @endif
         :can-edit="{{ json_encode($canEdit) }}"
         :order-attributes="{{ $purchase_attributes }}"
         :is-authenticated="{{ json_encode($isAuthenticated) }}"

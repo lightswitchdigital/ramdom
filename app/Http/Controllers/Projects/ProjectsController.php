@@ -60,9 +60,14 @@ class ProjectsController extends Controller
             }
         }
 
+        $saveFile = null;
+        if (Auth::check()) {
+            $saveFile = $user->savedProjects()->where('project_id', $project->id)->first();
+        }
+
         $recommendations = $this->recommendations->getRecommendations($project->id)->toJson();
 
-        return view('projects.show', compact('project', 'created_at', 'purchase_attributes', 'isAuthenticated', 'recommendations', 'canEdit'));
+        return view('projects.show', compact('project', 'created_at', 'purchase_attributes', 'isAuthenticated', 'recommendations', 'canEdit', 'saveFile'));
     }
 
     public function addToFavorites(Project $project) {
