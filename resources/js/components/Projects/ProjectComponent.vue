@@ -175,7 +175,9 @@ export default {
         'orderLink',
         'recommendations',
         'orderAttributes',
-        'isAuthenticated'
+        'isAuthenticated',
+        'canEdit',
+        'saveLink'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -210,13 +212,17 @@ export default {
             })
         },
         onSubmit() {
-            axios.post(this.buyLink , {'_token' : this.csrfToken}).then(response => {
-                if(response.status === 204 || response.status === 200){
-                    alert('вы успешно купили проект')
-                }
-            }).catch(error => {
-                console.log(error);
-            })
+            if(this.canEdit){
+                axios.post(this.buyLink , {'_token' : this.csrfToken}).then(response => {
+                    if(response.status === 204 || response.status === 200){
+                        alert('вы успешно купили проект')
+                    }
+                }).catch(error => {
+                    console.log(error);
+                })
+            }else{
+                window.location.href = '/register'
+            }
         }
     }
 }

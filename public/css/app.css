@@ -12263,3 +12263,52 @@ a.project-card .card-img-top img {
   bottom: 20px;
 }
 
+.plans-block .input-block {
+  display: none;
+}
+
+.plans-block .input-block input[type=radio]:checked + label.card {
+  border: 2px solid #FFD977;
+}
+
+.plans-block input[type=radio] {
+  display: none;
+}
+
+.plans-block input[type=radio]:checked + label.card {
+  border: 2px solid #FFD977;
+  width: 306px;
+  padding: 38px 60px;
+}
+
+.plans-block .title {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-bottom: 2px solid #FFD977;
+  padding-bottom: 2px;
+  margin-bottom: 50px;
+}
+
+.plans-block .card {
+  display: block;
+  max-width: 310px;
+  border-radius: 16px;
+  padding: 40px 60px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  border: none;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+.plans-block .card .price {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #FFD977;
+  margin-top: 150px;
+  margin-bottom: 60px;
+}
+

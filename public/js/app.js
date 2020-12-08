@@ -2586,7 +2586,7 @@ __webpack_require__.r(__webpack_exports__);
       linkForBuy: ''
     };
   },
-  props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated'],
+  props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     console.log(this.project.isInFavorites);
@@ -2629,15 +2629,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onSubmit: function onSubmit() {
-      axios.post(this.buyLink, {
-        '_token': this.csrfToken
-      }).then(function (response) {
-        if (response.status === 204 || response.status === 200) {
-          alert('вы успешно купили проект');
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      if (this.canEdit) {
+        axios.post(this.buyLink, {
+          '_token': this.csrfToken
+        }).then(function (response) {
+          if (response.status === 204 || response.status === 200) {
+            alert('вы успешно купили проект');
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        window.location.href = '/register';
+      }
     }
   }
 });
@@ -39755,10 +39759,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            {
-              staticClass: "yellow-btn",
-              attrs: { href: _vm.window.location.href + _vm.advice.id }
-            },
+            { staticClass: "yellow-btn", attrs: { href: _vm.advice.id } },
             [_vm._v("Подробнее")]
           )
         ])
