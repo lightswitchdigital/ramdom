@@ -86,6 +86,7 @@ Route::group([
     ], function() {
 
         Route::get('/', 'PlansController@index')->name('index');
+        Route::post('/{plan}/subscribe', 'PlansController@subscribe')->name('subscribe');
 
     });
 

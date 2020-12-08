@@ -39755,10 +39755,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            {
-              staticClass: "yellow-btn",
-              attrs: { href: _vm.window.location.href + _vm.advice.id }
-            },
+            { staticClass: "yellow-btn", attrs: { href: _vm.advice.id } },
             [_vm._v("Подробнее")]
           )
         ])
@@ -69931,9 +69928,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
