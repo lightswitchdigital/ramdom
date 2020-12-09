@@ -476,6 +476,31 @@ a.project-card{
         box-sizing: border-box;
         padding: 50px 70px;
         max-width: none !important;
+        overflow: hidden;
+        position: relative;
+        &:after {
+            content: "Вы зарегистрировались";
+            width: calc(100%);
+            height: 100%;
+            position: absolute;
+            transform: translateY(-100%);
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FFD977;
+            color: #000;
+            font-weight: bold;
+            font-size: 30px;
+            border-radius: 16px;
+            transition: 1s;
+        }
+        &.animated{
+            &:after {
+                transform: translateY(0);
+            }
+        }
     }
     .invalid{
         border-color: red;
@@ -627,6 +652,7 @@ a.project-card{
     border-radius: 16px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     margin: 40px auto;
+    overflow: hidden;
     .error-text{
         color: red;
         margin-top: -18px;
@@ -690,6 +716,29 @@ a.project-card{
         display: block;
         color: #000;
         text-decoration: none;
+    }
+    &:after {
+        content: "Вы успешно вошли";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform: translateY(-100%);
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #FFD977;
+        color: #000;
+        font-weight: bold;
+        font-size: 30px;
+        border-radius: 16px;
+        transition: 1s;
+    }
+    &.animated{
+        &:after {
+            transform: translateY(0);
+        }
     }
 }
 

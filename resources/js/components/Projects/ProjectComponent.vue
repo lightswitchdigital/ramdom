@@ -98,7 +98,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <div class="btn-block">
                             <button type="submit" class="yellow-outline-btn">Купить проект</button>
                         </div>
@@ -212,7 +211,7 @@ export default {
             })
         },
         onSubmit() {
-            if(this.canEdit){
+            if(this.isAuthenticated){
                 axios.post(this.buyLink , {'_token' : this.csrfToken}).then(response => {
                     if(response.status === 204 || response.status === 200){
                         alert('вы успешно купили проект')

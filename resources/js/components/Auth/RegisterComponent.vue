@@ -6,7 +6,7 @@
         <div class="card form-card">
             <div class="row">
                 <div class="col-md">
-                    <form @submit.prevent='onSubmit'>
+                    <form @submit.prevent='onSubmit' :class="{animated : animated}">
                         <div class="form-title">
                             Заполните анкету, чтобы <br> <span class="with-border">зарегистритроваться</span> 
                         </div>
@@ -98,7 +98,6 @@
                         </div>
 
                         <button class="btn btn-submit yellow-btn" v-bind:disabled='this.isDisabled' type="submit">Зарегистрироваться</button>
-                        <p v-if="this.isDisabled">Вы успешно зарегистрировались</p>
                     </form>
                 </div>
                 <div class="col-md form-img-col">
@@ -126,7 +125,8 @@ export default {
         password_confirmation: '',
         message: '',  // Сообщение об ошибке
         errors: '',
-        isDisabled: false
+        isDisabled: false,
+        animated: false
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -161,10 +161,10 @@ export default {
 
             axios.post('/register' , formData).then(response => {
                 if(response.status === 204){
-                    this.isDisabled = true 
+                    this.animated = true 
                     setTimeout(() => {
                         window.location.href = '/'
-                    } , 2000)
+                    } , 1000)
                     
                 }
             }).catch(error => {
