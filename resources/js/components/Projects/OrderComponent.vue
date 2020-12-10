@@ -56,7 +56,7 @@
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
 
-                    <form @submit.prevent='onSubmit' @change.prevent="saveProject">
+                    <form @change.prevent="saveProject">
                         <!-- <input type="hidden" name="_token" :value="this.csrfToken"> -->
                         <table class="table">
                             <tbody>
@@ -111,17 +111,54 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="alert alert-info" :v-if="!this.canEdit">
-                            Этот проект не сохранится так как превышен лимит одновременных проектов
-                        </div>
-                        <div class="btn-block">
-                            <button type="submit" class="btn yellow-btn" :disabled="buyDisabled">Купить проект</button>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <Recommend :recommendations='recommendations'/>
+        <form class="row agree-form mt-4" v-if="editMode">
+            <div class="col-md">
+                <div class="switch-block">
+                    <input type="checkbox" name="entity" id="entity">
+                    <label for="entity" class="switch"></label>
+                    <label for="entity"><h5>Оформить как юр.лицо</h5></label>
+                </div>
+
+                <input type="text" name="fullName" placeholder="ФИО">
+                <div>
+                    <div class="passport-block">
+                        <h4>Паспортные данные</h4>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" name="passportSireas" placeholder="Серия">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="passportNumber" placeholder="Номер">
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="text" name="" placeholder="Кем выдан">
+                    <input type="text" name="" placeholder="Когда выдан">
+                </div>
+            </div>
+            <div class="col-md">
+                <h4>Контактная информация</h4>
+                <input type="text" name="phone" v-model.trim="phone" placeholder="Телефон">
+                <input type="text" name="email" v-model.trim="eamil" placeholder="E-mail">
+                <input type="text" name="place" placeholder="Населённый пункт">
+                <input type="text" name="street" placeholder="Улица">
+                <div class="row">
+                        <div class="col">
+                            <input type="text" placeholder="Дом">
+                        </div>
+                        <div class="col">
+                            <input type="text" placeholder="Квартира">
+                        </div>
+                </div>
+                <input type="text" name="street" placeholder="Почтовый индекс">
+                <button type="submit" class="btn yellow-btn">Оплатить проект</button>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -132,7 +169,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
-    name: "ProjectComponent",
+    name: "OrderComponent",
     data:() => ({
         toggleFavoritesUrl: '',
         favoritesClass: '',

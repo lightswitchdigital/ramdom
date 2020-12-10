@@ -8,12 +8,11 @@
                 <div class="projects-wrapper d-flex">
                     @foreach($projects as $project)
                         <project-card
-                            :project="{{ $project }}"
+                            :project="{{ $project->project }}"
                         ></project-card>
                     @endforeach
                 </div>
             </section>
-
             {{ $projects->links() }}
         </div>
     </div>
