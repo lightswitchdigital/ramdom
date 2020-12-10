@@ -73,12 +73,7 @@
                                                 :id="'purchase_attribute_'+attribute.id"
                                                 class="custom-select"
                                                 :name="'purchase_attributes['+attribute.id+']'"
-<<<<<<< HEAD
                                                 v-model="attributesForSave[attribute.id]">
-=======
-                                                v-model="purchase_attributes[attribute.id]">
-                                            <option>Выбрать</option>
->>>>>>> e55586ec00efccd06087dd1187b4229134f3c848
                                             <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
                                                 {{ variant }}
                                             </option>
@@ -143,11 +138,7 @@ export default {
         favoritesClass: '',
         btnDisabled: false,
         linkForBuy: '',
-<<<<<<< HEAD
         attributesForSave: {},
-=======
-        purchase_attributes: [],
->>>>>>> e55586ec00efccd06087dd1187b4229134f3c848
         buyDisabled: false
     }),
     props: [
@@ -199,13 +190,8 @@ export default {
         onSubmit() {
             this.buyDisabled = true
             if(this.isAuthenticated){
-<<<<<<< HEAD
                 axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
                     if(response.status === 200){
-=======
-                axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.purchase_attributes} ).then(response => {
-                    if(response.status === 204){
->>>>>>> e55586ec00efccd06087dd1187b4229134f3c848
                         this.buyDisabled = false;
                         alert('Вы успешно купили проект')
                     }
