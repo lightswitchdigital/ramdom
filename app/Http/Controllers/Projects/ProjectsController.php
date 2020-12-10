@@ -92,11 +92,11 @@ class ProjectsController extends Controller
         try {
             $this->service->buy($user->id, $project->id, $request);
         }catch (DomainException $e) {
-            return redirect()->back()
-                ->with('error', $e->getMessage());
+            return response([
+                'error' => $e->getMessage()
+            ], 401);
         }
 
-        return redirect()->back()
-            ->with('success', 'Проект успешно куплен. Вы можете найти его в личном кабинете');
+        return response('', 204);
     }
 }

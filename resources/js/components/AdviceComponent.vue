@@ -13,7 +13,11 @@
                 <p class="card-text">
                     {{ advice.content }}
                 </p>
+<<<<<<< HEAD
                 <a :href="'advice/'+advice.id" class="yellow-btn">Подробнее</a>
+=======
+                <a :href="adviceLink" class="yellow-btn">Подробнее</a>
+>>>>>>> e55586ec00efccd06087dd1187b4229134f3c848
             </div>
             </div>
         </div>
@@ -23,7 +27,8 @@
 export default {
     name: 'advice',
     props: [
-        'advice'
+        'advice',
+        'adviceLink'
     ],
     mounted() {
         console.log(this.advice)

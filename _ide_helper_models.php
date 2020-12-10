@@ -19,6 +19,8 @@ namespace App\Models{
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
  * @property-read mixed $image_url
  * @property-read \App\Models\Image|null $image
  * @method static \Illuminate\Database\Eloquent\Builder|Advice newModelQuery()
@@ -395,6 +397,32 @@ namespace App\Models\Projects\Purchase{
 
 namespace App\Models\Projects{
 /**
+ * App\Models\Projects\SavedProject
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $project_id
+ * @property string $data
+ * @property array $values_data
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Projects\Project $project
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereValuesData($value)
+ */
+	class SavedProject extends \Eloquent {}
+}
+
+namespace App\Models\Projects{
+/**
  * App\Models\Projects\Value
  *
  * @property int $id
@@ -428,33 +456,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereSlug($value)
  */
 	class Region extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\SavedProject
- *
- * @property int $id
- * @property int $user_id
- * @property int $project_id
- * @property string $data
- * @property array $values_data
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Projects\Project $project
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject query()
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereProjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereValuesData($value)
- */
-	class SavedProject extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -493,7 +494,7 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchasedProject[] $purchasedProjects
  * @property-read int|null $purchased_projects_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SavedProject[] $savedProjects
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\SavedProject[] $savedProjects
  * @property-read int|null $saved_projects_count
  * @property-read \App\Models\Plans\PlanSubscription|null $subscription
  * @method static \Illuminate\Database\Eloquent\Builder|User active()

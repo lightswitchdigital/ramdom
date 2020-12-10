@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Projects;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Projects\BuyRequest;
 use App\Models\Projects\Project;
-use App\Models\SavedProject;
 use Auth;
 use Illuminate\Http\Request;
 
 class ModifyController extends Controller
 {
-    public function save(Project $project, Request $request) {
+    public function save(Project $project, BuyRequest $request) {
         $this->validate($request, [
 
         ]);

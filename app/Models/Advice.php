@@ -27,4 +27,8 @@ class Advice extends Model
     public function getImageUrlAttribute() {
         return Storage::disk('public')->url($this->image->file);
     }
+
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

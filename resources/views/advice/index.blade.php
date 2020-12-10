@@ -7,6 +7,7 @@
             @foreach($advice as $item)
                 <advice
                     :advice="{{ $item }}"
+                    :advice-link="'{{ route('advice.show', $item) }}'"
                 >
                 </advice>
             @endforeach
