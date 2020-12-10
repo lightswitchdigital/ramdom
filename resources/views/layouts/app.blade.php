@@ -32,102 +32,11 @@
       </div>
       <div class="modal-body">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-             <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/moscow">Москва</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/siberia">Сибирь</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/orenburg">Оренбург</a>
-            </li>
-            <li class="list-group-item">
-                <a href="/saint-peterburg">Санкт-Петербург</a>
-            </li>
+            @foreach(\App\Models\Region::all() as $region)
+                <li class="list-group-item">
+                    <a href="?region={{ $region->slug }}">{{ $region->name }}</a>
+                </li>
+            @endforeach
         </ul>
       </div>
     </div>

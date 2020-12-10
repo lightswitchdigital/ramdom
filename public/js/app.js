@@ -1943,7 +1943,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'advice',
-  props: ['advice'],
+  props: ['advice', 'adviceLink'],
   mounted: function mounted() {
     console.log(this.advice);
   }
@@ -2597,7 +2597,7 @@ __webpack_require__.r(__webpack_exports__);
       favoritesClass: '',
       btnDisabled: false,
       linkForBuy: '',
-      attributesForSave: [],
+      purchase_attributes: [],
       buyDisabled: false
     };
   },
@@ -2651,7 +2651,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.isAuthenticated) {
         axios.post(this.buyLink, {
           '_token': this.csrfToken,
-          'attributes': this.attributesForSave
+          'purchase_attributes': this.purchase_attributes
         }).then(function (response) {
           if (response.status === 204) {
             _this2.buyDisabled = false;
@@ -39801,7 +39801,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { staticClass: "yellow-btn", attrs: { href: _vm.advice.id } },
+            { staticClass: "yellow-btn", attrs: { href: _vm.adviceLink } },
             [_vm._v("Подробнее")]
           )
         ])
@@ -40837,8 +40837,10 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.attributesForSave[index],
-                                        expression: "attributesForSave[index]"
+                                        value:
+                                          _vm.purchase_attributes[attribute.id],
+                                        expression:
+                                          "purchase_attributes[attribute.id]"
                                       }
                                     ],
                                     staticClass: "custom-select",
@@ -40863,8 +40865,8 @@ var render = function() {
                                             return val
                                           })
                                         _vm.$set(
-                                          _vm.attributesForSave,
-                                          index,
+                                          _vm.purchase_attributes,
+                                          attribute.id,
                                           $event.target.multiple
                                             ? $$selectedVal
                                             : $$selectedVal[0]
@@ -40903,8 +40905,10 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.attributesForSave[index],
-                                      expression: "attributesForSave[index]"
+                                      value:
+                                        _vm.purchase_attributes[attribute.id],
+                                      expression:
+                                        "purchase_attributes[attribute.id]"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -40917,7 +40921,7 @@ var render = function() {
                                       "]"
                                   },
                                   domProps: {
-                                    value: _vm.attributesForSave[index]
+                                    value: _vm.purchase_attributes[attribute.id]
                                   },
                                   on: {
                                     input: function($event) {
@@ -40925,8 +40929,8 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.attributesForSave,
-                                        index,
+                                        _vm.purchase_attributes,
+                                        attribute.id,
                                         $event.target.value
                                       )
                                     }
@@ -40937,8 +40941,10 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.attributesForSave[index],
-                                      expression: "attributesForSave[index]"
+                                      value:
+                                        _vm.purchase_attributes[attribute.id],
+                                      expression:
+                                        "purchase_attributes[attribute.id]"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -40951,7 +40957,7 @@ var render = function() {
                                       "]"
                                   },
                                   domProps: {
-                                    value: _vm.attributesForSave[index]
+                                    value: _vm.purchase_attributes[attribute.id]
                                   },
                                   on: {
                                     input: function($event) {
@@ -40959,8 +40965,8 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.attributesForSave,
-                                        index,
+                                        _vm.purchase_attributes,
+                                        attribute.id,
                                         $event.target.value
                                       )
                                     }
@@ -70056,9 +70062,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

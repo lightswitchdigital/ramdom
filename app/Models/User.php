@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Plans\PlanSubscription;
 use App\Models\Projects\Project;
+use App\Models\Projects\SavedProject;
 use App\Models\Projects\Purchase\PurchasedProject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

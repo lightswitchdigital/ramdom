@@ -29,15 +29,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Console/Commands/ExpireSubscriptions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Console/Commands/RenewSubscriptions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/PlansController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/PlansController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PaymentsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PaymentsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PlansService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PlansService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/common/partials.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/common/partials.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Advice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Advice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/SavedProject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/SavedProject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdviceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdviceComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/advice/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/advice/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/advice/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/advice/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,16 +233,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Models/Projects" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Projects" />
       <recent name="$PROJECT_DIR$/resources/views/advice" />
       <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$/app/Models/Projects/Purchase" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
   </component>
   <component name="RunManager">
@@ -287,6 +296,7 @@
       <workItem from="1607404599784" duration="502000" />
       <workItem from="1607408515024" duration="483000" />
       <workItem from="1607427643266" duration="5607000" />
+      <workItem from="1607609317485" duration="6491000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -596,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607431464548</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="plans patch">
+      <created>1607609657436</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1607609657436</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +667,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="recommendations logic added, routes moved to api" />
     <MESSAGE value="region middleware, fixed issue with recommended projects images" />
     <MESSAGE value="region middleware, fixed issue with loading recommended projects images" />
     <MESSAGE value="favorites logic moved to main controller" />
@@ -675,7 +691,8 @@
     <MESSAGE value="projects modify controller, save and discard logic" />
     <MESSAGE value="README" />
     <MESSAGE value="savefile, plans route patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="savefile, plans route patch" />
+    <MESSAGE value="plans patch" />
+    <option name="LAST_COMMIT_MESSAGE" value="plans patch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -706,10 +723,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1607147220512" />
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607431464043">
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607609657238">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607431464043" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607609657238" />
     <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1607166215854" />
     <state x="394" y="29" key="Diagram.Print.Preview.Dialog" timestamp="1605384777804">
       <screen x="0" y="0" width="1440" height="900" />
@@ -744,10 +761,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="269" y="162" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1607025349085" />
-    <state x="345" y="130" key="NewPhpClassDialog" timestamp="1607149112571">
+    <state x="345" y="130" key="NewPhpClassDialog" timestamp="1607618448509">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="345" y="130" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1607149112571" />
+    <state x="345" y="130" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1607618448509" />
     <state x="493" y="365" key="NewPhpFileDialog" timestamp="1606811379589">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -764,25 +781,25 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="371" y="305" width="463" height="193" key="VCS.ChangelistChooser/0.0.1440.900@0.0.1440.900" timestamp="1606922666731" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607431472372">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607609675227">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607431472372" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607609675227" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607350732953">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1607350732953" />
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607433572414">
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607609661139">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607433572414" />
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607609661139" />
     <state x="301" y="207" key="run.anything.popup" timestamp="1607151428846">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="301" y="207" key="run.anything.popup/0.0.1440.900@0.0.1440.900" timestamp="1607151428846" />
-    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1607352390848">
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1607612942897">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1607352390848" />
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1607612942897" />
   </component>
 </project>
