@@ -29,13 +29,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Console/Commands/ExpireSubscriptions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Console/Commands/RenewSubscriptions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/PlansController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/PlansController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PaymentsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PaymentsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PlansService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PlansService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/common/partials.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/common/partials.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +286,7 @@
       <workItem from="1607374689699" duration="472000" />
       <workItem from="1607404599784" duration="502000" />
       <workItem from="1607408515024" duration="483000" />
-      <workItem from="1607427643266" duration="1218000" />
+      <workItem from="1607427643266" duration="5607000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -587,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607375062634</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="savefile, plans route patch">
+      <created>1607431464548</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1607431464548</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +650,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="basic recommendation system" />
     <MESSAGE value="recommendations logic added, routes moved to api" />
     <MESSAGE value="region middleware, fixed issue with recommended projects images" />
     <MESSAGE value="region middleware, fixed issue with loading recommended projects images" />
@@ -666,7 +674,8 @@
     <MESSAGE value="orders logic done" />
     <MESSAGE value="projects modify controller, save and discard logic" />
     <MESSAGE value="README" />
-    <option name="LAST_COMMIT_MESSAGE" value="README" />
+    <MESSAGE value="savefile, plans route patch" />
+    <option name="LAST_COMMIT_MESSAGE" value="savefile, plans route patch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="220" y="34" key="#Deployment" timestamp="1603821347513">
@@ -697,19 +706,19 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="155" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1607147220512" />
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607375062457">
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2" timestamp="1607431464043">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607375062457" />
+    <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1607431464043" />
     <state x="174" y="23" width="1025" height="800" key="CommitChangelistDialog2/0.23.1440.800@0.23.1440.800" timestamp="1607166215854" />
     <state x="394" y="29" key="Diagram.Print.Preview.Dialog" timestamp="1605384777804">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="394" y="29" key="Diagram.Print.Preview.Dialog/0.0.1440.900@0.0.1440.900" timestamp="1605384777804" />
-    <state x="209" y="79" width="1152" height="720" key="DiffContextDialog" timestamp="1607237137517">
+    <state x="209" y="79" width="1152" height="720" key="DiffContextDialog" timestamp="1607433645144">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="209" y="79" width="1152" height="720" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1607237137517" />
+    <state x="209" y="79" width="1152" height="720" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1607433645144" />
     <state x="209" y="79" width="1152" height="720" key="DiffContextDialog/0.23.1440.800@0.23.1440.800" timestamp="1605431864585" />
     <state width="1388" height="232" key="GridCell.Tab.0.bottom" timestamp="1606798322807">
       <screen x="0" y="0" width="1440" height="900" />
@@ -755,18 +764,18 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="371" y="305" width="463" height="193" key="VCS.ChangelistChooser/0.0.1440.900@0.0.1440.900" timestamp="1606922666731" />
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607375066372">
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2" timestamp="1607431472372">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607375066372" />
+    <state x="220" y="127" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607431472372" />
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607350732953">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="552" y="321" width="419" height="278" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1440.900@0.0.1440.900" timestamp="1607350732953" />
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607408919386">
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607433572414">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607408919386" />
+    <state x="472" y="354" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1607433572414" />
     <state x="301" y="207" key="run.anything.popup" timestamp="1607151428846">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

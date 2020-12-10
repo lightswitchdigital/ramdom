@@ -7,10 +7,14 @@
             <div class="row">
                 @foreach($plans as $plan)
                     <div class="col-md">
-                        <a href="{{ route('profiile.plans.subscribe', $plan) }}" class="card">
-                            <h4 class="card-title">{{ $plan->name }}</h4>
-                            <h1 class="price">{{ $plan->price }}</h1>
-                        </a>
+                        <div class="card">
+                            <form action="{{ route('profile.plans.subscribe', $plan) }}" method="POST">
+                                @csrf
+                                <h4 class="card-title">{{ $plan->name }}</h4>
+                                <h1 class="price">{{ $plan->price }}</h1>
+                                <button class="btn btn-primary">Выбрать</button>
+                            </form>
+                        </div>
                     </div>
                 @endforeach
             </div>
