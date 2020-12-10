@@ -73,8 +73,7 @@
                                                 :id="'purchase_attribute_'+attribute.id" 
                                                 class="custom-select" 
                                                 :name="'purchase_attributes['+attribute.id+']'"
-                                                v-model="attributesForSave[index]">
-                                            <option>Выбрать</option>
+                                                v-model="attributesForSave[attribute.id]">
                                             <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
                                                 {{ variant }}
                                             </option>
@@ -112,8 +111,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="alert alert-info" :v-if="!this.canEdit">
+                            Этот проект не сохранится так как превышен лимит одновременных проектов
+                        </div>
                         <div class="btn-block">
-                            <button type="submit" class="yellow-outline-btn" :disabled="buyDisabled">Купить проект</button>
+                            <button type="submit" class="btn yellow-btn" :disabled="buyDisabled">Купить проект</button>
                         </div>
                     </form>
                 </div>
@@ -180,7 +182,7 @@ export default {
         favoritesClass: '',
         btnDisabled: false,
         linkForBuy: '',
-        attributesForSave: [],
+        attributesForSave: {},
         buyDisabled: false
     }),
     props: [
@@ -192,14 +194,17 @@ export default {
         'orderAttributes',
         'isAuthenticated',
         'canEdit',
-        'saveLink'
+        'saveLink',
+        'saveFile'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
-        console.log(this.project.isInFavorites)
     },
     mounted() {
         this.$nextTick(this.$forceUpdate);
+        if(this.saveFile){
+            this.attributesForSave = this.saveFile.values_data
+        }
     },
     components: {
         VueSlickCarousel ,
@@ -229,13 +234,13 @@ export default {
         onSubmit() {
             this.buyDisabled = true
             if(this.isAuthenticated){
-                axios.post(this.buyLink , {'_token' : this.csrfToken, 'attributes' : this.attributesForSave} ).then(response => {
-                    if(response.status === 204){
+                axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
+                    if(response.status === 200){
                         this.buyDisabled = false;
-                        alert('вы успешно купили проект')
+                        alert('Вы успешно купили проект')
                     }
                 }).catch(error => {
-                    this.buyDisabled = false;
+                    this.buyDisabled = false
                     console.log(error);
                 })
             }else{
@@ -245,8 +250,8 @@ export default {
         saveProject() {
             this.buyDisabled = true;
             if(this.isAuthenticated && this.canEdit){
-                axios.post(this.saveLink , {'_token' : this.csrfToken, 'attributes' : this.attributesForSave} ).then(response => {
-                    if(response.status === 204){
+                axios.post(this.saveLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
+                    if(response.status === 200){
                         this.buyDisabled = false;
                         console.log('save is ok');
                     }

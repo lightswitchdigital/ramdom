@@ -12317,6 +12317,32 @@ a.project-card .card-img-top img {
   bottom: 20px;
 }
 
+.show-advice .card .comments .add-comments {
+  margin-top: 20px;
+}
+
+.show-advice .card .comments .add-comments .title {
+  margin-bottom: 20px;
+}
+
+.show-advice .card .comments .add-comments textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  margin-top: 10px;
+  padding: 10px 20px;
+}
+
+.show-advice .card .comments .add-comments .yellow-btn {
+  padding: 10px 30px;
+  box-shadow: none;
+  font-size: 18px;
+  display: block;
+  margin-top: 20px;
+}
+
 .plans-block .input-block {
   display: none;
 }

@@ -13,7 +13,7 @@
                 <p class="card-text">
                     {{ advice.content }}
                 </p>
-                <a :href="advice.id" class="yellow-btn">Подробнее</a>
+                <a :href="'advice/'+advice.id" class="yellow-btn">Подробнее</a>
             </div>
             </div>
         </div>

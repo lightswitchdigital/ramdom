@@ -2585,6 +2585,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2597,17 +2599,20 @@ __webpack_require__.r(__webpack_exports__);
       favoritesClass: '',
       btnDisabled: false,
       linkForBuy: '',
-      attributesForSave: [],
+      attributesForSave: {},
       buyDisabled: false
     };
   },
-  props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink'],
+  props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    console.log(this.project.isInFavorites);
   },
   mounted: function mounted() {
     this.$nextTick(this.$forceUpdate);
+
+    if (this.saveFile) {
+      this.attributesForSave = this.saveFile.values_data;
+    }
   },
   components: {
     VueSlickCarousel: vue_slick_carousel__WEBPACK_IMPORTED_MODULE_0___default.a,
@@ -2651,11 +2656,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.isAuthenticated) {
         axios.post(this.buyLink, {
           '_token': this.csrfToken,
-          'attributes': this.attributesForSave
+          'purchase_attributes': this.attributesForSave
         }).then(function (response) {
-          if (response.status === 204) {
+          if (response.status === 200) {
             _this2.buyDisabled = false;
-            alert('вы успешно купили проект');
+            alert('Вы успешно купили проект');
           }
         })["catch"](function (error) {
           _this2.buyDisabled = false;
@@ -2673,9 +2678,9 @@ __webpack_require__.r(__webpack_exports__);
       if (this.isAuthenticated && this.canEdit) {
         axios.post(this.saveLink, {
           '_token': this.csrfToken,
-          'attributes': this.attributesForSave
+          'purchase_attributes': this.attributesForSave
         }).then(function (response) {
-          if (response.status === 204) {
+          if (response.status === 200) {
             _this3.buyDisabled = false;
             console.log('save is ok');
           }
@@ -39801,7 +39806,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { staticClass: "yellow-btn", attrs: { href: _vm.advice.id } },
+            {
+              staticClass: "yellow-btn",
+              attrs: { href: "advice/" + _vm.advice.id }
+            },
             [_vm._v("Подробнее")]
           )
         ])
@@ -40837,8 +40845,10 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.attributesForSave[index],
-                                        expression: "attributesForSave[index]"
+                                        value:
+                                          _vm.attributesForSave[attribute.id],
+                                        expression:
+                                          "attributesForSave[attribute.id]"
                                       }
                                     ],
                                     staticClass: "custom-select",
@@ -40864,7 +40874,7 @@ var render = function() {
                                           })
                                         _vm.$set(
                                           _vm.attributesForSave,
-                                          index,
+                                          attribute.id,
                                           $event.target.multiple
                                             ? $$selectedVal
                                             : $$selectedVal[0]
@@ -40872,30 +40882,26 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [
-                                    _c("option", [_vm._v("Выбрать")]),
-                                    _vm._v(" "),
-                                    _vm._l(attribute.variants, function(
-                                      variant,
-                                      index
-                                    ) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: index,
-                                          domProps: { value: variant }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                            " +
-                                              _vm._s(variant) +
-                                              "\n                                        "
-                                          )
-                                        ]
-                                      )
-                                    })
-                                  ],
-                                  2
+                                  _vm._l(attribute.variants, function(
+                                    variant,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: index,
+                                        domProps: { value: variant }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                            " +
+                                            _vm._s(variant) +
+                                            "\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  0
                                 )
                               : attribute.type === "number"
                               ? _c("input", {
@@ -41000,11 +41006,24 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "alert alert-info",
+                    attrs: { "v-if": !this.canEdit }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Этот проект не сохранится так как превышен лимит одновременных проектов\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
                 _c("div", { staticClass: "btn-block" }, [
                   _c(
                     "button",
                     {
-                      staticClass: "yellow-outline-btn",
+                      staticClass: "btn yellow-btn",
                       attrs: { type: "submit", disabled: _vm.buyDisabled }
                     },
                     [_vm._v("Купить проект")]
