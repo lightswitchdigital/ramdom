@@ -2571,6 +2571,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2582,7 +2596,9 @@ __webpack_require__.r(__webpack_exports__);
       toggleFavoritesUrl: '',
       favoritesClass: '',
       btnDisabled: false,
-      linkForBuy: ''
+      linkForBuy: '',
+      attributesForSave: [],
+      buyDisabled: false
     };
   },
   props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink'],
@@ -2628,18 +2644,45 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      this.buyDisabled = true;
+
       if (this.isAuthenticated) {
         axios.post(this.buyLink, {
-          '_token': this.csrfToken
+          '_token': this.csrfToken,
+          'attributes': this.attributesForSave
         }).then(function (response) {
-          if (response.status === 204 || response.status === 200) {
+          if (response.status === 204) {
+            _this2.buyDisabled = false;
             alert('вы успешно купили проект');
           }
         })["catch"](function (error) {
+          _this2.buyDisabled = false;
           console.log(error);
         });
       } else {
         window.location.href = '/register';
+      }
+    },
+    saveProject: function saveProject() {
+      var _this3 = this;
+
+      this.buyDisabled = true;
+
+      if (this.isAuthenticated && this.canEdit) {
+        axios.post(this.saveLink, {
+          '_token': this.csrfToken,
+          'attributes': this.attributesForSave
+        }).then(function (response) {
+          if (response.status === 204) {
+            _this3.buyDisabled = false;
+            console.log('save is ok');
+          }
+        })["catch"](function (error) {
+          _this3.buyDisabled = false;
+          console.log(error);
+        });
       }
     }
   }
@@ -40746,6 +40789,10 @@ var render = function() {
                   submit: function($event) {
                     $event.preventDefault()
                     return _vm.onSubmit($event)
+                  },
+                  change: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveProject($event)
                   }
                 }
               },
@@ -40786,6 +40833,14 @@ var render = function() {
                               ? _c(
                                   "select",
                                   {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.attributesForSave[index],
+                                        expression: "attributesForSave[index]"
+                                      }
+                                    ],
                                     staticClass: "custom-select",
                                     attrs: {
                                       id: "purchase_attribute_" + attribute.id,
@@ -40793,31 +40848,65 @@ var render = function() {
                                         "purchase_attributes[" +
                                         attribute.id +
                                         "]"
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.attributesForSave,
+                                          index,
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
                                     }
                                   },
-                                  _vm._l(attribute.variants, function(
-                                    variant,
-                                    index
-                                  ) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: index,
-                                        domProps: { value: variant }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                            " +
-                                            _vm._s(variant) +
-                                            "\n                                        "
-                                        )
-                                      ]
-                                    )
-                                  }),
-                                  0
+                                  [
+                                    _c("option", [_vm._v("Выбрать")]),
+                                    _vm._v(" "),
+                                    _vm._l(attribute.variants, function(
+                                      variant,
+                                      index
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          domProps: { value: variant }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(variant) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
                                 )
                               : attribute.type === "number"
                               ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.attributesForSave[index],
+                                      expression: "attributesForSave[index]"
+                                    }
+                                  ],
                                   staticClass: "form-control",
                                   attrs: {
                                     id: "purchase_attribute_" + attribute.id,
@@ -40826,9 +40915,32 @@ var render = function() {
                                       "purchase_attributes[" +
                                       attribute.id +
                                       "]"
+                                  },
+                                  domProps: {
+                                    value: _vm.attributesForSave[index]
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.attributesForSave,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                               : _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.attributesForSave[index],
+                                      expression: "attributesForSave[index]"
+                                    }
+                                  ],
                                   staticClass: "form-control",
                                   attrs: {
                                     id: "purchase_attribute_" + attribute.id,
@@ -40837,6 +40949,21 @@ var render = function() {
                                       "purchase_attributes[" +
                                       attribute.id +
                                       "]"
+                                  },
+                                  domProps: {
+                                    value: _vm.attributesForSave[index]
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.attributesForSave,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                           ])
@@ -40873,7 +41000,16 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(3)
+                _c("div", { staticClass: "btn-block" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "yellow-outline-btn",
+                      attrs: { type: "submit", disabled: _vm.buyDisabled }
+                    },
+                    [_vm._v("Купить проект")]
+                  )
+                ])
               ]
             )
           ])
@@ -40905,18 +41041,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [_c("strong", [_vm._v("Стоимость строительства")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "btn-block" }, [
-      _c(
-        "button",
-        { staticClass: "yellow-outline-btn", attrs: { type: "submit" } },
-        [_vm._v("Купить проект")]
-      )
-    ])
   }
 ]
 render._withStripped = true
