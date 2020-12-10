@@ -30,8 +30,6 @@ class PlansController extends Controller
 
         try {
 
-            $this->payments->pay($user->id, $plan->price);
-
             $this->service->subscribe($user->id, $plan->id);
 
         }catch (DomainException $e) {

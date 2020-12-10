@@ -26,6 +26,12 @@ class PaymentsService
     public function pay($user_id, $amount) {
         $user = $this->getUser($user_id);
 
+        if ($user->balance < $amount) {
+            throw new \DomainException('На балансе недостаточно средств.');
+        }
+
+        $user->balance = $user->balance - $amount;
+
         $user->balanceOperations()->create([
             'type' => BalanceOperation::TYPE_PROJECT_BOUGHT,
             'amount' => $amount,

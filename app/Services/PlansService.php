@@ -15,11 +15,25 @@ use Illuminate\Http\Request;
 
 class PlansService
 {
+    private $payments;
+
+    public function __construct(PaymentsService $payments) {
+        $this->payments = $payments;
+    }
 
     public function subscribe($user_id, $plan_id) {
 
         $user = $this->getUser($user_id);
         $plan = $this->getPlan($plan_id);
+
+        if ($user->subscription && $user->subscription->plan_id === $plan->id) {
+            return redirect()->back()
+                ->with('error', 'Вы уже подписаны на данный план');
+        }
+
+        if ($user->balance < $plan->price) {
+            throw new \DomainException('На вашем балансе недостаточно средств');
+        }
 
         DB::transaction(function () use ($user, $plan) {
 
@@ -48,6 +62,9 @@ class PlansService
             $subscription->save();
 
         });
+
+        $this->payments->pay($user->id, $plan->price);
+
     }
 
     public function cancel($user_id) {
