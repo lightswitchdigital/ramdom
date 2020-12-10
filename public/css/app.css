@@ -10995,6 +10995,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   height: 100px;
   color: #000;
+  z-index: 100;
+}
+
+.navbar .navbar-collapse {
+  background: #ffffff;
 }
 
 .navbar select {
@@ -11434,6 +11439,31 @@ a.project-card .card-img-top img {
   box-sizing: border-box;
   padding: 50px 70px;
   max-width: none !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.register-block .form-card form:after {
+  content: "\412\44B   \437\430\440\435\433\438\441\442\440\438\440\43E\432\430\43B\438\441\44C";
+  width: calc(100%);
+  height: 100%;
+  position: absolute;
+  transform: translateY(-100%);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFD977;
+  color: #000;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 16px;
+  transition: 1s;
+}
+
+.register-block .form-card form.animated:after {
+  transform: translateY(0);
 }
 
 .register-block .invalid {
@@ -11616,6 +11646,7 @@ a.project-card .card-img-top img {
   border-radius: 16px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   margin: 40px auto;
+  overflow: hidden;
 }
 
 .login-block .error-text {
@@ -11693,6 +11724,29 @@ a.project-card .card-img-top img {
   display: block;
   color: #000;
   text-decoration: none;
+}
+
+.login-block:after {
+  content: "\412\44B   \443\441\43F\435\448\43D\43E   \432\43E\448\43B\438";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateY(-100%);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFD977;
+  color: #000;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 16px;
+  transition: 1s;
+}
+
+.login-block.animated:after {
+  transform: translateY(0);
 }
 
 .project-view .agree-form {

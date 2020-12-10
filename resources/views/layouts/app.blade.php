@@ -134,7 +134,7 @@
   </div>
 </div>
     <div id="app">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('/images/logo.png') }}">

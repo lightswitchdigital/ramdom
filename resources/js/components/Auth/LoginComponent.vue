@@ -1,5 +1,5 @@
 <template>
-    <div class="login-block">
+    <div class="login-block" :class="{animated : animated}">
         <form class="mx-auto" @submit.prevent='onSubmit'>
             <h1 class="title">Вход в личный кабинет</h1>
             <div v-if="message != ''" class="alert alert-danger" role="alert">
@@ -35,8 +35,7 @@
             </div>
             
             <button class="btn yellow-btn" type="submit" :disabled='isDisabled'>Войти</button>
-            <p v-if="isDisabled">Вы успешно вошли</p>
-            <a href="#" class="register-link">Регистрация</a>
+            <a href="/register" class="register-link">Регистрация</a>
         </form>
     </div>
 </template>
@@ -51,7 +50,8 @@ export default {
         password: '',
         errors: '',
         message: '',
-        isDisabled: false // Сообщение об ошибке
+        isDisabled: false,
+        animated: false
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -75,9 +75,10 @@ export default {
             axios.post('/login' , formData).then(response => {
                 if(response.status === 204){
                    this.isDisabled = true 
+                   this.animated = true
                     setTimeout(() => {
                         window.location.href = '/'
-                    } , 2000)
+                    } , 1000)
                 }
             }).catch(error => {
                 this.message = error.response.data.message

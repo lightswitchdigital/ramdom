@@ -56,7 +56,7 @@
                         <span class="like"><i class="fas fa-heart"></i></span>
                     </div>
 
-                    <form @submit.prevent='onSubmit'>
+                    <form @submit.prevent='onSubmit' @change.prevent="saveProject">
                         <!-- <input type="hidden" name="_token" :value="this.csrfToken"> -->
                         <table class="table">
                             <tbody>
@@ -69,15 +69,29 @@
                                         <label :for="'purchase_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
                                     </td>
                                     <td>
-                                        <select v-if="attribute.variants.length > 0" :id="'purchase_attribute_'+attribute.id" class="custom-select" :name="'purchase_attributes['+attribute.id+']'">
+                                        <select v-if="attribute.variants.length > 0"
+                                                :id="'purchase_attribute_'+attribute.id" 
+                                                class="custom-select" 
+                                                :name="'purchase_attributes['+attribute.id+']'"
+                                                v-model="attributesForSave[index]">
+                                            <option>Выбрать</option>
                                             <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
                                                 {{ variant }}
                                             </option>
                                         </select>
 
-                                        <input v-else-if="attribute.type === 'number'" :id="'purchase_attribute_'+attribute.id" type="number" class="form-control" :name="'purchase_attributes['+attribute.id+']'">
+                                        <input v-else-if="attribute.type === 'number'" 
+                                        :id="'purchase_attribute_'+attribute.id" 
+                                        type="number" class="form-control" 
+                                        :name="'purchase_attributes['+attribute.id+']'"
+                                        v-model="attributesForSave[index]">
 
-                                        <input v-else :id="'purchase_attribute_'+attribute.id" type="text" class="form-control" :name="'purchase_attributes['+attribute.id+']'">
+                                        <input v-else 
+                                        :id="'purchase_attribute_'+attribute.id" 
+                                        type="text" 
+                                        class="form-control" 
+                                        :name="'purchase_attributes['+attribute.id+']'"
+                                        v-model="attributesForSave[index]">
                                     </td>
                                 </tr>
                             </tbody>
@@ -98,9 +112,8 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <div class="btn-block">
-                            <button type="submit" class="yellow-outline-btn">Купить проект</button>
+                            <button type="submit" class="yellow-outline-btn" :disabled="buyDisabled">Купить проект</button>
                         </div>
                     </form>
                 </div>
@@ -166,7 +179,9 @@ export default {
         toggleFavoritesUrl: '',
         favoritesClass: '',
         btnDisabled: false,
-        linkForBuy: ''
+        linkForBuy: '',
+        attributesForSave: [],
+        buyDisabled: false
     }),
     props: [
         'project',
@@ -212,16 +227,33 @@ export default {
             })
         },
         onSubmit() {
-            if(this.canEdit){
-                axios.post(this.buyLink , {'_token' : this.csrfToken}).then(response => {
-                    if(response.status === 204 || response.status === 200){
+            this.buyDisabled = true
+            if(this.isAuthenticated){
+                axios.post(this.buyLink , {'_token' : this.csrfToken, 'attributes' : this.attributesForSave} ).then(response => {
+                    if(response.status === 204){
+                        this.buyDisabled = false;
                         alert('вы успешно купили проект')
                     }
                 }).catch(error => {
+                    this.buyDisabled = false;
                     console.log(error);
                 })
             }else{
                 window.location.href = '/register'
+            }
+        },
+        saveProject() {
+            this.buyDisabled = true;
+            if(this.isAuthenticated && this.canEdit){
+                axios.post(this.saveLink , {'_token' : this.csrfToken, 'attributes' : this.attributesForSave} ).then(response => {
+                    if(response.status === 204){
+                        this.buyDisabled = false;
+                        console.log('save is ok');
+                    }
+                }).catch(error => {
+                    this.buyDisabled = false;
+                    console.log(error);
+                })
             }
         }
     }

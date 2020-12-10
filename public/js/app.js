@@ -2012,7 +2012,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'login',
@@ -2022,8 +2021,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       password: '',
       errors: '',
       message: '',
-      isDisabled: false // Сообщение об ошибке
-
+      isDisabled: false,
+      animated: false
     };
   },
   created: function created() {
@@ -2061,9 +2060,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 axios.post('/login', formData).then(function (response) {
                   if (response.status === 204) {
                     _this.isDisabled = true;
+                    _this.animated = true;
                     setTimeout(function () {
                       window.location.href = '/';
-                    }, 2000);
+                    }, 1000);
                   }
                 })["catch"](function (error) {
                   _this.message = error.response.data.message;
@@ -2212,7 +2212,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'register',
@@ -2230,7 +2229,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       message: '',
       // Сообщение об ошибке
       errors: '',
-      isDisabled: false
+      isDisabled: false,
+      animated: false
     };
   },
   created: function created() {
@@ -2296,10 +2296,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 axios.post('/register', formData).then(function (response) {
                   if (response.status === 204) {
-                    _this.isDisabled = true;
+                    _this.animated = true;
                     setTimeout(function () {
                       window.location.href = '/';
-                    }, 2000);
+                    }, 1000);
                   }
                 })["catch"](function (error) {
                   _this.message = error.response.data.message;
@@ -2572,6 +2572,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2583,7 +2596,9 @@ __webpack_require__.r(__webpack_exports__);
       toggleFavoritesUrl: '',
       favoritesClass: '',
       btnDisabled: false,
-      linkForBuy: ''
+      linkForBuy: '',
+      attributesForSave: [],
+      buyDisabled: false
     };
   },
   props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink'],
@@ -2629,18 +2644,45 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onSubmit: function onSubmit() {
-      if (this.canEdit) {
+      var _this2 = this;
+
+      this.buyDisabled = true;
+
+      if (this.isAuthenticated) {
         axios.post(this.buyLink, {
-          '_token': this.csrfToken
+          '_token': this.csrfToken,
+          'attributes': this.attributesForSave
         }).then(function (response) {
-          if (response.status === 204 || response.status === 200) {
+          if (response.status === 204) {
+            _this2.buyDisabled = false;
             alert('вы успешно купили проект');
           }
         })["catch"](function (error) {
+          _this2.buyDisabled = false;
           console.log(error);
         });
       } else {
         window.location.href = '/register';
+      }
+    },
+    saveProject: function saveProject() {
+      var _this3 = this;
+
+      this.buyDisabled = true;
+
+      if (this.isAuthenticated && this.canEdit) {
+        axios.post(this.saveLink, {
+          '_token': this.csrfToken,
+          'attributes': this.attributesForSave
+        }).then(function (response) {
+          if (response.status === 204) {
+            _this3.buyDisabled = false;
+            console.log('save is ok');
+          }
+        })["catch"](function (error) {
+          _this3.buyDisabled = false;
+          console.log(error);
+        });
       }
     }
   }
@@ -39789,178 +39831,182 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "login-block" }, [
-    _c(
-      "form",
-      {
-        staticClass: "mx-auto",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.onSubmit($event)
+  return _c(
+    "div",
+    { staticClass: "login-block", class: { animated: _vm.animated } },
+    [
+      _c(
+        "form",
+        {
+          staticClass: "mx-auto",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
           }
-        }
-      },
-      [
-        _c("h1", { staticClass: "title" }, [_vm._v("Вход в личный кабинет")]),
-        _vm._v(" "),
-        _vm.message != ""
-          ? _c(
-              "div",
-              { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-              [_vm._v("\n            " + _vm._s(_vm.message) + "\n        ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model.trim",
-                  value: _vm.email,
-                  expression: "email",
-                  modifiers: { trim: true }
-                }
-              ],
-              staticClass: "form-control",
-              class: {
-                "is-invalid":
-                  (_vm.$v.email.$dirty && !_vm.$v.email.required) ||
-                  (_vm.$v.email.$dirty && !_vm.$v.email.email) ||
-                  _vm.errors.email
-              },
-              attrs: { type: "text", id: "login", placeholder: "E-mail *" },
-              domProps: { value: _vm.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value.trim()
-                },
-                blur: function($event) {
-                  return _vm.$forceUpdate()
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.$v.email.$dirty && !_vm.$v.email.required
-              ? _c("small", { staticClass: "error-text" }, [
-                  _vm._v("\n                введите email")
-                ])
-              : _vm.$v.email.$dirty && !_vm.$v.email.email
-              ? _c("small", { staticClass: "error-text" }, [
-                  _vm._v("\n                email не коректен")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._l(_vm.errors.email, function(item, index) {
-              return _c(
-                "small",
-                {
-                  key: index,
-                  staticClass: "error-text",
-                  attrs: { "v-if": _vm.errors.email }
-                },
-                [_vm._v(_vm._s(item))]
+        },
+        [
+          _c("h1", { staticClass: "title" }, [_vm._v("Вход в личный кабинет")]),
+          _vm._v(" "),
+          _vm.message != ""
+            ? _c(
+                "div",
+                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+                [_vm._v("\n            " + _vm._s(_vm.message) + "\n        ")]
               )
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model.trim",
-                  value: _vm.password,
-                  expression: "password",
-                  modifiers: { trim: true }
-                }
-              ],
-              staticClass: "form-control",
-              class: {
-                "is-invalid":
-                  (_vm.$v.password.$dirty && !_vm.$v.password.required) ||
-                  (_vm.$v.password.$dirty && !_vm.$v.password.minLength) ||
-                  _vm.errors.password
-              },
-              attrs: {
-                type: "password",
-                id: "password",
-                placeholder: "Пароль *"
-              },
-              domProps: { value: _vm.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.trim",
+                    value: _vm.email,
+                    expression: "email",
+                    modifiers: { trim: true }
                   }
-                  _vm.password = $event.target.value.trim()
+                ],
+                staticClass: "form-control",
+                class: {
+                  "is-invalid":
+                    (_vm.$v.email.$dirty && !_vm.$v.email.required) ||
+                    (_vm.$v.email.$dirty && !_vm.$v.email.email) ||
+                    _vm.errors.email
                 },
-                blur: function($event) {
-                  return _vm.$forceUpdate()
+                attrs: { type: "text", id: "login", placeholder: "E-mail *" },
+                domProps: { value: _vm.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.email = $event.target.value.trim()
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
                 }
-              }
-            }),
-            _vm._v(" "),
-            _vm.$v.password.$dirty && !_vm.$v.password.required
-              ? _c("small", { staticClass: "error-text" }, [
-                  _vm._v("\n                введите пароль")
-                ])
-              : _vm.$v.password.$dirty && !_vm.$v.password.minLength
-              ? _c("small", { staticClass: "error-text" }, [
-                  _vm._v(
-                    "\n                пароль не должен быть короче " +
-                      _vm._s(_vm.$v.password.$params.minLength.min) +
-                      " символов"
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._l(_vm.errors.password, function(item, index) {
-              return _c(
-                "small",
-                {
-                  key: index,
-                  staticClass: "error-text",
-                  attrs: { "v-if": _vm.errors.password }
+              }),
+              _vm._v(" "),
+              _vm.$v.email.$dirty && !_vm.$v.email.required
+                ? _c("small", { staticClass: "error-text" }, [
+                    _vm._v("\n                введите email")
+                  ])
+                : _vm.$v.email.$dirty && !_vm.$v.email.email
+                ? _c("small", { staticClass: "error-text" }, [
+                    _vm._v("\n                email не коректен")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.errors.email, function(item, index) {
+                return _c(
+                  "small",
+                  {
+                    key: index,
+                    staticClass: "error-text",
+                    attrs: { "v-if": _vm.errors.email }
+                  },
+                  [_vm._v(_vm._s(item))]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.trim",
+                    value: _vm.password,
+                    expression: "password",
+                    modifiers: { trim: true }
+                  }
+                ],
+                staticClass: "form-control",
+                class: {
+                  "is-invalid":
+                    (_vm.$v.password.$dirty && !_vm.$v.password.required) ||
+                    (_vm.$v.password.$dirty && !_vm.$v.password.minLength) ||
+                    _vm.errors.password
                 },
-                [_vm._v(_vm._s(item))]
-              )
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn yellow-btn",
-            attrs: { type: "submit", disabled: _vm.isDisabled }
-          },
-          [_vm._v("Войти")]
-        ),
-        _vm._v(" "),
-        _vm.isDisabled ? _c("p", [_vm._v("Вы успешно вошли")]) : _vm._e(),
-        _vm._v(" "),
-        _c("a", { staticClass: "register-link", attrs: { href: "#" } }, [
-          _vm._v("Регистрация")
-        ])
-      ]
-    )
-  ])
+                attrs: {
+                  type: "password",
+                  id: "password",
+                  placeholder: "Пароль *"
+                },
+                domProps: { value: _vm.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.password = $event.target.value.trim()
+                  },
+                  blur: function($event) {
+                    return _vm.$forceUpdate()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.$v.password.$dirty && !_vm.$v.password.required
+                ? _c("small", { staticClass: "error-text" }, [
+                    _vm._v("\n                введите пароль")
+                  ])
+                : _vm.$v.password.$dirty && !_vm.$v.password.minLength
+                ? _c("small", { staticClass: "error-text" }, [
+                    _vm._v(
+                      "\n                пароль не должен быть короче " +
+                        _vm._s(_vm.$v.password.$params.minLength.min) +
+                        " символов"
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.errors.password, function(item, index) {
+                return _c(
+                  "small",
+                  {
+                    key: index,
+                    staticClass: "error-text",
+                    attrs: { "v-if": _vm.errors.password }
+                  },
+                  [_vm._v(_vm._s(item))]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn yellow-btn",
+              attrs: { type: "submit", disabled: _vm.isDisabled }
+            },
+            [_vm._v("Войти")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "register-link", attrs: { href: "/register" } },
+            [_vm._v("Регистрация")]
+          )
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -40012,6 +40058,7 @@ var render = function() {
           _c(
             "form",
             {
+              class: { animated: _vm.animated },
               on: {
                 submit: function($event) {
                   $event.preventDefault()
@@ -40461,11 +40508,7 @@ var render = function() {
                   attrs: { disabled: this.isDisabled, type: "submit" }
                 },
                 [_vm._v("Зарегистрироваться")]
-              ),
-              _vm._v(" "),
-              this.isDisabled
-                ? _c("p", [_vm._v("Вы успешно зарегистрировались")])
-                : _vm._e()
+              )
             ]
           )
         ]),
@@ -40746,6 +40789,10 @@ var render = function() {
                   submit: function($event) {
                     $event.preventDefault()
                     return _vm.onSubmit($event)
+                  },
+                  change: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveProject($event)
                   }
                 }
               },
@@ -40786,6 +40833,14 @@ var render = function() {
                               ? _c(
                                   "select",
                                   {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.attributesForSave[index],
+                                        expression: "attributesForSave[index]"
+                                      }
+                                    ],
                                     staticClass: "custom-select",
                                     attrs: {
                                       id: "purchase_attribute_" + attribute.id,
@@ -40793,31 +40848,65 @@ var render = function() {
                                         "purchase_attributes[" +
                                         attribute.id +
                                         "]"
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.attributesForSave,
+                                          index,
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
                                     }
                                   },
-                                  _vm._l(attribute.variants, function(
-                                    variant,
-                                    index
-                                  ) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: index,
-                                        domProps: { value: variant }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                            " +
-                                            _vm._s(variant) +
-                                            "\n                                        "
-                                        )
-                                      ]
-                                    )
-                                  }),
-                                  0
+                                  [
+                                    _c("option", [_vm._v("Выбрать")]),
+                                    _vm._v(" "),
+                                    _vm._l(attribute.variants, function(
+                                      variant,
+                                      index
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          domProps: { value: variant }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(variant) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
                                 )
                               : attribute.type === "number"
                               ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.attributesForSave[index],
+                                      expression: "attributesForSave[index]"
+                                    }
+                                  ],
                                   staticClass: "form-control",
                                   attrs: {
                                     id: "purchase_attribute_" + attribute.id,
@@ -40826,9 +40915,32 @@ var render = function() {
                                       "purchase_attributes[" +
                                       attribute.id +
                                       "]"
+                                  },
+                                  domProps: {
+                                    value: _vm.attributesForSave[index]
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.attributesForSave,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                               : _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.attributesForSave[index],
+                                      expression: "attributesForSave[index]"
+                                    }
+                                  ],
                                   staticClass: "form-control",
                                   attrs: {
                                     id: "purchase_attribute_" + attribute.id,
@@ -40837,6 +40949,21 @@ var render = function() {
                                       "purchase_attributes[" +
                                       attribute.id +
                                       "]"
+                                  },
+                                  domProps: {
+                                    value: _vm.attributesForSave[index]
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.attributesForSave,
+                                        index,
+                                        $event.target.value
+                                      )
+                                    }
                                   }
                                 })
                           ])
@@ -40873,7 +41000,16 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(3)
+                _c("div", { staticClass: "btn-block" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "yellow-outline-btn",
+                      attrs: { type: "submit", disabled: _vm.buyDisabled }
+                    },
+                    [_vm._v("Купить проект")]
+                  )
+                ])
               ]
             )
           ])
@@ -40905,18 +41041,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [_c("strong", [_vm._v("Стоимость строительства")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "btn-block" }, [
-      _c(
-        "button",
-        { staticClass: "yellow-outline-btn", attrs: { type: "submit" } },
-        [_vm._v("Купить проект")]
-      )
-    ])
   }
 ]
 render._withStripped = true
