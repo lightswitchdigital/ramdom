@@ -9,6 +9,7 @@ class BalanceOperation extends Model
 {
 
     public const TYPE_ADD = 'add';
+    public const TYPE_SUBSCRIPTION_CHARGED = 'subscription_charged';
     public const TYPE_PROJECT_BOUGHT = 'project_bought';
 
     public const STATUS_PENDING = 'pending';
