@@ -7,9 +7,9 @@
             <section class="section-projects">
                 <div class="projects-wrapper d-flex">
                     @foreach($projects as $project)
-                        <project-card
-                            :project="{{ $project->project }}"
-                        ></project-card>
+                        <purchased-project-card
+                            :project="{{ $project }}"
+                        ></purchased-project-card>
                     @endforeach
                 </div>
             </section>

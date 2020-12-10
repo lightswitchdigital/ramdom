@@ -16,8 +16,7 @@ class PurchasedProject extends Model
     ];
 
     protected $appends = [
-        'route', 'jsonValues',
-        'orderLink'
+        'jsonValues', 'orderLink'
     ];
 
     public $timestamps = true;

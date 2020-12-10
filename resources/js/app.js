@@ -17,9 +17,9 @@ import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
 import ProjectCardComponent from "./components/Projects/ProjectCardComponent";
 import ProjectComponent from "./components/Projects/ProjectComponent";
-import OrderComponent from "./components/Projects/OrderComponent";
 import AdviceComponent from "./components/AdviceComponent"
 import Recommend from './components/Projects/RecommendationsComponent'
+import PurchasedProjectCardComponent from "./components/Projects/PurchasedProjectCardComponent";
 
 
 Vue.use(VueRouter)
@@ -41,9 +41,9 @@ Vue.component('login', LoginComponent);
 Vue.component('register', RegisterComponent);
 
 Vue.component('project-card', ProjectCardComponent);
+Vue.component('purchased-project-card', PurchasedProjectCardComponent);
 Vue.component('project', ProjectComponent);
-Vue.component('order', OrderComponent);
-Vue.component('reccomendation', Recommend);
+Vue.component('recommendations', Recommend);
 
 Vue.component('advice', AdviceComponent);
 

@@ -16,7 +16,7 @@ class ProjectsController extends Controller
 
     public function index() {
         $user = Auth::user();
-        $projects = $user->purchasedProjects()->paginate(env('PROJECTS_PAGINATION'));
+        $projects = $user->purchasedProjects()->with('project')->paginate(env('PROJECTS_PAGINATION'));
 
         return view('profile.projects.index', compact('projects'));
     }
