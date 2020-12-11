@@ -77,6 +77,7 @@ class PlanSubscription extends Model
 
             $subscription->setNewInterval();
             $subscription->canceled_at = null;
+            $subscription->active = true;
             $subscription->save();
 
         });
@@ -98,8 +99,8 @@ class PlanSubscription extends Model
     public function setNewInterval() {
         $interval = $this->plan->getIntervalInDays();
 
-        $starts_at = $this->starts_at;
-        $this->ends_at = $starts_at->addDays($interval);
+        $this->starts_at = Carbon::now();
+        $this->ends_at = $this->starts_at->addDays($interval);
 
         $this->update();
     }
