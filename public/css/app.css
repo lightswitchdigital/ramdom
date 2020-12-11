@@ -11287,6 +11287,19 @@ a.project-card .card-img-top img {
      object-position: center;
 }
 
+a.project-card .yellow-btn {
+  box-shadow: none;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+a.project-card.order-card {
+  padding-bottom: 10px;
+}
+
 .filter-block {
   width: 100%;
   background: #fff;
@@ -11503,7 +11516,11 @@ a.project-card .card-img-top img {
 }
 
 .register-block .btn-submit {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 18px;
   border-radius: 16px !important;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.29);
   padding: 30px auto;
@@ -11511,8 +11528,33 @@ a.project-card .card-img-top img {
   box-sizing: border-box;
 }
 
+.register-block .btn-submit span {
+  transition: 0.4s;
+}
+
+.register-block .btn-submit span.not-disabled {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.register-block .btn-submit span.text-succes {
+  transform: translateY(-20px);
+  opacity: 0;
+  margin-top: -20px;
+}
+
 .register-block .btn-submit:desabled {
   background: #fcdd8d;
+}
+
+.register-block .btn-submit.active span.not-disabled {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.register-block .btn-submit.active span.text-succes {
+  transform: translateY(20px);
+  opacity: 1;
 }
 
 .register-block .radio-group {
@@ -11696,7 +11738,10 @@ a.project-card .card-img-top img {
 }
 
 .login-block .yellow-btn {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   width: 100%;
   margin: 20 0;
@@ -11708,8 +11753,33 @@ a.project-card .card-img-top img {
   font-weight: bold;
 }
 
+.login-block .yellow-btn span {
+  transition: 0.4s;
+}
+
+.login-block .yellow-btn span.not-disabled {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.login-block .yellow-btn span.text-succes {
+  transform: translateY(-20px);
+  opacity: 0;
+  margin-top: -20px;
+}
+
 .login-block .yellow-btn:desabled {
   background: #fcdd8d;
+}
+
+.login-block .yellow-btn.active span.not-disabled {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.login-block .yellow-btn.active span.text-succes {
+  transform: translateY(20px);
+  opacity: 1;
 }
 
 .login-block .register-link {

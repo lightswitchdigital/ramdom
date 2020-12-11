@@ -13,7 +13,7 @@
         <div class="card-price">от {{ this.project.price }} <span class="rub">₽</span></div>
         <h5 class="card-title">{{ this.project.title }}</h5>
         <ul class="card-text">
-            <li v-for="(value, label , index) in this.project.jsonValues" :v-if="index < 4" :key="index">
+            <li v-for="(value, label , index) in this.project.jsonValues" :key="index" v-if="index <= 4">
                 <span>{{ label }}</span><span>{{ value }}</span>
             </li>
         </ul>

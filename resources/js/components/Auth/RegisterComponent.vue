@@ -97,7 +97,10 @@
                                 Выберите тип лица</small>
                         </div>
 
-                        <button class="btn btn-submit yellow-btn" v-bind:disabled='this.isDisabled' type="submit">Зарегистрироваться</button>
+                        <button class="btn btn-submit yellow-btn" :class="{active: isDisabled}" :disabled='isDisabled' type="submit">
+                            <span class="text-succes">Вы зарегистрировались</span>
+                            <span class="not-disabled">Зарегистритроваться</span>
+                        </button>
                     </form>
                 </div>
                 <div class="col-md form-img-col">

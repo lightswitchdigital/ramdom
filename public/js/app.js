@@ -1941,10 +1941,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'advice',
   props: ['advice', 'adviceLink'],
@@ -2016,6 +2012,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'login',
@@ -2025,8 +2024,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       password: '',
       errors: '',
       message: '',
-      isDisabled: false,
-      animated: false
+      isDisabled: false
     };
   },
   created: function created() {
@@ -2064,7 +2062,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 axios.post('/login', formData).then(function (response) {
                   if (response.status === 204) {
                     _this.isDisabled = true;
-                    _this.animated = true;
                     setTimeout(function () {
                       window.location.href = '/';
                     }, 1000);
@@ -2106,6 +2103,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -2547,6 +2547,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2560,7 +2563,8 @@ __webpack_require__.r(__webpack_exports__);
       btnDisabled: false,
       linkForBuy: '',
       attributesForSave: {},
-      buyDisabled: false
+      buyDisabled: false,
+      notAllChange: false
     };
   },
   props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile'],
@@ -2614,11 +2618,12 @@ __webpack_require__.r(__webpack_exports__);
       this.buyDisabled = true;
 
       if (this.isAuthenticated) {
+        this.notAllChange = false;
         axios.post(this.buyLink, {
           '_token': this.csrfToken,
           'purchase_attributes': this.attributesForSave
         }).then(function (response) {
-          if (response.status === 200) {
+          if (response.status === 204) {
             _this2.buyDisabled = false;
             alert('Вы успешно купили проект');
           }
@@ -2664,6 +2669,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39801,28 +39811,16 @@ var render = function() {
           _vm._v(" "),
           _c("p", { staticClass: "card-text" }, [
             _vm._v(
-              "\n                    " +
+              "\n                " +
                 _vm._s(_vm.advice.content) +
-                "\n                "
+                "\n            "
             )
           ]),
-          _vm._v("\n<<<<<<< HEAD\n                "),
-          _c(
-            "a",
-            {
-              staticClass: "yellow-btn",
-              attrs: { href: "advice/" + _vm.advice.id }
-            },
-            [_vm._v("Подробнее")]
-          ),
-          _vm._v("\n=======\n                "),
+          _vm._v(" "),
           _c(
             "a",
             { staticClass: "yellow-btn", attrs: { href: _vm.adviceLink } },
             [_vm._v("Подробнее")]
-          ),
-          _vm._v(
-            "\n>>>>>>> e55586ec00efccd06087dd1187b4229134f3c848\n            "
           )
         ])
       ])
@@ -39851,182 +39849,185 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "login-block", class: { animated: _vm.animated } },
-    [
-      _c(
-        "form",
-        {
-          staticClass: "mx-auto",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.onSubmit($event)
-            }
+  return _c("div", { staticClass: "login-block" }, [
+    _c(
+      "form",
+      {
+        staticClass: "mx-auto",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.onSubmit($event)
           }
-        },
-        [
-          _c("h1", { staticClass: "title" }, [_vm._v("Вход в личный кабинет")]),
-          _vm._v(" "),
-          _vm.message != ""
-            ? _c(
-                "div",
-                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-                [_vm._v("\n            " + _vm._s(_vm.message) + "\n        ")]
+        }
+      },
+      [
+        _c("h1", { staticClass: "title" }, [_vm._v("Вход в личный кабинет")]),
+        _vm._v(" "),
+        _vm.message != ""
+          ? _c(
+              "div",
+              { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+              [_vm._v("\n            " + _vm._s(_vm.message) + "\n        ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.trim",
+                  value: _vm.email,
+                  expression: "email",
+                  modifiers: { trim: true }
+                }
+              ],
+              staticClass: "form-control",
+              class: {
+                "is-invalid":
+                  (_vm.$v.email.$dirty && !_vm.$v.email.required) ||
+                  (_vm.$v.email.$dirty && !_vm.$v.email.email) ||
+                  _vm.errors.email
+              },
+              attrs: { type: "text", id: "login", placeholder: "E-mail *" },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value.trim()
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.$v.email.$dirty && !_vm.$v.email.required
+              ? _c("small", { staticClass: "error-text" }, [
+                  _vm._v("\n                введите email")
+                ])
+              : _vm.$v.email.$dirty && !_vm.$v.email.email
+              ? _c("small", { staticClass: "error-text" }, [
+                  _vm._v("\n                email не коректен")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.errors.email, function(item, index) {
+              return _c(
+                "small",
+                {
+                  key: index,
+                  staticClass: "error-text",
+                  attrs: { "v-if": _vm.errors.email }
+                },
+                [_vm._v(_vm._s(item))]
               )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model.trim",
-                    value: _vm.email,
-                    expression: "email",
-                    modifiers: { trim: true }
-                  }
-                ],
-                staticClass: "form-control",
-                class: {
-                  "is-invalid":
-                    (_vm.$v.email.$dirty && !_vm.$v.email.required) ||
-                    (_vm.$v.email.$dirty && !_vm.$v.email.email) ||
-                    _vm.errors.email
-                },
-                attrs: { type: "text", id: "login", placeholder: "E-mail *" },
-                domProps: { value: _vm.email },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.email = $event.target.value.trim()
-                  },
-                  blur: function($event) {
-                    return _vm.$forceUpdate()
-                  }
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.trim",
+                  value: _vm.password,
+                  expression: "password",
+                  modifiers: { trim: true }
                 }
-              }),
-              _vm._v(" "),
-              _vm.$v.email.$dirty && !_vm.$v.email.required
-                ? _c("small", { staticClass: "error-text" }, [
-                    _vm._v("\n                введите email")
-                  ])
-                : _vm.$v.email.$dirty && !_vm.$v.email.email
-                ? _c("small", { staticClass: "error-text" }, [
-                    _vm._v("\n                email не коректен")
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._l(_vm.errors.email, function(item, index) {
-                return _c(
-                  "small",
-                  {
-                    key: index,
-                    staticClass: "error-text",
-                    attrs: { "v-if": _vm.errors.email }
-                  },
-                  [_vm._v(_vm._s(item))]
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model.trim",
-                    value: _vm.password,
-                    expression: "password",
-                    modifiers: { trim: true }
+              ],
+              staticClass: "form-control",
+              class: {
+                "is-invalid":
+                  (_vm.$v.password.$dirty && !_vm.$v.password.required) ||
+                  (_vm.$v.password.$dirty && !_vm.$v.password.minLength) ||
+                  _vm.errors.password
+              },
+              attrs: {
+                type: "password",
+                id: "password",
+                placeholder: "Пароль *"
+              },
+              domProps: { value: _vm.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
-                ],
-                staticClass: "form-control",
-                class: {
-                  "is-invalid":
-                    (_vm.$v.password.$dirty && !_vm.$v.password.required) ||
-                    (_vm.$v.password.$dirty && !_vm.$v.password.minLength) ||
-                    _vm.errors.password
+                  _vm.password = $event.target.value.trim()
                 },
-                attrs: {
-                  type: "password",
-                  id: "password",
-                  placeholder: "Пароль *"
-                },
-                domProps: { value: _vm.password },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.password = $event.target.value.trim()
-                  },
-                  blur: function($event) {
-                    return _vm.$forceUpdate()
-                  }
+                blur: function($event) {
+                  return _vm.$forceUpdate()
                 }
-              }),
-              _vm._v(" "),
-              _vm.$v.password.$dirty && !_vm.$v.password.required
-                ? _c("small", { staticClass: "error-text" }, [
-                    _vm._v("\n                введите пароль")
-                  ])
-                : _vm.$v.password.$dirty && !_vm.$v.password.minLength
-                ? _c("small", { staticClass: "error-text" }, [
-                    _vm._v(
-                      "\n                пароль не должен быть короче " +
-                        _vm._s(_vm.$v.password.$params.minLength.min) +
-                        " символов"
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._l(_vm.errors.password, function(item, index) {
-                return _c(
-                  "small",
-                  {
-                    key: index,
-                    staticClass: "error-text",
-                    attrs: { "v-if": _vm.errors.password }
-                  },
-                  [_vm._v(_vm._s(item))]
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn yellow-btn",
-              attrs: { type: "submit", disabled: _vm.isDisabled }
-            },
-            [_vm._v("Войти")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            { staticClass: "register-link", attrs: { href: "/register" } },
-            [_vm._v("Регистрация")]
-          )
-        ]
-      )
-    ]
-  )
+              }
+            }),
+            _vm._v(" "),
+            _vm.$v.password.$dirty && !_vm.$v.password.required
+              ? _c("small", { staticClass: "error-text" }, [
+                  _vm._v("\n                введите пароль")
+                ])
+              : _vm.$v.password.$dirty && !_vm.$v.password.minLength
+              ? _c("small", { staticClass: "error-text" }, [
+                  _vm._v(
+                    "\n                пароль не должен быть короче " +
+                      _vm._s(_vm.$v.password.$params.minLength.min) +
+                      " символов"
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.errors.password, function(item, index) {
+              return _c(
+                "small",
+                {
+                  key: index,
+                  staticClass: "error-text",
+                  attrs: { "v-if": _vm.errors.password }
+                },
+                [_vm._v(_vm._s(item))]
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn yellow-btn",
+            class: { active: _vm.isDisabled },
+            attrs: { type: "submit", disabled: _vm.isDisabled }
+          },
+          [
+            _c("span", { staticClass: "text-succes" }, [
+              _vm._v("Вы успешно вошли")
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "not-disabled" }, [_vm._v("Войти")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          { staticClass: "register-link", attrs: { href: "/register" } },
+          [_vm._v("Регистрация")]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -40525,9 +40526,18 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-submit yellow-btn",
-                  attrs: { disabled: this.isDisabled, type: "submit" }
+                  class: { active: _vm.isDisabled },
+                  attrs: { disabled: _vm.isDisabled, type: "submit" }
                 },
-                [_vm._v("Зарегистрироваться")]
+                [
+                  _c("span", { staticClass: "text-succes" }, [
+                    _vm._v("Вы зарегистрировались")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "not-disabled" }, [
+                    _vm._v("Зарегистритроваться")
+                  ])
+                ]
               )
             ]
           )
@@ -40631,10 +40641,12 @@ var render = function() {
           "ul",
           { staticClass: "card-text" },
           _vm._l(this.project.jsonValues, function(value, label, index) {
-            return _c("li", { key: index, attrs: { "v-if": index < 4 } }, [
-              _c("span", [_vm._v(_vm._s(label))]),
-              _c("span", [_vm._v(_vm._s(value))])
-            ])
+            return index <= 4
+              ? _c("li", { key: index }, [
+                  _c("span", [_vm._v(_vm._s(label))]),
+                  _c("span", [_vm._v(_vm._s(value))])
+                ])
+              : _vm._e()
           }),
           0
         )
@@ -41022,25 +41034,31 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "alert alert-info",
-                    attrs: { "v-if": !this.canEdit }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Этот проект не сохранится так как превышен лимит одновременных проектов\n                    "
-                    )
-                  ]
-                ),
+                !_vm.canEdit && !_vm.saveFile
+                  ? _c("div", { staticClass: "alert alert-info" }, [
+                      _vm._v(
+                        "\n                        Этот проект не сохранится так как превышен лимит одновременных проектов\n                    "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.notAllChange
+                  ? _c("div", { staticClass: "alert alert-danger" }, [
+                      _vm._v(
+                        "\n                        Вы не выбрали все параметры\n                    "
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "btn-block" }, [
                   _c(
                     "button",
                     {
                       staticClass: "btn yellow-btn",
-                      attrs: { type: "submit", disabled: _vm.buyDisabled }
+                      attrs: {
+                        type: "submit",
+                        disabled: _vm.buyDisabled || !_vm.canEdit
+                      }
                     },
                     [_vm._v("Купить проект")]
                   )
@@ -41101,7 +41119,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "a",
-    { staticClass: "card project-card", attrs: { href: _vm.orderLink } },
+    {
+      staticClass: "card project-card order-card",
+      attrs: { href: _vm.orderLink }
+    },
     [
       _c("div", { staticClass: "card-img-top" }, [
         _c("img", { attrs: { src: _vm.project.project.jsonImages[0] } })
@@ -41121,12 +41142,23 @@ var render = function() {
           "ul",
           { staticClass: "card-text" },
           _vm._l(_vm.project.jsonValues, function(value, label, index) {
-            return _c("li", { key: index, attrs: { "v-if": index < 4 } }, [
-              _c("span", [_vm._v(_vm._s(label))]),
-              _c("span", [_vm._v(_vm._s(value))])
-            ])
+            return index <= 4
+              ? _c("li", { key: index }, [
+                  _c("span", [_vm._v(_vm._s(label))]),
+                  _c("span", [_vm._v(_vm._s(value))])
+                ])
+              : _vm._e()
           }),
           0
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn yellow-btn mt-3",
+            attrs: { "data-toggle": "modal", "data-target": "#modalProject" }
+          },
+          [_vm._v("\n            Подробнее\n        ")]
         )
       ])
     ]
@@ -70218,9 +70250,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

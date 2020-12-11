@@ -111,11 +111,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="alert alert-info" :v-if="!this.canEdit">
+                        <div v-if="!canEdit && !saveFile" class="alert alert-info" >
                             Этот проект не сохранится так как превышен лимит одновременных проектов
                         </div>
+                        <div class="alert alert-danger" v-if="notAllChange">
+                            Вы не выбрали все параметры
+                        </div>
                         <div class="btn-block">
-                            <button type="submit" class="btn yellow-btn" :disabled="buyDisabled">Купить проект</button>
+                            <button type="submit" class="btn yellow-btn" :disabled="buyDisabled || !canEdit">Купить проект</button>
                         </div>
                     </form>
                 </div>
@@ -139,7 +142,8 @@ export default {
         btnDisabled: false,
         linkForBuy: '',
         attributesForSave: {},
-        buyDisabled: false
+        buyDisabled: false,
+        notAllChange: false
     }),
     props: [
         'project',
@@ -190,15 +194,16 @@ export default {
         onSubmit() {
             this.buyDisabled = true
             if(this.isAuthenticated){
-                axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
-                    if(response.status === 200){
-                        this.buyDisabled = false;
-                        alert('Вы успешно купили проект')
-                    }
-                }).catch(error => {
-                    this.buyDisabled = false
-                    console.log(error);
-                })
+                    this.notAllChange = false
+                    axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
+                        if(response.status === 204){
+                            this.buyDisabled = false;
+                            alert('Вы успешно купили проект')
+                        }
+                    }).catch(error => {
+                        this.buyDisabled = false
+                        console.log(error);
+                    })
             }else{
                 window.location.href = '/register'
             }
