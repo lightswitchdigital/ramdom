@@ -1368,3 +1368,28 @@ a.project-card{
         }
     }
 }
+
+.balance-modal{
+    .modal-body{
+        width: 100%;
+        height: 470px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        .first-step , .second-step{
+            width: 100%;
+            height: 100%;
+            transition: 0.2s;
+        }
+        .first-step{
+            display: flex;
+            align-content: space-around;
+            flex-direction: column;
+        }
+        &.animated{
+            .first-step{
+                margin-left: -100%;
+            }
+        }
+    }
+}

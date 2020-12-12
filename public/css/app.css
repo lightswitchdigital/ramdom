@@ -12464,3 +12464,28 @@ a.project-card.order-card {
   margin-bottom: 60px;
 }
 
+.balance-modal .modal-body {
+  width: 100%;
+  height: 470px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.balance-modal .modal-body .first-step,
+.balance-modal .modal-body .second-step {
+  width: 100%;
+  height: 100%;
+  transition: 0.2s;
+}
+
+.balance-modal .modal-body .first-step {
+  display: flex;
+  align-content: space-around;
+  flex-direction: column;
+}
+
+.balance-modal .modal-body.animated .first-step {
+  margin-left: -100%;
+}
+

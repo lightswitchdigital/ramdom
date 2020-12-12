@@ -6,7 +6,7 @@
         <div class="card form-card">
             <div class="row">
                 <div class="col-md">
-                    <form @submit.prevent='onSubmit' :class="{animated : animated}">
+                    <form @submit.prevent='onSubmit'>
                         <div class="form-title">
                             Заполните анкету, чтобы <br> <span class="with-border">зарегистритроваться</span> 
                         </div>
@@ -164,7 +164,7 @@ export default {
 
             axios.post('/register' , formData).then(response => {
                 if(response.status === 204){
-                    this.animated = true 
+                    this.isDisabled = true 
                     setTimeout(() => {
                         window.location.href = '/'
                     } , 1000)

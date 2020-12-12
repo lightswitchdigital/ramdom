@@ -209,8 +209,8 @@ export default {
             }
         },
         saveProject() {
-            this.buyDisabled = true;
             if(this.isAuthenticated && this.canEdit){
+                this.buyDisabled = true;
                 axios.post(this.saveLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
                     if(response.status === 200){
                         this.buyDisabled = false;

@@ -20,6 +20,8 @@ import ProjectComponent from "./components/Projects/ProjectComponent";
 import AdviceComponent from "./components/AdviceComponent"
 import Recommend from './components/Projects/RecommendationsComponent'
 import PurchasedProjectCardComponent from "./components/Projects/PurchasedProjectCardComponent";
+import MyProjectsComponent from "./components/Projects/MyProjectsComponent";
+import AddBalanceComponent from "./components/AddBalanceComponent";
 
 
 Vue.use(VueRouter)
@@ -42,10 +44,13 @@ Vue.component('register', RegisterComponent);
 
 Vue.component('project-card', ProjectCardComponent);
 Vue.component('purchased-project-card', PurchasedProjectCardComponent);
+Vue.component('my-projects', MyProjectsComponent);
 Vue.component('project', ProjectComponent);
 Vue.component('recommendations', Recommend);
 
 Vue.component('advice', AdviceComponent);
+
+Vue.component('add-balance', AddBalanceComponent);
 
 
 
