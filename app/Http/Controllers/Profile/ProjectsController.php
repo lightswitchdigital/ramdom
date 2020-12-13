@@ -8,11 +8,18 @@ use App\Models\Order;
 use App\Models\Projects\Project;
 use App\Models\Projects\Purchase\PurchasedProject;
 use App\Models\User;
+use App\Services\OrderService;
 use Auth;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+
+    private $service;
+
+    public function __construct(OrderService $service) {
+        $this->service = $service;
+    }
 
     public function index() {
         $user = Auth::user();
@@ -31,42 +38,12 @@ class ProjectsController extends Controller
 
         $user = Auth::user();
 
-        $params = [
-            'order_name' => $request['order_name'],
-            'order_email' => $request['order_email'],
-            'order_phone' => $request['order_phone'],
-            'order_city' => $request['order_city'],
-            'order_address' => $request['order_address'],
-            'order_postal_code' => $request['order_postal_code'],
-            'price' => $this->calculatePrice($project)
-        ];
-
-        if ($user->isIndividual())
-            $params = array_merge($params, [
-                'order_passport_serial' => $request['order_passport_serial'],
-                'order_passport_number' => $request['order_passport_number'],
-                'order_passport_issue' => $request['order_passport_issue'],
-                'order_passport_issue_date' => $request['order_passport_issue_date']
-            ]);
-
-        elseif ($user->isEntity())
-            $params = array_merge($params, [
-                'order_company_name' => $request['order_company_name'],
-                'order_company_address' => $request['order_company_address'],
-                'order_company_inn' => $request['order_company_inn'],
-                'order_company_kpp' => $request['order_company_kpp'],
-                'order_company_payment_account' => $request['order_company_payment_account'],
-                'order_company_correspondent_account' => $request['order_company_correspondent_account']
-            ]);
-
-
-        $order = Order::make($params);
-
-        $order->user()->associate($user);
-        $order->developer()->associate($developer);
-        $order->project()->associate($project);
-
-        $order->save();
+        try {
+            $this->service->order($user->id, $project->id, $developer->id, $request);
+        }catch (\DomainException $e) {
+            return redirect()->back()
+                ->with('error', $e->getMessage());
+        }
 
         return redirect()->back()
             ->with('success', 'Заказ на строительство успешно создан и передан застройщику. Скоро он с вами свяжется по телефону');
