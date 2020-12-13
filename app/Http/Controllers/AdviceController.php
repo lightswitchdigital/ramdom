@@ -27,7 +27,8 @@ class AdviceController extends Controller
     public function addComment(Advice $advice, CommentRequest $request) {
         $this->service->addComment($advice->id, $request);
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('success', 'Комментарий будет опубликован после модерации.');
     }
 
 }

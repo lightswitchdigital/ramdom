@@ -76,9 +76,13 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $commentable
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment active()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment ofAdvice()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment wait()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereAnonymous($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
@@ -131,6 +135,36 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Image whereUpdatedAt($value)
  */
 	class Image extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Notification
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $type
+ * @property string $content
+ * @property int $seen
+ * @property string $expires_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification findExpired()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification notSeen()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereExpiresAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereSeen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUserId($value)
+ */
+	class Notification extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -377,6 +411,8 @@ namespace App\Models\Projects\Purchase{
  * @property float $price
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $json_values
+ * @property-read mixed $order_link
  * @property-read \App\Models\Projects\Project $project
  * @property-read \App\Models\User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchaseValue[] $values
@@ -407,6 +443,7 @@ namespace App\Models\Projects{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Projects\Project $project
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SavedProject query()

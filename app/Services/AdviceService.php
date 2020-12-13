@@ -18,7 +18,7 @@ class AdviceService
 
         $comment = $advice->comments()->make([
             'text' => $request['text'],
-            'anonymous' => $authenticated? $request['anonymous'] : false
+            'anonymous' => $authenticated? $request['anonymous'] : true
         ]);
 
         if ($authenticated) {

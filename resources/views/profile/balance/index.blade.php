@@ -10,10 +10,18 @@
                         <h4 class="card-header">Текущий баланс</h4>
                         <div class="card-body">
                             <h3 class="balance">10000 р</h3>
+<<<<<<< HEAD
                             <a 
                             class="btn"
                             href="balance/add"
                             >Пополнить баланс</a>
+=======
+                            <button
+                                class="btn"
+                                data-toggle="modal"
+                                data-target="#addBalanceModal"
+                            >Пополнить баланс</button>
+>>>>>>> 88823bf08172f18284fdbee972ba861cb98148f7
                         </div>
                     </div>
                 </div>
@@ -28,7 +36,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 @endsection

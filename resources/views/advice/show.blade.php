@@ -30,12 +30,39 @@
                         </div>
                     @endif
                 @endforeach
+
                 <div class="add-comments">
                     <h4>Добавить комментарий</h4>
-                    <input type="checkbox" id="anonym" class="custom-check">
-                    <label for="anonym">Анонимно</label>
-                    <textarea placeholder="Сообщение"></textarea>
-                    <button class="btn yellow-btn">Комментировать</button>
+
+                    <form action="{{ route('advice.comment', $advice) }}" method="POST">
+                        @csrf
+
+                        @auth
+                            <div class="form-group">
+                                <input type="checkbox" id="anonymous" name="anonymous" class="custom-check">
+                                <label for="anonymous">Анонимно</label>
+                            </div>
+                        @else
+                            <small>Комментарий будет оставлен анонимно.</small>
+                        @endauth
+                        <div class="form-group">
+                            <textarea placeholder="Сообщение" name="text">{{ old('text') }}</textarea>
+                            @error('text')
+                            <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            {!! captcha_img('math') !!}
+                            <br>
+                            <label for="captcha">Решите пример с картинки</label>
+                            <br>
+                            <input type="text" name="captcha" id="captcha">
+                            @error('captcha')
+                            <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <button class="btn yellow-btn">Комментировать</button>
+                    </form>
                 </div>
             </div>
         </div>
