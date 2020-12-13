@@ -1,11 +1,27 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
+
+Route::middleware('auth')->get('/notifications', function (\Illuminate\Http\Request $request) {
+
+    $batch = (int) $request->get('batch') ?? 1;
+    $user = User::find(Auth::id());
+
+    $count = env('NOTIFICATIONS_COUNT_BATCH');
+
+    $notifications = $user->notifications()
+        ->skip(($batch - 1) * $count)
+        ->take($count)->get();
+
+    dd($notifications);
+
+})->name('get-notifications');
 
 Route::group([
     'prefix' => 'projects',
