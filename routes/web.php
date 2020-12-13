@@ -195,6 +195,16 @@ Route::group([
     Route::resource('advice', 'AdviceController');
 
     Route::group([
+        'prefix' => 'comments',
+        'as' => 'comments.'
+    ], function() {
+
+        Route::post('/{comment}/activate', 'CommentsController@activate')->name('activate');
+
+    });
+    Route::resource('comments', 'CommentsController');
+
+    Route::group([
         'prefix' => 'faq',
         'as' => 'faq'
     ], function() {

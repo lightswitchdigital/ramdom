@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "mews/captcha": "^3.2",
-        "phpoffice/phpspreadsheet": "^1.15"
+        "phpoffice/phpspreadsheet": "^1.15",
+        "simplesoftwareio/simple-qrcode": "^4.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

@@ -12,9 +12,9 @@
                         <h4 class="card-header">Текущий баланс</h4>
                         <div class="card-body">
                             <h3 class="balance">10000 р</h3>
-                            <button 
+                            <button
                                 class="btn"
-                                data-toggle="modal" 
+                                data-toggle="modal"
                                 data-target="#addBalanceModal"
                             >Пополнить баланс</button>
                         </div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 @endsection

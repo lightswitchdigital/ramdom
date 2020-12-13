@@ -76,9 +76,13 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $commentable
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment active()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment ofAdvice()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment wait()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereAnonymous($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
@@ -377,6 +381,8 @@ namespace App\Models\Projects\Purchase{
  * @property float $price
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $json_values
+ * @property-read mixed $order_link
  * @property-read \App\Models\Projects\Project $project
  * @property-read \App\Models\User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchaseValue[] $values
@@ -407,6 +413,7 @@ namespace App\Models\Projects{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Projects\Project $project
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SavedProject query()

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\PaymentsService;
 use Auth;
 use Illuminate\Http\Request;
+use QrCode;
 
 class BalanceController extends Controller
 {
