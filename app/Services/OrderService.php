@@ -6,9 +6,8 @@ namespace App\Services;
 use App\Http\Requests\Projects\OrderRequest;
 use App\Models\Order;
 use App\Models\Projects\Project;
+use App\Models\User;
 use App\Services\Projects\SmetaGateway;
-use Auth;
-use DB;
 
 class OrderService
 {
@@ -19,46 +18,48 @@ class OrderService
         $this->gateway = $gateway;
     }
 
-    public function order($id, OrderRequest $request) {
+    public function order($user_id, $project_id, $developer_id, OrderRequest $request) {
 
-        $user = Auth::user();
-        $project = $this->getProject($id);
+        $user = $this->getUser($user_id);
+        $project = $this->getProject($project_id);
+        $developer = $this->getUser($developer_id);
 
-        $price = $this->getCalculatedPrice($project, $request);
+        $params = [
+            'order_name' => $request['order_name'],
+            'order_email' => $request['order_email'],
+            'order_phone' => $request['order_phone'],
+            'order_city' => $request['order_city'],
+            'order_address' => $request['order_address'],
+            'order_postal_code' => $request['order_postal_code'],
+            'price' => $this->getCalculatedPrice($project)
+        ];
 
-        DB::transaction(function () use ($project, $request, $price, $user) {
-
-            $order = Order::make([
-                'user_id' => $user->id,
-                'project_id' => $project->id,
-
-                'order_name' => $request['order_name'],
-                'order_email' => $request['order_phone'],
-                'order_phone' => $request['order_phone'],
-                'price' => $price
+        if ($user->isIndividual())
+            $params = array_merge($params, [
+                'order_passport_serial' => $request['order_passport_serial'],
+                'order_passport_number' => $request['order_passport_number'],
+                'order_passport_issue' => $request['order_passport_issue'],
+                'order_passport_issue_date' => $request['order_passport_issue_date']
             ]);
-            $order->save();
 
-            $projectData = ProjectData::make([
-                'order_id' => $order->id,
-                'project_id' => $project->id,
-                'data' => '',
-                'total_price' => $price
+        elseif ($user->isEntity())
+            $params = array_merge($params, [
+                'order_company_name' => $request['order_company_name'],
+                'order_company_address' => $request['order_company_address'],
+                'order_company_inn' => $request['order_company_inn'],
+                'order_company_kpp' => $request['order_company_kpp'],
+                'order_company_payment_account' => $request['order_company_payment_account'],
+                'order_company_correspondent_account' => $request['order_company_correspondent_account']
             ]);
-            $projectData->save();
 
-            foreach (Attribute::all() as $attribute) {
-                $value = $request['order_attributes'][$attribute->id] ?? null;
-                if (!empty($value)) {
-                    $order->values()->create([
-                        'attribute_id' => $attribute->id,
-                        'value' => $value
-                    ]);
-                }
-            }
 
-            return $order;
-        });
+        $order = Order::make($params);
+
+        $order->user()->associate($user);
+        $order->developer()->associate($developer);
+        $order->project()->associate($project);
+
+        return $order->save();
     }
 
     public function cancel($id) {
@@ -67,9 +68,13 @@ class OrderService
 //        todo: cancel order
     }
 
-    private function getOrder($id): Order
+    public function getCalculatedPrice(Project $project) {
+        return $project->price;
+    }
+
+    public function getUser($id): User
     {
-        return Order::findOrFail($id);
+        return User::findOrFail($id);
     }
 
     private function getProject($id): Project
@@ -77,8 +82,8 @@ class OrderService
         return Project::findOrFail($id);
     }
 
-    private function getCalculatedPrice(Project $project, OrderRequest $request) {
-        return $project->price;
-//        return $this->gateway->calculatePrice($project, $request);
+    private function getOrder($id): Order
+    {
+        return Order::findOrFail($id);
     }
 }
