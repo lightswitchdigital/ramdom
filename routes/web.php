@@ -19,7 +19,7 @@ Route::middleware('auth')->get('/notifications', function (\Illuminate\Http\Requ
         ->skip(($batch - 1) * $count)
         ->take($count)->get();
 
-    dd($notifications);
+    return $notifications;
 
 })->name('get-notifications');
 

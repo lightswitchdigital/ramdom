@@ -1406,6 +1406,34 @@ a.project-card{
         }
     }
 }
+
+
+.messages-btn{
+    background: none;
+    position: relative;
+    &::after{
+        content: '';
+        width: 7px;
+        height: 7px;
+        background: red;
+        border-radius: 50%;
+        top: 7px;
+        right: 5px;
+        display: none;
+        position: absolute;
+        background-image: none;
+        border: none;
+    }
+    &.active{
+        &::after{
+            display: block;
+        }
+    }
+    &:active ,&:focus{
+        box-shadow: none;
+        outline: none;
+    }
+}
 .messages-block{
     padding: 10px;
     max-height: 300px;

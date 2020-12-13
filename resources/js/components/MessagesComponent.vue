@@ -1,24 +1,62 @@
 <template>
-    <div class="dropdown-menu dropdown-menu-right messages-block" 
-         aria-labelledby="navbarDropdownMessage">
-        <a href="#" class="dropdown-item message-block"
-        v-for="(message , index) in messages" :key="index">
-            <h5 class="title">{{ message.title }}</h5>
-            {{ message.message }}
-            <span class="date text-muted">{{ message.date }}</span>
+    <div>
+        <a id="navbarDropdownMessage" 
+            class="nav-link dropdown-toggle messages-btn" 
+            :class="{active: messages.length != 0}"
+            href="#" role="button" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false">
+            <i class="fas fa-bell"></i>
         </a>
+        <div class="dropdown-menu dropdown-menu-right messages-block" 
+            aria-labelledby="navbarDropdownMessage">
+            <a href="#" class="dropdown-item message-block"
+            v-for="(message , index) in messages" :key="index">
+                <h5 class="title">{{ message.title }}</h5>
+                {{ message.message }}
+                <span class="date text-muted">{{ message.date }}</span>
+            </a>
+            <div class="dropdown-item" v-if="messages.length == 0">Пока сообщений нет</div>
+            <scroll-loader 
+            :loader-method="getMessages" 
+            :loader-disable="disable">
+                <div>Loading...</div>
+            </scroll-loader>
+        </div>
     </div>
+    
 </template>
 
 <script>
+import Vue from 'vue'
+import ScrollLoader from 'vue-scroll-loader'
+
+Vue.use(ScrollLoader)
+
 export default {
     data: () => ({
-        messages: [
-            {title: 'Сообщение 1' , message: 'Вы вошли в аккаунт' , date: '2020:20:08'}, 
-            {title: 'Сообщение 2' , message: 'Вы вошли в аккаунт' , date: '2020:23:08'}, 
-            {title: 'Сообщение 2' , message: 'Вы вошли в аккаунт' , date: '2020:23:08'}, 
-            {title: 'Сообщение 2' , message: 'Вы вошли в аккаунт' , date: '2020:23:08'}
-        ],
-    })
+        messages: [],
+        loadMore: true,
+        batch: 1,
+        pageSize: 10,
+        disable: false
+    }),
+    methods: {
+        getMessages() {
+            axios.get(`/notifications?batch=${this.batch++}`).then(res => {
+                this.messages.concat(res.data)
+                res.data.length < this.pageSize && (this.loadMore = false)
+                this.disable = res.data.length < this.pageSize
+            })
+            .catch(error => {
+                console.log(error);
+                this.disable = false
+            })
+        }
+    }, 
+    mounted() {
+        this.getMessages()
+    }
 }
 </script>
