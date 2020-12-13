@@ -1957,11 +1957,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2400,6 +2395,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessagesComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MessagesComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      messages: [{
+        title: 'Сообщение 1',
+        message: 'Вы вошли в аккаунт',
+        date: '2020:20:08'
+      }, {
+        title: 'Сообщение 2',
+        message: 'Вы вошли в аккаунт',
+        date: '2020:23:08'
+      }, {
+        title: 'Сообщение 2',
+        message: 'Вы вошли в аккаунт',
+        date: '2020:23:08'
+      }, {
+        title: 'Сообщение 2',
+        message: 'Вы вошли в аккаунт',
+        date: '2020:23:08'
+      }]
+    };
   }
 });
 
@@ -39935,122 +39977,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "modal fade balance-modal",
-      attrs: {
-        id: "addBalanceModal",
-        tabindex: "-1",
-        "aria-labelledby": "exampleModalLabel",
-        "aria-hidden": "true"
-      }
-    },
-    [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "modal-body", class: { animated: _vm.animated } },
-            [
-              _vm.step === 1 || _vm.step === 0
-                ? _c(
-                    "form",
-                    {
-                      staticClass: "first-step",
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.onSubmit($event)
-                        }
+  return _c("div", { staticClass: "balance-modal" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("h1", { staticClass: "title" }, [_vm._v("Пополнить баланс")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "modal-body", class: { animated: _vm.animated } },
+          [
+            _vm.step === 1 || _vm.step === 0
+              ? _c(
+                  "form",
+                  {
+                    staticClass: "first-step",
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.onSubmit($event)
                       }
-                    },
-                    [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "sumInput" } }, [
-                          _vm._v("Сумма")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.sum,
-                              expression: "sum"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-invalid": _vm.error },
-                          attrs: { type: "number", id: "sumInput" },
-                          domProps: { value: _vm.sum },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.sum = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.error
-                          ? _c("span", { staticClass: "invalid-text" }, [
-                              _vm._v("Введите сумму")
-                            ])
-                          : _vm._e()
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "sumInput" } }, [
+                        _vm._v("Сумма")
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn yellow-btn",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("Дальше")]
-                      )
-                    ]
-                  )
-                : _vm.step === 0 || _vm.step === 2
-                ? _c("div", { staticClass: "second-step" }, [
-                    _c("h5", [_vm._v("Реквизиты")]),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sum,
+                            expression: "sum"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.error },
+                        attrs: { type: "number", id: "sumInput" },
+                        domProps: { value: _vm.sum },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.sum = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.error
+                        ? _c("span", { staticClass: "invalid-text" }, [
+                            _vm._v("Введите сумму")
+                          ])
+                        : _vm._e()
+                    ]),
                     _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._m(2)
-                  ])
-                : _vm._e()
-            ]
-          )
-        ])
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn yellow-btn",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Дальше")]
+                    )
+                  ]
+                )
+              : _vm.step === 0 || _vm.step === 2
+              ? _c("div", { staticClass: "second-step" }, [
+                  _c("h5", [_vm._v("Реквизиты")]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              : _vm._e()
+          ]
+        )
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h3", { staticClass: "modal-title" }, [_vm._v("Пополнить баланс")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40885,6 +40894,54 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessagesComponent.vue?vue&type=template&id=2626cdb6&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MessagesComponent.vue?vue&type=template&id=2626cdb6& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "dropdown-menu dropdown-menu-right messages-block",
+      attrs: { "aria-labelledby": "navbarDropdownMessage" }
+    },
+    _vm._l(_vm.messages, function(message, index) {
+      return _c(
+        "a",
+        {
+          key: index,
+          staticClass: "dropdown-item message-block",
+          attrs: { href: "#" }
+        },
+        [
+          _c("h5", { staticClass: "title" }, [_vm._v(_vm._s(message.title))]),
+          _vm._v("\n        " + _vm._s(message.message) + "\n        "),
+          _c("span", { staticClass: "date text-muted" }, [
+            _vm._v(_vm._s(message.date))
+          ])
+        ]
+      )
+    }),
+    0
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -70006,6 +70063,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Projects_PurchasedProjectCardComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Projects/PurchasedProjectCardComponent */ "./resources/js/components/Projects/PurchasedProjectCardComponent.vue");
 /* harmony import */ var _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Projects/MyProjectsComponent */ "./resources/js/components/Projects/MyProjectsComponent.vue");
 /* harmony import */ var _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AddBalanceComponent */ "./resources/js/components/AddBalanceComponent.vue");
+/* harmony import */ var _components_MessagesComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/MessagesComponent */ "./resources/js/components/MessagesComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -70019,6 +70077,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -70050,6 +70109,7 @@ Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED
 Vue.component('recommendations', _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
 Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
 Vue.component('add-balance', _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_12__["default"]);
+Vue.component('messages', _components_MessagesComponent__WEBPACK_IMPORTED_MODULE_13__["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -70372,6 +70432,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterComponent_vue_vue_type_template_id_38d4e37e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterComponent_vue_vue_type_template_id_38d4e37e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MessagesComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/MessagesComponent.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MessagesComponent_vue_vue_type_template_id_2626cdb6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessagesComponent.vue?vue&type=template&id=2626cdb6& */ "./resources/js/components/MessagesComponent.vue?vue&type=template&id=2626cdb6&");
+/* harmony import */ var _MessagesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessagesComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MessagesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MessagesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MessagesComponent_vue_vue_type_template_id_2626cdb6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MessagesComponent_vue_vue_type_template_id_2626cdb6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MessagesComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MessagesComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/MessagesComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MessagesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MessagesComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessagesComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MessagesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MessagesComponent.vue?vue&type=template&id=2626cdb6&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/MessagesComponent.vue?vue&type=template&id=2626cdb6& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessagesComponent_vue_vue_type_template_id_2626cdb6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MessagesComponent.vue?vue&type=template&id=2626cdb6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessagesComponent.vue?vue&type=template&id=2626cdb6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessagesComponent_vue_vue_type_template_id_2626cdb6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessagesComponent_vue_vue_type_template_id_2626cdb6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -1370,6 +1370,19 @@ a.project-card{
 }
 
 .balance-modal{
+    .title{
+        width: fit-content;
+        padding-bottom: 2px;
+        border-bottom: 2px solid #FFD977;
+    }
+    .card{
+        max-width: 380px;
+        margin: 30px auto;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
     .modal-body{
         width: 100%;
         height: 470px;
@@ -1390,6 +1403,28 @@ a.project-card{
             .first-step{
                 margin-left: -100%;
             }
+        }
+    }
+}
+.messages-block{
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: scroll;
+    .message-block{
+        color: #000;
+        text-decoration: none;
+        width: 320px;
+        padding: 10px;
+        box-sizing: border-box;
+        .title{
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .date{
+            display: block;
+        }
+        &:not(:last-child){
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
         }
     }
 }

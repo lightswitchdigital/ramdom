@@ -1,22 +1,17 @@
 <template>
-    <div class="modal fade balance-modal" id="addBalanceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Пополнить баланс</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+    <div class="balance-modal">
+        <div class="container">
+            <h1 class="title">Пополнить баланс</h1>
+            <div class="card">
             <div class="modal-body" :class="{animated: animated}">
                 <form class="first-step" v-if="step === 1 || step === 0" @submit.prevent='onSubmit'>
                     <div class="form-group">
                         <label for="sumInput">Сумма</label>
                         <input class="form-control" 
-                               type="number" 
-                               id="sumInput" 
-                               v-model="sum"
-                               :class="{'is-invalid': error}"
+                                type="number" 
+                                id="sumInput" 
+                                v-model="sum"
+                                :class="{'is-invalid': error}"
                             >
                         <span v-if="error" class="invalid-text">Введите сумму</span> 
                     </div>

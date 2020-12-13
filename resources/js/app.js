@@ -22,6 +22,7 @@ import Recommend from './components/Projects/RecommendationsComponent'
 import PurchasedProjectCardComponent from "./components/Projects/PurchasedProjectCardComponent";
 import MyProjectsComponent from "./components/Projects/MyProjectsComponent";
 import AddBalanceComponent from "./components/AddBalanceComponent";
+import MessagesComponent from "./components/MessagesComponent"
 
 
 Vue.use(VueRouter)
@@ -51,6 +52,8 @@ Vue.component('recommendations', Recommend);
 Vue.component('advice', AdviceComponent);
 
 Vue.component('add-balance', AddBalanceComponent);
+
+Vue.component('messages', MessagesComponent);
 
 
 

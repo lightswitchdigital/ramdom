@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <add-balance></add-balance>
-
     <div class="balance-block">
         <div class="container">
             <h1 class="title">Баланс</h1>
@@ -12,11 +10,10 @@
                         <h4 class="card-header">Текущий баланс</h4>
                         <div class="card-body">
                             <h3 class="balance">10000 р</h3>
-                            <button 
-                                class="btn"
-                                data-toggle="modal" 
-                                data-target="#addBalanceModal"
-                            >Пополнить баланс</button>
+                            <a 
+                            class="btn"
+                            href="balance/add"
+                            >Пополнить баланс</a>
                         </div>
                     </div>
                 </div>
