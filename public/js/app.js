@@ -2833,9 +2833,8 @@ __webpack_require__.r(__webpack_exports__);
     onSubmit: function onSubmit() {
       var _this2 = this;
 
-      this.buyDisabled = true;
-
       if (this.isAuthenticated) {
+        this.buyDisabled = true;
         this.notAllChange = false;
         axios.post(this.buyLink, {
           '_token': this.csrfToken,
@@ -41521,7 +41520,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                !_vm.canEdit && !_vm.saveFile
+                !_vm.canEdit && !_vm.saveFile && _vm.isAuthenticated
                   ? _c("div", { staticClass: "alert alert-info" }, [
                       _vm._v(
                         "\n                        Этот проект не сохранится так как превышен лимит одновременных проектов\n                    "

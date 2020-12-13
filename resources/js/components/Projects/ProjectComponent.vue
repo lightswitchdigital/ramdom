@@ -111,7 +111,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div v-if="!canEdit && !saveFile" class="alert alert-info" >
+                        <div v-if="!canEdit && !saveFile && isAuthenticated" class="alert alert-info" >
                             Этот проект не сохранится так как превышен лимит одновременных проектов
                         </div>
                         <div class="alert alert-danger" v-if="notAllChange">
@@ -192,8 +192,8 @@ export default {
             })
         },
         onSubmit() {
-            this.buyDisabled = true
             if(this.isAuthenticated){
+                    this.buyDisabled = true
                     this.notAllChange = false
                     axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
                         if(response.status === 204){
