@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Projects;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\BuyRequest;
 use App\Models\Projects\Project;
+use App\Models\Projects\SavedProject;
 use Auth;
 use Illuminate\Http\Request;
 
