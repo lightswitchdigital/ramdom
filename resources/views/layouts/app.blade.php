@@ -76,9 +76,11 @@
                                 <a class="nav-link" href="{{ route('login') }}">Войти</a>
                             </li>
                         @else
+
                             <li class="nav-item dropdown">
                                 <notifications></notifications>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
