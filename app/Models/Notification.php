@@ -15,6 +15,10 @@ class Notification extends Model
     protected $fillable = [
         'user_id', 'title', 'content', 'seen', 'expires_at'
     ];
+    
+    protected $casts = [
+        'seen' => 'bool'
+    ];
 
     public $timestamps = true;
 

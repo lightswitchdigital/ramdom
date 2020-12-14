@@ -40,7 +40,7 @@ Route::group([
             'seen' => true
         ]);
 
-        return response('', 204);
+        return $notification;
     })->name('seen');
 
 });

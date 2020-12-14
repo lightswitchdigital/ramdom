@@ -2458,6 +2458,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -2482,16 +2486,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
         _this.messages = [].concat(_toConsumableArray(_this.messages), _toConsumableArray(res.data));
         res.data.length < _this.pageSize && (_this.loadMore = false);
         _this.disable = res.data.length < _this.pageSize;
+        console.log(_this.messages);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     postSeen: function postSeen(id) {
-      axios.post("/notifications/".concat(id, "/seen"), {
+      var _this2 = this;
+
+      axios.post("/notifications/".concat(id, "/see"), {
         '_token': this.csrfToken
       }).then(function (response) {
-        if (response.status === 204) {
+        if (response.status === 200) {
           console.log('seen is ok');
+          _this2.messages[id - 1] = response.data;
+
+          _this2.$nextTick(_this2.$forceUpdate);
         }
       })["catch"](function (error) {
         console.log(error);
@@ -41092,8 +41102,8 @@ var render = function() {
       {
         staticClass: "nav-link dropdown-toggle messages-btn",
         class: {
-          active: _vm.messages.forEach(function(e) {
-            e.hasOwnProperty("seen")
+          active: _vm.messages.some(function(message) {
+            return !message.seen
           })
         },
         attrs: {
@@ -41117,11 +41127,11 @@ var render = function() {
       [
         _vm._l(_vm.messages, function(message, index) {
           return _c(
-            "a",
+            "div",
             {
               key: index,
               staticClass: "dropdown-item message-block",
-              attrs: { href: "#" }
+              class: { seen: message.seen }
             },
             [
               _c("h5", { staticClass: "title" }, [
@@ -41135,10 +41145,10 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c(
-                "a",
+                "button",
                 {
                   staticClass: "seen-btn",
-                  attrs: { href: "#" },
+                  attrs: { disabled: message.seen },
                   on: {
                     click: function($event) {
                       $event.preventDefault()

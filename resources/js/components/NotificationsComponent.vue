@@ -2,8 +2,8 @@
     <div>
         <a id="navbarDropdownMessage"
             class="nav-link dropdown-toggle messages-btn"
-            :class="{active: !messages.forEach(e => {e.hasOwnProperty('seen')})}"
             href="#" role="button"
+            :class="{active: messages.some(message => !message.seen)}"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false">
@@ -11,15 +11,19 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right messages-block"
             aria-labelledby="navbarDropdownMessage">
-            <a href="#" class="dropdown-item message-block"
+            <div class="dropdown-item message-block"
+            :class='{seen: message.seen}'
             v-for="(message , index) in messages" :key="index">
                 <h5 class="title">{{ message.title }}</h5>
                 {{ message.content }}
                 <span class="date text-muted">{{ message.date }}</span>
-                <a href="#" class="seen-btn" @click.prevent="postSeen(message.id)">
+                <button class="seen-btn" 
+                        :disabled="message.seen"
+                        @click.prevent="postSeen(message.id)"
+                >
                     <i class="fas fa-eye"></i>
-                </a>
-            </a>
+                </button>
+            </div>
             <div class="dropdown-item" v-if="messages.length === 0">Пока сообщений нет</div>
             <scroll-loader
             :loader-method="getMessages"
@@ -54,15 +58,18 @@ export default {
                 this.messages = [...this.messages, ...res.data]
                 res.data.length < this.pageSize && (this.loadMore = false)
                 this.disable = res.data.length < this.pageSize
+                console.log(this.messages);
             })
             .catch(error => {
                 console.log(error)
             })
         },
         postSeen(id) {
-            axios.post(`/notifications/${id}/seen` , {'_token' : this.csrfToken}).then(response => {
-                if(response.status === 204){
+            axios.post(`/notifications/${id}/see` , {'_token' : this.csrfToken}).then(response => {
+                if(response.status === 200){
                     console.log('seen is ok');
+                    this.messages[id - 1] = response.data
+                    this.$nextTick(this.$forceUpdate)
                 }
             }).catch(error => {
                 console.log(error);
