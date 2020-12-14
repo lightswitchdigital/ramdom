@@ -8,20 +8,49 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::middleware('auth')->get('/notifications', function (\Illuminate\Http\Request $request) {
+/*
+|--------------------------------------------------------------------------
+| Notifications routes
+|--------------------------------------------------------------------------
+|
+*/
 
-    $batch = (int) $request->get('batch') ?? 1;
-    $user = User::find(Auth::id());
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'notifications',
+    'as' => 'notifications.'
+], function() {
 
-    $count = env('NOTIFICATIONS_COUNT_BATCH');
+    Route::get('/get', function (\Illuminate\Http\Request $request) {
+        $batch = (int) $request->get('batch') ?? 1;
+        $user = User::find(Auth::id());
 
-    $notifications = $user->notifications()
-        ->skip(($batch - 1) * $count)
-        ->take($count)->get();
+        $count = env('NOTIFICATIONS_COUNT_BATCH');
 
-    return $notifications;
+        $notifications = $user->notifications()
+            ->skip(($batch - 1) * $count)
+            ->take($count)->get();
 
-})->name('get-notifications');
+        return $notifications;
+    })->name('get');
+
+    Route::post('/{notification}/see', function(\App\Models\Notification $notification) {
+
+        $notification->update([
+            'seen' => true
+        ]);
+
+        return response('', 204);
+    })->name('seen');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Root routes
+|--------------------------------------------------------------------------
+|
+*/
 
 Route::group([
     'prefix' => 'projects',
