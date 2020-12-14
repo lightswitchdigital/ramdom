@@ -10,7 +10,6 @@
                     @foreach($projects as $project)
                         <purchased-project-card
                             :project="{{ $project }}"
-                            @projectInfo="getId"
                         ></purchased-project-card>
                         <purchased-project-details
                             :project="{{ $project }}"
