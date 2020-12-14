@@ -2455,6 +2455,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -2468,18 +2471,30 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
       disable: false
     };
   },
+  created: function created() {
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  },
   methods: {
     getMessages: function getMessages() {
       var _this = this;
 
-      axios.get("/notifications?batch=".concat(++this.batch)).then(function (res) {
+      axios.get("/notifications/get?batch=".concat(++this.batch)).then(function (res) {
         _this.messages = [].concat(_toConsumableArray(_this.messages), _toConsumableArray(res.data));
-        console.log(_this.messages);
         res.data.length < _this.pageSize && (_this.loadMore = false);
         _this.disable = res.data.length < _this.pageSize;
       })["catch"](function (error) {
         console.log(error);
-        _this.disable = false;
+      });
+    },
+    postSeen: function postSeen(id) {
+      axios.post("/notifications/".concat(id, "/seen"), {
+        '_token': this.csrfToken
+      }).then(function (response) {
+        if (response.status === 204) {
+          console.log('seen is ok');
+        }
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   },
@@ -41076,7 +41091,11 @@ var render = function() {
       "a",
       {
         staticClass: "nav-link dropdown-toggle messages-btn",
-        class: { active: _vm.messages.length !== 0 },
+        class: {
+          active: _vm.messages.forEach(function(e) {
+            e.hasOwnProperty("seen")
+          })
+        },
         attrs: {
           id: "navbarDropdownMessage",
           href: "#",
@@ -41113,7 +41132,22 @@ var render = function() {
               ),
               _c("span", { staticClass: "date text-muted" }, [
                 _vm._v(_vm._s(message.date))
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "seen-btn",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.postSeen(message.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-eye" })]
+              )
             ]
           )
         }),

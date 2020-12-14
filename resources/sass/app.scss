@@ -358,7 +358,9 @@ a.project-card{
         padding: 10px 0;
     }
     &.order-card{
-        padding-bottom: 10px;
+        .card-body{
+        padding-bottom: 25px;
+        }
     }
 }
 
@@ -1444,12 +1446,24 @@ a.project-card{
         width: 320px;
         padding: 10px;
         box-sizing: border-box;
+        position: relative;
+        padding-right: 20px;
         .title{
             margin-bottom: 0;
             padding-bottom: 0;
         }
         .date{
             display: block;
+        }
+        .seen-btn{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            font-size: 14px;
+            color: #000;
+            text-decoration: none;
+            transform: translateY(-50%);
+            cursor: pointer;
         }
         &:not(:last-child){
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);

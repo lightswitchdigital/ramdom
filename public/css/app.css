@@ -11296,8 +11296,8 @@ a.project-card .yellow-btn {
   padding: 10px 0;
 }
 
-a.project-card.order-card {
-  padding-bottom: 10px;
+a.project-card.order-card .card-body {
+  padding-bottom: 25px;
 }
 
 .filter-block {
@@ -12547,6 +12547,8 @@ a.project-card.order-card {
   width: 320px;
   padding: 10px;
   box-sizing: border-box;
+  position: relative;
+  padding-right: 20px;
 }
 
 .messages-block .message-block .title {
@@ -12556,6 +12558,17 @@ a.project-card.order-card {
 
 .messages-block .message-block .date {
   display: block;
+}
+
+.messages-block .message-block .seen-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .messages-block .message-block:not(:last-child) {
