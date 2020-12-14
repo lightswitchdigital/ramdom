@@ -49,10 +49,4 @@ class ProjectsController extends Controller
             ->with('success', 'Заказ на строительство успешно создан и передан застройщику. Скоро он с вами свяжется по телефону');
     }
 
-    public function calculatePrice(PurchasedProject $project) {
-
-//        todo: Подключить смету
-        return $project->project->price;
-    }
-
 }

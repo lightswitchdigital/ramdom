@@ -22,7 +22,7 @@ import Recommend from './components/Projects/RecommendationsComponent'
 import PurchasedProjectCardComponent from "./components/Projects/PurchasedProjectCardComponent";
 import MyProjectsComponent from "./components/Projects/MyProjectsComponent";
 import AddBalanceComponent from "./components/AddBalanceComponent";
-import MessagesComponent from "./components/MessagesComponent"
+import NotificationsComponent from "./components/NotificationsComponent"
 
 
 Vue.use(VueRouter)
@@ -53,7 +53,7 @@ Vue.component('advice', AdviceComponent);
 
 Vue.component('add-balance', AddBalanceComponent);
 
-Vue.component('messages', MessagesComponent);
+Vue.component('notifications', NotificationsComponent);
 
 
 
