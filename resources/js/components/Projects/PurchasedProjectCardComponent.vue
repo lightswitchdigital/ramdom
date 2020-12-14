@@ -7,15 +7,19 @@
             <div class="card-price">от {{ project.price }} <span class="rub">₽</span></div>
             <h5 class="card-title">{{ project.project.title }}</h5>
             <ul class="card-text">
-                <li v-for="(value, label , index) in project.jsonValues" :key="index" v-if="index <= 4">
+                <li v-for="(value, label , index) in project.jsonValues" :key="index">
                     <span>{{ label }}</span><span>{{ value }}</span>
                 </li>
             </ul>
-            <button class="btn yellow-btn mt-3" 
-            data-toggle="modal" 
-            data-target="#modalProject">
+            <br>
+            <small
+                data-toggle="modal"
+                :data-target="'#project-details-'+project.id">
                 Подробнее
-            </button>
+            </small>
+            <a :href="project.orderLink" class="btn yellow-btn mt-3">
+                Заказать строительство
+            </a>
         </div>
     </a>
 </template>
@@ -29,7 +33,6 @@ export default {
     }),
     props: [
         'project',
-        'orderLink'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
