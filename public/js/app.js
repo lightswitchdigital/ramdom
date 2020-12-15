@@ -2462,6 +2462,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -2506,6 +2510,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    stopScrolling: function stopScrolling(e) {
+      e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1) * 30;
     }
   },
   mounted: function mounted() {
@@ -41122,7 +41129,21 @@ var render = function() {
       "div",
       {
         staticClass: "dropdown-menu dropdown-menu-right messages-block",
-        attrs: { "aria-labelledby": "navbarDropdownMessage" }
+        attrs: { "aria-labelledby": "navbarDropdownMessage" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return (function(e) {
+              return e.stopPropagation()
+            })($event)
+          },
+          mousewheel: function($event) {
+            $event.preventDefault()
+            return (function(e) {
+              return _vm.stopScrolling(e)
+            })($event)
+          }
+        }
       },
       [
         _vm._l(_vm.messages, function(message, index) {

@@ -1,8 +1,9 @@
 <template>
     <div>
         <a id="navbarDropdownMessage"
+            href="#"
             class="nav-link dropdown-toggle messages-btn"
-            href="#" role="button"
+            role="button"
             :class="{active: messages.some(message => !message.seen)}"
             data-toggle="dropdown"
             aria-haspopup="true"
@@ -10,8 +11,11 @@
             <i class="fas fa-bell"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right messages-block"
-            aria-labelledby="navbarDropdownMessage">
-            <div class="dropdown-item message-block"
+            aria-labelledby="navbarDropdownMessage"
+            @click.prevent="e => e.stopPropagation()"
+            @mousewheel.prevent="e => stopScrolling(e)">
+            <div
+            class="dropdown-item message-block"
             :class='{seen: message.seen}'
             v-for="(message , index) in messages" :key="index">
                 <h5 class="title">{{ message.title }}</h5>
@@ -74,6 +78,9 @@ export default {
             }).catch(error => {
                 console.log(error);
             })
+        },
+        stopScrolling(e) {
+            e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1 ) * 30
         }
     },
     mounted() {
