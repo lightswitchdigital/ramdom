@@ -14,25 +14,35 @@
             aria-labelledby="navbarDropdownMessage"
             @click.prevent="e => e.stopPropagation()"
             @mousewheel.prevent="e => stopScrolling(e)">
+            <div class="dropdown-title">
+                Уведомления
+            </div>
             <div
             class="dropdown-item message-block"
             :class='{seen: message.seen}'
-            v-for="(message , index) in messages" :key="index">
-                <h5 class="title">{{ message.title }}</h5>
-                {{ message.content }}
-                <span class="date text-muted">{{ message.date }}</span>
-                <button class="seen-btn" 
+            v-for="(message , index) in messages" :key="index"
+            @click.prevent="postSeen(message.id)">
+                <div class="icon">
+                    <img src="https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Man-16-icon.png" alt="">
+                </div>
+                <div class="content">
+                    <h6 class="title">{{ message.title }}</h6>
+                    {{ message.content }}    
+                </div>
+                <span class="date text-muted"></span>
+                <!-- <button class="seen-btn" 
                         :disabled="message.seen"
-                        @click.prevent="postSeen(message.id)"
                 >
                     <i class="fas fa-eye"></i>
-                </button>
+                </button> -->
             </div>
             <div class="dropdown-item" v-if="messages.length === 0">Пока сообщений нет</div>
             <scroll-loader
             :loader-method="getMessages"
             :loader-disable="disable">
-                <div>Loading...</div>
+                <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </scroll-loader>
         </div>
     </div>
@@ -80,7 +90,7 @@ export default {
             })
         },
         stopScrolling(e) {
-            e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1 ) * 30
+            e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1 ) * 15
         }
     },
     mounted() {

@@ -2466,6 +2466,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -2512,7 +2522,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
       });
     },
     stopScrolling: function stopScrolling(e) {
-      e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1) * 30;
+      e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1) * 10;
     }
   },
   mounted: function mounted() {
@@ -41146,39 +41156,39 @@ var render = function() {
         }
       },
       [
+        _c("div", { staticClass: "dropdown-title" }, [
+          _vm._v("\n            Уведомления\n        ")
+        ]),
+        _vm._v(" "),
         _vm._l(_vm.messages, function(message, index) {
           return _c(
             "div",
             {
               key: index,
               staticClass: "dropdown-item message-block",
-              class: { seen: message.seen }
+              class: { seen: message.seen },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.postSeen(message.id)
+                }
+              }
             },
             [
-              _c("h5", { staticClass: "title" }, [
-                _vm._v(_vm._s(message.title))
-              ]),
-              _vm._v(
-                "\n            " + _vm._s(message.content) + "\n            "
-              ),
-              _c("span", { staticClass: "date text-muted" }, [
-                _vm._v(_vm._s(message.date))
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "content" }, [
+                _c("h6", { staticClass: "title" }, [
+                  _vm._v(_vm._s(message.title))
+                ]),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(message.content) +
+                    "    \n            "
+                )
               ]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "seen-btn",
-                  attrs: { disabled: message.seen },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.postSeen(message.id)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-eye" })]
-              )
+              _c("span", { staticClass: "date text-muted" })
             ]
           )
         }),
@@ -41197,14 +41207,38 @@ var render = function() {
               "loader-disable": _vm.disable
             }
           },
-          [_c("div", [_vm._v("Loading...")])]
+          [
+            _c(
+              "div",
+              {
+                staticClass: "spinner-border text-dark",
+                attrs: { role: "status" }
+              },
+              [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+            )
+          ]
         )
       ],
       2
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Man-16-icon.png",
+          alt: ""
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -71457,9 +71491,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
