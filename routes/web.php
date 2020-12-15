@@ -112,6 +112,9 @@ Route::group([
         Route::get('/{project}/order', 'ProjectsController@order')->name('order');
         Route::post('/{project}/order/{developer}/submit')->name('order.submit');
 
+        Route::get('/get-purchased-projects', 'ProjectsController@getPurchasedProjects')->name('get-purchased-projects');
+        Route::get('/get-saved-projects', 'ProjectsController@getSavedProjects')->name('get-saved-projects');
+
     });
 
     Route::group([

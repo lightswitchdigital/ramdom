@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\OrderRequest;
-use App\Models\Order;
-use App\Models\Projects\Project;
 use App\Models\Projects\Purchase\PurchasedProject;
+use App\Models\Projects\SavedProject;
 use App\Models\User;
 use App\Services\OrderService;
 use Auth;
@@ -22,10 +21,38 @@ class ProjectsController extends Controller
     }
 
     public function index() {
-        $user = Auth::user();
-        $projects = $user->purchasedProjects()->with('project')->paginate(env('PROJECTS_PAGINATION'));
+        return view('profile.projects.index');
+    }
 
-        return view('profile.projects.index', compact('projects'));
+    public function getPurchasedProjects(Request $request) {
+
+        $batch = (int) $request->get('batch') ?? 1;
+        $skip = ($batch - 1) * env('PROJECTS_PAGINATION');
+
+        $user = Auth::user();
+        $purchased = $user->purchasedProjects()->with('project')->skip($skip)->take(env('PROJECTS_PAGINATION'))->get();
+
+        return $purchased->toJson();
+    }
+
+    public function getSavedProjects(Request $request) {
+
+        $batch = (int) $request->get('batch') ?? 1;
+        $skip = ($batch - 1) * env('PROJECTS_PAGINATION');
+
+        $user = Auth::user();
+        $saved = $user->savedProjects()->with('project')->skip($skip)->take(env('PROJECTS_PAGINATION'))->get();;
+
+        return $saved->toJson();
+    }
+
+    public function removeFromSaved(SavedProject $project) {
+        $user = Auth::user();
+
+        $user->savedProjects()->where($project->id)->delete();
+
+        return redirect()->back()
+            ->with('success', 'Проект успешно удален из сохраненных.');
     }
 
     public function order(PurchasedProject $project) {
