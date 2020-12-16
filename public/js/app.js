@@ -2588,6 +2588,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -41258,9 +41259,7 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "dropdown-title" }, [
-          _vm._v("\n            Уведомления\n        ")
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.messages, function(message, index) {
           return _c(
@@ -41281,14 +41280,13 @@ var render = function() {
                 _c("h6", { staticClass: "title" }, [
                   _vm._v(_vm._s(message.title))
                 ]),
-                _vm._v(
-                  "\n                " +
-                    _vm._s(message.content) +
-                    "    \n            "
-                )
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(message.content) + " ")])
               ]),
               _vm._v(" "),
-              _c("span", { staticClass: "date text-muted" })
+              _c("span", { staticClass: "date text-muted" }, [
+                _vm._v(_vm._s(message.sinceCreated))
+              ])
             ]
           )
         }),
@@ -41323,7 +41321,21 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "dropdown-title" }, [
+      _vm._v("\n            Уведомления"),
+      _c("br"),
+      _vm._v(" "),
+      _c("small", { staticClass: "text-muted" }, [
+        _vm._v("Кликните для просмотра")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

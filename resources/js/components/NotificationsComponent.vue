@@ -15,7 +15,8 @@
             @click.prevent="e => e.stopPropagation()"
             @mousewheel.prevent="e => stopScrolling(e)">
             <div class="dropdown-title">
-                Уведомления
+                Уведомления<br>
+                <small class="text-muted">Кликните для просмотра</small>
             </div>
             <div
             class="dropdown-item message-block"
@@ -24,9 +25,9 @@
             @click.prevent="postSeen(message.id)">
                 <div class="content">
                     <h6 class="title">{{ message.title }}</h6>
-                    {{ message.content }}    
+                    <p>{{ message.content }} </p>   
                 </div>
-                <span class="date text-muted"></span>
+                <span class="date text-muted">{{ message.sinceCreated }}</span>
                 <!-- <button class="seen-btn" 
                         :disabled="message.seen"
                 >

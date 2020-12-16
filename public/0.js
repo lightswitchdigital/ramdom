@@ -110,20 +110,7 @@ var render = function() {
               attrs: { project: project },
               on: { postModal: _vm.getProject }
             })
-          }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.getMore($event)
-            }
-          }
-        },
-        [_vm._v("Показать больше")]
-      )
+          })
     ],
     2
   )
