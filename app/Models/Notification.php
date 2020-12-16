@@ -15,9 +15,13 @@ class Notification extends Model
     protected $fillable = [
         'user_id', 'title', 'content', 'seen', 'expires_at'
     ];
-    
+
     protected $casts = [
         'seen' => 'bool'
+    ];
+
+    protected $appends = [
+        'sinceCreated'
     ];
 
     public $timestamps = true;
@@ -27,6 +31,12 @@ class Notification extends Model
             'expires_at' => Carbon::now()->addDays(env('NOTIFICATIONS_EXPIRE_DAYS')),
             'seen' => false
         ], $params));
+    }
+
+    public function getSinceCreatedAttribute() {
+        $since = Carbon::now()->diffInHours($this->created_at);
+
+        return $since . ' часов назад';
     }
 
     public function user() {
