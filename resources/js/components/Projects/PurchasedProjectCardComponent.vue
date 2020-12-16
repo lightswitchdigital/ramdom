@@ -14,7 +14,8 @@
             <br>
             <small
                 data-toggle="modal"
-                :data-target="'#project-details-'+project.id">
+                :data-target="'#project-details-'+project.id" 
+                @click.prevent="postProject">
                 Подробнее
             </small>
             <a :href="project.orderLink" class="btn yellow-btn mt-3">
@@ -38,6 +39,9 @@ export default {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
     },
     methods: {
+        postProject() {
+            this.$emit('postModal', this.project)
+        }
     }
 };
 </script>

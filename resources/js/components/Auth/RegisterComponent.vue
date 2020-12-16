@@ -166,7 +166,7 @@ export default {
                 if(response.status === 204){
                     this.isDisabled = true 
                     setTimeout(() => {
-                        window.location.href = '/'
+                        window.location.href = '/login'
                     } , 1000)
                     
                 }

@@ -1,53 +1,35 @@
 <template>
     <div class="favorites-block">
-        <!-- <div class="modal fade" id="modalProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{modalProject.title}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-                </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" 
+                id="bouth-tab" data-toggle="tab"
+                href="#bouth" role="tab" 
+                aria-controls="bouth" aria-selected="true">Купленные</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#saved"
+                id="saved-tab" data-toggle="tab" role="tab" 
+                aria-controls="saved" aria-selected="true">Сохраненные</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="bouth" role="tabpanel" aria-labelledby="bouth-tab">
+                <BouthProjects></BouthProjects>
             </div>
-        </div> -->
-
-        <div class="container">
-            <h1 class="title">Мои проекты</h1>
-            <section class="section-projects">
-                <div class="projects-wrapper d-flex">
-                        <ProjectCard 
-                        v-for="(project , index) in projects"
-                        :key="index"
-                        :project="project"
-                        ></ProjectCard>
-                        {{projects.length}}
-                </div>
-            </section>
-            <!-- {{projects.links()}} -->
+            <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+                <SaveProjects></SaveProjects>
+            </div>
         </div>
+            <!-- {{projects.links()}} -->
     </div>
 </template>
 
 <script>
-import ProjectCard from './PurchasedProjectCardComponent'
-
 export default {
-    name: 'myProjects',
-    data: () => ({
-        modalProject: {}
-    }),
-    props: [
-        'projects'
-    ],
-    methods: {
-        getProject(project) {
-            this.modalProject = project
-        }
+    components: {
+        BouthProjects: () => import('./BouthProjectsComponent'),
+        SaveProjects: () => import('./SaveProjectsComponent')
     }
 }
 </script>

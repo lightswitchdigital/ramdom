@@ -2,7 +2,7 @@
     <div class="login-block">
         <form class="mx-auto" @submit.prevent='onSubmit'>
             <h1 class="title">Вход в личный кабинет</h1>
-            <div v-if="message != ''" class="alert alert-danger" role="alert">
+            <div v-if="message" class="alert alert-danger" role="alert">
                 {{message}}
             </div>
             <div class="form-group">
@@ -83,7 +83,7 @@ export default {
                 }
             }).catch(error => {
                 this.message = error.response.data.message
-                this.errors = error.response.data.errors
+                this.errors = error.response.data.errors || ''
             })
         }
     }

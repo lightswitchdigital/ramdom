@@ -50,6 +50,7 @@ Vue.component('purchased-project-details', PurchasedProjectDetails);
 Vue.component('my-projects', MyProjectsComponent);
 Vue.component('project', ProjectComponent);
 Vue.component('recommendations', Recommend);
+Vue.component('my-projects', MyProjectsComponent);
 
 Vue.component('advice', AdviceComponent);
 

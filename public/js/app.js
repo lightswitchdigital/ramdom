@@ -1,6 +1,50 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 	};
+/******/
+/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		"/js/app": 0
+/******/ 	};
+/******/
+/******/
+/******/
+/******/ 	// script path function
+/******/ 	function jsonpScriptSrc(chunkId) {
+/******/ 		return __webpack_require__.p + "" + ({}[chunkId]||chunkId) + ".js"
+/******/ 	}
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -26,6 +70,67 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		var promises = [];
+/******/
+/******/
+/******/ 		// JSONP chunk loading for javascript
+/******/
+/******/ 		var installedChunkData = installedChunks[chunkId];
+/******/ 		if(installedChunkData !== 0) { // 0 means "already installed".
+/******/
+/******/ 			// a Promise means "currently loading".
+/******/ 			if(installedChunkData) {
+/******/ 				promises.push(installedChunkData[2]);
+/******/ 			} else {
+/******/ 				// setup Promise in chunk cache
+/******/ 				var promise = new Promise(function(resolve, reject) {
+/******/ 					installedChunkData = installedChunks[chunkId] = [resolve, reject];
+/******/ 				});
+/******/ 				promises.push(installedChunkData[2] = promise);
+/******/
+/******/ 				// start chunk loading
+/******/ 				var script = document.createElement('script');
+/******/ 				var onScriptComplete;
+/******/
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 				script.src = jsonpScriptSrc(chunkId);
+/******/
+/******/ 				// create error before stack unwound to get useful stacktrace later
+/******/ 				var error = new Error();
+/******/ 				onScriptComplete = function (event) {
+/******/ 					// avoid mem leaks in IE.
+/******/ 					script.onerror = script.onload = null;
+/******/ 					clearTimeout(timeout);
+/******/ 					var chunk = installedChunks[chunkId];
+/******/ 					if(chunk !== 0) {
+/******/ 						if(chunk) {
+/******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 							var realSrc = event && event.target && event.target.src;
+/******/ 							error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 							error.name = 'ChunkLoadError';
+/******/ 							error.type = errorType;
+/******/ 							error.request = realSrc;
+/******/ 							chunk[1](error);
+/******/ 						}
+/******/ 						installedChunks[chunkId] = undefined;
+/******/ 					}
+/******/ 				};
+/******/ 				var timeout = setTimeout(function(){
+/******/ 					onScriptComplete({ type: 'timeout', target: script });
+/******/ 				}, 120000);
+/******/ 				script.onerror = script.onload = onScriptComplete;
+/******/ 				document.head.appendChild(script);
+/******/ 			}
+/******/ 		}
+/******/ 		return Promise.all(promises);
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -78,6 +183,16 @@
 /******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -2145,7 +2260,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 })["catch"](function (error) {
                   _this.message = error.response.data.message;
-                  _this.errors = error.response.data.errors;
+                  _this.errors = error.response.data.errors || '';
                 });
 
               case 3:
@@ -2379,7 +2494,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (response.status === 204) {
                     _this.isDisabled = true;
                     setTimeout(function () {
-                      window.location.href = '/';
+                      window.location.href = '/login';
                     }, 1000);
                   }
                 })["catch"](function (error) {
@@ -2473,9 +2588,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -2500,7 +2612,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
         _this.messages = [].concat(_toConsumableArray(_this.messages), _toConsumableArray(res.data));
         res.data.length < _this.pageSize && (_this.loadMore = false);
         _this.disable = res.data.length < _this.pageSize;
-        console.log(_this.messages);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2522,7 +2633,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
       });
     },
     stopScrolling: function stopScrolling(e) {
-      e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1) * 10;
+      e.currentTarget.scrollTop += ((e.wheelDelta || e.detail) < 0 ? 1 : -1) * 15;
     }
   },
   mounted: function mounted() {
@@ -2541,7 +2652,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PurchasedProjectCardComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PurchasedProjectCardComponent */ "./resources/js/components/Projects/PurchasedProjectCardComponent.vue");
 //
 //
 //
@@ -2569,26 +2679,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'myProjects',
-  data: function data() {
-    return {
-      modalProject: {}
-    };
-  },
-  props: ['projects'],
-  methods: {
-    getProject: function getProject(project) {
-      this.modalProject = project;
+  components: {
+    BouthProjects: function BouthProjects() {
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./BouthProjectsComponent */ "./resources/js/components/Projects/BouthProjectsComponent.vue"));
+    },
+    SaveProjects: function SaveProjects() {
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./SaveProjectsComponent */ "./resources/js/components/Projects/SaveProjectsComponent.vue"));
     }
   }
 });
@@ -2965,6 +3062,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2977,7 +3075,11 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
-  methods: {}
+  methods: {
+    postProject: function postProject() {
+      this.$emit('postModal', this.project);
+    }
+  }
 });
 
 /***/ }),
@@ -40380,7 +40482,7 @@ var render = function() {
       [
         _c("h1", { staticClass: "title" }, [_vm._v("Вход в личный кабинет")]),
         _vm._v(" "),
-        _vm.message != ""
+        _vm.message
           ? _c(
               "div",
               { staticClass: "alert alert-danger", attrs: { role: "alert" } },
@@ -41175,8 +41277,6 @@ var render = function() {
               }
             },
             [
-              _vm._m(0, true),
-              _vm._v(" "),
               _c("div", { staticClass: "content" }, [
                 _c("h6", { staticClass: "title" }, [
                   _vm._v(_vm._s(message.title))
@@ -41223,22 +41323,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "icon" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Man-16-icon.png",
-          alt: ""
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41261,33 +41346,87 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "favorites-block" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("h1", { staticClass: "title" }, [_vm._v("Мои проекты")]),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "tab-content", attrs: { id: "myTabContent" } }, [
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show active",
+          attrs: {
+            id: "bouth",
+            role: "tabpanel",
+            "aria-labelledby": "bouth-tab"
+          }
+        },
+        [_c("BouthProjects")],
+        1
+      ),
       _vm._v(" "),
-      _c("section", { staticClass: "section-projects" }, [
-        _c(
-          "div",
-          { staticClass: "projects-wrapper d-flex" },
-          [
-            _vm._l(_vm.projects, function(project, index) {
-              return _c("ProjectCard", {
-                key: index,
-                attrs: { project: project }
-              })
-            }),
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.projects.length) +
-                "\n            "
-            )
-          ],
-          2
-        )
-      ])
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: {
+            id: "saved",
+            role: "tabpanel",
+            "aria-labelledby": "saved-tab"
+          }
+        },
+        [_c("SaveProjects")],
+        1
+      )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "bouth-tab",
+                "data-toggle": "tab",
+                href: "#bouth",
+                role: "tab",
+                "aria-controls": "bouth",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("Купленные")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                href: "#saved",
+                id: "saved-tab",
+                "data-toggle": "tab",
+                role: "tab",
+                "aria-controls": "saved",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("Сохраненные")]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -41869,6 +42008,12 @@ var render = function() {
             attrs: {
               "data-toggle": "modal",
               "data-target": "#project-details-" + _vm.project.id
+            },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.postProject($event)
+              }
             }
           },
           [_vm._v("\n            Подробнее\n        ")]
@@ -70649,6 +70794,7 @@ Vue.component('purchased-project-details', _components_Projects_PurchasedProject
 Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_11__["default"]);
 Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
 Vue.component('recommendations', _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_11__["default"]);
 Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
 Vue.component('add-balance', _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_12__["default"]);
 Vue.component('notifications', _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_13__["default"]);

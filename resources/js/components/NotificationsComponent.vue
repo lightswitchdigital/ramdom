@@ -22,9 +22,6 @@
             :class='{seen: message.seen}'
             v-for="(message , index) in messages" :key="index"
             @click.prevent="postSeen(message.id)">
-                <div class="icon">
-                    <img src="https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Man-16-icon.png" alt="">
-                </div>
                 <div class="content">
                     <h6 class="title">{{ message.title }}</h6>
                     {{ message.content }}    
@@ -72,7 +69,6 @@ export default {
                 this.messages = [...this.messages, ...res.data]
                 res.data.length < this.pageSize && (this.loadMore = false)
                 this.disable = res.data.length < this.pageSize
-                console.log(this.messages);
             })
             .catch(error => {
                 console.log(error)
