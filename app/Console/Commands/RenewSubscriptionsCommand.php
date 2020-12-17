@@ -16,8 +16,9 @@ class RenewSubscriptionsCommand extends Command
 
     public function handle()
     {
-        PlanSubscription::chunk(200, function (Collection $subscriptions) {
+        PlanSubscription::active()->findEndedPeriod()->chunk(200, function (Collection $subscriptions) {
            foreach ($subscriptions as $subscription) {
+
                $user = $subscription->user;
                $price = $subscription->plan->price;
 
@@ -26,7 +27,11 @@ class RenewSubscriptionsCommand extends Command
                    Notification::generate([
                        'user_id' => $user->id,
                        'title' => 'Подписка не может быть продлена',
-                       'content' => 'Ваша подписка на план '.$subscription->plan->name.' не может быть продлена, так как на счете недостаточно средств.'
+                       'content' => 'Ваша подписка на план "'.$subscription->plan->name.'" не может быть продлена, так как на счете недостаточно средств. Пополните счет и продлите подписку вручную'
+                   ]);
+
+                   $subscription->update([
+                       'active' => false
                    ]);
 
                    return;
@@ -39,7 +44,7 @@ class RenewSubscriptionsCommand extends Command
                Notification::generate([
                    'user_id' => $user->id,
                    'title' => 'Подписка успешно продлена',
-                   'content' => 'Ваша подписка на план '.$subscription->plan->name.' была успешно продлена'
+                   'content' => 'Ваша подписка на план "'.$subscription->plan->name.'" была успешно продлена'
                ]);
 
                $user->balanceOperations()->create([

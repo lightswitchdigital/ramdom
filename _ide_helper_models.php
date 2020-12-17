@@ -143,12 +143,13 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
- * @property string $type
+ * @property string $title
  * @property string $content
- * @property int $seen
+ * @property bool $seen
  * @property string $expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $since_created
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Notification findExpired()
  * @method static \Illuminate\Database\Eloquent\Builder|Notification newModelQuery()
@@ -160,7 +161,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereExpiresAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereSeen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Notification whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUserId($value)
  */
@@ -273,8 +274,9 @@ namespace App\Models\Plans{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Plans\Plan $plan
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription active()
  * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndedPeriod()
- * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndingPeriod($dayRange = 3)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndingPeriod()
  * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription query()
@@ -527,7 +529,7 @@ namespace App\Models{
  * @property-read int|null $balance_operations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Project[] $favorites
  * @property-read int|null $favorites_count
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Notification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchasedProject[] $purchasedProjects
  * @property-read int|null $purchased_projects_count

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Providers\RouteServiceProvider;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -41,6 +43,12 @@ class LoginController extends Controller
 
                 return $this->sendUnverifiedEmailResponse();
             }
+
+            Notification::generate([
+                'user_id' => $user->id,
+                'title' => 'Новый вход в аккаунт',
+                'content' => 'Выполнен вход в аккаунт в ' . Carbon::now()->format('H:i')
+            ]);
 
             return $this->sendLoginResponse($request);
 
