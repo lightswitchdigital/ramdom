@@ -12565,6 +12565,7 @@ a.project-card.order-card .card-body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 25px;
 }
 
 .messages-block .message-block .content {
@@ -12572,8 +12573,20 @@ a.project-card.order-card .card-body {
   margin-left: 10px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.messages-block .message-block .content .title {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.messages-block .message-block .content p {
+  margin-bottom: 5px;
   word-wrap: normal;
-  white-space: none;
+  white-space: break-spaces;
 }
 
 .messages-block .message-block .icon {
@@ -12601,7 +12614,7 @@ a.project-card.order-card .card-body {
 .messages-block .message-block .date {
   display: block;
   position: absolute;
-  top: 15px;
+  bottom: 10px;
   right: 10px;
 }
 
@@ -12641,6 +12654,12 @@ a.project-card.order-card .card-body {
 .messages-block .message-block.seen::before {
   content: "";
   display: none;
+}
+
+.user-btn:focus,
+.user-btn:active {
+  box-shadow: none;
+  outline: none;
 }
 
 .user-settings {

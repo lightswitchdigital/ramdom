@@ -1463,13 +1463,24 @@ a.project-card{
         display: flex;
         flex-direction: row;
         align-items: center;
+        padding-bottom: 25px;
         .content{
             min-height: 0;
             margin-left: 10px;
             width: 100%;
             box-sizing: border-box;
-            word-wrap: normal;
-            white-space: none;
+            .title{
+                max-width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                box-sizing: border-box;
+            }
+            p{
+                margin-bottom: 5px;
+                word-wrap: normal;
+                white-space: break-spaces; 
+            }
         }
         .icon{
             width: 50px;
@@ -1492,7 +1503,7 @@ a.project-card{
         .date{
             display: block;
             position: absolute;
-            top: 15px;
+            bottom: 10px;
             right: 10px;
         }
         .seen-btn{
@@ -1531,6 +1542,12 @@ a.project-card{
     }
 }
 
+.user-btn{
+    &:focus , &:active{
+        box-shadow: none;
+        outline: none;
+    }
+}
 .user-settings{
     padding: 0;
     max-height: 400px;
