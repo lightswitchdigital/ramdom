@@ -62,12 +62,6 @@ class OrderService
         return $order->save();
     }
 
-    public function cancel($id) {
-        $order = $this->getOrder($id);
-
-//        todo: cancel order
-    }
-
     public function getCalculatedPrice(Project $project) {
         return $project->price;
     }
@@ -80,10 +74,5 @@ class OrderService
     private function getProject($id): Project
     {
         return Project::findOrFail($id);
-    }
-
-    private function getOrder($id): Order
-    {
-        return Order::findOrFail($id);
     }
 }
