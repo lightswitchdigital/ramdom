@@ -48,6 +48,10 @@ class PaymentsService
             'status' => BalanceOperation::STATUS_FINISHED,
         ]);
 
+        $user = $payment->user;
+        $user->balance += $payment->amount;
+        $user->update();
+
         return $payment;
     }
 
@@ -69,7 +73,7 @@ class PaymentsService
 
     public function getPayment($id): BalanceOperation
     {
-        return BalanceOperation::findOrFail($id);
+        return BalanceOperation::typeAdd()->findOrFail($id);
     }
 
 }

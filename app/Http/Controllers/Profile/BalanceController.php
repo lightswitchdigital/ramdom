@@ -37,6 +37,7 @@ class BalanceController extends Controller
         $this->service->create($user->id, $request['amount']);
 
         return [
+            'amount' => $request['amount'],
             'company_name' => 'ООО Рамдом',
             'inn' => '123',
             'kpp' => '123123',

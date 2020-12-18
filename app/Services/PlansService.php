@@ -6,6 +6,7 @@ namespace App\Services;
 use App\Jobs\SendEmailJob;
 use App\Mail\Service\Plans\PlanIntervalUpdatedMail;
 use App\Mail\Service\Plans\PlanPriceUpdatedMail;
+use App\Models\Notification;
 use App\Models\Plans\Plan;
 use App\Models\Plans\PlanSubscription;
 use App\Models\User;
@@ -27,8 +28,7 @@ class PlansService
         $plan = $this->getPlan($plan_id);
 
         if ($user->subscription && $user->subscription->plan_id === $plan->id) {
-            return redirect()->back()
-                ->with('error', 'Вы уже подписаны на данный план');
+            throw new \DomainException('Вы уже подписаны на данный план');
         }
 
         if ($user->balance < $plan->price) {
@@ -39,6 +39,10 @@ class PlansService
 
             if ($user->subscription) {
                 $user->subscription->changePlan($plan);
+
+                $user->update([
+                    'role' => $plan->slug
+                ]);
 
                 return;
             }
@@ -56,12 +60,18 @@ class PlansService
             $subscription->user()->associate($user);
 
             $user->update([
-                'role' => $subscription->plan->slug
+                'role' => $plan->slug
             ]);
 
             $subscription->save();
 
         });
+
+        Notification::generate([
+            'user_id' => $user->id,
+            'title' => 'План изменен',
+            'content' => 'Ваш план был успешно изменен на "' . $plan->name .'".'
+        ]);
 
         $this->payments->pay($user->id, $plan->price);
 

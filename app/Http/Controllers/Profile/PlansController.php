@@ -12,11 +12,9 @@ use DomainException;
 class PlansController extends Controller
 {
     private $service;
-    private $payments;
 
-    public function __construct(PlansService $service, PaymentsService $payments) {
+    public function __construct(PlansService $service) {
         $this->service = $service;
-        $this->payments = $payments;
     }
 
     public function index() {
@@ -29,9 +27,7 @@ class PlansController extends Controller
         $user = Auth::user();
 
         try {
-
             $this->service->subscribe($user->id, $plan->id);
-
         }catch (DomainException $e) {
             return redirect()->back()
                 ->with('error', $e->getMessage());
