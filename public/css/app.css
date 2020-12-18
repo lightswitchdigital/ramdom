@@ -12540,8 +12540,6 @@ a.project-card.order-card .card-body {
   max-height: 400px;
   border-radius: 16px;
   overflow-x: hidden;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-  border: none;
   overflow-y: auto;
 }
 
@@ -12584,7 +12582,7 @@ a.project-card.order-card .card-body {
 }
 
 .messages-block .message-block .content p {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   word-wrap: normal;
   white-space: break-spaces;
 }
@@ -12616,6 +12614,7 @@ a.project-card.order-card .card-body {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  font-size: 12px;
 }
 
 .messages-block .message-block .seen-btn {
@@ -12667,8 +12666,6 @@ a.project-card.order-card .card-body {
   max-height: 400px;
   border-radius: 16px;
   overflow-x: hidden;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-  border: none;
   overflow-y: auto;
 }
 
