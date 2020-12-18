@@ -38,14 +38,15 @@ class BalanceController extends Controller
 
         return [
             'company_name' => 'ООО Рамдом',
-            'inn' => '',
-            'kpp' => '',
-            'orgn' => '',
-            'payment_account' => '',
-            'correspondent_account' => '',
-            'bik' => '',
+            'inn' => '123',
+            'kpp' => '123123',
+            'orgn' => '123123123',
+            'payment_account' => '99999999',
+            'correspondent_account' => '00000000',
+            'bik' => '1111111',
             'purpose' => 'Пополнение баланса ID '.$user->id,
-            'name' => $user->getFullName()
+            'name' => $user->getFullName(),
+            'qrcode_url' => 'https://spbformat.ru/wp-content/uploads/2020/05/qr-kod.jpg'
         ];
     }
 }
