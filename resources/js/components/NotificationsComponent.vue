@@ -20,9 +20,9 @@
             </div>
             <div
             class="dropdown-item message-block"
-            :class='{seen: message.seen}'
             v-for="(message , index) in messages" :key="index"
-            @click.prevent="postSeen(message.id)">
+            @click.prevent="postSeen(message.id)"
+            :class='{seen: message.seen}'>
                 <div class="content">
                     <h6 class="title">{{ message.title }}</h6>
                     <p>{{ message.content }} </p>   
@@ -79,7 +79,7 @@ export default {
             axios.post(`/notifications/${id}/see` , {'_token' : this.csrfToken}).then(response => {
                 if(response.status === 200){
                     console.log('seen is ok');
-                    this.messages[id - 1] = response.data
+                    this.messages[this.messages.findIndex(i => i.id === id)] = response.data
                     this.$nextTick(this.$forceUpdate)
                 }
             }).catch(error => {

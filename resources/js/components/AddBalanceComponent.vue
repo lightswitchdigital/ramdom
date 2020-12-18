@@ -18,15 +18,17 @@
                     <button type="submit" class="btn yellow-btn">Дальше</button>
                 </form>
                 <div class="second-step" v-else-if="step === 0 || step === 2">
-                    <h5>Реквизиты</h5>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                    <div class="qr-block">
-                        <img src="https://spbformat.ru/wp-content/uploads/2020/05/qr-kod.jpg" alt="">
+                    <div v-if="isLoaded" class="spinner-border text-dark" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div v-else>
+                        <h5>Реквизиты</h5>
+                        <ul>
+                            <li v-for="(value, label , index) in balanceInfo" :key="index" v-if="label != 'qrcode_url'">
+                                <p>{{label}}:</p> <p> {{value}}</p>
+                            </li>
+                        </ul>
+                        <img :src="balanceInfo.qrcode_url" alt="">    
                     </div>
                 </div>
             </div>
@@ -43,20 +45,33 @@ export default {
     data: () => ({
         step: 1,
         error: false,
-        animated: false
+        animated: false,
+        isLoaded: false,
+        balanceInfo: {}
     }),
+    created() {
+        this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
+    },
     methods: {
         onSubmit() {
             if(this.sum){
-                console.log(this.sum);
-                this.step = 0
-                setTimeout(() => {
-                    this.animated = true
-                }, 200)
-                setTimeout(() => {
-                    this.step = 2
-                    this.animated = false
-                }, 500)
+                this.isLoaded = true;
+                axios.post(this.link , {'amount':  +this.sum,'_token' : this.csrfToken}).then(response => {
+                    if(response.status === 200){
+                        this.balanceInfo = response.data
+                        this.step = 0
+                        this.isLoaded = false
+                        setTimeout(() => {
+                            this.animated = true
+                        }, 200)
+                        setTimeout(() => {
+                            this.step = 2
+                            this.animated = false
+                        }, 500)
+                    }
+                }).catch(error => {
+                    console.log(error);
+                })
             }else{
                 this.error = true
             }
