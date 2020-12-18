@@ -7,13 +7,13 @@
                 <form class="first-step" v-if="step === 1 || step === 0" @submit.prevent='onSubmit'>
                     <div class="form-group">
                         <label for="sumInput">Сумма</label>
-                        <input class="form-control" 
-                                type="number" 
-                                id="sumInput" 
+                        <input class="form-control"
+                                type="number"
+                                id="sumInput"
                                 v-model="sum"
                                 :class="{'is-invalid': error}"
                             >
-                        <span v-if="error" class="invalid-text">Введите сумму</span> 
+                        <span v-if="error" class="invalid-text">Введите сумму</span>
                     </div>
                     <button type="submit" class="btn yellow-btn">Дальше</button>
                 </form>
@@ -37,7 +37,9 @@
 
 <script>
 export default {
-    
+    props: [
+        'link'
+    ],
     data: () => ({
         step: 1,
         error: false,

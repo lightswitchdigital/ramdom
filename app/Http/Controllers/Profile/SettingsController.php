@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Settings\UpdateDocumentsRequest;
 use App\Http\Requests\Settings\UpdateEntityInformationRequest;
 use App\Http\Requests\Settings\UpdateIndividualInformationRequest;
 use App\Http\Requests\Settings\UpdatePasswordRequest;
 use App\Http\Requests\Settings\UpdateRequest;
 use Auth;
-use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {

@@ -6,25 +6,20 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateIndividualInformationRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+
     public function rules()
     {
         return [
-            //
+            'passport_serial' => ['nullable', 'numeric', 'digits:4'],
+            'passport_code' => ['nullable', 'numeric', 'digits:6'],
+            'passport_issue' => ['nullable', 'string', 'max:255'],
+            'passport_issue_date' => ['nullable', 'date'],
         ];
     }
 }

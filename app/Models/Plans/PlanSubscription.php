@@ -113,12 +113,15 @@ class PlanSubscription extends Model
         return $this->belongsTo(Plan::class);
     }
 
-    public function scopeFindEndingPeriod($query, int $dayRange = 3)
-    {
-        $from = Carbon::now();
-        $to = Carbon::now()->addDays($dayRange);
+    public function scopeActive($query) {
+        return $query->where('active', true);
+    }
 
-        return $query->whereBetween('ends_at', [$from, $to]);
+    public function scopeFindEndingPeriod($query)
+    {
+        $due = Carbon::now()->addDays(3);
+
+        return $query->where('ends_at', $due);
     }
 
     public function scopeFindEndedPeriod($query)

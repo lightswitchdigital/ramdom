@@ -21,7 +21,9 @@ Route::group([
     'as' => 'notifications.'
 ], function() {
 
+
     Route::get('/get', function (\Illuminate\Http\Request $request) {
+
         $batch = (int) $request->get('batch') ?? 1;
         $user = User::find(Auth::id());
 
@@ -29,9 +31,12 @@ Route::group([
 
         $notifications = $user->notifications()
             ->skip(($batch - 1) * $count)
-            ->take($count)->get();
+            ->take($count)
+            ->orderBy('id', 'DESC')
+            ->get();
 
         return $notifications;
+
     })->name('get');
 
     Route::post('/{notification}/see', function(\App\Models\Notification $notification) {
@@ -182,6 +187,11 @@ Route::group([
     ], function() {
 
         Route::get('/', 'SettingsController@index')->name('index');
+
+        Route::put('/update', 'SettingsController@update')->name('update');
+        Route::put('/update-individual-information', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
+        Route::put('/update-entity-information', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
+        Route::put('/update-password', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
 
     });
 
