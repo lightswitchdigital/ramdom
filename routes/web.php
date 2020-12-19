@@ -192,8 +192,8 @@ Route::group([
 
         Route::put('/update', 'SettingsController@update')->name('update');
         Route::put('/update-individual-information', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
-        Route::put('/update-entity-information', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
-        Route::put('/update-password', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
+        Route::put('/update-entity-information', 'SettingsController@updateIndividualInformation')->name('update-entity-information');
+        Route::put('/update-password', 'SettingsController@updateIndividualInformation')->name('update-password');
 
     });
 
