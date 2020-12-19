@@ -3100,7 +3100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -3118,7 +3117,7 @@ __webpack_require__.r(__webpack_exports__);
       notAllChange: false
     };
   },
-  props: ['project', 'createdAt', 'buyLink', 'orderLink', 'recommendations', 'orderAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile'],
+  props: ['project', 'createdAt', 'buyLink', 'recommendations', 'purchaseAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
@@ -3128,6 +3127,8 @@ __webpack_require__.r(__webpack_exports__);
     if (this.saveFile) {
       this.attributesForSave = this.saveFile.values_data;
     }
+
+    console.log(this.purchaseAttributes);
   },
   components: {
     VueSlickCarousel: vue_slick_carousel__WEBPACK_IMPORTED_MODULE_0___default.a,
@@ -42474,7 +42475,10 @@ var render = function() {
                         ])
                       }),
                       _vm._v(" "),
-                      _vm._l(this.orderAttributes, function(attribute, index) {
+                      _vm._l(this.purchaseAttributes, function(
+                        attribute,
+                        index
+                      ) {
                         return _c("tr", { key: index }, [
                           _c("td", [
                             _c(
@@ -42499,9 +42503,9 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value:
-                                          _vm.attributesForSave[attribute.id],
+                                          _vm.purchaseAttributes[attribute.id],
                                         expression:
-                                          "attributesForSave[attribute.id]"
+                                          "purchaseAttributes[attribute.id]"
                                       }
                                     ],
                                     staticClass: "custom-select",
@@ -42526,7 +42530,7 @@ var render = function() {
                                             return val
                                           })
                                         _vm.$set(
-                                          _vm.attributesForSave,
+                                          _vm.purchaseAttributes,
                                           attribute.id,
                                           $event.target.multiple
                                             ? $$selectedVal
@@ -42556,16 +42560,16 @@ var render = function() {
                                   }),
                                   0
                                 )
-                              : attribute.type === "number"
+                              : attribute.type === "integer"
                               ? _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
                                       value:
-                                        _vm.purchase_attributes[attribute.id],
+                                        _vm.purchaseAttributes[attribute.id],
                                       expression:
-                                        "purchase_attributes[attribute.id]"
+                                        "purchaseAttributes[attribute.id]"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -42578,7 +42582,7 @@ var render = function() {
                                       "]"
                                   },
                                   domProps: {
-                                    value: _vm.purchase_attributes[attribute.id]
+                                    value: _vm.purchaseAttributes[attribute.id]
                                   },
                                   on: {
                                     input: function($event) {
@@ -42586,7 +42590,7 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.purchase_attributes,
+                                        _vm.purchaseAttributes,
                                         attribute.id,
                                         $event.target.value
                                       )
@@ -42599,9 +42603,9 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value:
-                                        _vm.purchase_attributes[attribute.id],
+                                        _vm.purchaseAttributes[attribute.id],
                                       expression:
-                                        "purchase_attributes[attribute.id]"
+                                        "purchaseAttributes[attribute.id]"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -42614,7 +42618,7 @@ var render = function() {
                                       "]"
                                   },
                                   domProps: {
-                                    value: _vm.purchase_attributes[attribute.id]
+                                    value: _vm.purchaseAttributes[attribute.id]
                                   },
                                   on: {
                                     input: function($event) {
@@ -42622,7 +42626,7 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.purchase_attributes,
+                                        _vm.purchaseAttributes,
                                         attribute.id,
                                         $event.target.value
                                       )
@@ -72488,9 +72492,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

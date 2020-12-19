@@ -18,9 +18,9 @@ class BalanceController extends Controller
 
     public function index() {
         $user = Auth::user();
-        $payments = $user->balanceOperations()->paginate(10);
+        $operations = $user->balanceOperations()->paginate(10);
 
-        return view('profile.balance.index', compact('user', 'payments'));
+        return view('profile.balance.index', compact('user', 'operations'));
     }
 
     public function add() {
@@ -37,6 +37,7 @@ class BalanceController extends Controller
         $this->service->create($user->id, $request['amount']);
 
         return [
+            'amount' => $request['amount'],
             'company_name' => 'ООО Рамдом',
             'inn' => '123',
             'kpp' => '123123',

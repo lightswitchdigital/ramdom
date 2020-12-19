@@ -57,6 +57,9 @@ Route::group([
 |
 */
 
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/faq', 'HomeController@faq')->name('faq');
+
 Route::group([
     'prefix' => 'projects',
     'as' => 'projects.',
@@ -72,7 +75,6 @@ Route::group([
     ], function() {
 
         Route::post('/buy', 'ProjectsController@buy')->name('buy');
-        Route::post('/order', 'OrderController@order')->name('order');
         Route::post('/favorites/add', 'ProjectsController@addToFavorites')->name('favorites.add');
         Route::post('/favorites/remove', 'ProjectsController@removeFromFavorites')->name('favorites.remove');
 
@@ -190,8 +192,8 @@ Route::group([
 
         Route::put('/update', 'SettingsController@update')->name('update');
         Route::put('/update-individual-information', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
-        Route::put('/update-entity-information', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
-        Route::put('/update-password', 'SettingsController@updateIndividualInformation')->name('update-individual-information');
+        Route::put('/update-entity-information', 'SettingsController@updateIndividualInformation')->name('update-entity-information');
+        Route::put('/update-password', 'SettingsController@updateIndividualInformation')->name('update-password');
 
     });
 
@@ -315,9 +317,6 @@ Route::group([
     Route::resource('payments', 'PaymentsController')->only(['index']);
 
 });
-
-Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/faq', 'HomeController@faq')->name('faq');
 
 Route::group([
     'prefix' => 'advice',

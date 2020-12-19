@@ -9,10 +9,10 @@
                     <div class="card mb-4">
                         <h4 class="card-header">Текущий баланс</h4>
                         <div class="card-body">
-                            <h3 class="balance">10000 р</h3>
-                            <a 
+                            <h3 class="balance">{{ $user->balance }} р</h3>
+                            <a
                             class="btn"
-                            href="balance/add"
+                            href="{{ route('profile.balance.add') }}"
                             >Пополнить баланс</a>
                         </div>
                     </div>
@@ -22,13 +22,35 @@
                         <h4 class="card-header">Текущий план</h4>
                         <div class="card-body">
                             <h3 class="balance">Профессионал</h3>
-                            <h3 class="balance">10000 р</h3>
-                            <button class="btn">Поменять план</button>
+                            <h3 class="balance">{{ $user->subscription? $user->subscription->plan->price : '0' }} р</h3>
+                            <a href="{{ route('profile.plans.index') }}" class="btn">Поменять план</a>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Статус</th>
+                    <th>Сумма</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach ($operations as $operation)
+                    <tr>
+                        <td>{{ $operation->id }}</td>
+                        <td>{{ $operation->getStatus() }}</td>
+                        <td>{{ $operation->amount }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+
+            {{ $operations->links() }}
         </div>
     </div>
 @endsection

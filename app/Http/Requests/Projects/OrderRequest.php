@@ -17,6 +17,7 @@ class OrderRequest extends FormRequest
     public function rules(User $user)
     {
         $params = [
+            'developer_id' => ['required', 'numeric'],
             'order_name' => ['required', 'string', 'max:255'],
             'order_email' => ['required', 'string', 'max:255'],
             'order_phone' => ['required', 'string', 'max:255'],

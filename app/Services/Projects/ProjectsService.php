@@ -6,12 +6,12 @@ namespace App\Services\Projects;
 use App\Http\Requests\Admin\Projects\CreateRequest;
 use App\Http\Requests\Admin\Projects\EditRequest;
 use App\Http\Requests\Projects\BuyRequest;
-use App\Http\Requests\Projects\OrderRequest;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use App\Models\Projects\Purchase\PurchaseAttribute;
 use App\Models\Projects\Purchase\PurchasedProject;
 use App\Models\User;
+use Artisan;
 use DB;
 use Illuminate\Support\Str;
 use Storage;
@@ -53,7 +53,7 @@ class ProjectsService
 
     public function create(CreateRequest $request): Project {
 
-        return DB::transaction(function () use ($request) {
+        $project = DB::transaction(function () use ($request) {
 
             $project = Project::create([
                 'title' => $request['title'],
@@ -83,6 +83,9 @@ class ProjectsService
 
         });
 
+        Artisan::call('search:index');
+
+        return $project;
     }
 
     public function edit($id, EditRequest $request) {
