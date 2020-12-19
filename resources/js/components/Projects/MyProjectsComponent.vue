@@ -15,10 +15,10 @@
             
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="bouth" role="tabpanel" aria-labelledby="bouth-tab">
+            <div class="tab-pane fade" id="bouth" role="tabpanel" aria-labelledby="bouth-tab">
                 <BouthProjects></BouthProjects>
             </div>
-            <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+            <div class="tab-pane fade show active" id="saved" role="tabpanel" aria-labelledby="saved-tab">
                 <SaveProjects></SaveProjects>
             </div>
         </div>

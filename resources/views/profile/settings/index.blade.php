@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="settings-block">
     <div class="container">
-        <form action="{{ route('profile.settings.update') }}" method="POST" class="my-3">
+        <div class="row">
+        <form action="{{ route('profile.settings.update') }}" method="POST" class="my-3 col-md">
             @csrf
             @method('PUT')
 
@@ -39,7 +41,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">
+                <button class="btn yellow-btn">
                     Обновить
                 </button>
             </div>
@@ -49,7 +51,7 @@
 
         @if($user->isIndividual())
 
-            <form action="{{ route('profile.settings.update-individual-information') }}" method="POST" class="my-3">
+            <form action="{{ route('profile.settings.update-individual-information') }}" method="POST" class="my-3 col-md">
                 @csrf
                 @method('PUT')
 
@@ -86,7 +88,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-primary">
+                    <button class="btn yellow-btn">
                         Обновить
                     </button>
                 </div>
@@ -94,7 +96,7 @@
 
         @elseif($user->isEntity())
 
-            <form action="{{ route('profile.settings.update-entity-information') }}" method="POST" class="my-3">
+            <form action="{{ route('profile.settings.update-entity-information') }}" method="POST" class="my-3 col-md">
                 @csrf
                 @method('PUT')
 
@@ -131,7 +133,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-primary">
+                    <button class="btn yellow-btn">
                         Обновить
                     </button>
                 </div>
@@ -139,4 +141,6 @@
 
         @endif
     </div>
+    </div>  
+</div>
 @endsection

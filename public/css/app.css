@@ -12960,3 +12960,26 @@ a.project-card.order-card .card-body {
   border: none;
 }
 
+.settings-block form:first-child {
+  border-right: 1px solid rgba(204, 204, 204, 0.4);
+}
+
+.settings-block input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.settings-block input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.settings-block .yellow-btn {
+  padding: 10px 20px;
+  box-shadow: none;
+  font-size: 18px;
+}
+

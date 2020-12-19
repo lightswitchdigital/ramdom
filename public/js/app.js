@@ -42132,7 +42132,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "tab-pane fade show active",
+          staticClass: "tab-pane fade",
           attrs: {
             id: "bouth",
             role: "tabpanel",
@@ -42146,7 +42146,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "tab-pane fade",
+          staticClass: "tab-pane fade show active",
           attrs: {
             id: "saved",
             role: "tabpanel",
@@ -72492,9 +72492,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
