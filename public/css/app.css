@@ -12983,3 +12983,30 @@ a.project-card.order-card .card-body {
   font-size: 18px;
 }
 
+.pagination li.page-item:first-child .page-link {
+  margin-right: 10px;
+  background: #FFD977;
+  border: none;
+  padding-bottom: 7px;
+}
+
+.pagination li.page-item:last-child .page-link {
+  margin-left: 10px;
+  background: #FFD977;
+  border: none;
+  padding-bottom: 7px;
+}
+
+.pagination li.page-item .page-link {
+  margin: 0 5px;
+  border-radius: 10px;
+  font-size: 20px;
+  background: #fff;
+  color: #000;
+  padding: 5px 15px;
+}
+
+.pagination li.page-item.disabled {
+  opacity: 0.6;
+}
+

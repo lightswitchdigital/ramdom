@@ -50,7 +50,7 @@
                 </tbody>
             </table>
 
-            {{ $operations->links() }}
+            {{ $operations->links("pagination::bootstrap-4") }}
         </div>
     </div>
 @endsection
