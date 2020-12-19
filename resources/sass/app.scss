@@ -453,6 +453,14 @@ a.project-card{
     }
     .project-card{
         flex: 0 0 calc(25% - 30px);
+        .card-text{
+            li span{
+                max-width: 90px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
     }
 }
 
@@ -810,9 +818,14 @@ a.project-card{
     }
 }
 
-.project-view{
+.order-block{
     .agree-form{
         max-width: 100%;
+        .title{
+            padding-bottom: 2px;
+            border-bottom: 2px solid #FFD977;
+            width: fit-content;
+        }
         .switch-block{
             display: flex;
             flex-direction: row;
@@ -834,39 +847,47 @@ a.project-card{
         input[type=text]{
             border: none;
             border-bottom: 1px solid #353535;
-            padding: 30px 20px;
+            padding: 20px 20px;
             outline: none;
             width: 100%;
             margin: 10px 0;
         }
         input[type=checkbox]{
             display: none;
-            &:checked+label.switch{
-                &::after{
-                    transform: translateX(100%);
-                    background: #FFD977;
+            &:checked+label{
+                .switch{
+                    &::after{
+                        transform: translateX(100%);
+                        background: #FFD977;
+                    }
                 }
             }
         }
-        label.switch{
-            position: relative;
-            width: 100px;
-            height: 35px;
-            border-radius: 35px;
-            background: #787878;
-            &::after{
-                content: '';
-                width: 53px;
+        label{
+            .switch{
+                position: relative;
+                width: 100px;
                 height: 35px;
                 border-radius: 35px;
-                position: absolute;
-                left: 0;
-                top: 0;
-                background: #a7a7a7;
-                transition: 0.5s;
+                background: #787878;
+                display: block;
+                &::after{
+                    content: '';
+                    width: 53px;
+                    height: 35px;
+                    border-radius: 35px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: #a7a7a7;
+                    transition: 0.5s;
+                }
             }
         }
     }
+}
+
+.project-view{
     .btn-next{
         width: 37px;
         height: 37px;

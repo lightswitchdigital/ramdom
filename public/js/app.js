@@ -2665,6 +2665,165 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrderProjectComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OrderProjectComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['orderLink'],
+  data: function data() {
+    return {
+      formData: {},
+      error: '',
+      isEntityDate: false
+    };
+  },
+  created: function created() {
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      this.formData = [{
+        order_name: this.orderName
+      }, {
+        order_email: this.orderEmail
+      }, {
+        order_phone: this.orderPhone
+      }, {
+        order_city: this.orderCity
+      }, {
+        order_address: this.orderAdress
+      }, {
+        order_company_name: this.orderCompanyName
+      }, {
+        order_company_inn: this.orderCompanyInn
+      }, {
+        order_company_kpp: this.orderCompanyKpp
+      }, {
+        order_company_payment_account: this.orderCompanyPaymentAccount
+      }, {
+        order_company_correspondent_account: this.orderCompanyCorrespondentAccount
+      }, {
+        order_passport_serial: this.orderPassportSerial
+      }, {
+        order_passport_number: this.orderPassportNumber
+      }, {
+        order_passport_issue: this.orderPassportIssue
+      }, {
+        order_passport_issue_date: this.orderPassportIssueDate
+      }, {
+        _token: this.csrfToken
+      }];
+      axios.post(this.orderLink, this.formData).then(function (response) {
+        if (response.status === 204) {
+          console.log('Данные отправлены ' + _this.formData);
+        }
+      })["catch"](function (error) {
+        _this.error = error.response.data.message;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Projects/MyProjectsComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Projects/MyProjectsComponent.vue?vue&type=script&lang=js& ***!
@@ -2674,6 +2833,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_scroll_loader__WEBPACK_IMPORT
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -41368,6 +41528,587 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrderProjectComponent.vue?vue&type=template&id=18d292f7&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OrderProjectComponent.vue?vue&type=template&id=18d292f7& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "order-block" }, [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "form",
+        {
+          staticClass: "agree-form",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md" }, [
+              _c("h2", { staticClass: "title" }, [_vm._v("Основные данные")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.orderName,
+                    expression: "orderName"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "Имя" },
+                domProps: { value: _vm.orderName },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.orderName = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.orderEmail,
+                    expression: "orderEmail"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "E-mail" },
+                domProps: { value: _vm.orderEmail },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.orderEmail = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.orderPhone,
+                    expression: "orderPhone"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "Телефон" },
+                domProps: { value: _vm.orderPhone },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.orderPhone = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.orderCity,
+                    expression: "orderCity"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "Город" },
+                domProps: { value: _vm.orderCity },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.orderCity = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.orderAddress,
+                    expression: "orderAddress"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "Адрес" },
+                domProps: { value: _vm.orderAddress },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.orderAddress = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.orderPostalCode,
+                    expression: "orderPostalCode"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "Индекс" },
+                domProps: { value: _vm.orderPostalCode },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.orderPostalCode = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md" }, [
+              _c("div", { staticClass: "switch-block" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.isEntity,
+                      expression: "isEntity"
+                    }
+                  ],
+                  attrs: { type: "checkbox", id: "isEntityBtn" },
+                  domProps: {
+                    checked: Array.isArray(_vm.isEntity)
+                      ? _vm._i(_vm.isEntity, null) > -1
+                      : _vm.isEntity
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$a = _vm.isEntity,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.isEntity = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.isEntity = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.isEntity = $$c
+                        }
+                      },
+                      function($event) {
+                        _vm.isEntityDate = !_vm.isEntityDate
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _vm.isEntityDate
+                ? _c("div", [
+                    _c("h2", { staticClass: "title" }, [
+                      _vm._v("Данные компании")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderCompanyName,
+                          expression: "orderCompanyName"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Название компании" },
+                      domProps: { value: _vm.orderCompanyName },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderCompanyName = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderCompanyInn,
+                          expression: "orderCompanyInn"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "ИНН" },
+                      domProps: { value: _vm.orderCompanyInn },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderCompanyInn = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderCompanyKpp,
+                          expression: "orderCompanyKpp"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "КПП" },
+                      domProps: { value: _vm.orderCompanyKpp },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderCompanyKpp = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderCompanyPaymentAccount,
+                          expression: "orderCompanyPaymentAccount"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Платежный счет" },
+                      domProps: { value: _vm.orderCompanyPaymentAccount },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderCompanyPaymentAccount = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderCompanyCorrespondentAccount,
+                          expression: "orderCompanyCorrespondentAccount"
+                        }
+                      ],
+                      attrs: {
+                        type: "text",
+                        placeholder: "Корреспондентский счет"
+                      },
+                      domProps: { value: _vm.orderCompanyCorrespondentAccount },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderCompanyCorrespondentAccount =
+                            $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                : _c("div", [
+                    _c("h2", { staticClass: "title" }, [
+                      _vm._v("Паспортные данные")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderPassportSerial,
+                          expression: "orderPassportSerial"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Серия паспорта" },
+                      domProps: { value: _vm.orderPassportSerial },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderPassportSerial = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderPassportNumber,
+                          expression: "orderPassportNumber"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Номер паспорта" },
+                      domProps: { value: _vm.orderPassportNumber },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderPassportNumber = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderPassportIssue,
+                          expression: "orderPassportIssue"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Где оформлен" },
+                      domProps: { value: _vm.orderPassportIssue },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderPassportIssue = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderPassportIssueDate,
+                          expression: "orderPassportIssueDate"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Дата оформления" },
+                      domProps: { value: _vm.orderPassportIssueDate },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.orderPassportIssueDate = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn yellow-btn", attrs: { type: "submit" } },
+            [_vm._v("Отправить")]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "list-group",
+            attrs: { id: "list-tab", role: "tablist" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "list-group-item list-group-item-action active",
+                attrs: {
+                  id: "list-home-list",
+                  "data-bs-toggle": "list",
+                  href: "#list-home",
+                  role: "tab",
+                  "aria-controls": "home"
+                }
+              },
+              [_vm._v("Home")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "list-group-item list-group-item-action",
+                attrs: {
+                  id: "list-profile-list",
+                  "data-bs-toggle": "list",
+                  href: "#list-profile",
+                  role: "tab",
+                  "aria-controls": "profile"
+                }
+              },
+              [_vm._v("Profile")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "list-group-item list-group-item-action",
+                attrs: {
+                  id: "list-messages-list",
+                  "data-bs-toggle": "list",
+                  href: "#list-messages",
+                  role: "tab",
+                  "aria-controls": "messages"
+                }
+              },
+              [_vm._v("Messages")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "list-group-item list-group-item-action",
+                attrs: {
+                  id: "list-settings-list",
+                  "data-bs-toggle": "list",
+                  href: "#list-settings",
+                  role: "tab",
+                  "aria-controls": "settings"
+                }
+              },
+              [_vm._v("Settings")]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-8" }, [
+        _c(
+          "div",
+          { staticClass: "tab-content", attrs: { id: "nav-tabContent" } },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade show active",
+                attrs: {
+                  id: "list-home",
+                  role: "tabpanel",
+                  "aria-labelledby": "list-home-list"
+                }
+              },
+              [_vm._v("...")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade",
+                attrs: {
+                  id: "list-profile",
+                  role: "tabpanel",
+                  "aria-labelledby": "list-profile-list"
+                }
+              },
+              [_vm._v("...")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade",
+                attrs: {
+                  id: "list-messages",
+                  role: "tabpanel",
+                  "aria-labelledby": "list-messages-list"
+                }
+              },
+              [_vm._v("...")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade",
+                attrs: {
+                  id: "list-settings",
+                  role: "tabpanel",
+                  "aria-labelledby": "list-settings-list"
+                }
+              },
+              [_vm._v("...")]
+            )
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "isEntityBtn" } }, [
+      _vm._v("Юр. лицо"),
+      _c("span", { staticClass: "switch" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Projects/MyProjectsComponent.vue?vue&type=template&id=855ad5e6&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Projects/MyProjectsComponent.vue?vue&type=template&id=855ad5e6& ***!
@@ -41432,24 +42173,6 @@ var staticRenderFns = [
             {
               staticClass: "nav-link active",
               attrs: {
-                id: "bouth-tab",
-                "data-toggle": "tab",
-                href: "#bouth",
-                role: "tab",
-                "aria-controls": "bouth",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("Купленные")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
                 href: "#saved",
                 id: "saved-tab",
                 "data-toggle": "tab",
@@ -41459,6 +42182,24 @@ var staticRenderFns = [
               }
             },
             [_vm._v("Сохраненные")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "bouth-tab",
+                "data-toggle": "tab",
+                href: "#bouth",
+                role: "tab",
+                "aria-controls": "bouth",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("Купленные")]
           )
         ])
       ]
@@ -70787,6 +71528,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/AddBalanceComponent */ "./resources/js/components/AddBalanceComponent.vue");
 /* harmony import */ var _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/NotificationsComponent */ "./resources/js/components/NotificationsComponent.vue");
 /* harmony import */ var _components_Projects_PurchasedProjectDetails__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Projects/PurchasedProjectDetails */ "./resources/js/components/Projects/PurchasedProjectDetails.vue");
+/* harmony import */ var _components_OrderProjectComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/OrderProjectComponent */ "./resources/js/components/OrderProjectComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -70800,6 +71542,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -70836,6 +71579,7 @@ Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_I
 Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
 Vue.component('add-balance', _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_12__["default"]);
 Vue.component('notifications', _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_13__["default"]);
+Vue.component('order', _components_OrderProjectComponent__WEBPACK_IMPORTED_MODULE_15__["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -71227,6 +71971,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsComponent_vue_vue_type_template_id_50fb5ac0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsComponent_vue_vue_type_template_id_50fb5ac0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/OrderProjectComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/OrderProjectComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OrderProjectComponent_vue_vue_type_template_id_18d292f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrderProjectComponent.vue?vue&type=template&id=18d292f7& */ "./resources/js/components/OrderProjectComponent.vue?vue&type=template&id=18d292f7&");
+/* harmony import */ var _OrderProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrderProjectComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/OrderProjectComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrderProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrderProjectComponent_vue_vue_type_template_id_18d292f7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OrderProjectComponent_vue_vue_type_template_id_18d292f7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OrderProjectComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/OrderProjectComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/OrderProjectComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./OrderProjectComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrderProjectComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/OrderProjectComponent.vue?vue&type=template&id=18d292f7&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/OrderProjectComponent.vue?vue&type=template&id=18d292f7& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderProjectComponent_vue_vue_type_template_id_18d292f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./OrderProjectComponent.vue?vue&type=template&id=18d292f7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OrderProjectComponent.vue?vue&type=template&id=18d292f7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderProjectComponent_vue_vue_type_template_id_18d292f7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrderProjectComponent_vue_vue_type_template_id_18d292f7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

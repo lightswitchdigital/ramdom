@@ -24,6 +24,7 @@ import MyProjectsComponent from "./components/Projects/MyProjectsComponent";
 import AddBalanceComponent from "./components/AddBalanceComponent";
 import NotificationsComponent from "./components/NotificationsComponent"
 import PurchasedProjectDetails from "./components/Projects/PurchasedProjectDetails";
+import OrderProjectComponent from "./components/OrderProjectComponent";
 
 
 Vue.use(VueRouter)
@@ -57,6 +58,9 @@ Vue.component('advice', AdviceComponent);
 Vue.component('add-balance', AddBalanceComponent);
 
 Vue.component('notifications', NotificationsComponent);
+
+Vue.component('order', OrderProjectComponent);
+
 
 
 
