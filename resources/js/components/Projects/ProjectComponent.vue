@@ -64,7 +64,7 @@
                                     <td>{{ label }}</td>
                                     <td>{{ value }}</td>
                                 </tr>
-                                <tr v-for="(attribute , index) in this.orderAttributes" :key="index">
+                                <tr v-for="(attribute , index) in this.purchaseAttributes" :key="index">
                                     <td>
                                         <label :for="'purchase_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
                                     </td>
@@ -73,24 +73,23 @@
                                                 :id="'purchase_attribute_'+attribute.id"
                                                 class="custom-select"
                                                 :name="'purchase_attributes['+attribute.id+']'"
-                                                v-model="attributesForSave[attribute.id]">
+                                                v-model="purchaseAttributes[attribute.id]">
                                             <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
                                                 {{ variant }}
                                             </option>
                                         </select>
-
-                                        <input v-else-if="attribute.type === 'number'"
+                                        <input v-else-if="attribute.type === 'integer'"
                                         :id="'purchase_attribute_'+attribute.id"
                                         type="number" class="form-control"
                                         :name="'purchase_attributes['+attribute.id+']'"
-                                        v-model="purchase_attributes[attribute.id]">
+                                        v-model="purchaseAttributes[attribute.id]">
 
                                         <input v-else
                                         :id="'purchase_attribute_'+attribute.id"
                                         type="text"
                                         class="form-control"
                                         :name="'purchase_attributes['+attribute.id+']'"
-                                        v-model="purchase_attributes[attribute.id]">
+                                        v-model="purchaseAttributes[attribute.id]">
                                     </td>
                                 </tr>
                             </tbody>
@@ -149,9 +148,8 @@ export default {
         'project',
         'createdAt',
         'buyLink',
-        'orderLink',
         'recommendations',
-        'orderAttributes',
+        'purchaseAttributes',
         'isAuthenticated',
         'canEdit',
         'saveLink',
@@ -165,6 +163,7 @@ export default {
         if(this.saveFile){
             this.attributesForSave = this.saveFile.values_data
         }
+        console.log(this.purchaseAttributes);
     },
     components: {
         VueSlickCarousel ,

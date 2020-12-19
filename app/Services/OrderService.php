@@ -18,11 +18,11 @@ class OrderService
         $this->gateway = $gateway;
     }
 
-    public function order($user_id, $project_id, $developer_id, OrderRequest $request) {
+    public function order($user_id, $project_id, OrderRequest $request) {
 
         $user = $this->getUser($user_id);
         $project = $this->getProject($project_id);
-        $developer = $this->getUser($developer_id);
+        $developer = $this->getUser($request['developer_id']);
 
         $params = [
             'order_name' => $request['order_name'],

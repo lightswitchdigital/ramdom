@@ -18,9 +18,9 @@ class BalanceController extends Controller
 
     public function index() {
         $user = Auth::user();
-        $payments = $user->balanceOperations()->paginate(10);
+        $operations = $user->balanceOperations()->paginate(10);
 
-        return view('profile.balance.index', compact('user', 'payments'));
+        return view('profile.balance.index', compact('user', 'operations'));
     }
 
     public function add() {

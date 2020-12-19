@@ -61,12 +61,12 @@ class ProjectsController extends Controller
         return view('profile.projects.order', compact('developers', 'project'));
     }
 
-    public function orderSubmit(PurchasedProject $project, User $developer, OrderRequest $request) {
+    public function orderSubmit(PurchasedProject $project, OrderRequest $request) {
 
         $user = Auth::user();
 
         try {
-            $this->service->order($user->id, $project->id, $developer->id, $request);
+            $this->service->order($user->id, $project->id, $request);
         }catch (\DomainException $e) {
             return redirect()->back()
                 ->with('error', $e->getMessage());

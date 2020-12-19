@@ -12,7 +12,7 @@
                             <h3 class="balance">{{ $user->balance }} р</h3>
                             <a
                             class="btn"
-                            href="balance/add"
+                            href="{{ route('profile.balance.add') }}"
                             >Пополнить баланс</a>
                         </div>
                     </div>
@@ -29,6 +29,28 @@
                 </div>
             </div>
 
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Статус</th>
+                    <th>Сумма</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach ($operations as $operation)
+                    <tr>
+                        <td>{{ $operation->id }}</td>
+                        <td>{{ $operation->getStatus() }}</td>
+                        <td>{{ $operation->amount }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+
+            {{ $operations->links() }}
         </div>
     </div>
 @endsection
