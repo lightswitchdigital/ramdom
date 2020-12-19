@@ -12480,6 +12480,47 @@ a.project-card.order-card .card-body {
   margin-bottom: 60px;
 }
 
+.balance-block .title {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #FFD977;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 30px;
+}
+
+.balance-block table {
+  border-radius: 16px;
+}
+
+.balance-block .card {
+  border-radius: 16px;
+}
+
+.balance-block .card .card-header {
+  background: none;
+  border-bottom: none;
+  padding: 0;
+  padding-bottom: 2px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px;
+  margin-bottom: 0;
+  border-bottom: 2px solid #FFD977;
+}
+
+.balance-block .card .yellow-btn {
+  box-shadow: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.balance-block .card .balance {
+  font-size: 35px;
+}
+
 .balance-modal .title {
   width: -webkit-fit-content;
   width: -moz-fit-content;

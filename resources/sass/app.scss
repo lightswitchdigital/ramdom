@@ -1392,6 +1392,40 @@ a.project-card{
     }
 }
 
+.balance-block{
+    .title{
+        padding-bottom: 2px;
+        border-bottom: 2px solid #FFD977;
+        width: fit-content;
+        margin-bottom: 30px;
+    }
+    table{
+        border-radius: 16px;
+    }
+    .card{
+        border-radius: 16px;
+        .card-header{
+            background: none;
+            border-bottom: none;
+            padding: 0;
+            padding-bottom: 2px;
+            width: fit-content;
+            margin: 20px;
+            margin-bottom: 0;
+            border-bottom: 2px solid #FFD977;
+        }
+        .yellow-btn{
+            box-shadow: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+        .balance{
+            font-size: 35px;
+        }
+    }
+}
+
 .balance-modal{
     .title{
         width: fit-content;
