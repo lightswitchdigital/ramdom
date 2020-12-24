@@ -19,42 +19,42 @@
             <div class="row">
                 <div class="col-md">
                     <h2 class="title">Основные данные</h2>
-                    <input type="text" placeholder="Имя"
+                    <input type="text" class="form-control" placeholder="Имя"
                     >
-                    <input type="text" placeholder="E-mail"
+                    <input type="text" class="form-control" placeholder="E-mail"
                     >
-                    <input type="text" placeholder="Телефон"
+                    <input type="text" class="form-control" placeholder="Телефон"
                     >
-                    <input type="text" placeholder="Город"
+                    <input type="text" class="form-control" placeholder="Город"
                     >
-                    <input type="text" placeholder="Адрес"
+                    <input type="text" class="form-control" placeholder="Адрес"
                     >
-                    <input type="text" placeholder="Индекс"
+                    <input type="text" class="form-control" placeholder="Индекс"
                     >
                 </div>
                 <div class="col-md">
                     <div>
                         <h2 class="title">Данные компании</h2>
-                        <input type="text" placeholder="Название компании"
+                        <input type="text" class="form-control" placeholder="Название компании"
                         >
-                        <input type="text" placeholder="ИНН"
+                        <input type="text" class="form-control" placeholder="ИНН"
                         >
-                        <input type="text" placeholder="КПП"
+                        <input type="text" class="form-control" placeholder="КПП"
                         >
-                        <input type="text" placeholder="Платежный счет"
+                        <input type="text" class="form-control" placeholder="Платежный счет"
                         >
-                        <input type="text" placeholder="Корреспондентский счет"
+                        <input type="text" class="form-control" placeholder="Корреспондентский счет"
                         >
                     </div>
                     <div>
                         <h2 class="title">Паспортные данные</h2>
-                        <input type="text" placeholder="Серия паспорта"
+                        <input type="text" class="form-control" placeholder="Серия паспорта"
                         >
-                        <input type="text" placeholder="Номер паспорта"
+                        <input type="text" class="form-control" placeholder="Номер паспорта"
                         >
-                        <input type="text" placeholder="Где оформлен"
+                        <input type="text" class="form-control" placeholder="Где оформлен"
                         >
-                        <input type="text" placeholder="Дата оформления"
+                        <input type="text" class="form-control" placeholder="Дата оформления"
                         >
                     </div>
                 </div>
