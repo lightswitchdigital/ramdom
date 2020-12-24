@@ -10,8 +10,17 @@ class Region extends Model
     protected $table = 'regions';
 
     protected $fillable = [
-        'name', 'slug'
+        'name', 'slug', 'kladr'
     ];
 
     public $timestamps = false;
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function scopeFindKladr($query, $kladr) {
+        return $query->where('kladr', $kladr);
+    }
 }

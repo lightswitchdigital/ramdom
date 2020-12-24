@@ -487,10 +487,13 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $slug
+ * @property string $kladr
+ * @method static \Illuminate\Database\Eloquent\Builder|Region findKladr($kladr)
  * @method static \Illuminate\Database\Eloquent\Builder|Region newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Region newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Region query()
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereKladr($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Region whereSlug($value)
  */
