@@ -40843,9 +40843,11 @@ var staticRenderFns = [
     return _c("div", { staticClass: "forgot-block" }, [
       _c("span"),
       _vm._v(" "),
-      _c("a", { staticClass: "forgot-link", attrs: { href: "#" } }, [
-        _vm._v("Забыли пароль?")
-      ])
+      _c(
+        "a",
+        { staticClass: "forgot-link", attrs: { href: "/password/reset" } },
+        [_vm._v("Забыли пароль?")]
+      )
     ])
   }
 ]
