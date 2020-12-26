@@ -28,7 +28,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status', 'balance',
         'passport_serial', 'passport_code', 'passport_issue', 'passport_issue_date',
-        'company_name', 'company_address', 'company_inn', 'company_account'
+        'company_name', 'company_address', 'company_inn', 'company_account',
+        'developer_desc'
     ];
 
     protected $hidden = [

@@ -4,7 +4,8 @@
             <h1 class="title">Пополнить баланс</h1>
             <div class="card">
             <div class="modal-body" :class="{animated: animated}">
-                <form class="first-step" v-if="step === 1 || step === 0" @submit.prevent='onSubmit'>
+                <form class="first-step" v-if="step === 1" @submit.prevent='onSubmit'>
+                    <h5 style="text-align: center; margin: 0 0 35px 0">Пополнить баланс</h5>
                     <div class="form-group">
                         <label for="sumInput">Сумма</label>
                         <input class="form-control"
@@ -15,20 +16,50 @@
                             >
                         <span v-if="error" class="invalid-text">Введите сумму</span>
                     </div>
-                    <button type="submit" class="btn yellow-btn">Дальше</button>
+                    <button style="display: block; margin: 15px auto" type="submit" class="btn secondary-btn">Продолжить</button>
                 </form>
-                <div class="second-step" v-else-if="step === 0 || step === 2">
-                    <div v-if="isLoaded" class="spinner-border text-dark" role="status">
-                        <span class="sr-only">Loading...</span>
+                <div class="second-step" v-else-if="step === 2">
+                    <div v-if="loading">
+                        <preloader></preloader>
                     </div>
                     <div v-else>
-                        <h5>Реквизиты</h5>
-                        <ul>
-                            <li v-for="(value, label , index) in balanceInfo" :key="index" v-if="label != 'qrcode_url'">
-                                <p>{{label}}:</p> <p> {{value}}</p>
+                        <img :src="balanceInfo.qrcode_url" alt="">
+                        <div class="hint">
+                            Чтобы пополнить баланс, переведите средства по указанному ниже счету или сканируйте QR-код. Средства начислятся сразу после того, как модерация сайта подтвердит их поступление.
+                        </div>
+                        <h4 style="margin: 30px 0 20px">Реквизиты</h4>
+                        <ul v-if="balanceInfo" class="payment-credentials">
+                            <li>
+                                <p>Сумма:</p><p>{{ balanceInfo.amount }}</p>
+                            </li>
+                            <li>
+                                <p>Название компании:</p><p>{{ balanceInfo.company_name }}</p>
+                            </li>
+                            <li>
+                                <p>ИНН:</p><p>{{ balanceInfo.inn }}</p>
+                            </li>
+                            <li>
+                                <p>КПП:</p><p>{{ balanceInfo.kpp }}</p>
+                            </li>
+                            <li>
+                                <p>ОРГН:</p><p>{{ balanceInfo.orgn }}</p>
+                            </li>
+                            <li>
+                                <p>Расчетный счет:</p><p>{{ balanceInfo.payment_account }}</p>
+                            </li>
+                            <li>
+                                <p>Корр. счет:</p><p>{{ balanceInfo.correspondent_account }}</p>
+                            </li>
+                            <li>
+                                <p>БИК:</p><p>{{ balanceInfo.bik }}</p>
+                            </li>
+                            <li>
+                                <p>Назначение платежа:</p><p>{{ balanceInfo.purpose }}</p>
+                            </li>
+                            <li>
+                                <p>Имя:</p><p>{{ balanceInfo.name }}</p>
                             </li>
                         </ul>
-                        <img :src="balanceInfo.qrcode_url" alt="">    
                     </div>
                 </div>
             </div>
@@ -46,7 +77,7 @@ export default {
         step: 1,
         error: false,
         animated: false,
-        isLoaded: false,
+        loading: false,
         balanceInfo: {}
     }),
     created() {
@@ -55,19 +86,15 @@ export default {
     methods: {
         onSubmit() {
             if(this.sum){
-                this.isLoaded = true;
-                axios.post(this.link , {'amount':  +this.sum,'_token' : this.csrfToken}).then(response => {
+                this.loading = true;
+                this.step = 2;
+                this.animated = true;
+                axios.post(this.link , {'amount': + this.sum, '_token' : this.csrfToken}).then(response => {
                     if(response.status === 200){
-                        this.balanceInfo = response.data
-                        this.step = 0
-                        this.isLoaded = false
                         setTimeout(() => {
-                            this.animated = true
-                        }, 200)
-                        setTimeout(() => {
-                            this.step = 2
-                            this.animated = false
-                        }, 500)
+                            this.balanceInfo = response.data
+                            this.loading = false
+                        }, 200);
                     }
                 }).catch(error => {
                     console.log(error);

@@ -56,7 +56,7 @@ class ProjectsController extends Controller
     }
 
     public function order(PurchasedProject $project) {
-        $developers = User::active()->developers()->paginate(10);
+        $developers = User::active()->developers()->get();
 
         return view('profile.projects.order', compact('developers', 'project'));
     }

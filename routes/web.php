@@ -328,3 +328,7 @@ Route::group([
     Route::post('/{advice}/comment', 'AdviceController@addComment')->name('comment');
 
 });
+
+Route::get('/preloader', function() {
+    return view('preloader');
+});

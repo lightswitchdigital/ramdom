@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "animejs": "^3.2.1",
         "vue-router": "^3.4.9",
         "vue-scroll-loader": "^2.2.0",
         "vue-sequential-entrance": "^1.1.3",

@@ -8,10 +8,10 @@ import LoginComponent from "./components/Auth/LoginComponent";
 import RegisterComponent from "./components/Auth/RegisterComponent";
 import SequentialEntrance from 'vue-sequential-entrance'
 import 'vue-sequential-entrance/vue-sequential-entrance.css'
+import anime from 'animejs/lib/anime.es.js';
 
 require('./bootstrap');
 
-window.Vue = require('vue');
 
 import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
@@ -25,7 +25,7 @@ import AddBalanceComponent from "./components/AddBalanceComponent";
 import NotificationsComponent from "./components/NotificationsComponent"
 import PurchasedProjectDetails from "./components/Projects/PurchasedProjectDetails";
 import OrderProjectComponent from "./components/OrderProjectComponent";
-
+import PreloaderComponent from "./components/PreloaderComponent";
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
@@ -58,10 +58,9 @@ Vue.component('advice', AdviceComponent);
 Vue.component('add-balance', AddBalanceComponent);
 
 Vue.component('notifications', NotificationsComponent);
+Vue.component('preloader', PreloaderComponent);
 
 Vue.component('order', OrderProjectComponent);
-
-
 
 
 const app = new Vue({
