@@ -31,7 +31,7 @@
             </div>
             <div class="forgot-block">
                 <span></span>
-                <a href="#" class="forgot-link">Забыли пароль?</a>
+                <a href="/password/reset" class="forgot-link">Забыли пароль?</a>
             </div>
             
             <button class="btn yellow-btn" :class='{active: isDisabled}' type="submit" :disabled='isDisabled'>

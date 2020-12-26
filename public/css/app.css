@@ -13082,3 +13082,58 @@ a.project-card.order-card .card-body {
   opacity: 0.6;
 }
 
+.reset-block .card {
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: none;
+  padding: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reset-block .card .card-header {
+  background: none;
+  border: none;
+  padding: 0;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #FFD977;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.reset-block .card input:focus,
+.reset-block .card input:active,
+.reset-block .card button:focus,
+.reset-block .card button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.reset-block .card .yellow-btn {
+  box-shadow: none;
+  padding: 20px 30px;
+  font-size: 18px;
+  width: 100%;
+  border-radius: 16px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.reset-block .card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.reset-block .card input + label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
