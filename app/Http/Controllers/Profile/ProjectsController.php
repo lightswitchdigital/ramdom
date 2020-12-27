@@ -38,8 +38,8 @@ class ProjectsController extends Controller
     public function getProjects(Request $request) {
 
         $user = Auth::user();
-        $saved = $user->savedProjects()->with('project')->with('project.images')->get();
-        $purchased = $user->purchasedProjects()->with('project')->with('project.images')->get();
+        $saved = $user->savedProjects()->with('project')->get();
+        $purchased = $user->purchasedProjects()->with('project')->get();
 
         return [
             'saved' => $saved,

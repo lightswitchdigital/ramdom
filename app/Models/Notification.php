@@ -34,9 +34,45 @@ class Notification extends Model
     }
 
     public function getSinceCreatedAttribute() {
-        $since = Carbon::now()->diffInHours($this->created_at);
+        $since = (string) Carbon::now()->diffInHours($this->created_at);
 
-        return $since . ' часов назад';
+        $result = '';
+
+        if ($since > 24) {
+
+            $since = (string) Carbon::now()->diffInDays($this->created_at);
+
+            $result =  $since . ' дней назад';
+
+            if ($since == 0) {
+                $result = 'Только что';
+            }elseif (((strlen($since) > 1 && $since[-1] == '1') || $since == "1") && $since !== '11') {
+                $result = $since . ' день назад';
+            }elseif ((strlen($since) > 0 && in_array($since[-1], ['2', '3', '4'])) || in_array($since, ['2', '3', '4'])) {
+                $result = $since . ' дня назад';
+            }elseif ((strlen($since) > 0 && in_array($since[-1], ['5', '6', '7', '8', '9'])) || in_array($since, ['5', '6', '7', '8', '9']) || $since == '11') {
+                $result = $since . ' дней назад';
+            }elseif (strlen($since) > 1 && $since[-1] == "0") {
+                $result = $since . ' дней назад';
+            }
+
+        }else {
+
+            if ($since == 0) {
+                $result = 'Только что';
+            }elseif (((strlen($since) > 1 && $since[-1] == '1') || $since == "1") && $since !== '11') {
+                $result = $since . ' час назад';
+            }elseif ((strlen($since) > 0 && in_array($since[-1], ['2', '3', '4'])) || in_array($since, ['2', '3', '4'])) {
+                $result = $since . ' часа назад';
+            }elseif ((strlen($since) > 0 && in_array($since[-1], ['5', '6', '7', '8', '9'])) || in_array($since, ['5', '6', '7', '8', '9']) || $since == '11') {
+                $result = $since . ' часов назад';
+            }elseif (strlen($since) > 1 && $since[-1] == "0") {
+                $result = $since . ' часов назад';
+            }
+
+        }
+
+        return $result;
     }
 
     public function user() {
