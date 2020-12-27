@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ModifyController extends Controller
 {
-    public function save(Project $project, BuyRequest $request) {
+    public function save(Project $project, Request $request) {
         $this->validate($request, [
 
         ]);

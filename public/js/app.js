@@ -4496,7 +4496,7 @@ __webpack_require__.r(__webpack_exports__);
       favoritesClass: '',
       btnDisabled: false,
       linkForBuy: '',
-      attributesForSave: {},
+      savedAttributes: {},
       buyDisabled: false,
       notAllChange: false
     };
@@ -4509,10 +4509,8 @@ __webpack_require__.r(__webpack_exports__);
     this.$nextTick(this.$forceUpdate);
 
     if (this.saveFile) {
-      this.attributesForSave = this.saveFile.values_data;
+      this.savedAttributes = this.saveFile.values_data;
     }
-
-    console.log(this.purchaseAttributes);
   },
   components: {
     VueSlickCarousel: vue_slick_carousel__WEBPACK_IMPORTED_MODULE_1___default.a,
@@ -4556,7 +4554,7 @@ __webpack_require__.r(__webpack_exports__);
         this.notAllChange = false;
         axios.post(this.buyLink, {
           '_token': this.csrfToken,
-          'purchase_attributes': this.attributesForSave
+          'purchase_attributes': this.savedAttributes
         }).then(function (response) {
           if (response.status === 204) {
             _this2.buyDisabled = false;
@@ -4573,11 +4571,11 @@ __webpack_require__.r(__webpack_exports__);
     saveProject: function saveProject() {
       var _this3 = this;
 
-      if (this.isAuthenticated && this.canEdit) {
+      if (this.isAuthenticated && (this.canEdit || this.saveFile)) {
         this.buyDisabled = true;
         axios.post(this.saveLink, {
           '_token': this.csrfToken,
-          'purchase_attributes': this.attributesForSave
+          'purchase_attributes': this.savedAttributes
         }).then(function (response) {
           if (response.status === 200) {
             _this3.buyDisabled = false;
@@ -44197,9 +44195,9 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value:
-                                          _vm.purchaseAttributes[attribute.id],
+                                          _vm.savedAttributes[attribute.id],
                                         expression:
-                                          "purchaseAttributes[attribute.id]"
+                                          "savedAttributes[attribute.id]"
                                       }
                                     ],
                                     staticClass: "custom-select",
@@ -44224,7 +44222,7 @@ var render = function() {
                                             return val
                                           })
                                         _vm.$set(
-                                          _vm.purchaseAttributes,
+                                          _vm.savedAttributes,
                                           attribute.id,
                                           $event.target.multiple
                                             ? $$selectedVal
@@ -44260,10 +44258,9 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value:
-                                        _vm.purchaseAttributes[attribute.id],
+                                      value: _vm.savedAttributes[attribute.id],
                                       expression:
-                                        "purchaseAttributes[attribute.id]"
+                                        "savedAttributes[attribute.id]"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -44276,7 +44273,7 @@ var render = function() {
                                       "]"
                                   },
                                   domProps: {
-                                    value: _vm.purchaseAttributes[attribute.id]
+                                    value: _vm.savedAttributes[attribute.id]
                                   },
                                   on: {
                                     input: function($event) {
@@ -44284,7 +44281,7 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.purchaseAttributes,
+                                        _vm.savedAttributes,
                                         attribute.id,
                                         $event.target.value
                                       )
@@ -44296,10 +44293,9 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value:
-                                        _vm.purchaseAttributes[attribute.id],
+                                      value: _vm.savedAttributes[attribute.id],
                                       expression:
-                                        "purchaseAttributes[attribute.id]"
+                                        "savedAttributes[attribute.id]"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -44312,7 +44308,7 @@ var render = function() {
                                       "]"
                                   },
                                   domProps: {
-                                    value: _vm.purchaseAttributes[attribute.id]
+                                    value: _vm.savedAttributes[attribute.id]
                                   },
                                   on: {
                                     input: function($event) {
@@ -44320,7 +44316,7 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.purchaseAttributes,
+                                        _vm.savedAttributes,
                                         attribute.id,
                                         $event.target.value
                                       )
@@ -44361,7 +44357,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                !_vm.canEdit && !_vm.saveFile && _vm.isAuthenticated
+                !_vm.canEdit && !_vm.saveFile
                   ? _c("div", { staticClass: "alert alert-info" }, [
                       _vm._v(
                         "\n                        Этот проект не сохранится так как превышен лимит одновременных проектов\n                    "
@@ -44382,10 +44378,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn yellow-btn",
-                      attrs: {
-                        type: "submit",
-                        disabled: _vm.buyDisabled || !_vm.canEdit
-                      }
+                      attrs: { type: "submit", disabled: _vm.buyDisabled }
                     },
                     [_vm._v("Купить проект")]
                   )

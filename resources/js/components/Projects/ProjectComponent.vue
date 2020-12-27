@@ -73,7 +73,7 @@
                                                 :id="'purchase_attribute_'+attribute.id"
                                                 class="custom-select"
                                                 :name="'purchase_attributes['+attribute.id+']'"
-                                                v-model="purchaseAttributes[attribute.id]">
+                                                v-model="savedAttributes[attribute.id]">
                                             <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
                                                 {{ variant }}
                                             </option>
@@ -82,14 +82,14 @@
                                         :id="'purchase_attribute_'+attribute.id"
                                         type="number" class="form-control"
                                         :name="'purchase_attributes['+attribute.id+']'"
-                                        v-model="purchaseAttributes[attribute.id]">
+                                        v-model="savedAttributes[attribute.id]">
 
                                         <input v-else
                                         :id="'purchase_attribute_'+attribute.id"
                                         type="text"
                                         class="form-control"
                                         :name="'purchase_attributes['+attribute.id+']'"
-                                        v-model="purchaseAttributes[attribute.id]">
+                                        v-model="savedAttributes[attribute.id]">
                                     </td>
                                 </tr>
                             </tbody>
@@ -110,14 +110,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div v-if="!canEdit && !saveFile && isAuthenticated" class="alert alert-info" >
+                        <div v-if="!canEdit && !saveFile" class="alert alert-info" >
                             Этот проект не сохранится так как превышен лимит одновременных проектов
                         </div>
                         <div class="alert alert-danger" v-if="notAllChange">
                             Вы не выбрали все параметры
                         </div>
                         <div class="btn-block">
-                            <button type="submit" class="btn yellow-btn" :disabled="buyDisabled || !canEdit">Купить проект</button>
+                            <button type="submit" class="btn yellow-btn" :disabled="buyDisabled">Купить проект</button>
                         </div>
                     </form>
                 </div>
@@ -140,7 +140,7 @@ export default {
         favoritesClass: '',
         btnDisabled: false,
         linkForBuy: '',
-        attributesForSave: {},
+        savedAttributes: {},
         buyDisabled: false,
         notAllChange: false
     }),
@@ -161,9 +161,8 @@ export default {
     mounted() {
         this.$nextTick(this.$forceUpdate);
         if(this.saveFile){
-            this.attributesForSave = this.saveFile.values_data
+            this.savedAttributes = this.saveFile.values_data
         }
-        console.log(this.purchaseAttributes);
     },
     components: {
         VueSlickCarousel ,
@@ -194,7 +193,7 @@ export default {
             if(this.isAuthenticated){
                     this.buyDisabled = true
                     this.notAllChange = false
-                    axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
+                    axios.post(this.buyLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.savedAttributes} ).then(response => {
                         if(response.status === 204){
                             this.buyDisabled = false;
                             alert('Вы успешно купили проект')
@@ -208,9 +207,9 @@ export default {
             }
         },
         saveProject() {
-            if(this.isAuthenticated && this.canEdit){
+            if(this.isAuthenticated && (this.canEdit || this.saveFile)){
                 this.buyDisabled = true;
-                axios.post(this.saveLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.attributesForSave} ).then(response => {
+                axios.post(this.saveLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.savedAttributes} ).then(response => {
                     if(response.status === 200){
                         this.buyDisabled = false;
                         console.log('save is ok');
