@@ -35,15 +35,16 @@ class ProjectsController extends Controller
         return $purchased->toJson();
     }
 
-    public function getSavedProjects(Request $request) {
-
-        $batch = (int) $request->get('batch') ?? 1;
-        $skip = ($batch - 1) * env('PROJECTS_PAGINATION');
+    public function getProjects(Request $request) {
 
         $user = Auth::user();
-        $saved = $user->savedProjects()->with('project')->skip($skip)->take(env('PROJECTS_PAGINATION'))->get();;
+        $saved = $user->savedProjects()->with('project')->with('project.images')->get();
+        $purchased = $user->purchasedProjects()->with('project')->with('project.images')->get();
 
-        return $saved->toJson();
+        return [
+            'saved' => $saved,
+            'purchased' => $purchased
+        ];
     }
 
     public function removeFromSaved(SavedProject $project) {

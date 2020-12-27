@@ -10913,16 +10913,6 @@ body {
   min-height: calc(100vh - 200px);
 }
 
-.secondary-btn {
-  padding: 15px;
-  width: 250px;
-  border-radius: 100px;
-  background: #FFD977;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 119.88%;
-}
-
 .alert {
   position: relative;
   padding-left: 25px !important;
@@ -12548,7 +12538,7 @@ a.project-card.order-card .card-body {
 }
 
 .balance-modal .card {
-  max-width: 500px;
+  max-width: 380px;
   margin: 30px auto;
   border-radius: 16px;
   overflow: hidden;
@@ -12562,8 +12552,6 @@ a.project-card.order-card .card-body {
   display: flex;
   flex-direction: row;
   transition: 0.2s;
-  padding: 15px 40px;
-  min-height: 500px;
 }
 
 .balance-modal .modal-body .first-step,
@@ -12577,7 +12565,6 @@ a.project-card.order-card .card-body {
   display: flex;
   align-content: space-around;
   flex-direction: column;
-  margin: 40px 20px;
 }
 
 .balance-modal .modal-body .second-step ul {
@@ -12596,18 +12583,6 @@ a.project-card.order-card .card-body {
 
 .balance-modal .modal-body .second-step img {
   width: 100%;
-  max-width: 200px;
-  display: block;
-  margin: 15px auto 25px;
-}
-
-.balance-modal .modal-body .second-step .hint {
-  margin: 20px 0;
-  font-size: 12px;
-}
-
-.balance-modal .modal-body .second-step .payment-credentials {
-  font-size: 16px;
 }
 
 .balance-modal .modal-body.animated .first-step {

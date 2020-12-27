@@ -26,6 +26,7 @@ import NotificationsComponent from "./components/NotificationsComponent"
 import PurchasedProjectDetails from "./components/Projects/PurchasedProjectDetails";
 import OrderProjectComponent from "./components/OrderProjectComponent";
 import PreloaderComponent from "./components/PreloaderComponent";
+import SavedProjectCardComponent from "./components/Projects/SavedProjectCardComponent";
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
@@ -47,6 +48,7 @@ Vue.component('register', RegisterComponent);
 
 Vue.component('project-card', ProjectCardComponent);
 Vue.component('purchased-project-card', PurchasedProjectCardComponent);
+Vue.component('saved-project-card', SavedProjectCardComponent);
 Vue.component('purchased-project-details', PurchasedProjectDetails);
 Vue.component('my-projects', MyProjectsComponent);
 Vue.component('project', ProjectComponent);
