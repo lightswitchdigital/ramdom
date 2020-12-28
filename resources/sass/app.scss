@@ -819,14 +819,22 @@ a.project-card{
 }
 
 .order-block{
+    .wrapper-form{
+        width: 100%;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        margin: 100px 0;
+        padding: 100px 0;
+    }
     .agree-form{
-        max-width: 100%;
-        margin-top: 20px;
+        max-width: 640px;
+        margin: 0 auto;
         .title{
-            padding-bottom: 2px;
-            border-bottom: 2px solid #FFD977;
-            width: fit-content;
-            margin-bottom: 20px;
+            margin-bottom: 70px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
         }
         .switch-block{
             display: flex;
@@ -841,7 +849,9 @@ a.project-card{
             width: fit-content;
             margin: 70px auto;
             display: block;
-            padding: 25px 70px;
+            padding: 15px 60px;
+            font-size: 16px;
+            display: block;
         }
         .passport-block{
             margin-top: 55px;
@@ -850,8 +860,10 @@ a.project-card{
             width: 100%;
             box-sizing: border-box;
             padding: 30px 20px;
-            border-radius: 16px;
-            margin-bottom: 20px;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 30px;
             &:focus{
                 box-shadow: none;
                 outline: none;
@@ -1959,5 +1971,49 @@ a.project-card{
                 font-weight: bold;
             }
         }
+    }
+}
+
+.developers-block{
+    .wrapper{
+        width: 100%;
+        padding: 50px 40px;
+        box-sizing: border-box;
+        border-radius: 16px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        .list-group{
+            border-right: 1px solid rgba(0, 0, 0, 0.125);
+            .list-group-item{
+                padding: 20px 40px;
+                position: relative;
+                &.active{
+                    background: rgba(204, 204, 204, 0.2);
+                    color: #000;
+                    border-color: #FFD977;
+                }
+                &.change{
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        display: block;
+                        width: 5px;
+                        left: 10px;
+                        top: 10px;
+                        border-radius: 5px;
+                        background: #FFD977;
+                        height: calc(100% - 20px);
+                    }
+                }
+            }
+        }
+    }
+    .yellow-btn{
+        display: block;
+        box-shadow: none;
+        font-size: 16px;
+        width: fit-content;
+        padding: 15px 60px;
+        margin: 0 auto;
+        margin-top: 50px;
     }
 }

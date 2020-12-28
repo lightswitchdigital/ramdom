@@ -27,6 +27,7 @@ import PurchasedProjectDetails from "./components/Projects/PurchasedProjectDetai
 import OrderProjectComponent from "./components/OrderProjectComponent";
 import PreloaderComponent from "./components/PreloaderComponent";
 import SavedProjectCardComponent from "./components/Projects/SavedProjectCardComponent";
+import DeveloperComponent from "./components/DevelopersComponent"
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
@@ -63,6 +64,8 @@ Vue.component('notifications', NotificationsComponent);
 Vue.component('preloader', PreloaderComponent);
 
 Vue.component('order', OrderProjectComponent);
+
+Vue.component('developers' , DeveloperComponent);
 
 
 const app = new Vue({
