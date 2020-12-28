@@ -1138,6 +1138,55 @@ a.project-card{
         border-bottom: 2px solid #FFD977;
         width: fit-content;
     }
+    .slick-slider{
+        position: relative;
+    }
+    .slick-slide{
+        padding: 0 10px;
+    }
+    .btn-next{
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        background: #FFD977;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -17px;
+        font-size: 16px;
+        z-index: 100;
+        &:hover, &:active{
+            background: #fccb51;
+            color: #333;
+        }
+    }
+    .btn-prev{
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        background: #FFD977;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -10px;
+        font-size: 16px;
+        z-index: 100;
+        &:hover, &:active{
+            background: #fccb51;
+            color: #333;
+        }
+    }
+    .slick-next::before , .slick-prev::before {
+        display: none;
+    }
 }
 
 .faq-block{

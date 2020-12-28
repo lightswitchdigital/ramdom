@@ -12195,6 +12195,65 @@ a.project-card.order-card .card-body {
   width: fit-content;
 }
 
+.favorites-block .slick-slider {
+  position: relative;
+}
+
+.favorites-block .slick-slide {
+  padding: 0 10px;
+}
+
+.favorites-block .btn-next {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background: #FFD977;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -17px;
+  font-size: 16px;
+  z-index: 100;
+}
+
+.favorites-block .btn-next:hover,
+.favorites-block .btn-next:active {
+  background: #fccb51;
+  color: #333;
+}
+
+.favorites-block .btn-prev {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background: #FFD977;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -10px;
+  font-size: 16px;
+  z-index: 100;
+}
+
+.favorites-block .btn-prev:hover,
+.favorites-block .btn-prev:active {
+  background: #fccb51;
+  color: #333;
+}
+
+.favorites-block .slick-next::before,
+.favorites-block .slick-prev::before {
+  display: none;
+}
+
 .faq-block .title {
   padding-bottom: 5px;
   border-bottom: 2px solid #FFD977;

@@ -4276,6 +4276,7 @@ __webpack_require__.r(__webpack_exports__);
         "infinite": true,
         "slidesToShow": 4,
         "slidesToScroll": 1,
+        "varible-width": true,
         "responsive": [{
           "breakpoint": 1024,
           "settings": {

@@ -82,6 +82,7 @@ export default {
             "infinite" : true,
             "slidesToShow": 4,
             "slidesToScroll": 1,
+            "varible-width": true,
             "responsive": [
                 {
                     "breakpoint": 1024,
