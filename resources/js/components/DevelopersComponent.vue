@@ -42,9 +42,6 @@ export default {
     props: [
         'developers'
     ],
-    mounted() {
-        console.log(this.developers);
-    },
     methods: {
         changeVar() {
             if(!this.changesDeveloper){

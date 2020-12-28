@@ -21,7 +21,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="modal fade region-modal" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade region-modal" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -41,7 +41,8 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
+<regions-modal></regions-modal>
     <div id="app">
         <nav class="navbar navbar-expand-lg">
             <div class="container">

@@ -28,6 +28,7 @@ import OrderProjectComponent from "./components/OrderProjectComponent";
 import PreloaderComponent from "./components/PreloaderComponent";
 import SavedProjectCardComponent from "./components/Projects/SavedProjectCardComponent";
 import DeveloperComponent from "./components/DevelopersComponent"
+import RegionsModalComponent from "./components/RegionsModalComponent"
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
@@ -66,6 +67,8 @@ Vue.component('preloader', PreloaderComponent);
 Vue.component('order', OrderProjectComponent);
 
 Vue.component('developers' , DeveloperComponent);
+
+Vue.component('regions-modal', RegionsModalComponent);
 
 
 const app = new Vue({
