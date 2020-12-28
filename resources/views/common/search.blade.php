@@ -14,8 +14,8 @@
                     @if ($attribute->isSelect() || $attribute->isNumber())
                     <div class="form-control-custom">
                         @if ($attribute->isSelect())
-                            <select class="custom-select" name="attrs[{{ $attribute->id }}][equals]">
-                                <option value="">{{ $attribute->name }}</option>
+                        <label for="attrs{{ $attribute->id }}">{{ $attribute->name }}</label>    
+                            <select class="custom-select" name="attrs[{{ $attribute->id }}][equals]" id="attrs{{ $attribute->id }}">
                                 @foreach ($attribute->variants as $variant)
                                     <option value="{{ $variant }}"{{ $variant === request()->input('attrs.' . $attribute->id . '.equals') ? ' selected' : '' }}>
                                         {{ $variant }}

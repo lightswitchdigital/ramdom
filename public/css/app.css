@@ -11333,12 +11333,26 @@ a.project-card.order-card .card-body {
   margin-top: 30px;
 }
 
+.filter-block .selectors-block label {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-bottom: 1px solid #FFD977;
+  padding: 2px 0;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
 .filter-block .selectors-block .form-control-custom {
   min-width: calc(25% - 10px);
   display: inline-block;
+  margin-bottom: 20px;
 }
 
 .filter-block .selectors-block select {
+  display: block;
   height: auto;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -11346,7 +11360,6 @@ a.project-card.order-card .card-body {
   border: none;
   padding: 2px 0;
   padding-right: 25px;
-  border-bottom: 2px solid #FFD977;
   border-radius: 0;
   background-image: url("https://image.flaticon.com/icons/png/512/25/25623.png");
   background-size: 10px 10px;
@@ -11355,7 +11368,6 @@ a.project-card.order-card .card-body {
   font-size: 14px;
   font-weight: bold;
   background-position: right;
-  margin-bottom: 20px;
 }
 
 .filter-block .price .title {
