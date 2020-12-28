@@ -3461,6 +3461,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'login',
@@ -42464,21 +42465,23 @@ var render = function() {
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn yellow-btn",
-            class: { active: _vm.isDisabled },
-            attrs: { type: "submit", disabled: _vm.isDisabled }
-          },
-          [
-            _c("span", { staticClass: "text-succes" }, [
-              _vm._v("Вы успешно вошли")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "not-disabled" }, [_vm._v("Войти")])
-          ]
-        ),
+        _c("div", { staticClass: "btn-block" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn yellow-btn",
+              class: { active: _vm.isDisabled },
+              attrs: { type: "submit", disabled: _vm.isDisabled }
+            },
+            [
+              _c("span", { staticClass: "text-succes" }, [
+                _vm._v("Вы успешно вошли")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "not-disabled" }, [_vm._v("Войти")])
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c(
           "a",

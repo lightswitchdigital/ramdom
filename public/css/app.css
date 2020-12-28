@@ -11533,6 +11533,7 @@ a.project-card.order-card .card-body {
   padding: 30px auto;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .register-block .btn-submit span {
@@ -11744,6 +11745,10 @@ a.project-card.order-card .card-body {
   text-decoration: none;
 }
 
+.login-block .btn-block {
+  margin-top: 20px;
+}
+
 .login-block .yellow-btn {
   display: flex;
   flex-direction: column;
@@ -11752,12 +11757,12 @@ a.project-card.order-card .card-body {
   padding: 20px;
   width: 100%;
   margin: 20 0;
-  margin-top: 20px;
   box-shadow: none;
   border-radius: 16px;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
+  overflow: hidden;
 }
 
 .login-block .yellow-btn span {

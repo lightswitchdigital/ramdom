@@ -566,6 +566,7 @@ a.project-card{
         padding: 30px auto;
         width: 100%;
         box-sizing: border-box;
+        overflow: hidden;
         span{
             transition: 0.4s;
             &.not-disabled{
@@ -742,6 +743,7 @@ a.project-card{
             text-decoration: none;
         }
     }
+    .btn-block{margin-top: 20px;}
     .yellow-btn{
         display: flex;
         flex-direction: column;
@@ -750,12 +752,12 @@ a.project-card{
         padding: 20px;
         width: 100%;
         margin: 20 0;
-        margin-top: 20px;
         box-shadow: none;
         border-radius: 16px;
         text-align: center;
         font-size: 18px;
         font-weight: bold;
+        overflow: hidden;
         span{
             transition: 0.4s;
             &.not-disabled{

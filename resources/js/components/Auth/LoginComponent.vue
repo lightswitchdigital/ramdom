@@ -33,11 +33,12 @@
                 <span></span>
                 <a href="/password/reset" class="forgot-link">Забыли пароль?</a>
             </div>
-            
-            <button class="btn yellow-btn" :class='{active: isDisabled}' type="submit" :disabled='isDisabled'>
-                <span class="text-succes">Вы успешно вошли</span>
-                <span class="not-disabled">Войти</span>
-            </button>
+            <div class="btn-block">
+                <button class="btn yellow-btn" :class='{active: isDisabled}' type="submit" :disabled='isDisabled'>
+                    <span class="text-succes">Вы успешно вошли</span>
+                    <span class="not-disabled">Войти</span>
+                </button>
+            </div>
             <a href="/register" class="register-link">Регистрация</a>
         </form>
     </div>
