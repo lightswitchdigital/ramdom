@@ -1442,16 +1442,30 @@ a.project-card{
         padding: 38px 60px;
     }
     .title{
+        font-size: 45px;
         width: fit-content;
-        border-bottom: 2px solid #FFD977;
+        font-weight: bold;
         padding-bottom: 2px;
-        margin-bottom: 50px;
+        border-bottom: 2px solid #FFD977;
+    }
+    .subtitle{
+        font-size: 32px;
+        font-weight: 700;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        text-align: center;
+    }
+    .col-md:nth-of-type(2){
+        .card{
+            transform: scale(1.2);
+            margin-top: 62px;
+        }
     }
     .card{
         display: block;
-        max-width: 310px;
+        max-width: 270px;
         border-radius: 16px;
-        padding: 40px 60px;
+        padding: 35px 30px;
         text-align: center;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         margin: 30px auto;
@@ -1460,13 +1474,36 @@ a.project-card{
         text-decoration: none;
         color: #000;
         cursor: pointer;
+        .card-title{
+            width: fit-content;
+            border-bottom: 1px solid #E3E3E3;
+            padding: 11px 15px;
+            margin: 10px auto;
+            font-size: 20px;
+            text-align: center;
+        }
         .price{
             width: 100%;
             text-align: center;
-            padding-bottom: 2px;
-            border-bottom: 2px solid #FFD977;
-            margin-top: 150px;
+            margin-top: 60px;
+            margin-bottom: 36px;
+            font-size: 24px;
+        }
+        .desc{
+            font-size: 14px;
+            max-width: 100%;
+            box-sizing: border-box;
             margin-bottom: 60px;
+            text-align: center;
+        }
+        .yellow-btn{
+            display: block;
+            width: fit-content;
+            font-size: 12px;
+            box-shadow: none;
+            border-radius: 100px;
+            padding: 10px 45px;
+            margin: 0 auto;
         }
     }
 }
