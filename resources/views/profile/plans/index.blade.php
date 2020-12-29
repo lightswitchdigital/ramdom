@@ -12,7 +12,9 @@
                             <form action="{{ route('profile.plans.subscribe', $plan) }}" method="POST">
                                 @csrf
                                 <h4 class="card-title">{{ $plan->name }}</h4>
-                                <h1 class="price">{{ $plan->price }}</h1>
+                                <h1 class="price">{{ $plan->price }}<br>
+                                    <span style="display: block; font-size: 12px; font-weight: bold;">рублей / месяц</span> 
+                                </h1>
                                 <p class="desc">план для тех, кто только начинает знакомиться с функционалом сайта</p>
                                 <button class="btn yellow-btn">Перейти</button>
                             </form>
@@ -24,7 +26,10 @@
                         <form>
                             @csrf
                             <h4 class="card-title">Профессионал</h4>
-                            <h1 class="price">100000</h1>
+                            <h1 class="price">100000 <br>
+                                <span style="display: block; font-size: 12px; font-weight: bold;">рублей / месяц</span> 
+                            </h1>
+                            
                             <p class="desc">план для тех, кто только начинает знакомиться с функционалом сайта</p>
                             <button class="btn yellow-btn">Выбрать</button>
                         </form>
