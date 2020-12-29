@@ -11,10 +11,13 @@ class RegionMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if($slug = $request->query('region') ) {
+//        if ($cookie = $request->cookie('region')) {
+//            dd($cookie);
+//        }
+        if($slug = $request->query('region')) {
             $region = Region::whereSlug($slug)->first();
             if ($region) {
-                return redirect($request->url())->withCookie(cookie()->forever('region', $request->query('region')));
+                return redirect($request->url())->withCookie(cookie()->forever('region', $region->slug));
             }
         }
 

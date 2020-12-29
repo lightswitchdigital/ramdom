@@ -1,17 +1,8 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-import LoginComponent from "./components/Auth/LoginComponent";
-import RegisterComponent from "./components/Auth/RegisterComponent";
 import SequentialEntrance from 'vue-sequential-entrance'
 import 'vue-sequential-entrance/vue-sequential-entrance.css'
-import anime from 'animejs/lib/anime.es.js';
+import VueCookies from 'vue-cookies'
 
 require('./bootstrap');
-
 
 import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
@@ -28,22 +19,21 @@ import OrderProjectComponent from "./components/OrderProjectComponent";
 import PreloaderComponent from "./components/PreloaderComponent";
 import SavedProjectCardComponent from "./components/Projects/SavedProjectCardComponent";
 import DeveloperComponent from "./components/DevelopersComponent"
-import RegionsModalComponent from "./components/RegionsModalComponent"
+import LoginComponent from "./components/Auth/LoginComponent";
+import RegisterComponent from "./components/Auth/RegisterComponent";
+
+/**
+ * Using plugins
+ */
 
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
 Vue.use(SequentialEntrance);
+Vue.use(VueCookies)
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Loading all the components
  */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('login', LoginComponent);
 Vue.component('register', RegisterComponent);
@@ -56,20 +46,12 @@ Vue.component('my-projects', MyProjectsComponent);
 Vue.component('project', ProjectComponent);
 Vue.component('recommendations', Recommend);
 Vue.component('my-projects', MyProjectsComponent);
-
 Vue.component('advice', AdviceComponent);
-
 Vue.component('add-balance', AddBalanceComponent);
-
 Vue.component('notifications', NotificationsComponent);
 Vue.component('preloader', PreloaderComponent);
-
 Vue.component('order', OrderProjectComponent);
-
 Vue.component('developers' , DeveloperComponent);
-
-Vue.component('regions-modal', RegionsModalComponent);
-
 
 const app = new Vue({
     el: '#app',

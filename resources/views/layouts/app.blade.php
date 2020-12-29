@@ -21,28 +21,27 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-{{-- <div class="modal fade region-modal" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Выберите регион</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="list-group list-group-flush">
-            @foreach(\App\Models\Region::all() as $region)
-                <li class="list-group-item">
-                    <a href="?region={{ $region->slug }}">{{ $region->name }}</a>
-                </li>
-            @endforeach
-        </ul>
-      </div>
+    <div class="modal fade region-modal" id="regionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalLabel">Выберите регион</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <ul class="list-group list-group-flush">
+                       @foreach($regions_list as $region)
+                           <li class="list-group-item">
+                               <a href="?region={{ $region->slug }}">{{ $region->name }}</a>
+                           </li>
+                       @endforeach
+                   </ul>
+               </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div> --}}
-<regions-modal></regions-modal>
     <div id="app">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -56,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <button type="button" class="region-toggle mr-auto " data-toggle="modal" data-target="#regionModal">
-                        Самара
+                        {{ $current_region_name }}
                     </button>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto mr-4">
@@ -77,10 +76,6 @@
                                 <a class="nav-link" href="{{ route('login') }}">Войти</a>
                             </li>
                         @else
-
-                            <li class="nav-item dropdown">
-                                <notifications></notifications>
-                            </li>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

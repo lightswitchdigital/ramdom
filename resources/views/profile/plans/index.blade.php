@@ -6,7 +6,15 @@
             <h1 class="title">Планы</h1>
             <h1 class="subtitle">Выберите подходящий себе план</h1>
             <div class="row">
-                @foreach($plans as $plan) 
+                <div class="col-md">
+                    <div class="card">
+                        <h4 class="card-title">Покупатель</h4>
+                        <h1 class="price">Бесплатно</h1>
+                        <p class="desc">план для тех, кто только начинает знакомиться с функционалом сайта</p>
+                        <button class="btn yellow-btn">Перейти</button>
+                    </div>
+                </div>
+                @foreach($plans as $plan)
                     <div class="col-md">
                         <div class="card">
                             <form action="{{ route('profile.plans.subscribe', $plan) }}" method="POST">
@@ -19,17 +27,6 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md">
-                    <div class="card big-card">
-                        <form>
-                            @csrf
-                            <h4 class="card-title">Профессионал</h4>
-                            <h1 class="price">100000</h1>
-                            <p class="desc">план для тех, кто только начинает знакомиться с функционалом сайта</p>
-                            <button class="btn yellow-btn">Выбрать</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
