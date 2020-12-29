@@ -112,7 +112,15 @@
         </nav>
 
         <main class="py-4 content">
-
+            <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Library</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    </ol>
+                </nav>
+            </div>
             @include('layouts.common.partials')
 
             @yield('content')
@@ -120,7 +128,7 @@
 
         <footer style="background: #353535; color: #fff">
            <div class="navbar navbar-expand-lg">
-                <div class="container" style="min-height: 250px">
+                <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ asset('/images/logo-light.png') }}">
                     </a>
