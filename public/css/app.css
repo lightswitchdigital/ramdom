@@ -10909,6 +10909,14 @@ body {
   background: #ffffff;
 }
 
+.breadcrumb {
+  background: none;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: #000;
+}
+
 .content {
   min-height: calc(100vh - 200px);
 }
