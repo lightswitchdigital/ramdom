@@ -11,10 +11,9 @@
             </div>
             <div class="selectors-block">
                 @foreach ($attributes as $attribute)
-                    @if ($attribute->isSelect() || $attribute->isNumber())
                     <div class="form-control-custom">
-                        @if ($attribute->isSelect())
-                        <label for="attrs{{ $attribute->id }}">{{ $attribute->name }}</label>    
+                        <label for="attrs{{ $attribute->id }}">{{ $attribute->name }}</label>  
+                        @if ($attribute->isSelect())  
                             <select class="custom-select" name="attrs[{{ $attribute->id }}][equals]" id="attrs{{ $attribute->id }}">
                                 @foreach ($attribute->variants as $variant)
                                     <option value="{{ $variant }}"{{ $variant === request()->input('attrs.' . $attribute->id . '.equals') ? ' selected' : '' }}>
@@ -24,18 +23,12 @@
                             </select>
 
                         @elseif ($attribute->isNumber())
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" name="attrs[{{ $attribute->id }}][from]" value="{{ request()->input('attrs.' . $attribute->id . '.from') }}" placeholder="От">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" name="attrs[{{ $attribute->id }}][to]" value="{{ request()->input('attrs.' . $attribute->id . '.to') }}" placeholder="До">
-                                </div>
+                            <div>
+                                <input type="number" class="form-control filter-num" name="attrs[{{ $attribute->id }}][from]" value="{{ request()->input('attrs.' . $attribute->id . '.from') }}" placeholder="От">
+                                <input type="number" class="form-control filter-num" name="attrs[{{ $attribute->id }}][to]" value="{{ request()->input('attrs.' . $attribute->id . '.to') }}" placeholder="До">    
                             </div>
                         @endif
-                    </div>
-                        
-                    @endif
+                    </div> 
                 @endforeach
             </div>
             

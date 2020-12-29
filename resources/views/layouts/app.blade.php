@@ -133,7 +133,7 @@
 
         <footer style="background: #353535; color: #fff">
            <div class="navbar navbar-expand-lg">
-                <div class="container" style="min-height: 250px">
+                <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ asset('/images/logo-light.png') }}">
                     </a>
