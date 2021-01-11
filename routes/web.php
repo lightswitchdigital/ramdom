@@ -10,10 +10,14 @@ Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
-| Notifications routes
+| Root routes
 |--------------------------------------------------------------------------
 |
 */
+
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/faq', 'HomeController@faq')->name('faq');
+Route::get('/discounts', 'HomeController@discounts')->name('discounts');
 
 Route::group([
     'middleware' => 'auth',
@@ -49,16 +53,6 @@ Route::group([
     })->name('seen');
 
 });
-
-/*
-|--------------------------------------------------------------------------
-| Root routes
-|--------------------------------------------------------------------------
-|
-*/
-
-Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/faq', 'HomeController@faq')->name('faq');
 
 Route::group([
     'prefix' => 'projects',
@@ -169,15 +163,6 @@ Route::group([
     ], function() {
 
         Route::get('/', 'DocumentationController@index')->name('index');
-
-    });
-
-    Route::group([
-        'prefix' => 'discounts',
-        'as' => 'discounts.'
-    ], function() {
-
-        Route::get('/', 'DiscountsController@index')->name('index');
 
     });
 
@@ -327,6 +312,6 @@ Route::group([
 
 });
 
-Route::get('/preloader', function() {
-    return view('preloader');
-});
+//Route::get('/preloader', function() {
+//    return view('preloader');
+//});
