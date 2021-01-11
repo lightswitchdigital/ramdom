@@ -26,8 +26,9 @@ class BalanceOperation extends Model
 
     public static function typesList() {
         return [
-            self::TYPE_ADD => '',
-            self::TYPE_PROJECT_BOUGHT => ''
+            self::TYPE_ADD => 'Пополнение баланса',
+            self::TYPE_PROJECT_BOUGHT => 'Покупка проекта',
+            self::TYPE_SUBSCRIPTION_CHARGED => 'Оплата подписки',
         ];
     }
 

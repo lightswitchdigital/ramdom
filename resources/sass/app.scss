@@ -1551,6 +1551,9 @@ a.project-card{
     }
     .card{
         border-radius: 16px;
+        padding: 1rem;
+        border: none;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         .card-header{
             background: none;
             border-bottom: none;
@@ -1563,13 +1566,17 @@ a.project-card{
         }
         .yellow-btn{
             box-shadow: none;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 1;
+            font-size: 14px;
             margin-top: 30px;
         }
         .balance{
             font-size: 35px;
         }
+    }
+    .balance-history--wrapper {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
     }
 }
 
@@ -1792,11 +1799,10 @@ a.project-card{
     .dropdown-item {
         color: #000;
         text-decoration: none;
-        width: 170px;
-        padding: 15px 30px;
+        width: 150px;
         box-sizing: border-box;
         position: relative;
-        padding-right: 27px;
+        padding: 15px 27px 15px 30px;
         font-size: 14px;
         display: flex;
         flex-direction: row;
