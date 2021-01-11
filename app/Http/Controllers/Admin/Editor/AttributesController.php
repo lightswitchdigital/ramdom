@@ -38,7 +38,7 @@ class AttributesController extends Controller
         $attribute = PurchaseAttribute::create([
             'name' => $request['name'],
             'type' => $request['type'],
-            'variants' => array_map('trim', preg_split('#[\r\n]+#', $request['variants'])),
+            'variants' => $request['variants']? array_map('trim', preg_split('#[\r\n]+#', $request['variants'])) : [],
             'sort' => $request['sort'],
         ]);
 
