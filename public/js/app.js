@@ -42037,157 +42037,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-cookies/vue-cookies.js":
-/*!*************************************************!*\
-  !*** ./node_modules/vue-cookies/vue-cookies.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Vue Cookies v1.7.4
- * https://github.com/cmp-cc/vue-cookies
- *
- * Copyright 2016, cmp-cc
- * Released under the MIT license
- */
-
-(function () {
-
-  var defaultConfig = {
-    expires: '1d',
-    path: '; path=/',
-    domain: '',
-    secure: '',
-    sameSite: '; SameSite=Lax'
-  };
-
-  var VueCookies = {
-    // install of Vue
-    install: function (Vue) {
-      Vue.prototype.$cookies = this;
-      Vue.$cookies = this;
-    },
-    config: function (expireTimes, path, domain, secure, sameSite) {
-      defaultConfig.expires = expireTimes ? expireTimes : '1d';
-      defaultConfig.path = path ? '; path=' + path : '; path=/';
-      defaultConfig.domain = domain ? '; domain=' + domain : '';
-      defaultConfig.secure = secure ? '; Secure' : '';
-      defaultConfig.sameSite = sameSite ? '; SameSite=' + sameSite : '; SameSite=Lax';
-    },
-    get: function (key) {
-      var value = decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
-
-      if (value && value.substring(0, 1) === '{' && value.substring(value.length - 1, value.length) === '}') {
-        try {
-          value = JSON.parse(value);
-        } catch (e) {
-          return value;
-        }
-      }
-      return value;
-    },
-    set: function (key, value, expireTimes, path, domain, secure, sameSite) {
-      if (!key) {
-        throw new Error('Cookie name is not find in first argument.');
-      } else if (/^(?:expires|max\-age|path|domain|secure|SameSite)$/i.test(key)) {
-        throw new Error('Cookie key name illegality, Cannot be set to ["expires","max-age","path","domain","secure","SameSite"]\t current key name: ' + key);
-      }
-      // support json object
-      if (value && value.constructor === Object) {
-        value = JSON.stringify(value);
-      }
-      var _expires = '';
-      expireTimes = expireTimes == undefined ? defaultConfig.expires : expireTimes;
-      if (expireTimes && expireTimes != 0) {
-        switch (expireTimes.constructor) {
-          case Number:
-            if (expireTimes === Infinity || expireTimes === -1) _expires = '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
-            else _expires = '; max-age=' + expireTimes;
-            break;
-          case String:
-            if (/^(?:\d+(y|m|d|h|min|s))$/i.test(expireTimes)) {
-              // get capture number group
-              var _expireTime = expireTimes.replace(/^(\d+)(?:y|m|d|h|min|s)$/i, '$1');
-              // get capture type group , to lower case
-              switch (expireTimes.replace(/^(?:\d+)(y|m|d|h|min|s)$/i, '$1').toLowerCase()) {
-                  // Frequency sorting
-                case 'm':
-                  _expires = '; max-age=' + +_expireTime * 2592000;
-                  break; // 60 * 60 * 24 * 30
-                case 'd':
-                  _expires = '; max-age=' + +_expireTime * 86400;
-                  break; // 60 * 60 * 24
-                case 'h':
-                  _expires = '; max-age=' + +_expireTime * 3600;
-                  break; // 60 * 60
-                case 'min':
-                  _expires = '; max-age=' + +_expireTime * 60;
-                  break; // 60
-                case 's':
-                  _expires = '; max-age=' + _expireTime;
-                  break;
-                case 'y':
-                  _expires = '; max-age=' + +_expireTime * 31104000;
-                  break; // 60 * 60 * 24 * 30 * 12
-                default:
-                  new Error('unknown exception of "set operation"');
-              }
-            } else {
-              _expires = '; expires=' + expireTimes;
-            }
-            break;
-          case Date:
-            _expires = '; expires=' + expireTimes.toUTCString();
-            break;
-        }
-      }
-      document.cookie =
-          encodeURIComponent(key) + '=' + encodeURIComponent(value) +
-          _expires +
-          (domain ? '; domain=' + domain : defaultConfig.domain) +
-          (path ? '; path=' + path : defaultConfig.path) +
-          (secure == undefined ? defaultConfig.secure : secure ? '; Secure' : '') +
-          (sameSite == undefined ? defaultConfig.sameSite : (sameSite ? '; SameSite=' + sameSite : ''));
-      return this;
-    },
-    remove: function (key, path, domain) {
-      if (!key || !this.isKey(key)) {
-        return false;
-      }
-      document.cookie = encodeURIComponent(key) +
-          '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
-          (domain ? '; domain=' + domain : defaultConfig.domain) +
-          (path ? '; path=' + path : defaultConfig.path) +
-          '; SameSite=Lax';
-      return this;
-    },
-    isKey: function (key) {
-      return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
-    },
-    keys: function () {
-      if (!document.cookie) return [];
-      var _keys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/);
-      for (var _index = 0; _index < _keys.length; _index++) {
-        _keys[_index] = decodeURIComponent(_keys[_index]);
-      }
-      return _keys;
-    }
-  };
-
-  if (true) {
-    module.exports = VueCookies;
-  } else {}
-  // vue-cookies can exist independently,no dependencies library
-  if (typeof window !== 'undefined') {
-    window.$cookies = VueCookies;
-  }
-
-})();
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddBalanceComponent.vue?vue&type=template&id=6cbe8d27&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddBalanceComponent.vue?vue&type=template&id=6cbe8d27& ***!
@@ -73596,29 +73445,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sequential_entrance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-sequential-entrance */ "./node_modules/vue-sequential-entrance/index.js");
 /* harmony import */ var vue_sequential_entrance_vue_sequential_entrance_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-sequential-entrance/vue-sequential-entrance.css */ "./node_modules/vue-sequential-entrance/vue-sequential-entrance.css");
 /* harmony import */ var vue_sequential_entrance_vue_sequential_entrance_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_sequential_entrance_vue_sequential_entrance_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
-/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Projects/ProjectCardComponent */ "./resources/js/components/Projects/ProjectCardComponent.vue");
-/* harmony import */ var _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Projects/ProjectComponent */ "./resources/js/components/Projects/ProjectComponent.vue");
-/* harmony import */ var _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AdviceComponent */ "./resources/js/components/AdviceComponent.vue");
-/* harmony import */ var _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Projects/RecommendationsComponent */ "./resources/js/components/Projects/RecommendationsComponent.vue");
-/* harmony import */ var _components_Projects_PurchasedProjectCardComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Projects/PurchasedProjectCardComponent */ "./resources/js/components/Projects/PurchasedProjectCardComponent.vue");
-/* harmony import */ var _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Projects/MyProjectsComponent */ "./resources/js/components/Projects/MyProjectsComponent.vue");
-/* harmony import */ var _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AddBalanceComponent */ "./resources/js/components/AddBalanceComponent.vue");
-/* harmony import */ var _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/NotificationsComponent */ "./resources/js/components/NotificationsComponent.vue");
-/* harmony import */ var _components_Projects_PurchasedProjectDetails__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Projects/PurchasedProjectDetails */ "./resources/js/components/Projects/PurchasedProjectDetails.vue");
-/* harmony import */ var _components_OrderProjectComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/OrderProjectComponent */ "./resources/js/components/OrderProjectComponent.vue");
-/* harmony import */ var _components_PreloaderComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/PreloaderComponent */ "./resources/js/components/PreloaderComponent.vue");
-/* harmony import */ var _components_Projects_SavedProjectCardComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Projects/SavedProjectCardComponent */ "./resources/js/components/Projects/SavedProjectCardComponent.vue");
-/* harmony import */ var _components_DevelopersComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/DevelopersComponent */ "./resources/js/components/DevelopersComponent.vue");
-/* harmony import */ var _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Auth/LoginComponent */ "./resources/js/components/Auth/LoginComponent.vue");
-/* harmony import */ var _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Auth/RegisterComponent */ "./resources/js/components/Auth/RegisterComponent.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Projects/ProjectCardComponent */ "./resources/js/components/Projects/ProjectCardComponent.vue");
+/* harmony import */ var _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Projects/ProjectComponent */ "./resources/js/components/Projects/ProjectComponent.vue");
+/* harmony import */ var _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AdviceComponent */ "./resources/js/components/AdviceComponent.vue");
+/* harmony import */ var _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Projects/RecommendationsComponent */ "./resources/js/components/Projects/RecommendationsComponent.vue");
+/* harmony import */ var _components_Projects_PurchasedProjectCardComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Projects/PurchasedProjectCardComponent */ "./resources/js/components/Projects/PurchasedProjectCardComponent.vue");
+/* harmony import */ var _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Projects/MyProjectsComponent */ "./resources/js/components/Projects/MyProjectsComponent.vue");
+/* harmony import */ var _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AddBalanceComponent */ "./resources/js/components/AddBalanceComponent.vue");
+/* harmony import */ var _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/NotificationsComponent */ "./resources/js/components/NotificationsComponent.vue");
+/* harmony import */ var _components_Projects_PurchasedProjectDetails__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Projects/PurchasedProjectDetails */ "./resources/js/components/Projects/PurchasedProjectDetails.vue");
+/* harmony import */ var _components_OrderProjectComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/OrderProjectComponent */ "./resources/js/components/OrderProjectComponent.vue");
+/* harmony import */ var _components_PreloaderComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/PreloaderComponent */ "./resources/js/components/PreloaderComponent.vue");
+/* harmony import */ var _components_Projects_SavedProjectCardComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Projects/SavedProjectCardComponent */ "./resources/js/components/Projects/SavedProjectCardComponent.vue");
+/* harmony import */ var _components_DevelopersComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/DevelopersComponent */ "./resources/js/components/DevelopersComponent.vue");
+/* harmony import */ var _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Auth/LoginComponent */ "./resources/js/components/Auth/LoginComponent.vue");
+/* harmony import */ var _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Auth/RegisterComponent */ "./resources/js/components/Auth/RegisterComponent.vue");
 
-
-
+ // import VueCookies from 'vue-cookies'
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -73643,30 +73489,30 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  * Using plugins
  */
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_4___default.a);
-Vue.use(vue_sequential_entrance__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.use(vue_cookies__WEBPACK_IMPORTED_MODULE_2___default.a);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_3___default.a);
+Vue.use(vue_sequential_entrance__WEBPACK_IMPORTED_MODULE_0__["default"]); // Vue.use(VueCookies)
+
 /**
  * Loading all the components
  */
 
-Vue.component('login', _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_18__["default"]);
-Vue.component('register', _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_19__["default"]);
-Vue.component('project-card', _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('purchased-project-card', _components_Projects_PurchasedProjectCardComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
-Vue.component('saved-project-card', _components_Projects_SavedProjectCardComponent__WEBPACK_IMPORTED_MODULE_16__["default"]);
-Vue.component('purchased-project-details', _components_Projects_PurchasedProjectDetails__WEBPACK_IMPORTED_MODULE_13__["default"]);
-Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_10__["default"]);
-Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
-Vue.component('recommendations', _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_10__["default"]);
-Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
-Vue.component('add-balance', _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_11__["default"]);
-Vue.component('notifications', _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_12__["default"]);
-Vue.component('preloader', _components_PreloaderComponent__WEBPACK_IMPORTED_MODULE_15__["default"]);
-Vue.component('order', _components_OrderProjectComponent__WEBPACK_IMPORTED_MODULE_14__["default"]);
-Vue.component('developers', _components_DevelopersComponent__WEBPACK_IMPORTED_MODULE_17__["default"]);
+Vue.component('login', _components_Auth_LoginComponent__WEBPACK_IMPORTED_MODULE_17__["default"]);
+Vue.component('register', _components_Auth_RegisterComponent__WEBPACK_IMPORTED_MODULE_18__["default"]);
+Vue.component('project-card', _components_Projects_ProjectCardComponent__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.component('purchased-project-card', _components_Projects_PurchasedProjectCardComponent__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('saved-project-card', _components_Projects_SavedProjectCardComponent__WEBPACK_IMPORTED_MODULE_15__["default"]);
+Vue.component('purchased-project-details', _components_Projects_PurchasedProjectDetails__WEBPACK_IMPORTED_MODULE_12__["default"]);
+Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('project', _components_Projects_ProjectComponent__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('recommendations', _components_Projects_RecommendationsComponent__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('my-projects', _components_Projects_MyProjectsComponent__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('advice', _components_AdviceComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component('add-balance', _components_AddBalanceComponent__WEBPACK_IMPORTED_MODULE_10__["default"]);
+Vue.component('notifications', _components_NotificationsComponent__WEBPACK_IMPORTED_MODULE_11__["default"]);
+Vue.component('preloader', _components_PreloaderComponent__WEBPACK_IMPORTED_MODULE_14__["default"]);
+Vue.component('order', _components_OrderProjectComponent__WEBPACK_IMPORTED_MODULE_13__["default"]);
+Vue.component('developers', _components_DevelopersComponent__WEBPACK_IMPORTED_MODULE_16__["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -74819,9 +74665,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

@@ -1,6 +1,6 @@
 import SequentialEntrance from 'vue-sequential-entrance'
 import 'vue-sequential-entrance/vue-sequential-entrance.css'
-import VueCookies from 'vue-cookies'
+// import VueCookies from 'vue-cookies'
 
 require('./bootstrap');
 
@@ -29,7 +29,7 @@ import RegisterComponent from "./components/Auth/RegisterComponent";
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
 Vue.use(SequentialEntrance);
-Vue.use(VueCookies)
+// Vue.use(VueCookies)
 
 /**
  * Loading all the components

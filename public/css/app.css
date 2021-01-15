@@ -10987,7 +10987,7 @@ body {
 }
 
 .region-modal ul li {
-  width: 200px;
+  width: calc(100%/3);
   border: none;
 }
 
@@ -11343,7 +11343,7 @@ a.project-card.order-card .card-body {
 
 .filter-block .selectors-block .filter-num {
   display: inline-block;
-  max-width: 90px;
+  max-width: 140px;
   border-radius: 30px;
   border: none;
   background: #f5f5f5;
