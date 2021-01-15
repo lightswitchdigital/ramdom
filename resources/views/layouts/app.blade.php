@@ -69,6 +69,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('advice.index') }}">Советы по строительству</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('discounts') }}">Акции и скидки</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav">
                         @guest
@@ -76,7 +79,9 @@
                                 <a class="nav-link" href="{{ route('login') }}">Войти</a>
                             </li>
                         @else
-
+                            <li class="nav-item">
+                                <notifications></notifications>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -91,7 +96,6 @@
                                     <a href="{{ route('profile.balance.index') }}" class="dropdown-item">Баланс</a>
                                     <a href="{{ route('profile.plans.index') }}" class="dropdown-item">Планы</a>
                                     <a href="{{ route('profile.favorites.index') }}" class="dropdown-item">Избранное</a>
-                                    <a href="{{ route('profile.discounts.index') }}" class="dropdown-item">Акции и скидки</a>
                                     <a href="{{ route('profile.settings.index') }}" class="dropdown-item">Настройки</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -112,6 +116,7 @@
         </nav>
 
         <main class="py-4 content">
+<<<<<<< HEAD
             {{-- <div class="container">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -121,6 +126,17 @@
                     </ol>
                 </nav>
             </div> --}}
+=======
+{{--            <div class="container">--}}
+{{--                <nav aria-label="breadcrumb">--}}
+{{--                    <ol class="breadcrumb">--}}
+{{--                        <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
+{{--                        <li class="breadcrumb-item"><a href="#">Library</a></li>--}}
+{{--                        <li class="breadcrumb-item active" aria-current="page">Data</li>--}}
+{{--                    </ol>--}}
+{{--                </nav>--}}
+{{--            </div>--}}
+>>>>>>> 84ca45280adf4b20dc4389e87a9c26bc5aee79fa
             @include('layouts.common.partials')
 
             @yield('content')

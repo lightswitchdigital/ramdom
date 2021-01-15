@@ -104,7 +104,11 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/admin.js */"./resources/js/admin.js");
+=======
+module.exports = __webpack_require__(/*! /Users/egorovchinnikov/PhpstormProjects/ramdom/resources/js/admin.js */"./resources/js/admin.js");
+>>>>>>> 84ca45280adf4b20dc4389e87a9c26bc5aee79fa
 
 
 /***/ })

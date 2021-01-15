@@ -18,7 +18,7 @@ class BalanceController extends Controller
 
     public function index() {
         $user = Auth::user();
-        $operations = $user->balanceOperations()->paginate(10);
+        $operations = $user->balanceOperations()->orderBy('id', 'DESC')->paginate(10);
 
         return view('profile.balance.index', compact('user', 'operations'));
     }

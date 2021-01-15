@@ -29,30 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/401.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/403.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/419.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/429.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/500.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/503.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/illustrated-layout.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/layout.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/minimal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/errors.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RegionMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RegionMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/BalanceOperation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BalanceOperation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/RegionsModalComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,6 +217,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -243,16 +230,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Models/Projects" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Projects" />
       <recent name="$PROJECT_DIR$/resources/views/advice" />
       <recent name="$PROJECT_DIR$/app/Models" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
   </component>
   <component name="RunManager">
@@ -310,7 +297,9 @@
       <workItem from="1609156845365" duration="10000" />
       <workItem from="1609159303207" duration="1253000" />
       <workItem from="1609165158112" duration="17000" />
-      <workItem from="1609220698547" duration="5623000" />
+      <workItem from="1609220698547" duration="6520000" />
+      <workItem from="1609395884541" duration="1605000" />
+      <workItem from="1610376035901" duration="3341000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1603819464931</created>
@@ -634,7 +623,28 @@
       <option name="project" value="LOCAL" />
       <updated>1607619503561</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="regions fixed">
+      <created>1609242033213</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1609242033213</updated>
+    </task>
+    <task id="LOCAL-00048" summary="discounts moved to root">
+      <created>1610378486213</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1610378486213</updated>
+    </task>
+    <task id="LOCAL-00049" summary="attributes store fixed">
+      <created>1610378714966</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1610378714966</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,9 +697,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="region middleware, fixed issue with recommended projects images" />
-    <MESSAGE value="region middleware, fixed issue with loading recommended projects images" />
-    <MESSAGE value="favorites logic moved to main controller" />
     <MESSAGE value="recommendations moved to main controller" />
     <MESSAGE value="projects components refactored" />
     <MESSAGE value="navbar fixed" />
@@ -712,6 +719,9 @@
     <MESSAGE value="savefile, plans route patch" />
     <MESSAGE value="plans patch" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="regions fixed" />
+    <MESSAGE value="discounts moved to root" />
+    <MESSAGE value="attributes store fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="attributes store fixed" />
   </component>
 </project>
