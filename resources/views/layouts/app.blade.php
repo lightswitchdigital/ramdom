@@ -43,7 +43,7 @@
         </div>
     </div>
     <div id="app">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img alt="Рамдом" src="{{ asset('/images/logo.png') }}">
@@ -79,7 +79,7 @@
                                 <a class="nav-link" href="{{ route('login') }}">Войти</a>
                             </li>
                         @else
-                            <li class="nav-item">
+                            <li class="nav-item dropdown">
                                 <notifications></notifications>
                             </li>
                             <li class="nav-item dropdown">
@@ -116,17 +116,6 @@
         </nav>
 
         <main class="py-4 content">
-<<<<<<< HEAD
-            {{-- <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Library</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
-                    </ol>
-                </nav>
-            </div> --}}
-=======
 {{--            <div class="container">--}}
 {{--                <nav aria-label="breadcrumb">--}}
 {{--                    <ol class="breadcrumb">--}}
@@ -136,7 +125,6 @@
 {{--                    </ol>--}}
 {{--                </nav>--}}
 {{--            </div>--}}
->>>>>>> 84ca45280adf4b20dc4389e87a9c26bc5aee79fa
             @include('layouts.common.partials')
 
             @yield('content')

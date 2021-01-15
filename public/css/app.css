@@ -11052,6 +11052,13 @@ body {
   outline: none;
 }
 
+@media screen and (max-width: 993px) {
+  .navbar .region-toggle {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
 .navbar .logo-bg {
   position: absolute;
   height: 100%;
@@ -11073,6 +11080,15 @@ body {
   font-weight: bold;
   padding-bottom: 2px;
   border-bottom: 1px solid #FFD977;
+}
+
+.navbar .navbar-toggler {
+  border: none;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 footer .navbar {
@@ -11187,6 +11203,20 @@ footer .social ul li a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media screen and (max-width: 676px) {
+  .bg-section .img-col {
+    display: none;
+  }
+
+  .bg-section .bg-section__title {
+    margin-top: 0px;
+  }
+}
+
+.dropdown-menu {
+  z-index: 1000000000;
 }
 
 a.project-card {
@@ -11870,6 +11900,13 @@ a.project-card.order-card .card-body {
 
 .login-block.animated:after {
   transform: translateY(0);
+}
+
+@media screen and (max-width: 553px) {
+  .login-block {
+    padding: 30px 30px;
+    margin: 30px auto;
+  }
 }
 
 .order-block .wrapper-form {

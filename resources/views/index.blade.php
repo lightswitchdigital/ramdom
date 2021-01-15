@@ -10,7 +10,7 @@
           <h5 class="bg-section__subtitle">Первый онлайн конструктор <br>  дома вашей мечты</h5>
           <a href="#" class="yellow-btn btn">Выбрать критерии</a>
         </div>
-        <div class="col-md">
+        <div class="col-md img-col">
           <div class="bg-section__img">
             <img src="https://i.pinimg.com/originals/30/d0/58/30d058c468aca28ea5c53ea4bc7eea5b.jpg" alt="">
           </div>
