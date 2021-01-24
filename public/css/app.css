@@ -12841,7 +12841,7 @@ a.project-card.order-card .card-body {
 .messages-block {
   padding: 0;
   max-height: 400px;
-  border-radius: 16px;
+  border-radius: 10px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -12967,7 +12967,7 @@ a.project-card.order-card .card-body {
 .user-settings {
   padding: 0;
   max-height: 400px;
-  border-radius: 16px;
+  border-radius: 10px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -13384,5 +13384,11 @@ a.project-card.order-card .card-body {
   padding: 15px 60px;
   margin: 0 auto;
   margin-top: 50px;
+}
+
+.settings__card {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
 }
 

@@ -18,9 +18,9 @@
                 @click.prevent="postProject">
                 Подробнее
             </small>
-            <a :href="project.orderLink" class="btn yellow-btn mt-3">
+            <button disabled class="btn yellow-btn mt-3">
                 Заказать строительство
-            </a>
+            </button>
         </div>
     </a>
 </template>

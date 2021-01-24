@@ -102,7 +102,7 @@ Route::group([
     'middleware' => ['auth']
 ], function() {
 
-    Route::get('/', 'HomeController@index')->name('index');
+//    Route::get('/', 'HomeController@index')->name('index');
 
     Route::group([
         'prefix' => 'projects',
@@ -116,17 +116,6 @@ Route::group([
         Route::post('/{project}/order/{developer}/submit')->name('order.submit');
 
         Route::post('/{project}/remove-from-saved', 'ProjectsController@removedFromSaved')->name('order.submit');
-    });
-
-    Route::group([
-        'prefix' => 'balance',
-        'as' => 'balance.'
-    ], function() {
-
-        Route::get('/', 'BalanceController@index')->name('index');
-        Route::get('/add', 'BalanceController@add')->name('add');
-        Route::post('/add/check', 'BalanceController@check')->name('add.check');
-
     });
 
     Route::group([

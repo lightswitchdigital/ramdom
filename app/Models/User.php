@@ -26,7 +26,7 @@ class User extends Authenticatable
     public const STATUS_ACTIVE = 'active';
 
     protected $fillable = [
-        'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status', 'balance',
+        'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status',
         'passport_serial', 'passport_code', 'passport_issue', 'passport_issue_date',
         'company_name', 'company_address', 'company_inn', 'company_account',
         'developer_desc'
@@ -165,10 +165,6 @@ class User extends Authenticatable
 
     public function favorites() {
         return $this->belongsToMany(Project::class, 'project_favorites', 'user_id', 'project_id');
-    }
-
-    public function balanceOperations() {
-        return $this->hasMany(BalanceOperation::class);
     }
 
     public function purchasedProjects() {
