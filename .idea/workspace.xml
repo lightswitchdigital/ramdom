@@ -29,23 +29,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Plan.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/SettingsComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BalanceOperation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_07_120742_create_balances.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/PurchasedProjectCardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/PurchasedProjectCardComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/faq.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/faq.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile/settings/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/settings/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Advice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Advice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Comment.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_06_144959_create_comments_table.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,14 +297,7 @@
       <workItem from="1610376035901" duration="3666000" />
       <workItem from="1611167887150" duration="474000" />
       <workItem from="1611201762056" duration="1668000" />
-      <workItem from="1611471338982" duration="1275000" />
-    </task>
-    <task id="LOCAL-00002" summary="auth added">
-      <created>1603824516407</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1603824516407</updated>
+      <workItem from="1611471338982" duration="1954000" />
     </task>
     <task id="LOCAL-00003" summary="added user information and credentials">
       <created>1603873639918</created>
@@ -654,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610381156864</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="balance removed">
+      <created>1611476097388</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1611476097388</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +690,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="projects components refactored" />
     <MESSAGE value="navbar fixed" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="removed excessive attributes fields, project price type now bigger" />
@@ -727,6 +714,17 @@
     <MESSAGE value="discounts moved to root" />
     <MESSAGE value="attributes store fixed" />
     <MESSAGE value="balance page fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="balance page fixed" />
+    <MESSAGE value="balance removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="balance removed" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="204" y="25" key="CommitChangelistDialog2" timestamp="1611476096660">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="204" y="25" key="CommitChangelistDialog2/0.25.1440.786@0.25.1440.786" timestamp="1611476096660" />
+    <state x="220" y="92" key="Vcs.Push.Dialog.v2" timestamp="1611476101303">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="220" y="92" key="Vcs.Push.Dialog.v2/0.25.1440.786@0.25.1440.786" timestamp="1611476101303" />
   </component>
 </project>
