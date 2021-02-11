@@ -29,11 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TemplateAudit.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/program.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Advice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Advice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Comment.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_06_144959_create_comments_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +203,8 @@
       <path value="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode" />
       <path value="$PROJECT_DIR$/vendor/dasprid/enum" />
       <path value="$PROJECT_DIR$/vendor/diglactic/laravel-breadcrumbs" />
+      <path value="$PROJECT_DIR$/vendor/hflabs/dadata" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jTDVdIShQfLP7INkjISecZrgR0" />
@@ -225,16 +232,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Models/Projects" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/Models/Projects" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Projects" />
       <recent name="$PROJECT_DIR$/resources/views/advice" />
       <recent name="$PROJECT_DIR$/app/Models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
   </component>
   <component name="RunManager">
@@ -297,14 +304,10 @@
       <workItem from="1610376035901" duration="3666000" />
       <workItem from="1611167887150" duration="474000" />
       <workItem from="1611201762056" duration="1668000" />
-      <workItem from="1611471338982" duration="1954000" />
-    </task>
-    <task id="LOCAL-00003" summary="added user information and credentials">
-      <created>1603873639918</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1603873639918</updated>
+      <workItem from="1611471338982" duration="2235000" />
+      <workItem from="1612541953605" duration="5082000" />
+      <workItem from="1612549264654" duration="3457000" />
+      <workItem from="1613056452881" duration="341000" />
     </task>
     <task id="LOCAL-00004" summary="basic profile markup added">
       <created>1603990507878</created>
@@ -642,7 +645,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611476097388</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="comments removed">
+      <created>1611477713839</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1611477713839</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +700,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="navbar fixed" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="removed excessive attributes fields, project price type now bigger" />
     <MESSAGE value="conflict patch" />
@@ -715,16 +724,17 @@
     <MESSAGE value="attributes store fixed" />
     <MESSAGE value="balance page fixed" />
     <MESSAGE value="balance removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="balance removed" />
+    <MESSAGE value="comments removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="comments removed" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="204" y="25" key="CommitChangelistDialog2" timestamp="1611476096660">
+    <state x="204" y="25" key="CommitChangelistDialog2" timestamp="1611477713653">
       <screen x="0" y="25" width="1440" height="786" />
     </state>
-    <state x="204" y="25" key="CommitChangelistDialog2/0.25.1440.786@0.25.1440.786" timestamp="1611476096660" />
-    <state x="220" y="92" key="Vcs.Push.Dialog.v2" timestamp="1611476101303">
+    <state x="204" y="25" key="CommitChangelistDialog2/0.25.1440.786@0.25.1440.786" timestamp="1611477713653" />
+    <state x="220" y="92" key="Vcs.Push.Dialog.v2" timestamp="1611477716545">
       <screen x="0" y="25" width="1440" height="786" />
     </state>
-    <state x="220" y="92" key="Vcs.Push.Dialog.v2/0.25.1440.786@0.25.1440.786" timestamp="1611476101303" />
+    <state x="220" y="92" key="Vcs.Push.Dialog.v2/0.25.1440.786@0.25.1440.786" timestamp="1611477716545" />
   </component>
 </project>

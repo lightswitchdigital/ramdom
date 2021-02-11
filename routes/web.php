@@ -73,6 +73,15 @@ Route::group([
         Route::post('/favorites/remove', 'ProjectsController@removeFromFavorites')->name('favorites.remove');
 
         Route::group([
+            'prefix' => 'editor',
+            'as' => 'editor.'
+        ], function() {
+
+            Route::get('/', 'EditorController@index');
+
+        });
+
+        Route::group([
             'prefix' => 'modify',
             'as' => 'modify.'
         ], function() {
@@ -227,16 +236,6 @@ Route::group([
 
     });
     Route::resource('advice', 'AdviceController');
-
-    Route::group([
-        'prefix' => 'comments',
-        'as' => 'comments.'
-    ], function() {
-
-        Route::post('/{comment}/activate', 'CommentsController@activate')->name('activate');
-
-    });
-    Route::resource('comments', 'CommentsController');
 
     Route::group([
         'prefix' => 'faq',
