@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'Projects\ProjectsController@index')->name('home');
 
 Auth::routes();
 

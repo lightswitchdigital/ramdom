@@ -1,7 +1,7 @@
 <div class="container">
     <div class="filter-block">
         <form action="{{ $route }}" method="GET">
-            <input type="text" class="form-control search-input" name="text" value="{{ request('text') }}" placeholder="Search for...">
+            <input type="text" class="form-control search-input" name="text" value="{{ request('text') }}" placeholder="Поиск по названию или описанию проекта">
             <div class="price">
                 <span class="title">
                     Цена
@@ -12,9 +12,10 @@
             <div class="selectors-block">
                 @foreach ($attributes as $attribute)
                     <div class="form-control-custom">
-                        <label for="attrs{{ $attribute->id }}">{{ $attribute->name }}</label>  
-                        @if ($attribute->isSelect())  
+                        <label for="attrs{{ $attribute->id }}">{{ $attribute->name }}</label>
+                        @if ($attribute->isSelect())
                             <select class="custom-select" name="attrs[{{ $attribute->id }}][equals]" id="attrs{{ $attribute->id }}">
+                                <option value=""></option>
                                 @foreach ($attribute->variants as $variant)
                                     <option value="{{ $variant }}"{{ $variant === request()->input('attrs.' . $attribute->id . '.equals') ? ' selected' : '' }}>
                                         {{ $variant }}
@@ -25,13 +26,13 @@
                         @elseif ($attribute->isNumber())
                             <div>
                                 <input type="number" class="form-control filter-num" name="attrs[{{ $attribute->id }}][from]" value="{{ request()->input('attrs.' . $attribute->id . '.from') }}" placeholder="От">
-                                <input type="number" class="form-control filter-num" name="attrs[{{ $attribute->id }}][to]" value="{{ request()->input('attrs.' . $attribute->id . '.to') }}" placeholder="До">    
+                                <input type="number" class="form-control filter-num" name="attrs[{{ $attribute->id }}][to]" value="{{ request()->input('attrs.' . $attribute->id . '.to') }}" placeholder="До">
                             </div>
                         @endif
-                    </div> 
+                    </div>
                 @endforeach
             </div>
-            
+
             <button type="submit" class="btn yellow-btn">Поиск</button>
         </form>
     </div>

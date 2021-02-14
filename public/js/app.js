@@ -43985,7 +43985,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "favorites-block" }, [
     _vm.loading
-      ? _c("div", [_c("preloader")], 1)
+      ? _c("div")
       : _c("div", [
           _c("h4", [_vm._v("Сохраненные проекты")]),
           _vm._v(" "),
@@ -44050,7 +44050,7 @@ var render = function() {
                 )
               : _c("div", [
                   _vm._v(
-                    "\n                У вас пока нет сохраненных проектов.\n            "
+                    "\n                    У вас пока нет сохраненных проектов.\n                "
                   )
                 ])
           ]),
@@ -44118,7 +44118,7 @@ var render = function() {
                 )
               : _c("div", [
                   _vm._v(
-                    "\n                Здесь пока что пусто. Покупайте проекты и они появятся здесь!\n            "
+                    "\n                    Здесь пока что пусто. Покупайте проекты и они появятся здесь!\n                "
                   )
                 ])
           ])
@@ -44178,7 +44178,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "card-price" }, [
-          _vm._v("от " + _vm._s(this.project.price) + " "),
+          _vm._v(_vm._s(this.project.price) + " "),
           _c("span", { staticClass: "rub" }, [_vm._v("₽")])
         ]),
         _vm._v(" "),
@@ -44677,7 +44677,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "card-price" }, [
-          _vm._v("от " + _vm._s(_vm.project.price) + " "),
+          _vm._v(_vm._s(_vm.project.price) + " "),
           _c("span", { staticClass: "rub" }, [_vm._v("₽")])
         ]),
         _vm._v(" "),
@@ -44716,11 +44716,9 @@ var render = function() {
           [_vm._v("\n            Подробнее\n        ")]
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn yellow-btn mt-3", attrs: { disabled: "" } },
-          [_vm._v("\n            Заказать строительство\n        ")]
-        )
+        _c("button", { staticClass: "btn yellow-btn mt-3" }, [
+          _vm._v("\n            Заказать строительство\n        ")
+        ])
       ])
     ]
   )
@@ -45054,7 +45052,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "card-price" }, [
-          _vm._v("от " + _vm._s(_vm.project.project.price) + " "),
+          _vm._v(_vm._s(_vm.project.project.price) + " "),
           _c("span", { staticClass: "rub" }, [_vm._v("₽")])
         ]),
         _vm._v(" "),

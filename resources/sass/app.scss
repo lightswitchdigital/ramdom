@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 // Variables
 @import 'variables';
 // @import 'alerts';
@@ -371,6 +372,7 @@ a.project-card{
         list-style: none;
         margin: 0;
         padding: 0;
+        font-family: Roboto;
         li{
             font-size: 12px;
             line-height: 120%;
@@ -414,6 +416,7 @@ a.project-card{
     padding: 30px 50px;
     margin-top: 60px;
     margin-bottom: 40px;
+    font-family: Roboto;
     input:focus , input:active , button:focus , button:active
     , select:focus , select:active{
         box-shadow: none;

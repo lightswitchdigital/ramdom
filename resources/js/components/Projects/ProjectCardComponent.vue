@@ -1,16 +1,16 @@
 <template>
     <a class="card project-card" :href="this.project.route">
         <div class="like-block"
-        v-if="isAuthenticated" 
+        v-if="isAuthenticated"
         :disabled="btnDisabled"
-        :class="[{active : project.isInFavorites} , favoritesClass]" 
+        :class="[{active : project.isInFavorites} , favoritesClass]"
         @click.prevent="toggleFavorites"
         ><i class="fas fa-heart"></i></div>
         <div class="card-img-top">
             <img :src="this.project.jsonImages[0]">
         </div>
         <div class="card-body">
-        <div class="card-price">от {{ this.project.price }} <span class="rub">₽</span></div>
+        <div class="card-price">{{ this.project.price }} <span class="rub">₽</span></div>
         <h5 class="card-title">{{ this.project.title }}</h5>
         <ul class="card-text">
             <li v-for="(value, label , index) in this.project.jsonValues" :key="index" v-if="index <= 4">

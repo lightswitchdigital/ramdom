@@ -6,6 +6,5 @@
     <li class="nav-item"><a class="nav-link {{ ($route == 'plans')?'active':'' }}" href="{{ route('admin.plans.index') }}">Планы</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'payments')?'active':'' }}" href="{{ route('admin.payments.index') }}">Платежи</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'advice')?'active':'' }}" href="{{ route('admin.advice.index') }}">Советы</a></li>
-    <li class="nav-item"><a class="nav-link {{ ($route == 'comments')?'active':'' }}" href="{{ route('admin.comments.index') }}">Комментарии</a></li>
     <li class="nav-item"><a class="nav-link {{ ($route == 'faq')?'active':'' }}" href="{{ route('admin.faq.index') }}">FAQ</a></li>
 </ul>

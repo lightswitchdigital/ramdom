@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/ramdom</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="admin_ramdom@45.67.57.74" uuid="43916c05-fba5-43dd-b6a6-23aeec70f810">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://45.67.57.74:3306/admin_ramdom</jdbc-url>
+    </data-source>
   </component>
 </project>

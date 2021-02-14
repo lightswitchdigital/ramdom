@@ -19,5 +19,23 @@
         <ssh-config-id>9b33b2b6-6d1f-4e34-a047-10438f3a6491</ssh-config-id>
       </ssh-properties>
     </data-source>
+    <data-source name="admin_ramdom@45.67.57.74" uuid="43916c05-fba5-43dd-b6a6-23aeec70f810">
+      <database-info product="MySQL" version="5.7.33-0ubuntu0.18.04.1" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.21 (Revision: 33f65445a1bcc544eb0120491926484da168f199)" dbms="MYSQL" exact-version="5.7.33" exact-driver-version="8.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>admin_ramdom</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <ssh-config-id>7ed5d671-c4af-4322-8f55-98c095298412</ssh-config-id>
+      </ssh-properties>
+    </data-source>
   </component>
 </project>

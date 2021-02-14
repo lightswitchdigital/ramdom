@@ -4,7 +4,7 @@
             <img :src="project.project.jsonImages[0]">
         </div>
         <div class="card-body">
-            <div class="card-price">от {{ project.price }} <span class="rub">₽</span></div>
+            <div class="card-price">{{ project.price }} <span class="rub">₽</span></div>
             <h5 class="card-title">{{ project.project.title }}</h5>
             <ul class="card-text">
                 <li v-for="(value, label , index) in project.jsonValues" :key="index">
@@ -18,7 +18,7 @@
                 @click.prevent="postProject">
                 Подробнее
             </small>
-            <button disabled class="btn yellow-btn mt-3">
+            <button class="btn yellow-btn mt-3">
                 Заказать строительство
             </button>
         </div>

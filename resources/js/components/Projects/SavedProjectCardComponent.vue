@@ -4,7 +4,7 @@
             <img :src="project.project.jsonImages[0]">
         </div>
         <div class="card-body">
-            <div class="card-price">от {{ project.project.price }} <span class="rub">₽</span></div>
+            <div class="card-price">{{ project.project.price }} <span class="rub">₽</span></div>
             <h5 class="card-title">{{ project.project.title }}</h5>
             <ul class="card-text">
                 <li v-for="(value, label , index) in project.project.jsonValues" :key="index" v-if="index <= 4">

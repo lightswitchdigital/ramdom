@@ -1,7 +1,7 @@
 <template>
     <div class="favorites-block">
         <div v-if="loading">
-            <preloader></preloader>
+<!--            <preloader></preloader>-->
         </div>
         <div v-else>
             <h4>Сохраненные проекты</h4>

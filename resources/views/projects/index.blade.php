@@ -5,7 +5,7 @@
 
         @include('common.search', ['route' => route('projects.index'), 'attributes' => $attributes])
 
-        <section class="section-projects"> 
+        <section class="section-projects">
 
             <div class="projects-wrapper d-flex">
                 @foreach($projects as $project)
@@ -17,7 +17,7 @@
 
             <div class="projects-pagination">
 
-                {{-- {{ $projects->links() }} --}}
+            {{ $projects->links() }}
 
 {{--                <nav aria-label="Page navigation example">--}}
 {{--                    <ul class="pagination">--}}

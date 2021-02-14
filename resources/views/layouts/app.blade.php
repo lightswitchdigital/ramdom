@@ -93,8 +93,8 @@
                                     @if(Auth::user()->isDeveloper())
                                         <a href="{{ route('profile.building.index') }}" class="dropdown-item">Строительство</a>
                                     @endif
-                                    <a href="{{ route('profile.plans.index') }}" class="dropdown-item">Планы</a>
                                     <a href="{{ route('profile.favorites.index') }}" class="dropdown-item">Избранное</a>
+                                    <a href="{{ route('profile.plans.index') }}" class="dropdown-item">Планы</a>
                                     <a href="{{ route('profile.settings.index') }}" class="dropdown-item">Настройки</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

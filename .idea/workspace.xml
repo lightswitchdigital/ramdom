@@ -28,16 +28,25 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TemplateAudit.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="Roboto font added,">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TemplateAudit.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/TemplateAudit.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/MyProjectsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/MyProjectsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectCardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectCardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/PurchasedProjectCardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/PurchasedProjectCardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/SavedProjectCardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/SavedProjectCardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/_nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/common/search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/common/search.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/projects/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/projects/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -307,14 +316,9 @@
       <workItem from="1611471338982" duration="2235000" />
       <workItem from="1612541953605" duration="5082000" />
       <workItem from="1612549264654" duration="3457000" />
-      <workItem from="1613056452881" duration="341000" />
-    </task>
-    <task id="LOCAL-00004" summary="basic profile markup added">
-      <created>1603990507878</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1603990507878</updated>
+      <workItem from="1613056452881" duration="2107000" />
+      <workItem from="1613198609356" duration="5693000" />
+      <workItem from="1613218420734" duration="4374000" />
     </task>
     <task id="LOCAL-00005" summary="elasticsearch added">
       <created>1604068855276</created>
@@ -652,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611477713839</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="deploy commit">
+      <created>1613057000856</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1613057000857</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +711,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="code cleanup" />
     <MESSAGE value="removed excessive attributes fields, project price type now bigger" />
     <MESSAGE value="conflict patch" />
     <MESSAGE value="projects buy basic logic" />
@@ -725,16 +735,33 @@
     <MESSAGE value="balance page fixed" />
     <MESSAGE value="balance removed" />
     <MESSAGE value="comments removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments removed" />
+    <MESSAGE value="deploy commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="deploy commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="204" y="25" key="CommitChangelistDialog2" timestamp="1611477713653">
+    <state x="220" y="25" key="#Deployment" timestamp="1613058607547">
       <screen x="0" y="25" width="1440" height="786" />
     </state>
-    <state x="204" y="25" key="CommitChangelistDialog2/0.25.1440.786@0.25.1440.786" timestamp="1611477713653" />
-    <state x="220" y="92" key="Vcs.Push.Dialog.v2" timestamp="1611477716545">
+    <state x="220" y="25" key="#Deployment/0.25.1440.786@0.25.1440.786" timestamp="1613058607547" />
+    <state x="260" y="34" key="#Options" timestamp="1613058631873">
       <screen x="0" y="25" width="1440" height="786" />
     </state>
-    <state x="220" y="92" key="Vcs.Push.Dialog.v2/0.25.1440.786@0.25.1440.786" timestamp="1611477716545" />
+    <state x="260" y="34" key="#Options/0.25.1440.786@0.25.1440.786" timestamp="1613058631873" />
+    <state x="320" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613204971515">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="320" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.786@0.25.1440.786" timestamp="1613204971515" />
+    <state x="204" y="25" key="CommitChangelistDialog2" timestamp="1613283635861">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="204" y="25" key="CommitChangelistDialog2/0.25.1440.786@0.25.1440.786" timestamp="1613283635861" />
+    <state x="220" y="92" key="Vcs.Push.Dialog.v2" timestamp="1613057004274">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="220" y="92" key="Vcs.Push.Dialog.v2/0.25.1440.786@0.25.1440.786" timestamp="1613057004274" />
+    <state x="603" y="90" width="309" height="655" key="ftp.server.browser" timestamp="1613057216494">
+      <screen x="0" y="25" width="1440" height="786" />
+    </state>
+    <state x="603" y="90" width="309" height="655" key="ftp.server.browser/0.25.1440.786@0.25.1440.786" timestamp="1613057216494" />
   </component>
 </project>
