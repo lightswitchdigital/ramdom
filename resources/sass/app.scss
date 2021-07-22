@@ -2317,6 +2317,8 @@ a.project-card{
         .col {
             padding-right: 0;
             padding-left: 0;
+            overflow: auto;
+            max-height: 400px;
         }
 
         .col:not(:last-child) {
@@ -2344,6 +2346,10 @@ a.project-card{
         .col a:hover {
             background: rgba(106, 106, 106, 0.1);
         }
+        .col a.active {
+            background: rgba(106, 106, 106, 0.1);
+        }
+
         .editor__input {
             border: none;
             border-bottom: 1px solid #000;
@@ -2352,6 +2358,16 @@ a.project-card{
             line-height: 119.88%;
             margin-bottom: 100px;
             width: calc(100% - 35px);
+        }
+    }
+}
+@media screen and (max-width: 992px){
+    .navbar .navbar-collapse {
+        padding: 20px;
+        border-radius: 14px;
+        border: 1px solid #ccc;
+        & *:not(:last-child){
+            border-bottom: 1px solid #ccc;
         }
     }
 }

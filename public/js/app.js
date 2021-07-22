@@ -4602,6 +4602,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4617,8 +4619,353 @@ __webpack_require__.r(__webpack_exports__);
       savedAttributes: {},
       buyDisabled: false,
       notAllChange: false,
-      changeList: '1_list',
-      inputId: 1
+      cells: {
+        "building_type_by_floors": {
+          "id": "A6",
+          "type": "select",
+          "label": "Выбор типа строения по этажности",
+          "def": "1 полноценный этаж",
+          "variants": ["1 полноценный этаж", "2 полноценных этажа", "1 этаж + 2-ой мансардный", "1 мансардный этаж", "1 эт + 2-ой мансарда с перекрытием"]
+        },
+        "building_material": {
+          "id": "A8",
+          "type": "select",
+          "label": "Выбор материала дома",
+          "def": "Кирпичный дом",
+          "variants": ["Дом не строить", "Каркасный дом. Брус", "Каркасный дом. Двутавр дерево", "Газобетон дом", "Пенобетон дом", "Кирпичный дом", "Брусовой дом", "Сип панели дом", "Клееный брус дом", "Профилированный брус дом", "Дикое бревно", "Оцилиндрованное бревно", "1-ый эт кирпич 2-ой эт пенобетон", "1-ый эт кирпич 2-ой эт брус", "1-ый эт кирпич 2-ой эт клееный брус", "1-ый эт кирпич 2-ой эт профилированный брус", "1-ый эт кирпич 2-ой эт дикое бревно брус", "1-ый эт кирпич 2-ой эт дикое оцилиндр брус", "1-ый эт кирпич 2-ой эт дикое сип панели", "1-ый эт кирпич 2-ой эт каркасник", "1-ый эт кирпич 2-ой эт газобетон", "1-ый эт газобетон 2-ой эт брус", "1-ый эт газобетон 2-ой эт профилированный брус", "1-ый эт газобетон 2-ой эт дикое бревно", "1-ый эт газобетон 2-ой эт оцилиндр бревно", "1-ый эт газобетон 2-ой эт сип панели", "1-ый эт газобетон 2-ой эт каркасник", "1-ый эт газобетон 2-ой эт пенобетон", "1-ый эт газобетон 2-ой эт газобетон", "1-ый эт пенобетон 2-ой эт брус", "1-ый эт пенобетон 2-ой эт профилированный брус", "1-ый эт пенобетон 2-ой эт оцилиндр бревно", "1-ый эт пенобетон 2-ой эт сип панели", "1-ый эт пенобетон 2-ой эт каркасник", "1-ый эт брус 2-ой эт каркасник"]
+        },
+        "building_width": {
+          "id": "C11",
+          "type": "number",
+          "label": "Ширина дома",
+          "def": 10,
+          "group": "basics"
+        },
+        "building_length": {
+          "id": "C12",
+          "type": "number",
+          "label": "Длина дома",
+          "def": 10,
+          "group": "basics"
+        },
+        "first_floor_height": {
+          "id": "C13",
+          "type": "number",
+          "label": "Высота 1-го этажа",
+          "def": 3,
+          "group": "basics"
+        },
+        "height_from_overlap_to_apex": {
+          "id": "C14",
+          "type": "number",
+          "label": "Высота от перекрытий 0 эт до конька",
+          "def": 8,
+          "group": "basics"
+        },
+        "attic_wall": {
+          "id": "C15",
+          "type": "number",
+          "label": "Аттиковая стена, мансардный этаж",
+          "def": 1.20,
+          "group": "basics"
+        },
+        "second_floor_height": {
+          "id": "C16",
+          "type": "number",
+          "label": "Высота 2-го этажа",
+          "def": 2.20,
+          "group": "basics"
+        },
+        "left_wall_first_floor_height": {
+          "id": "C21",
+          "type": "number",
+          "label": "Высота левой боковой стены 1-го этажа",
+          "def": 3,
+          "group": "basics"
+        },
+        "right_wall_first_floor_height": {
+          "id": "C22",
+          "type": "number",
+          "label": "Высота правой боковой стены 1-го этажа",
+          "def": 4,
+          "group": "basics"
+        },
+        "left_wall_second_floor_height": {
+          "id": "C23",
+          "type": "number",
+          "label": "Высота левой боковой стены 2-го этажа",
+          "def": 0,
+          "group": "basics"
+        },
+        "right_wall_second_floor_height": {
+          "id": "C24",
+          "type": "number",
+          "label": "Высота правой боковой стены 2-го этажа",
+          "def": 1.5,
+          "group": "basics"
+        },
+        "from_left_wall_to_apex": {
+          "id": "C29",
+          "type": "number",
+          "label": "Расстояние от левой стены дома до конька",
+          "def": 4,
+          "group": "basics"
+        },
+        "from_right_wall_to_apex": {
+          "id": "C30",
+          "type": "number",
+          "label": "Высота 2-го этажа",
+          "def": 5,
+          "group": "basics"
+        },
+        "overlap_zero_floor": {
+          "id": "A33",
+          "type": "select",
+          "label": "Перекрытие 0-го этажа, В/Ш",
+          "variants": ["Нет перекрытия", "Sip панель 2500*625*124мм", "Sip панель 2500*625*174мм", "Sip панель 2500*625*224мм", "Брус естественной влажности, 200*100мм", "Брус естественной влажности, 150*100мм", "Брус естественной влажности, 100*100мм", "Брус естественной влажности, 150*150мм", "Доска естественной влажности, 200*50мм", "Доска естественной влажности, 150*50мм", "Доска сухая, 200*50мм", "Доска сухая, 150*50мм", "Доска сухая калиброванная, 190*45мм", "Доска сухая калиброванная, 145*45мм", "Монолит, бетон, 300мм, 2 слоя", "Монолит, бетон, 300мм, 1 слоя", "Монолит, бетон, 250мм, 2 слоя", "Монолит, бетон, 250мм, 1 слоя", "Монолит, бетон, 200мм, 2 слоя", "Монолит, бетон, 200мм, 1 слоя", "Монолит, бетон, 150мм, 2 слоя", "Монолит, бетон, 150мм, 1 слоя", "Плита перекрытия ЖБИ", "Двутавровая деревянная балка, 400*65мм", "Двутавровая деревянная балка, 400*90мм", "Двутавровая деревянная балка, 350*65мм", "Двутавровая деревянная балка, 350*90мм", "Двутавровая деревянная балка, 300*65мм", "Двутавровая деревянная балка, 300*90мм", "Двутавровая деревянная балка, 240*65мм", "Двутавровая деревянная балка, 240*90мм", "Двутавровая деревянная балка, 200*65мм", "Двутавровая деревянная балка, 200*90мм", "Двутавровая деревянная балка, 150*65мм", "Двутавровая деревянная балка, 150*90мм", "ГПС 100x50-1,2", "ГПС 100x50-1,5", "ГПС 120x50-1,5", "ГПС 120x50-2,0", "ГПС 150x50-1,2", "ГПС 150x50-1,5", "ГПС 150x50-2,0", "ГПС 170x50-1,2", "ГПС 170x50-1,5", "ГПС 170x50-2,0", "ГПС 200x50-1,2", "ГПС 200x50-1,5", "ГПС 200x50-2,0", "ГПС 250x50-1,2", "ГПС 250x50-1,5", "ГПС 250x50-2,0", "ГПС 280x50-1,2", "ГПС 280x50-1,5", "ГПС 280x50-2,0"],
+          "group": "overlap_zero_floor"
+        },
+        "zero_floor_balk_step": {
+          "id": "C33",
+          "type": "number",
+          "label": "Шаг бруса",
+          "def": 0.6,
+          "group": "overlap_zero_floor"
+        },
+        "zero_floor_armature": {
+          "id": "D33",
+          "type": "select",
+          "label": "Арматура",
+          "def": "Арматура М8 ",
+          "variants": ["Арматура М8 ", "Арматура М10", "Арматура М12", "Арматура М14", "Арматура М16", "Арматура М18", "Арматура М20"],
+          "group": "overlap_zero_floor"
+        },
+        "zero_floor_armature_step": {
+          "id": "E33",
+          "type": "number",
+          "label": "Шаг арматуры",
+          "def": 0.15,
+          "group": "overlap_zero_floor"
+        },
+        "first_floor_balk_step": {
+          "id": "C43",
+          "type": "number",
+          "label": "Шаг бруса",
+          "def": 0.6,
+          "group": "overlap_zero_floor"
+        },
+        "first_floor_armature": {
+          "id": "D43",
+          "type": "select",
+          "label": "Арматура",
+          "def": "Арматура М10",
+          "variants": ["Арматура М8 ", "Арматура М10", "Арматура М12", "Арматура М14", "Арматура М16", "Арматура М18", "Арматура М20"],
+          "group": "overlap_zero_floor"
+        },
+        "first_floor_armature_step": {
+          "id": "E43",
+          "type": "number",
+          "label": "Шаг арматуры",
+          "def": 0.2,
+          "group": "overlap_zero_floor"
+        },
+        "second_floor_balk_step": {
+          "id": "C43",
+          "type": "number",
+          "label": "Шаг бруса",
+          "def": 0.6,
+          "group": "overlap_zero_floor"
+        },
+        "second_floor_armature": {
+          "id": "D43",
+          "type": "select",
+          "label": "Арматура",
+          "def": "Арматура М12",
+          "variants": ["Арматура М8 ", "Арматура М10", "Арматура М12", "Арматура М14", "Арматура M16", "Арматура M18", "Арматура M20"],
+          "group": "overlap_zero_floor"
+        },
+        "second_floor_armature_step": {
+          "id": "E43",
+          "type": "number",
+          "label": "Шаг арматуры",
+          "def": 0.25,
+          "group": "overlap_zero_floor"
+        },
+        "overlaps_transport_first": {
+          "id": "C60",
+          "type": "number",
+          "label": "Транспорт для перекрытий",
+          "def": 1,
+          "group": "overlap_zero_floor"
+        },
+        "overlaps_transport_second": {
+          "id": "C61",
+          "type": "number",
+          "label": "Транспорт для перекрытий",
+          "def": 1,
+          "group": "overlap_zero_floor"
+        },
+        "overlaps_transport_third": {
+          "id": "C62",
+          "type": "number",
+          "label": "Транспорт для перекрытий",
+          "def": 0,
+          "group": "overlap_zero_floor"
+        },
+        "windows_width_first_floor": {
+          "id": "C68",
+          "type": "number",
+          "label": "Ширина окон 1 эт",
+          "def": 1,
+          "group": "windows_doors",
+          "subgroup": "windows"
+        },
+        "windows_height_first_floor": {
+          "id": "D68",
+          "type": "number",
+          "label": "Высота окон 1 эт",
+          "def": 1.2,
+          "group": "windows_doors",
+          "subgroup": "windows"
+        },
+        "windows_count_first_floor": {
+          "id": "E68",
+          "type": "number",
+          "label": "Кол-во",
+          "def": 1.2,
+          "group": "windows_doors",
+          "subgroup": "windows"
+        },
+        "door_welcome_width": {
+          "id": "C85",
+          "type": "number",
+          "label": "Ширина входной двери",
+          "def": 0.8,
+          "group": "windows_doors",
+          "subgroup": "doors"
+        },
+        "door_welcome_height": {
+          "id": "D85",
+          "type": "number",
+          "label": "Высота входной двери",
+          "def": 2.1,
+          "group": "windows_doors",
+          "subgroup": "doors"
+        },
+        "door_welcome_count": {
+          "id": "E85",
+          "type": "number",
+          "label": "Кол-во",
+          "def": 0,
+          "group": "windows_doors",
+          "subgroup": "doors"
+        },
+        "door_in_width": {
+          "id": "C91",
+          "type": "number",
+          "label": "Ширина внут дверей",
+          "def": 0.8,
+          "group": "windows_doors",
+          "subgroup": "doors"
+        },
+        "door_in_height": {
+          "id": "D91",
+          "type": "number",
+          "label": "Высота внут дверей",
+          "def": 2.1,
+          "group": "windows_doors",
+          "subgroup": "doors"
+        },
+        "door_in_count": {
+          "id": "E91",
+          "type": "number",
+          "label": "Кол-во",
+          "def": 0,
+          "group": "windows_doors",
+          "subgroup": "doors"
+        },
+        "windows_width_second_floor": {
+          "id": "C77",
+          "type": "number",
+          "label": "Ширина окон 2 эт",
+          "def": 0.6,
+          "group": "windows_doors",
+          "subgroup": "windows"
+        },
+        "windows_height_second_floor": {
+          "id": "D77",
+          "type": "number",
+          "label": "Высота окон 2 эт",
+          "def": 0.6,
+          "group": "windows_doors",
+          "subgroup": "windows"
+        },
+        "windows_count_second_floor": {
+          "id": "E77",
+          "type": "number",
+          "label": "Кол-во",
+          "def": 0,
+          "group": "windows_doors",
+          "subgroup": "windows"
+        },
+        "stairs_count": {
+          "id": "B1128",
+          "type": "integer",
+          "def": 10,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "stair_height": {
+          "id": "B1129",
+          "type": "integer",
+          "def": 2000,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "stair_length": {
+          "id": "B1130",
+          "type": "integer",
+          "def": 3000,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "stair_width": {
+          "id": "B1131",
+          "type": "integer",
+          "def": 800,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "stairs_place_length": {
+          "id": "B1132",
+          "type": "integer",
+          "def": 500,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "stairs_place_stroke": {
+          "id": "B1133",
+          "type": "integer",
+          "def": 100,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "stairs_extra_stroke": {
+          "id": "B1134",
+          "type": "integer",
+          "def": 50,
+          "group": "stairs",
+          "subgroup": "params"
+        },
+        "result": {
+          "id": "A2",
+          "def": 0
+        }
+      },
+      changedCell: {},
+      changedCells: {},
+      groups: [],
+      changedGroup: ''
     };
   },
   props: ['project', 'createdAt', 'buyLink', 'recommendations', 'purchaseAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile'],
@@ -4631,6 +4978,8 @@ __webpack_require__.r(__webpack_exports__);
     if (this.saveFile) {
       this.savedAttributes = this.saveFile.values_data;
     }
+
+    this.getGroups();
   },
   components: {
     VueSlickCarousel: vue_slick_carousel__WEBPACK_IMPORTED_MODULE_1___default.a,
@@ -4705,6 +5054,30 @@ __webpack_require__.r(__webpack_exports__);
           _this3.buyDisabled = false;
           console.log(error);
         });
+      }
+    },
+    changeCell: function changeCell(id) {
+      for (var cell in this.cells) {
+        if (this.cells[cell].id == id) {
+          this.changedCell = this.cells[cell];
+        }
+      }
+    },
+    getGroups: function getGroups() {
+      for (var cell in this.cells) {
+        if (this.cells[cell].group && !this.groups.includes(this.cells[cell].group)) {
+          this.groups.push(this.cells[cell].group);
+        }
+      }
+    },
+    changeGroup: function changeGroup(group) {
+      this.changedCells = [];
+      this.changedGroup = group;
+
+      for (var cell in this.cells) {
+        if (this.cells[cell].group == group) {
+          this.changedCells.push(this.cells[cell]);
+        }
       }
     }
   }
@@ -44304,73 +44677,95 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
                   _c("div", { staticClass: "col" }, [
-                    _vm.changeList == "1_list"
-                      ? _c("ul", [_vm._m(1), _vm._v(" "), _vm._m(2)])
-                      : _vm.changeList == "2_list"
-                      ? _c("ul", [_vm._m(3), _vm._v(" "), _vm._m(4)])
-                      : _vm.changeList == "3_list"
-                      ? _c("ul", [_vm._m(5), _vm._v(" "), _vm._m(6)])
-                      : _vm._e()
+                    _c(
+                      "ul",
+                      _vm._l(this.groups, function(group, index) {
+                        return _c("li", { key: index }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.changeGroup(group)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", [_vm._v(_vm._s(group))]),
+                              _vm._v(" "),
+                              _c("i", { staticClass: "fas fa-chevron-right" })
+                            ]
+                          )
+                        ])
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col" }, [
-                    _vm.inputId == 1
+                    _c("h5", [_vm._v(_vm._s(this.changedGroup) + ":")]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(this.changedCells, function(cell) {
+                        return _c("li", { key: cell.id }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.changeCell(cell.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", [_vm._v(_vm._s(cell.label))]),
+                              _vm._v(" "),
+                              _c("i", { staticClass: "fas fa-chevron-right" })
+                            ]
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col" }, [
+                    _c("h5", [_vm._v(_vm._s(this.changedCell.label) + ": ")]),
+                    _vm._v(" "),
+                    this.changedCell.type == "number"
                       ? _c("input", {
-                          staticClass: "editor__input",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Название атрибута 1"
-                          }
+                          attrs: { type: "number" },
+                          domProps: { value: this.changedCell.def }
                         })
-                      : _vm.inputId == 2
-                      ? _c("input", {
-                          staticClass: "editor__input",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Название атрибута 2"
-                          }
-                        })
-                      : _vm.inputId == 3
-                      ? _c("input", {
-                          staticClass: "editor__input",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Название атрибута 3"
-                          }
-                        })
-                      : _vm.inputId == 4
-                      ? _c("input", {
-                          staticClass: "editor__input",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Название атрибута 4"
-                          }
-                        })
-                      : _vm.inputId == 5
-                      ? _c("input", {
-                          staticClass: "editor__input",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Название атрибута 5"
-                          }
-                        })
-                      : _vm.inputId == 6
-                      ? _c("input", {
-                          staticClass: "editor__input",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Название атрибута 6"
-                          }
-                        })
+                      : this.changedCell.type == "select"
+                      ? _c(
+                          "select",
+                          _vm._l(this.changedCell.variants, function(
+                            option,
+                            index
+                          ) {
+                            return _c("option", { key: index }, [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(option) +
+                                  "\n                                    "
+                              )
+                            ])
+                          }),
+                          0
+                        )
                       : _vm._e()
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(7)
+              _vm._m(0)
             ])
           ])
         ]
@@ -44505,7 +44900,7 @@ var render = function() {
                       ? _c("span", [_vm._v("Добавить в избранное")])
                       : _c("span", [_vm._v("В избранном")]),
                     _vm._v(" "),
-                    _vm._m(8)
+                    _vm._m(1)
                   ]
                 )
               : _vm._e(),
@@ -44709,7 +45104,7 @@ var render = function() {
                   _c("table", { staticClass: "table" }, [
                     _c("tbody", [
                       _c("tr", [
-                        _vm._m(9),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "price" }, [
@@ -44719,7 +45114,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(10),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "price" }, [
@@ -44782,101 +45177,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c("ul", [
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("span", [_vm._v("Крыша")]),
-            _c("i", { staticClass: "fas fa-chevron-right" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("span", [_vm._v("Стены")]),
-            _c("i", { staticClass: "fas fa-chevron-right" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("span", [_vm._v("Потолок")]),
-            _c("i", { staticClass: "fas fa-chevron-right" })
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("span", [_vm._v("Крыша")]),
-        _c("i", { staticClass: "fas fa-chevron-right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("span", [_vm._v("Стены")]),
-        _c("i", { staticClass: "fas fa-chevron-right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("span", [_vm._v("Крыша")]),
-        _c("i", { staticClass: "fas fa-chevron-right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("span", [_vm._v("Стены")]),
-        _c("i", { staticClass: "fas fa-chevron-right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("span", [_vm._v("Крыша")]),
-        _c("i", { staticClass: "fas fa-chevron-right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("span", [_vm._v("Стены")]),
-        _c("i", { staticClass: "fas fa-chevron-right" })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -13525,6 +13525,8 @@ a.project-card.order-card .card-body {
 .modal#editorModal .modal-content .modal-body .col {
   padding-right: 0;
   padding-left: 0;
+  overflow: auto;
+  max-height: 400px;
 }
 
 .modal#editorModal .modal-content .modal-body .col:not(:last-child) {
@@ -13553,6 +13555,10 @@ a.project-card.order-card .card-body {
   background: rgba(106, 106, 106, 0.1);
 }
 
+.modal#editorModal .modal-content .modal-body .col a.active {
+  background: rgba(106, 106, 106, 0.1);
+}
+
 .modal#editorModal .modal-content .modal-body .editor__input {
   border: none;
   border-bottom: 1px solid #000;
@@ -13561,5 +13567,17 @@ a.project-card.order-card .card-body {
   line-height: 119.88%;
   margin-bottom: 100px;
   width: calc(100% - 35px);
+}
+
+@media screen and (max-width: 992px) {
+  .navbar .navbar-collapse {
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+  }
+
+  .navbar .navbar-collapse *:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+  }
 }
 
