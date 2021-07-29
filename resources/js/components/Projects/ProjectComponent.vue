@@ -17,7 +17,7 @@
                             <div class="col">
                                 <ul>
                                     <li v-for="(group, index) in this.groups" :key="index">
-                                        <a href="#"  @click.prevent="changeGroup(group)"> 
+                                        <a href="#"  @click.prevent="changeGroup(group)">
                                             <span>{{group}}</span>
                                             <i class="fas fa-chevron-right"></i>
                                         </a>
@@ -25,10 +25,10 @@
                                 </ul>
                             </div>
                             <div class="col">
-                                <h5>{{this.changedGroup}}:</h5> 
+                                <h5>{{this.changedGroup}}:</h5>
                                 <ul>
                                     <li v-for="(cell) in this.changedCells" :key="cell.id" >
-                                        <a href="#" @click.prevent="changeCell(cell.id)"> 
+                                        <a href="#" @click.prevent="changeCell(cell.id)">
                                             <span>{{cell.label}}</span>
                                             <i class="fas fa-chevron-right"></i>
                                         </a>
@@ -36,7 +36,7 @@
                                 </ul>
                             </div>
                             <div class="col">
-                                    <h5>{{this.changedCell.label}}: </h5> 
+                                    <h5>{{this.changedCell.label}}: </h5>
                                     <input v-if="this.changedCell.type == 'number'" type="number" :value="this.changedCell.def">
 
                                     <select v-else-if="this.changedCell.type == 'select'">
@@ -687,7 +687,9 @@ export default {
         'isAuthenticated',
         'canEdit',
         'saveLink',
-        'saveFile'
+        'saveFile',
+        'jsonUrl',
+        'calculateRoute'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -699,7 +701,7 @@ export default {
         }
 
         this.getGroups()
-        
+
     },
     components: {
         VueSlickCarousel ,

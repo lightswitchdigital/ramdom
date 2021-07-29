@@ -15,5 +15,7 @@
         :favorites-add-link="'{{ route('projects.favorites.add', $project) }}'"
         :favorites-remove-link="'{{ route('projects.favorites.remove', $project) }}'"
         :recommendations="{{ $recommendations }}"
+        :json-url="'{{ asset('/internal/mappings.json') }}'"
+        :calculate-route="'{{ route('api.editor.calculate') }}'"
     ></project>
 @endsection

@@ -28,24 +28,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="Roboto font added,">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_29_163046_add_project_file.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/internal/mappings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ramdom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ramdom.iml" afterDir="false" />
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Projects/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Projects/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/Projects/CreateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/Projects/CreateRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/projects/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/projects/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/projects/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/projects/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -324,14 +314,7 @@
       <workItem from="1613056452881" duration="2107000" />
       <workItem from="1613198609356" duration="5693000" />
       <workItem from="1613218420734" duration="4374000" />
-      <workItem from="1627575119017" duration="7797000" />
-    </task>
-    <task id="LOCAL-00005" summary="elasticsearch added">
-      <created>1604068855276</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1604068855276</updated>
+      <workItem from="1627575119017" duration="9884000" />
     </task>
     <task id="LOCAL-00006" summary="project attributes, values">
       <created>1604080008308</created>
@@ -669,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613057000857</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="admin editor attributes added, php version updated">
+      <created>1627585162040</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1627585162041</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,7 +707,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed excessive attributes fields, project price type now bigger" />
     <MESSAGE value="conflict patch" />
     <MESSAGE value="projects buy basic logic" />
     <MESSAGE value="added price range to search" />
@@ -742,6 +731,7 @@
     <MESSAGE value="balance removed" />
     <MESSAGE value="comments removed" />
     <MESSAGE value="deploy commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="deploy commit" />
+    <MESSAGE value="admin editor attributes added, php version updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin editor attributes added, php version updated" />
   </component>
 </project>
