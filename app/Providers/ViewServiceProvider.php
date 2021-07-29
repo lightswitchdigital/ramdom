@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\DadataService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use \App\Models\Region;
 use \Illuminate\Http\Request;
@@ -19,6 +20,12 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(Request $request)
     {
+        try {
+            DB::connection()->getPdo();
+        } catch (\Exception $e) {
+            return;
+        }
+
         $current_region_name = $this->getCurrentRegionName($request);
         $regions_list = $this->getRegionsList();
 

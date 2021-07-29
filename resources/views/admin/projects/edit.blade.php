@@ -90,6 +90,34 @@
             </div>
         </div>
 
+        <div class="card">
+            <div class="card-header">
+                Сведения для редактора
+            </div>
+            <div class="card-body pb-2">
+                @foreach($default_attributes as $attribute)
+                    @switch($attribute->type ?? 'integer')
+                        @case('select')
+                        <div class="form-group my-4">
+                            <label for="{{ $attribute->name }}">{{ $attribute->label ?? '' }} - {{ $attribute->id }}</label>
+                            <select class="form-control" name="editor_attributes[{{ $attribute->name }}]" id="{{ $attribute->name }}">
+                                @foreach($attribute->variants as $variant)
+                                    <option value="{{ $variant }}" {{ old('editor_attributes[' . $attribute->name . ']', $editor_attributes[$attribute->name])  == $variant? 'selected' : '' }}>{{ $variant }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @break
+                        @case('number')
+                        <div class="form-group my-4">
+                            <label for="{{ $attribute->name }}">{{ $attribute->label ?? '' }}</label>
+                            <input class="form-control" type="text" name="editor_attributes[{{ $attribute->name }}]" value="{{ old('editor_attributes[' . $attribute->name . ']', $editor_attributes[$attribute->name]) }}">
+                        </div>
+                        @break
+                    @endswitch
+                @endforeach
+            </div>
+        </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-success">Обновить</button>
         </div>

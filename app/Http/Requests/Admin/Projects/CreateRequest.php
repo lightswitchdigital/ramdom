@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Projects;
 
 use App\Models\Projects\Attribute;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
@@ -14,7 +15,7 @@ class CreateRequest extends FormRequest
         return true;
     }
 
-    public function rules()
+    public function rules(Request $request)
     {
         $items = [];
 

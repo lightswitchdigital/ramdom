@@ -12,6 +12,7 @@ use App\Models\Projects\Project;
 use App\Services\Projects\ProjectsService;
 use DomainException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -53,8 +54,9 @@ class ProjectsController extends Controller
     {
         $statusesList = Project::statusesList();
         $attributes = Attribute::all();
+        $editor_attributes = $this->getEditorAttributes();
 
-        return view('admin.projects.create', compact('statusesList', 'attributes'));
+        return view('admin.projects.create', compact('statusesList', 'attributes', 'editor_attributes'));
     }
 
 
@@ -78,8 +80,25 @@ class ProjectsController extends Controller
         $statusesList = Project::statusesList();
         $attributes = Attribute::all();
         $values = $project->getValuesWithID();
+        $default_attributes = $this->getEditorAttributes();
+        $editor_attributes = json_decode(file_get_contents(Storage::disk('public')->path($project->file)), true);
 
-        return view('admin.projects.edit', compact('project', 'statusesList', 'attributes', 'values'));
+        return view('admin.projects.edit', compact('project', 'statusesList', 'attributes', 'values', 'default_attributes', 'editor_attributes'));
+    }
+
+    public function getEditorAttributes() {
+        $file = json_decode(file_get_contents(public_path('/internal/mappings.json')));
+        $editor_attributes = collect();
+        foreach ($file->cells as $name => $cell) {
+            $cell->name = $name;
+            $editor_attributes->add($cell);
+        }
+
+        return $editor_attributes->sortBy(function($item) {
+            return strlen($item->id);
+        }, SORT_REGULAR)->sortBy(function($item) {
+            return $item->id;
+        }, SORT_REGULAR);
     }
 
     public function update(EditRequest $request, Project $project)

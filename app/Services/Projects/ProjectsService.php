@@ -13,6 +13,7 @@ use App\Models\Projects\Purchase\PurchasedProject;
 use App\Models\User;
 use Artisan;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Storage;
 
@@ -60,7 +61,16 @@ class ProjectsService
                 'slug' => Str::slug($request['title']),
                 'description' => $request['description'],
                 'price' => $request['price'],
-                'status' => Project::STATUS_ACTIVE
+                'status' => Project::STATUS_ACTIVE,
+            ]);
+
+            $editor_attributes = $this->generateJsonFile($request);
+            $name = 'project-' . $project->id . '.json';
+            $path = join("/", ['project-attributes', $name]);
+            Storage::disk('public')->put($path, $editor_attributes);
+
+            $project->update([
+                'file' => $path
             ]);
 
             foreach ($request['images'] as $file) {
@@ -92,6 +102,18 @@ class ProjectsService
         $project = $this->getProject($id);
 
         DB::transaction(function() use ($request, $project) {
+
+            Storage::disk('public')->delete($project->file);
+
+            $editor_attributes = $this->generateJsonFile($request);
+            $name = 'project-' . $project->id . '.json';
+            $path = join("/", ['project-attributes', $name]);
+            Storage::disk('public')->put($path, $editor_attributes);
+
+            $project->update([
+                'file' => $path
+            ]);
+
             $project->values()->delete();
             foreach (Attribute::all() as $attribute) {
                 $value = $request['attributes'][$attribute->id] ?? null;
@@ -118,6 +140,18 @@ class ProjectsService
                 'title', 'description', 'price'
             ]));
         });
+    }
+
+    /**
+     * Generates a json file with default editor attributes
+     * for this projects
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function generateJsonFile(Request $request): string
+    {
+        return json_encode($request['editor_attributes'], JSON_UNESCAPED_UNICODE);
     }
 
     public function remove($id) {

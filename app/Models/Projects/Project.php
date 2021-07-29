@@ -20,12 +20,13 @@ class Project extends Model
     protected $table = 'projects';
 
     protected $fillable = [
-        'user_id', 'title', 'slug', 'description', 'price', 'status'
+        'user_id', 'title', 'slug', 'description', 'price', 'status', 'file'
     ];
 
     protected $appends = [
         'route', 'isInFavorites', 'jsonImages', 'jsonValues',
-        'addToFavoritesLink', 'removeFromFavoritesLink'
+        'addToFavoritesLink', 'removeFromFavoritesLink',
+        'file_url'
     ];
 
     public $timestamps = true;
@@ -84,6 +85,10 @@ class Project extends Model
 
     public function getRemoveFromFavoritesLinkAttribute() {
         return route('projects.favorites.remove', $this);
+    }
+
+    public function getFileUrlAttribute() {
+        return Storage::disk('public')->url($this->file);
     }
 
     public function addToFavorites($id): void
