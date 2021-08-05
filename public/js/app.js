@@ -1444,7 +1444,6 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
 
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
-var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
 var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ "./node_modules/axios/lib/core/buildFullPath.js");
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
@@ -1465,7 +1464,7 @@ module.exports = function xhrAdapter(config) {
     // HTTP basic authentication
     if (config.auth) {
       var username = config.auth.username || '';
-      var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
+      var password = config.auth.password || '';
       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
     }
 
@@ -1546,6 +1545,8 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
+
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
         cookies.read(config.xsrfCookieName) :
@@ -1611,7 +1612,7 @@ module.exports = function xhrAdapter(config) {
       });
     }
 
-    if (!requestData) {
+    if (requestData === undefined) {
       requestData = null;
     }
 
@@ -1679,9 +1680,6 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
-
-// Expose isAxiosError
-axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
 
 module.exports = axios;
 
@@ -1891,10 +1889,9 @@ Axios.prototype.getUri = function getUri(config) {
 utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
   /*eslint func-names:0*/
   Axios.prototype[method] = function(url, config) {
-    return this.request(mergeConfig(config || {}, {
+    return this.request(utils.merge(config || {}, {
       method: method,
-      url: url,
-      data: (config || {}).data
+      url: url
     }));
   };
 });
@@ -1902,7 +1899,7 @@ utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData
 utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
   /*eslint func-names:0*/
   Axios.prototype[method] = function(url, data, config) {
-    return this.request(mergeConfig(config || {}, {
+    return this.request(utils.merge(config || {}, {
       method: method,
       url: url,
       data: data
@@ -2162,7 +2159,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
   error.response = response;
   error.isAxiosError = true;
 
-  error.toJSON = function toJSON() {
+  error.toJSON = function() {
     return {
       // Standard
       message: this.message,
@@ -2211,73 +2208,59 @@ module.exports = function mergeConfig(config1, config2) {
   config2 = config2 || {};
   var config = {};
 
-  var valueFromConfig2Keys = ['url', 'method', 'data'];
-  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy', 'params'];
+  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
+  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
   var defaultToConfig2Keys = [
-    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
-    'timeout', 'timeoutMessage', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'decompress',
-    'maxContentLength', 'maxBodyLength', 'maxRedirects', 'transport', 'httpAgent',
-    'httpsAgent', 'cancelToken', 'socketPath', 'responseEncoding'
+    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
+    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
+    'httpsAgent', 'cancelToken', 'socketPath'
   ];
-  var directMergeKeys = ['validateStatus'];
-
-  function getMergedValue(target, source) {
-    if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
-      return utils.merge(target, source);
-    } else if (utils.isPlainObject(source)) {
-      return utils.merge({}, source);
-    } else if (utils.isArray(source)) {
-      return source.slice();
-    }
-    return source;
-  }
-
-  function mergeDeepProperties(prop) {
-    if (!utils.isUndefined(config2[prop])) {
-      config[prop] = getMergedValue(config1[prop], config2[prop]);
-    } else if (!utils.isUndefined(config1[prop])) {
-      config[prop] = getMergedValue(undefined, config1[prop]);
-    }
-  }
 
   utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
-    if (!utils.isUndefined(config2[prop])) {
-      config[prop] = getMergedValue(undefined, config2[prop]);
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
     }
   });
 
-  utils.forEach(mergeDeepPropertiesKeys, mergeDeepProperties);
+  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
+    if (utils.isObject(config2[prop])) {
+      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+    } else if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (utils.isObject(config1[prop])) {
+      config[prop] = utils.deepMerge(config1[prop]);
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
 
   utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
-    if (!utils.isUndefined(config2[prop])) {
-      config[prop] = getMergedValue(undefined, config2[prop]);
-    } else if (!utils.isUndefined(config1[prop])) {
-      config[prop] = getMergedValue(undefined, config1[prop]);
-    }
-  });
-
-  utils.forEach(directMergeKeys, function merge(prop) {
-    if (prop in config2) {
-      config[prop] = getMergedValue(config1[prop], config2[prop]);
-    } else if (prop in config1) {
-      config[prop] = getMergedValue(undefined, config1[prop]);
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
     }
   });
 
   var axiosKeys = valueFromConfig2Keys
     .concat(mergeDeepPropertiesKeys)
-    .concat(defaultToConfig2Keys)
-    .concat(directMergeKeys);
+    .concat(defaultToConfig2Keys);
 
   var otherKeys = Object
-    .keys(config1)
-    .concat(Object.keys(config2))
+    .keys(config2)
     .filter(function filterAxiosKeys(key) {
       return axiosKeys.indexOf(key) === -1;
     });
 
-  utils.forEach(otherKeys, mergeDeepProperties);
+  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
 
   return config;
 };
@@ -2306,7 +2289,7 @@ var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios
  */
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
-  if (!response.status || !validateStatus || validateStatus(response.status)) {
+  if (!validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
     reject(createError(
@@ -2438,7 +2421,6 @@ var defaults = {
   xsrfHeaderName: 'X-XSRF-TOKEN',
 
   maxContentLength: -1,
-  maxBodyLength: -1,
 
   validateStatus: function validateStatus(status) {
     return status >= 200 && status < 300;
@@ -2502,6 +2484,7 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 
 function encode(val) {
   return encodeURIComponent(val).
+    replace(/%40/gi, '@').
     replace(/%3A/gi, ':').
     replace(/%24/g, '$').
     replace(/%2C/gi, ',').
@@ -2682,29 +2665,6 @@ module.exports = function isAbsoluteURL(url) {
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
-/*!********************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Determines whether the payload is an error thrown by Axios
- *
- * @param {*} payload The value to test
- * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
- */
-module.exports = function isAxiosError(payload) {
-  return (typeof payload === 'object') && (payload.isAxiosError === true);
 };
 
 
@@ -3034,21 +2994,6 @@ function isObject(val) {
 }
 
 /**
- * Determine if a value is a plain Object
- *
- * @param {Object} val The value to test
- * @return {boolean} True if value is a plain Object, otherwise false
- */
-function isPlainObject(val) {
-  if (toString.call(val) !== '[object Object]') {
-    return false;
-  }
-
-  var prototype = Object.getPrototypeOf(val);
-  return prototype === null || prototype === Object.prototype;
-}
-
-/**
  * Determine if a value is a Date
  *
  * @param {Object} val The value to test
@@ -3204,12 +3149,34 @@ function forEach(obj, fn) {
 function merge(/* obj1, obj2, obj3, ... */) {
   var result = {};
   function assignValue(val, key) {
-    if (isPlainObject(result[key]) && isPlainObject(val)) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
       result[key] = merge(result[key], val);
-    } else if (isPlainObject(val)) {
-      result[key] = merge({}, val);
-    } else if (isArray(val)) {
-      result[key] = val.slice();
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function deepMerge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val);
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val);
     } else {
       result[key] = val;
     }
@@ -3240,19 +3207,6 @@ function extend(a, b, thisArg) {
   return a;
 }
 
-/**
- * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
- *
- * @param {string} content with BOM
- * @return {string} content value without BOM
- */
-function stripBOM(content) {
-  if (content.charCodeAt(0) === 0xFEFF) {
-    content = content.slice(1);
-  }
-  return content;
-}
-
 module.exports = {
   isArray: isArray,
   isArrayBuffer: isArrayBuffer,
@@ -3262,7 +3216,6 @@ module.exports = {
   isString: isString,
   isNumber: isNumber,
   isObject: isObject,
-  isPlainObject: isPlainObject,
   isUndefined: isUndefined,
   isDate: isDate,
   isFile: isFile,
@@ -3273,9 +3226,9 @@ module.exports = {
   isStandardBrowserEnv: isStandardBrowserEnv,
   forEach: forEach,
   merge: merge,
+  deepMerge: deepMerge,
   extend: extend,
-  trim: trim,
-  stripBOM: stripBOM
+  trim: trim
 };
 
 
@@ -4651,6 +4604,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4666,353 +4631,14 @@ __webpack_require__.r(__webpack_exports__);
       savedAttributes: {},
       buyDisabled: false,
       notAllChange: false,
-      cells: {
-        "building_type_by_floors": {
-          "id": "A6",
-          "type": "select",
-          "label": "Выбор типа строения по этажности",
-          "def": "1 полноценный этаж",
-          "variants": ["1 полноценный этаж", "2 полноценных этажа", "1 этаж + 2-ой мансардный", "1 мансардный этаж", "1 эт + 2-ой мансарда с перекрытием"]
-        },
-        "building_material": {
-          "id": "A8",
-          "type": "select",
-          "label": "Выбор материала дома",
-          "def": "Кирпичный дом",
-          "variants": ["Дом не строить", "Каркасный дом. Брус", "Каркасный дом. Двутавр дерево", "Газобетон дом", "Пенобетон дом", "Кирпичный дом", "Брусовой дом", "Сип панели дом", "Клееный брус дом", "Профилированный брус дом", "Дикое бревно", "Оцилиндрованное бревно", "1-ый эт кирпич 2-ой эт пенобетон", "1-ый эт кирпич 2-ой эт брус", "1-ый эт кирпич 2-ой эт клееный брус", "1-ый эт кирпич 2-ой эт профилированный брус", "1-ый эт кирпич 2-ой эт дикое бревно брус", "1-ый эт кирпич 2-ой эт дикое оцилиндр брус", "1-ый эт кирпич 2-ой эт дикое сип панели", "1-ый эт кирпич 2-ой эт каркасник", "1-ый эт кирпич 2-ой эт газобетон", "1-ый эт газобетон 2-ой эт брус", "1-ый эт газобетон 2-ой эт профилированный брус", "1-ый эт газобетон 2-ой эт дикое бревно", "1-ый эт газобетон 2-ой эт оцилиндр бревно", "1-ый эт газобетон 2-ой эт сип панели", "1-ый эт газобетон 2-ой эт каркасник", "1-ый эт газобетон 2-ой эт пенобетон", "1-ый эт газобетон 2-ой эт газобетон", "1-ый эт пенобетон 2-ой эт брус", "1-ый эт пенобетон 2-ой эт профилированный брус", "1-ый эт пенобетон 2-ой эт оцилиндр бревно", "1-ый эт пенобетон 2-ой эт сип панели", "1-ый эт пенобетон 2-ой эт каркасник", "1-ый эт брус 2-ой эт каркасник"]
-        },
-        "building_width": {
-          "id": "C11",
-          "type": "number",
-          "label": "Ширина дома",
-          "def": 10,
-          "group": "basics"
-        },
-        "building_length": {
-          "id": "C12",
-          "type": "number",
-          "label": "Длина дома",
-          "def": 10,
-          "group": "basics"
-        },
-        "first_floor_height": {
-          "id": "C13",
-          "type": "number",
-          "label": "Высота 1-го этажа",
-          "def": 3,
-          "group": "basics"
-        },
-        "height_from_overlap_to_apex": {
-          "id": "C14",
-          "type": "number",
-          "label": "Высота от перекрытий 0 эт до конька",
-          "def": 8,
-          "group": "basics"
-        },
-        "attic_wall": {
-          "id": "C15",
-          "type": "number",
-          "label": "Аттиковая стена, мансардный этаж",
-          "def": 1.20,
-          "group": "basics"
-        },
-        "second_floor_height": {
-          "id": "C16",
-          "type": "number",
-          "label": "Высота 2-го этажа",
-          "def": 2.20,
-          "group": "basics"
-        },
-        "left_wall_first_floor_height": {
-          "id": "C21",
-          "type": "number",
-          "label": "Высота левой боковой стены 1-го этажа",
-          "def": 3,
-          "group": "basics"
-        },
-        "right_wall_first_floor_height": {
-          "id": "C22",
-          "type": "number",
-          "label": "Высота правой боковой стены 1-го этажа",
-          "def": 4,
-          "group": "basics"
-        },
-        "left_wall_second_floor_height": {
-          "id": "C23",
-          "type": "number",
-          "label": "Высота левой боковой стены 2-го этажа",
-          "def": 0,
-          "group": "basics"
-        },
-        "right_wall_second_floor_height": {
-          "id": "C24",
-          "type": "number",
-          "label": "Высота правой боковой стены 2-го этажа",
-          "def": 1.5,
-          "group": "basics"
-        },
-        "from_left_wall_to_apex": {
-          "id": "C29",
-          "type": "number",
-          "label": "Расстояние от левой стены дома до конька",
-          "def": 4,
-          "group": "basics"
-        },
-        "from_right_wall_to_apex": {
-          "id": "C30",
-          "type": "number",
-          "label": "Высота 2-го этажа",
-          "def": 5,
-          "group": "basics"
-        },
-        "overlap_zero_floor": {
-          "id": "A33",
-          "type": "select",
-          "label": "Перекрытие 0-го этажа, В/Ш",
-          "variants": ["Нет перекрытия", "Sip панель 2500*625*124мм", "Sip панель 2500*625*174мм", "Sip панель 2500*625*224мм", "Брус естественной влажности, 200*100мм", "Брус естественной влажности, 150*100мм", "Брус естественной влажности, 100*100мм", "Брус естественной влажности, 150*150мм", "Доска естественной влажности, 200*50мм", "Доска естественной влажности, 150*50мм", "Доска сухая, 200*50мм", "Доска сухая, 150*50мм", "Доска сухая калиброванная, 190*45мм", "Доска сухая калиброванная, 145*45мм", "Монолит, бетон, 300мм, 2 слоя", "Монолит, бетон, 300мм, 1 слоя", "Монолит, бетон, 250мм, 2 слоя", "Монолит, бетон, 250мм, 1 слоя", "Монолит, бетон, 200мм, 2 слоя", "Монолит, бетон, 200мм, 1 слоя", "Монолит, бетон, 150мм, 2 слоя", "Монолит, бетон, 150мм, 1 слоя", "Плита перекрытия ЖБИ", "Двутавровая деревянная балка, 400*65мм", "Двутавровая деревянная балка, 400*90мм", "Двутавровая деревянная балка, 350*65мм", "Двутавровая деревянная балка, 350*90мм", "Двутавровая деревянная балка, 300*65мм", "Двутавровая деревянная балка, 300*90мм", "Двутавровая деревянная балка, 240*65мм", "Двутавровая деревянная балка, 240*90мм", "Двутавровая деревянная балка, 200*65мм", "Двутавровая деревянная балка, 200*90мм", "Двутавровая деревянная балка, 150*65мм", "Двутавровая деревянная балка, 150*90мм", "ГПС 100x50-1,2", "ГПС 100x50-1,5", "ГПС 120x50-1,5", "ГПС 120x50-2,0", "ГПС 150x50-1,2", "ГПС 150x50-1,5", "ГПС 150x50-2,0", "ГПС 170x50-1,2", "ГПС 170x50-1,5", "ГПС 170x50-2,0", "ГПС 200x50-1,2", "ГПС 200x50-1,5", "ГПС 200x50-2,0", "ГПС 250x50-1,2", "ГПС 250x50-1,5", "ГПС 250x50-2,0", "ГПС 280x50-1,2", "ГПС 280x50-1,5", "ГПС 280x50-2,0"],
-          "group": "overlap_zero_floor"
-        },
-        "zero_floor_balk_step": {
-          "id": "C33",
-          "type": "number",
-          "label": "Шаг бруса",
-          "def": 0.6,
-          "group": "overlap_zero_floor"
-        },
-        "zero_floor_armature": {
-          "id": "D33",
-          "type": "select",
-          "label": "Арматура",
-          "def": "Арматура М8 ",
-          "variants": ["Арматура М8 ", "Арматура М10", "Арматура М12", "Арматура М14", "Арматура М16", "Арматура М18", "Арматура М20"],
-          "group": "overlap_zero_floor"
-        },
-        "zero_floor_armature_step": {
-          "id": "E33",
-          "type": "number",
-          "label": "Шаг арматуры",
-          "def": 0.15,
-          "group": "overlap_zero_floor"
-        },
-        "first_floor_balk_step": {
-          "id": "C43",
-          "type": "number",
-          "label": "Шаг бруса",
-          "def": 0.6,
-          "group": "overlap_zero_floor"
-        },
-        "first_floor_armature": {
-          "id": "D43",
-          "type": "select",
-          "label": "Арматура",
-          "def": "Арматура М10",
-          "variants": ["Арматура М8 ", "Арматура М10", "Арматура М12", "Арматура М14", "Арматура М16", "Арматура М18", "Арматура М20"],
-          "group": "overlap_zero_floor"
-        },
-        "first_floor_armature_step": {
-          "id": "E43",
-          "type": "number",
-          "label": "Шаг арматуры",
-          "def": 0.2,
-          "group": "overlap_zero_floor"
-        },
-        "second_floor_balk_step": {
-          "id": "C43",
-          "type": "number",
-          "label": "Шаг бруса",
-          "def": 0.6,
-          "group": "overlap_zero_floor"
-        },
-        "second_floor_armature": {
-          "id": "D43",
-          "type": "select",
-          "label": "Арматура",
-          "def": "Арматура М12",
-          "variants": ["Арматура М8 ", "Арматура М10", "Арматура М12", "Арматура М14", "Арматура M16", "Арматура M18", "Арматура M20"],
-          "group": "overlap_zero_floor"
-        },
-        "second_floor_armature_step": {
-          "id": "E43",
-          "type": "number",
-          "label": "Шаг арматуры",
-          "def": 0.25,
-          "group": "overlap_zero_floor"
-        },
-        "overlaps_transport_first": {
-          "id": "C60",
-          "type": "number",
-          "label": "Транспорт для перекрытий",
-          "def": 1,
-          "group": "overlap_zero_floor"
-        },
-        "overlaps_transport_second": {
-          "id": "C61",
-          "type": "number",
-          "label": "Транспорт для перекрытий",
-          "def": 1,
-          "group": "overlap_zero_floor"
-        },
-        "overlaps_transport_third": {
-          "id": "C62",
-          "type": "number",
-          "label": "Транспорт для перекрытий",
-          "def": 0,
-          "group": "overlap_zero_floor"
-        },
-        "windows_width_first_floor": {
-          "id": "C68",
-          "type": "number",
-          "label": "Ширина окон 1 эт",
-          "def": 1,
-          "group": "windows_doors",
-          "subgroup": "windows"
-        },
-        "windows_height_first_floor": {
-          "id": "D68",
-          "type": "number",
-          "label": "Высота окон 1 эт",
-          "def": 1.2,
-          "group": "windows_doors",
-          "subgroup": "windows"
-        },
-        "windows_count_first_floor": {
-          "id": "E68",
-          "type": "number",
-          "label": "Кол-во",
-          "def": 1.2,
-          "group": "windows_doors",
-          "subgroup": "windows"
-        },
-        "door_welcome_width": {
-          "id": "C85",
-          "type": "number",
-          "label": "Ширина входной двери",
-          "def": 0.8,
-          "group": "windows_doors",
-          "subgroup": "doors"
-        },
-        "door_welcome_height": {
-          "id": "D85",
-          "type": "number",
-          "label": "Высота входной двери",
-          "def": 2.1,
-          "group": "windows_doors",
-          "subgroup": "doors"
-        },
-        "door_welcome_count": {
-          "id": "E85",
-          "type": "number",
-          "label": "Кол-во",
-          "def": 0,
-          "group": "windows_doors",
-          "subgroup": "doors"
-        },
-        "door_in_width": {
-          "id": "C91",
-          "type": "number",
-          "label": "Ширина внут дверей",
-          "def": 0.8,
-          "group": "windows_doors",
-          "subgroup": "doors"
-        },
-        "door_in_height": {
-          "id": "D91",
-          "type": "number",
-          "label": "Высота внут дверей",
-          "def": 2.1,
-          "group": "windows_doors",
-          "subgroup": "doors"
-        },
-        "door_in_count": {
-          "id": "E91",
-          "type": "number",
-          "label": "Кол-во",
-          "def": 0,
-          "group": "windows_doors",
-          "subgroup": "doors"
-        },
-        "windows_width_second_floor": {
-          "id": "C77",
-          "type": "number",
-          "label": "Ширина окон 2 эт",
-          "def": 0.6,
-          "group": "windows_doors",
-          "subgroup": "windows"
-        },
-        "windows_height_second_floor": {
-          "id": "D77",
-          "type": "number",
-          "label": "Высота окон 2 эт",
-          "def": 0.6,
-          "group": "windows_doors",
-          "subgroup": "windows"
-        },
-        "windows_count_second_floor": {
-          "id": "E77",
-          "type": "number",
-          "label": "Кол-во",
-          "def": 0,
-          "group": "windows_doors",
-          "subgroup": "windows"
-        },
-        "stairs_count": {
-          "id": "B1128",
-          "type": "integer",
-          "def": 10,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "stair_height": {
-          "id": "B1129",
-          "type": "integer",
-          "def": 2000,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "stair_length": {
-          "id": "B1130",
-          "type": "integer",
-          "def": 3000,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "stair_width": {
-          "id": "B1131",
-          "type": "integer",
-          "def": 800,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "stairs_place_length": {
-          "id": "B1132",
-          "type": "integer",
-          "def": 500,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "stairs_place_stroke": {
-          "id": "B1133",
-          "type": "integer",
-          "def": 100,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "stairs_extra_stroke": {
-          "id": "B1134",
-          "type": "integer",
-          "def": 50,
-          "group": "stairs",
-          "subgroup": "params"
-        },
-        "result": {
-          "id": "A2",
-          "def": 0
-        }
-      },
+      cells: {},
       changedCell: {},
       changedCells: {},
       groups: [],
-      changedGroup: ''
+      changedGroup: '',
+      chengedPrice: '',
+      values_data: {},
+      hasEdits: false
     };
   },
   props: ['project', 'createdAt', 'buyLink', 'recommendations', 'purchaseAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile', 'jsonUrl', 'calculateRoute'],
@@ -5020,13 +4646,37 @@ __webpack_require__.r(__webpack_exports__);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$nextTick(this.$forceUpdate);
 
     if (this.saveFile) {
       this.savedAttributes = this.saveFile.values_data;
     }
 
-    this.getGroups();
+    axios.get(this.calculateRoute).then(function (response) {
+      if (response.status === 200) {
+        _this.changedPrice = response.data;
+      }
+    })["catch"](function (error) {
+      console.log(error);
+    });
+    axios.get(this.jsonUrl).then(function (response) {
+      if (response.status === 200) {
+        _this.cells = response.data.cells;
+
+        _this.getGroups();
+      }
+    })["catch"](function (error) {
+      console.log(error);
+    });
+    axios.get(this.project.file_url).then(function (response) {
+      if (response.status === 200) {
+        _this.values_data = response.data;
+      }
+    })["catch"](function (error) {
+      console.log(error);
+    });
   },
   components: {
     VueSlickCarousel: vue_slick_carousel__WEBPACK_IMPORTED_MODULE_1___default.a,
@@ -5034,7 +4684,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleFavorites: function toggleFavorites() {
-      var _this = this;
+      var _this2 = this;
 
       this.btnDisabled = true;
 
@@ -5049,43 +4699,48 @@ __webpack_require__.r(__webpack_exports__);
         '_token': this.csrfToken
       }).then(function (response) {
         if (response.status === 204) {
-          _this.$nextTick(_this.$forceUpdate);
+          _this2.$nextTick(_this2.$forceUpdate);
 
-          _this.favoritesClass = 'animated';
+          _this2.favoritesClass = 'animated';
           setTimeout(function () {
-            _this.favoritesClass = '';
+            _this2.favoritesClass = '';
           }, 200);
-          _this.btnDisabled = false;
+          _this2.btnDisabled = false;
         }
       })["catch"](function (error) {
-        _this.btnDisabled = false;
+        _this2.btnDisabled = false;
         console.log(error);
       });
     },
     onSubmit: function onSubmit() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.isAuthenticated) {
         this.buyDisabled = true;
         this.notAllChange = false;
-        axios.post(this.buyLink, {
-          '_token': this.csrfToken,
-          'purchase_attributes': this.savedAttributes
-        }).then(function (response) {
-          if (response.status === 204) {
-            _this2.buyDisabled = false;
-            alert('Вы успешно купили проект');
-          }
-        })["catch"](function (error) {
-          _this2.buyDisabled = false;
-          console.log(error);
-        });
+
+        if (confirm("Купить проект на сумму " + this.project.price + " рублей?")) {
+          axios.post(this.buyLink, {
+            '_token': this.csrfToken,
+            'purchase_attributes': this.savedAttributes
+          }).then(function (response) {
+            if (response.status === 204) {
+              _this3.buyDisabled = false;
+              alert('Вы успешно купили проект');
+            }
+          })["catch"](function (error) {
+            _this3.buyDisabled = false;
+            console.log(error);
+          });
+        } else {
+          this.buyDisabled = false;
+        }
       } else {
         window.location.href = '/register';
       }
     },
     saveProject: function saveProject() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.isAuthenticated && (this.canEdit || this.saveFile)) {
         this.buyDisabled = true;
@@ -5094,11 +4749,37 @@ __webpack_require__.r(__webpack_exports__);
           'purchase_attributes': this.savedAttributes
         }).then(function (response) {
           if (response.status === 200) {
-            _this3.buyDisabled = false;
-            console.log('save is ok');
+            _this4.buyDisabled = false;
           }
         })["catch"](function (error) {
-          _this3.buyDisabled = false;
+          _this4.buyDisabled = false;
+          console.log(error);
+        });
+      }
+    },
+    sendJson: function sendJson() {
+      if (confirm("Сохранить изменения?")) {
+        if (this.isAuthenticated && (this.canEdit || this.saveFile)) {
+          axios.post(this.saveLink, {
+            '_token': this.csrfToken,
+            'editor_attributes': this.values_data
+          }).then(function (response) {
+            console.log(response.data);
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      }
+    },
+    cancelEdit: function cancelEdit() {
+      var _this5 = this;
+
+      if (confirm("Сбросить изменения?")) {
+        axios.get(this.project.file_url).then(function (response) {
+          if (response.status === 200) {
+            _this5.values_data = response.data;
+          }
+        })["catch"](function (error) {
           console.log(error);
         });
       }
@@ -5124,6 +4805,21 @@ __webpack_require__.r(__webpack_exports__);
       for (var cell in this.cells) {
         if (this.cells[cell].group == group) {
           this.changedCells.push(this.cells[cell]);
+        }
+      }
+    },
+    getValue: function getValue(id) {
+      for (var key in this.values_data) {
+        if (this.cells[key].id == id) {
+          return this.values_data[key];
+        }
+      }
+    },
+    saveValue: function saveValue(id, value) {
+      for (var key in this.values_data) {
+        if (this.cells[key].id == id) {
+          this.values_data[key] = value;
+          this.hasEdits || (this.hasEdits = true);
         }
       }
     }
@@ -44718,11 +44414,6 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("input", {
-                  staticClass: "search",
-                  attrs: { type: "text", placeholder: "Название атрибута" }
-                }),
-                _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col" }, [
                     _c(
@@ -44753,7 +44444,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col" }, [
-                    _c("h5", [_vm._v(_vm._s(this.changedGroup) + ":")]),
+                    this.changedGroup
+                      ? _c("h5", [_vm._v(_vm._s(this.changedGroup) + ":")])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c(
                       "ul",
@@ -44783,36 +44476,158 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col" }, [
-                    _c("h5", [_vm._v(_vm._s(this.changedCell.label) + ": ")]),
-                    _vm._v(" "),
-                    this.changedCell.type == "number"
-                      ? _c("input", {
-                          attrs: { type: "number" },
-                          domProps: { value: this.changedCell.def }
-                        })
-                      : this.changedCell.type == "select"
+                    this.changedCell.label
                       ? _c(
-                          "select",
-                          _vm._l(this.changedCell.variants, function(
-                            option,
-                            index
-                          ) {
-                            return _c("option", { key: index }, [
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.saveValue(
+                                  _vm.changedCell.id,
+                                  _vm.modalValue
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("h5", [
+                              _vm._v(_vm._s(this.changedCell.label) + ": ")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
                               _vm._v(
-                                "\n                                        " +
-                                  _vm._s(option) +
-                                  "\n                                    "
+                                "Значение: " +
+                                  _vm._s(this.getValue(this.changedCell.id))
                               )
-                            ])
-                          }),
-                          0
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "Изменить:\n                                "
+                              ),
+                              this.changedCell.type == "number"
+                                ? _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.modalValue,
+                                        expression: "modalValue"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "number",
+                                      placeholder: this.changedCell.def
+                                    },
+                                    domProps: { value: _vm.modalValue },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.modalValue = $event.target.value
+                                      }
+                                    }
+                                  })
+                                : this.changedCell.type == "select"
+                                ? _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.modalValue,
+                                          expression: "modalValue"
+                                        }
+                                      ],
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.modalValue = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    _vm._l(this.changedCell.variants, function(
+                                      option,
+                                      index
+                                    ) {
+                                      return _c("option", { key: index }, [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(option) +
+                                            "\n                                    "
+                                        )
+                                      ])
+                                    }),
+                                    0
+                                  )
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn yellow-btn",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("cохранить")]
+                            )
+                          ]
                         )
                       : _vm._e()
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn yellow-outline-btn",
+                    attrs: { type: "button", disabled: !this.hasEdits },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.cancelEdit()
+                      }
+                    }
+                  },
+                  [_vm._v("Сбросить")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn yellow-btn",
+                    attrs: { type: "button", disabled: !this.hasEdits },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.sendJson()
+                      }
+                    }
+                  },
+                  [_vm._v("Сохранить изменения")]
+                )
+              ])
             ])
           ])
         ]
@@ -44947,7 +44762,7 @@ var render = function() {
                       ? _c("span", [_vm._v("Добавить в избранное")])
                       : _c("span", [_vm._v("В избранном")]),
                     _vm._v(" "),
-                    _vm._m(1)
+                    _vm._m(0)
                   ]
                 )
               : _vm._e(),
@@ -45151,6 +44966,16 @@ var render = function() {
                   _c("table", { staticClass: "table" }, [
                     _c("tbody", [
                       _c("tr", [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "price" }, [
+                            _vm._v(_vm._s(_vm.project.price))
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
                         _vm._m(2),
                         _vm._v(" "),
                         _c("td", [
@@ -45165,7 +44990,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "price" }, [
-                            _vm._v(_vm._s(_vm.project.price))
+                            _vm._v(_vm._s(_vm.changedPrice))
                           ])
                         ])
                       ])
@@ -45209,7 +45034,7 @@ var render = function() {
                         "data-target": "#editorModal"
                       }
                     },
-                    [_vm._v("Тест")]
+                    [_vm._v("Редактирование")]
                   )
                 ])
               ]
@@ -45224,27 +45049,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn yellow-outline-btn",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Сбросить")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn yellow-btn", attrs: { type: "button" } },
-        [_vm._v("Сохранить изменения")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -45264,6 +45068,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [_c("strong", [_vm._v("Стоимость строительства")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Стоимость измененого проекта")])])
   }
 ]
 render._withStripped = true
@@ -75330,9 +75140,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/vagrant/code/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matveystepanov/Documents/sites/ramdom/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
