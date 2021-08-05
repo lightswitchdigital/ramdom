@@ -17,8 +17,8 @@ class EditorController extends Controller
         $this->gateway = $gateway;
     }
 
-    public function index(Project $project, Request $request) {
-        $price = $this->gateway->calculatePrice($project, $request);
+    public function index(Request $request) {
+        $price = $this->gateway->calculatePrice($request);
 
         return [
             'price' => $price

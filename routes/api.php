@@ -16,14 +16,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/editor/v1/calculate', function (Request $request) {
-
-    $query = $request->all();
-    $res = Http::get('http://' . env('SMETA_HOST') . '/api/v1/calculate', $query);
-
-    dd($res->body());
-
-})->name('editor.calculate');
+Route::get('/editor/v1/calculate', 'Projects/EditorController@index')->name('editor.calculate');
 
 Route::get('/get-predicted-location', function(DadataService $service, Request $request) {
 

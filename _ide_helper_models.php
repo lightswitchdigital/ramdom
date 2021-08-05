@@ -19,8 +19,6 @@ namespace App\Models{
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read int|null $comments_count
  * @property-read mixed $image_url
  * @property-read \App\Models\Image|null $image
  * @method static \Illuminate\Database\Eloquent\Builder|Advice newModelQuery()
@@ -33,67 +31,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Advice whereUpdatedAt($value)
  */
 	class Advice extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\BalanceOperation
- *
- * @property int $id
- * @property int $user_id
- * @property string $type
- * @property float $amount
- * @property string $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation query()
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation typeAdd()
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|BalanceOperation whereUserId($value)
- */
-	class BalanceOperation extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Comment
- *
- * @property int $id
- * @property int|null $user_id
- * @property string $text
- * @property int $anonymous
- * @property int $active
- * @property int $commentable_id
- * @property string $commentable_type
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $commentable
- * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|Comment active()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment ofAdvice()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment wait()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereAnonymous($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUserId($value)
- */
-	class Comment extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -230,6 +167,33 @@ namespace App\Models{
 	class Order extends \Eloquent {}
 }
 
+namespace App\Models{
+/**
+ * App\Models\Plan
+ *
+ * @property int $id
+ * @property string $slug
+ * @property string $name
+ * @property float $price
+ * @property string $interval
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereInterval($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plan whereUpdatedAt($value)
+ */
+	class Plan extends \Eloquent {}
+}
+
 namespace App\Models\Plans{
 /**
  * App\Models\Plans\Plan
@@ -326,11 +290,13 @@ namespace App\Models\Projects{
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read int|null $comments_count
+ * @property string|null $file
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\ProjectDocument[] $documents
+ * @property-read int|null $documents_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
  * @property-read int|null $favorites_count
  * @property-read mixed $add_to_favorites_link
+ * @property-read mixed $file_url
  * @property-read mixed $is_in_favorites
  * @property-read mixed $json_images
  * @property-read mixed $json_values
@@ -349,6 +315,7 @@ namespace App\Models\Projects{
  * @method static \Illuminate\Database\Eloquent\Builder|Project query()
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereSlug($value)
@@ -357,6 +324,28 @@ namespace App\Models\Projects{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  */
 	class Project extends \Eloquent {}
+}
+
+namespace App\Models\Projects{
+/**
+ * App\Models\Projects\ProjectDocument
+ *
+ * @property int $id
+ * @property int $project_id
+ * @property string $file
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Projects\Project $project
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereUpdatedAt($value)
+ */
+	class ProjectDocument extends \Eloquent {}
 }
 
 namespace App\Models\Projects\Purchase{
@@ -527,9 +516,8 @@ namespace App\Models{
  * @property string|null $company_inn
  * @property string|null $company_account
  * @property string $status
- * @property float $balance
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BalanceOperation[] $balanceOperations
- * @property-read int|null $balance_operations_count
+ * @property string|null $developer_desc
+ * @property string|null $developer_avatar
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Project[] $favorites
  * @property-read int|null $favorites_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Notification[] $notifications
@@ -546,12 +534,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereBalance($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyAccount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyInn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeveloperAvatar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeveloperDesc($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
