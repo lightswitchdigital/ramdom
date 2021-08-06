@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Projects;
 
 use App\Http\Controllers\Controller;
-use App\Models\Projects\Project;
 use App\Services\Projects\SmetaGateway;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class EditorController extends Controller
 {
@@ -18,7 +16,7 @@ class EditorController extends Controller
     }
 
     public function index(Request $request) {
-        $price = $this->gateway->calculatePrice($request);
+        $price = $this->gateway->calculatePrice($request->all());
 
         return [
             'price' => $price

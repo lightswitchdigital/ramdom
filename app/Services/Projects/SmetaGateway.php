@@ -3,17 +3,14 @@
 
 namespace App\Services\Projects;
 
-use App\Models\Projects\Project;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class SmetaGateway
 {
 
-    public function calculatePrice(Request $request)
+    public function calculatePrice($data)
     {
-        $query = $request->all();
-        $res = Http::get('http://' . env('SMETA_HOST') . '/api/v1/calculate', $query);
+        $res = Http::get('http://' . env('SMETA_HOST') . '/api/v1/calculate', $data);
 
         return match ($res->status()) {
             200 => $res->body(),

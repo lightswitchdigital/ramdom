@@ -94,6 +94,7 @@ Route::group([
         ], function() {
 
             Route::post('/save', 'ModifyController@save')->name('save');
+            Route::post('/save-editor-data', 'ModifyController@saveEditorData')->name('save-editor-data');
 
         });
 
