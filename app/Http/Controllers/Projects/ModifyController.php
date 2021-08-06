@@ -37,17 +37,18 @@ class ModifyController extends Controller
                 $values[$id] = $attribute;
             }
             $savedProject->values_data = $values;
+            $savedProject->price = $this->getCalculatedPrice($request['editor_attributes']);
 
             $savedProject->update();
 
             return response([
                 'success' => true,
-                'order_price' => $this->getCalculatedPrice($project)
+                'order_price' => $this->getCalculatedPrice([])
             ]);
         }
 
         $savedProject = SavedProject::make([
-            'data' => ''
+            'editor_data' => null
         ]);
 
         $values = [];
@@ -77,7 +78,8 @@ class ModifyController extends Controller
         if ($savedProject = $user->savedProjects()->where('project_id', $project->id)->first()) {
 
             $savedProject->update([
-                'editor_data' => $request['editor_data']
+                'editor_data' => $request['editor_data'],
+                'price' => $this->getCalculatedPrice($request['editor_data'])
             ]);
 
             return response([
@@ -87,7 +89,8 @@ class ModifyController extends Controller
         }
 
         $savedProject = SavedProject::make([
-            'editor_data' => $request['editor_data']
+            'editor_data' => $request['editor_data'],
+            'values_data' => null
         ]);
 
         $savedProject->user()->associate($user);

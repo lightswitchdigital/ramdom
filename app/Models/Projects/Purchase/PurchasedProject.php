@@ -5,7 +5,6 @@ namespace App\Models\Projects\Purchase;
 use App\Models\Projects\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Storage;
 
 class PurchasedProject extends Model
 {
@@ -19,9 +18,14 @@ class PurchasedProject extends Model
         'jsonValues', 'orderLink'
     ];
 
+    protected $casts = [
+        'data' => 'array'
+    ];
+
     public $timestamps = true;
 
-    public function getJsonValuesAttribute() {
+    public function getJsonValuesAttribute()
+    {
         $values = [];
         $attributes = PurchaseAttribute::all();
         foreach ($attributes as $attribute) {

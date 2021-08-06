@@ -27,11 +27,17 @@ class ProjectsService
         $user = $this->getUser($user_id);
         $project = $this->getProject($project_id);
 
-        DB::transaction(function() use($user, $project, $request) {
+        $savedProject = $user->savedProjects()->where('project_id', $project->id)->first();
+
+        if ($user->balance < $savedProject->price) {
+            throw new \DomainException('Недостаточно средств на балансе');
+        }
+
+        DB::transaction(function () use ($user, $project, $request, $savedProject) {
 
             $purchased_project = PurchasedProject::make([
-                'data' => '',
-                'price' => $project->price
+                'data' => $savedProject ? $savedProject->editor_data : $request['editor_attributes'],
+                'price' => $savedProject ? $savedProject?->price : $project->price
             ]);
 
             $purchased_project->user()->associate($user);

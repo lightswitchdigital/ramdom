@@ -29,14 +29,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_06_153846_add_saved_projects_editor_data.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_06_162944_refactor_purchased_projects_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/SavedProject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/SavedProject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,14 +317,7 @@
       <workItem from="1628024570375" duration="841000" />
       <workItem from="1628182252147" duration="7648000" />
       <workItem from="1628238908586" duration="33000" />
-      <workItem from="1628252012802" duration="8282000" />
-    </task>
-    <task id="LOCAL-00009" summary="basic admin panel">
-      <created>1604216810110</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1604216810110</updated>
+      <workItem from="1628252012802" duration="9279000" />
     </task>
     <task id="LOCAL-00010" summary="gitignore public folder added added">
       <created>1605341682352</created>
@@ -664,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628262551345</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="editor attributes backend saving">
+      <created>1628267268544</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1628267268545</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +710,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="advice management added" />
     <MESSAGE value="faq added" />
     <MESSAGE value="comments backend" />
     <MESSAGE value="payments refactored, added user balance" />
@@ -737,7 +734,8 @@
     <MESSAGE value="editor calculation endpoint added" />
     <MESSAGE value="dompdf required" />
     <MESSAGE value="balance and payments added again" />
-    <option name="LAST_COMMIT_MESSAGE" value="balance and payments added again" />
+    <MESSAGE value="editor attributes backend saving" />
+    <option name="LAST_COMMIT_MESSAGE" value="editor attributes backend saving" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
