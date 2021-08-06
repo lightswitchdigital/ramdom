@@ -77,10 +77,6 @@
                                 @csrf
                                 <button class="mx-3 btn btn-success">Подтвердить</button>
                             </form>
-                            <form action="{{ route('admin.payments.reject', $payment) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-danger">Отклонить</button>
-                            </form>
                         </div>
                     @endif
                 </td>

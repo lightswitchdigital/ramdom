@@ -164,18 +164,50 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
  */
-	class Order extends \Eloquent {}
+    class Order extends \Eloquent
+    {
+    }
 }
 
-namespace App\Models{
-/**
- * App\Models\Plan
- *
- * @property int $id
- * @property string $slug
- * @property string $name
- * @property float $price
- * @property string $interval
+namespace App\Models {
+    /**
+     * App\Models\Payment
+     *
+     * @property int $id
+     * @property int $user_id
+     * @property string $type
+     * @property float $amount
+     * @property string $status
+     * @property mixed|null $meta
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\User $user
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereMeta($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereStatus($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUserId($value)
+     */
+    class Payment extends \Eloquent
+    {
+    }
+}
+
+namespace App\Models {
+    /**
+     * App\Models\Plan
+     *
+     * @property int $id
+     * @property string $slug
+     * @property string $name
+     * @property float $price
+     * @property string $interval
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
@@ -518,6 +550,7 @@ namespace App\Models{
  * @property string $status
  * @property string|null $developer_desc
  * @property string|null $developer_avatar
+ * @property float $balance
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Project[] $favorites
  * @property-read int|null $favorites_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Notification[] $notifications
@@ -534,6 +567,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBalance($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyAccount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCompanyInn($value)

@@ -29,23 +29,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Payment.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/Models/Projects/ProjectDocument.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/debugbar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/dompdf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/ide-helper.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_05_172842_create_project_documents_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/documents/test.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_06_141416_add_user_balance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_06_142241_create_payments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PaymentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PaymentsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Projects/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PaymentsService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/payments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/payments/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -328,14 +329,9 @@
       <workItem from="1627575119017" duration="10027000" />
       <workItem from="1627657822735" duration="452000" />
       <workItem from="1628024570375" duration="841000" />
-      <workItem from="1628182252147" duration="5589000" />
-    </task>
-    <task id="LOCAL-00007" summary="basic search added">
-      <created>1604086247748</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1604086247748</updated>
+      <workItem from="1628182252147" duration="7648000" />
+      <workItem from="1628238908586" duration="33000" />
+      <workItem from="1628252012802" duration="4444000" />
     </task>
     <task id="LOCAL-00008" summary="region added, minor features">
       <created>1604211828695</created>
@@ -673,7 +669,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627589047584</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="dompdf required">
+      <created>1628189651978</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1628189651979</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +724,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="projects buy basic logic" />
     <MESSAGE value="added price range to search" />
     <MESSAGE value="advice management added" />
     <MESSAGE value="faq added" />
@@ -746,6 +748,7 @@
     <MESSAGE value="deploy commit" />
     <MESSAGE value="admin editor attributes added, php version updated" />
     <MESSAGE value="editor calculation endpoint added" />
-    <option name="LAST_COMMIT_MESSAGE" value="editor calculation endpoint added" />
+    <MESSAGE value="dompdf required" />
+    <option name="LAST_COMMIT_MESSAGE" value="dompdf required" />
   </component>
 </project>

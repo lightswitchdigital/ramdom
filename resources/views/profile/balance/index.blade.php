@@ -10,8 +10,8 @@
                 <div class="card-body">
                     <h3 class="balance">{{ $user->balance }} р</h3>
                     <a
-                    class="btn yellow-btn"
-                    href="{{ route('profile.balance.add') }}"
+                        class="btn yellow-btn"
+                        href="#"
                     >Пополнить баланс</a>
                 </div>
             </div>
@@ -29,19 +29,17 @@
                     </thead>
                     <tbody>
 
-                    @foreach ($operations as $operation)
+                    @foreach ($payments as $payment)
                         <tr>
-                            <td>{{ $operation->id }}</td>
-                            <td>{{ $operation->getType() }}</td>
-                            <td>{{ $operation->getStatus() }}</td>
-                            <td>{{ $operation->amount }}</td>
+                            <td>{{ $payment->id }}</td>
+                            <td>{{ $payment->getType() }}</td>
+                            <td>{{ $payment->getStatus() }}</td>
+                            <td>{{ $payment->amount }}</td>
                         </tr>
                     @endforeach
 
                     </tbody>
                 </table>
-
-                {{ $operations->links("pagination::bootstrap-4") }}
             </div>
         </div>
     </div>

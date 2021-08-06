@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Models\Plans\PlanSubscription;
 use App\Models\Projects\Project;
-use App\Models\Projects\SavedProject;
 use App\Models\Projects\Purchase\PurchasedProject;
+use App\Models\Projects\SavedProject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -29,7 +29,7 @@ class User extends Authenticatable
         'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status',
         'passport_serial', 'passport_code', 'passport_issue', 'passport_issue_date',
         'company_name', 'company_address', 'company_inn', 'company_account',
-        'developer_desc'
+        'developer_desc', 'balance'
     ];
 
     protected $hidden = [
@@ -103,12 +103,33 @@ class User extends Authenticatable
         ]);
     }
 
+    public function withholdFromBalance($amount)
+    {
+        if ($this->balance < $amount)
+            throw new \DomainException('Недостаточно средств на балансе');
 
-    public function isCustomer() {
+        $current = $this->balance;
+        $this->update([
+            'balance' => $current - $amount
+        ]);
+    }
+
+    public function addToBalance($amount)
+    {
+        $current = $this->balance;
+        $this->update([
+            'balance' => $current + $amount
+        ]);
+    }
+
+
+    public function isCustomer()
+    {
         return $this->role === self::ROLE_CUSTOMER;
     }
 
-    public function isPro() {
+    public function isPro()
+    {
         return $this->role === self::ROLE_PRO;
     }
 

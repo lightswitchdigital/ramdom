@@ -18,11 +18,13 @@ Auth::routes();
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/discounts', 'HomeController@discounts')->name('discounts');
-Route::get('test', function(\App\Services\Projects\ProjectsService $service, \Barryvdh\DomPDF\PDF $PDF) {
+
+Route::get('test', function (\App\Services\Projects\ProjectsService $service, \Barryvdh\DomPDF\PDF $PDF) {
 
     $service->composeDocs(Auth::user(), \App\Models\Projects\Project::first(), $PDF);
 
 });
+Route::get('api/editor/v1/calculate', 'Projects\\EditorController@index')->name('api.editor.calculate');
 
 Route::group([
     'middleware' => 'auth',
@@ -121,7 +123,7 @@ Route::group([
     Route::group([
         'prefix' => 'projects',
         'as' => 'projects.'
-    ], function() {
+    ], function () {
 
         Route::get('/get-projects', 'ProjectsController@getProjects')->name('get-projects');
 
@@ -133,9 +135,19 @@ Route::group([
     });
 
     Route::group([
+        'prefix' => 'balance',
+        'as' => 'balance.'
+    ], function () {
+
+        Route::get('/', 'BalanceController@index')->name('index');
+        Route::post('/replenish', 'BalanceController@replenish')->name('replenish');
+
+    });
+
+    Route::group([
         'prefix' => 'plans',
         'as' => 'plans.'
-    ], function() {
+    ], function () {
 
         Route::get('/', 'PlansController@index')->name('index');
         Route::post('/{plan}/subscribe', 'PlansController@subscribe')->name('subscribe');
@@ -287,7 +299,6 @@ Route::group([
     ], function() {
 
         Route::post('/{payment}/accept', 'PaymentsController@accept')->name('accept');
-        Route::post('/{payment}/reject', 'PaymentsController@reject')->name('reject');
 
     });
     Route::resource('payments', 'PaymentsController')->only(['index']);

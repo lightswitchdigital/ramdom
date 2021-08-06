@@ -144,13 +144,19 @@ class Project extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function favorites()
     {
         return $this->belongsToMany(User::class, 'project_favorites', 'project_id', 'project_id');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(ProjectDocument::class);
     }
 
     public function scopeActive(Builder $query)

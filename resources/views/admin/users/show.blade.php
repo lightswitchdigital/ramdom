@@ -48,4 +48,39 @@
         <tbody>
         </tbody>
     </table>
+
+    {{--    <div class="card">--}}
+    {{--        <div class="card-header">--}}
+    {{--            Пополнения баланса--}}
+    {{--        </div>--}}
+    {{--        <div class="card-body">--}}
+    {{--            <table class="table table-bordered table-striped">--}}
+    {{--                <thead>--}}
+    {{--                <tr>--}}
+    {{--                    <th>ID</th>--}}
+    {{--                    <th>Сумма</th>--}}
+    {{--                    <th>Статус</th>--}}
+    {{--                    <th></th>--}}
+    {{--                </tr>--}}
+    {{--                </thead>--}}
+    {{--                <tbody>--}}
+
+    {{--                @foreach ($payments as $payment)--}}
+    {{--                    <tr>--}}
+    {{--                        <td>{{ $payment->id }}</td>--}}
+    {{--                        <td>{{ $payment->amount }}</td>--}}
+    {{--                        <td>{{ $payment->getStatus() }}</td>--}}
+    {{--                        <td>--}}
+    {{--                            <form action="" method="POST">--}}
+    {{--                                @csrf--}}
+    {{--                                <button class="btn btn-success">Подтвердить</button>--}}
+    {{--                            </form>--}}
+    {{--                        </td>--}}
+    {{--                    </tr>--}}
+    {{--                @endforeach--}}
+
+    {{--                </tbody>--}}
+    {{--            </table>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection

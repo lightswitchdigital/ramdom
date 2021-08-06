@@ -83,13 +83,17 @@
                                 <notifications></notifications>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle user-btn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle user-btn" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right user-settings" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right user-settings"
+                                     aria-labelledby="navbarDropdown">
 
-                                    <a href="{{ route('profile.projects.index') }}" class="dropdown-item">Мои проекты</a>
+                                    <a href="{{ route('profile.projects.index') }}" class="dropdown-item">Мои
+                                        проекты</a>
+                                    <a href="{{ route('profile.balance.index') }}" class="dropdown-item">Баланс</a>
                                     @if(Auth::user()->isDeveloper())
                                         <a href="{{ route('profile.building.index') }}" class="dropdown-item">Строительство</a>
                                     @endif
