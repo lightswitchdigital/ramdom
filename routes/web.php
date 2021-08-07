@@ -19,11 +19,6 @@ Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/discounts', 'HomeController@discounts')->name('discounts');
 
-Route::get('test', function (\App\Services\Projects\ProjectsService $service, \Barryvdh\DomPDF\PDF $PDF) {
-
-    $service->composeDocs(Auth::user(), \App\Models\Projects\Project::first(), $PDF);
-
-});
 Route::get('api/editor/v1/calculate', 'Projects\\EditorController@index')->name('api.editor.calculate');
 
 Route::group([

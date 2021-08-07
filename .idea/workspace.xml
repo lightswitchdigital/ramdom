@@ -29,17 +29,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Mail/Projects/DocumentsMail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProjectDocument.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_07_104440_create_purchased_project_documents_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/documents/proekt-3/privet.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/documents/proekt-3/test1.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mail/projects/documents.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper_models.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,14 +315,7 @@
       <workItem from="1628182252147" duration="7648000" />
       <workItem from="1628238908586" duration="33000" />
       <workItem from="1628252012802" duration="10505000" />
-      <workItem from="1628331157697" duration="2722000" />
-    </task>
-    <task id="LOCAL-00011" summary="project component added">
-      <created>1605356762325</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1605356762325</updated>
+      <workItem from="1628331157697" duration="3151000" />
     </task>
     <task id="LOCAL-00012" summary="auth return codes modified">
       <created>1605383165891</created>
@@ -668,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628268261495</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="compose documents implemented somehow">
+      <created>1628334079941</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1628334079941</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +708,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="faq added" />
     <MESSAGE value="comments backend" />
     <MESSAGE value="payments refactored, added user balance" />
     <MESSAGE value="user's balance logic" />
@@ -741,7 +732,8 @@
     <MESSAGE value="balance and payments added again" />
     <MESSAGE value="editor attributes backend saving" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="compose documents implemented somehow" />
+    <option name="LAST_COMMIT_MESSAGE" value="compose documents implemented somehow" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

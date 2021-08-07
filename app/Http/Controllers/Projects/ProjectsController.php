@@ -44,8 +44,6 @@ class ProjectsController extends Controller
             abort(404);
         }
 
-        $this->service->composeDocs(Auth::user(), $project, $PDF);
-
         $created_at = $project->created_at->format('d-m-Y');
         $purchase_attributes = PurchaseAttribute::all()->toJson();
         $isAuthenticated = Auth::check();
