@@ -46,7 +46,7 @@ class ProjectsService
 
             $purchased_project = PurchasedProject::make([
                 'data' => $savedProject ? $savedProject->editor_data : $request['editor_attributes'],
-                'price' => $savedProject ? $savedProject?->price : $project->price
+                'price' => $savedProject ? $savedProject->price : $project->price
             ]);
 
             $purchased_project->user()->associate($user);

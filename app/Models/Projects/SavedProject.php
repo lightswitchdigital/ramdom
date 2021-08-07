@@ -10,7 +10,7 @@ class SavedProject extends Model
     protected $table = 'user_saved_projects';
 
     protected $fillable = [
-        'user_id', 'project_id', 'data', 'values_data', 'editor_data'
+        'user_id', 'project_id', 'data', 'values_data', 'editor_data', 'price'
     ];
 
     protected $casts = [

@@ -16,11 +16,6 @@ use Illuminate\Http\Request;
 
 class PlansService
 {
-    private $payments;
-
-    public function __construct(PaymentsService $payments) {
-        $this->payments = $payments;
-    }
 
     public function subscribe($user_id, $plan_id) {
 
@@ -73,7 +68,7 @@ class PlansService
             'content' => 'Ваш план был успешно изменен на "' . $plan->name .'".'
         ]);
 
-        $this->payments->pay($user->id, $plan->price);
+        $user->withholdFromBalance($plan->price);
 
     }
 

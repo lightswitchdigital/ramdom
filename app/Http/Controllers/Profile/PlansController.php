@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plans\Plan;
-use App\Services\PaymentsService;
 use App\Services\PlansService;
 use Auth;
 use DomainException;

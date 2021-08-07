@@ -39,15 +39,23 @@ class PurchasedProject extends Model
         return route('profile.projects.order', $this);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
 
-    public function getValue($id) {
+    public function documents()
+    {
+        return $this->hasMany(PurchasedProjectDocument::class);
+    }
+
+    public function getValue($id)
+    {
         foreach ($this->values as $value) {
             if ($value->attribute_id === $id) {
                 return $value->value;
