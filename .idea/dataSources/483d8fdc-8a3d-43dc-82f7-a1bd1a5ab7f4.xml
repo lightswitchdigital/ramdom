@@ -939,22 +939,22 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <table id="249" parent="7" name="project_attributes">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="250" parent="7" name="project_documents">
+    <table id="250" parent="7" name="project_favorites">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="251" parent="7" name="project_favorites">
+    <table id="251" parent="7" name="project_values">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="252" parent="7" name="project_values">
+    <table id="252" parent="7" name="projects">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="253" parent="7" name="projects">
+    <table id="253" parent="7" name="purchase_project_attributes">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="254" parent="7" name="purchase_project_attributes">
+    <table id="254" parent="7" name="purchase_project_values">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="255" parent="7" name="purchase_project_values">
+    <table id="255" parent="7" name="purchased_project_documents">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
     <table id="256" parent="7" name="purchased_projects">
@@ -1524,153 +1524,155 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="375" parent="250" name="id">
+    <column id="375" parent="250" name="user_id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="376" parent="250" name="project_id">
       <Position>2</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="377" parent="250" name="file">
-      <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="378" parent="250" name="created_at">
-      <Position>4</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="379" parent="250" name="updated_at">
-      <Position>5</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <key id="380" parent="250" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="381" parent="251" name="user_id">
+    <index id="377" parent="250" name="project_favorites_user_id_foreign">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="378" parent="250" name="project_favorites_project_id_foreign">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <foreign-key id="379" parent="250" name="project_favorites_user_id_foreign">
+      <ColNames>user_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="380" parent="250" name="project_favorites_project_id_foreign">
+      <ColNames>project_id</ColNames>
+      <RefTableName>projects</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="381" parent="251" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="382" parent="251" name="project_id">
       <Position>2</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="383" parent="251" name="project_favorites_user_id_foreign">
-      <ColNames>user_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="384" parent="251" name="project_favorites_project_id_foreign">
-      <ColNames>project_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <foreign-key id="385" parent="251" name="project_favorites_user_id_foreign">
-      <ColNames>user_id</ColNames>
-      <RefTableName>users</RefTableName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <foreign-key id="386" parent="251" name="project_favorites_project_id_foreign">
-      <ColNames>project_id</ColNames>
-      <RefTableName>projects</RefTableName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="387" parent="252" name="id">
-      <Position>1</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="388" parent="252" name="project_id">
-      <Position>2</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="389" parent="252" name="attribute_id">
+    <column id="383" parent="251" name="attribute_id">
       <Position>3</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="390" parent="252" name="value">
+    <column id="384" parent="251" name="value">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="391" parent="252" name="project_values_project_id_foreign">
+    <index id="385" parent="251" name="project_values_project_id_foreign">
       <ColNames>project_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="392" parent="252" name="project_values_attribute_id_foreign">
+    <index id="386" parent="251" name="project_values_attribute_id_foreign">
       <ColNames>attribute_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="393" parent="252" name="PRIMARY">
+    <key id="387" parent="251" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="394" parent="252" name="project_values_project_id_foreign">
+    <foreign-key id="388" parent="251" name="project_values_project_id_foreign">
       <ColNames>project_id</ColNames>
       <RefTableName>projects</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="395" parent="252" name="project_values_attribute_id_foreign">
+    <foreign-key id="389" parent="251" name="project_values_attribute_id_foreign">
       <ColNames>attribute_id</ColNames>
       <RefTableName>project_attributes</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="396" parent="253" name="id">
+    <column id="390" parent="252" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="397" parent="253" name="title">
+    <column id="391" parent="252" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="398" parent="253" name="slug">
+    <column id="392" parent="252" name="slug">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="399" parent="253" name="description">
+    <column id="393" parent="252" name="description">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="400" parent="253" name="price">
+    <column id="394" parent="252" name="price">
       <Position>5</Position>
       <DataType>double(16,2 digit)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="401" parent="253" name="status">
+    <column id="395" parent="252" name="status">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="402" parent="253" name="created_at">
+    <column id="396" parent="252" name="created_at">
       <Position>7</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="403" parent="253" name="updated_at">
+    <column id="397" parent="252" name="updated_at">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="404" parent="253" name="file">
+    <column id="398" parent="252" name="file">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
+    </column>
+    <key id="399" parent="252" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="400" parent="253" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="401" parent="253" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="402" parent="253" name="type">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="403" parent="253" name="variants">
+      <Position>4</Position>
+      <DataType>json|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="404" parent="253" name="sort">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <key id="405" parent="253" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1683,76 +1685,74 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="407" parent="254" name="name">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="408" parent="254" name="type">
-      <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="409" parent="254" name="variants">
-      <Position>4</Position>
-      <DataType>json|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="410" parent="254" name="sort">
-      <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="411" parent="254" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="412" parent="255" name="id">
-      <Position>1</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="413" parent="255" name="purchased_project_id">
+    <column id="407" parent="254" name="purchased_project_id">
       <Position>2</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="414" parent="255" name="attribute_id">
+    <column id="408" parent="254" name="attribute_id">
       <Position>3</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="415" parent="255" name="value">
+    <column id="409" parent="254" name="value">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="416" parent="255" name="purchase_project_values_purchased_project_id_foreign">
+    <index id="410" parent="254" name="purchase_project_values_purchased_project_id_foreign">
       <ColNames>purchased_project_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="417" parent="255" name="purchase_project_values_attribute_id_foreign">
+    <index id="411" parent="254" name="purchase_project_values_attribute_id_foreign">
       <ColNames>attribute_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="418" parent="255" name="PRIMARY">
+    <key id="412" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="419" parent="255" name="purchase_project_values_purchased_project_id_foreign">
+    <foreign-key id="413" parent="254" name="purchase_project_values_purchased_project_id_foreign">
       <ColNames>purchased_project_id</ColNames>
       <RefTableName>purchased_projects</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="420" parent="255" name="purchase_project_values_attribute_id_foreign">
+    <foreign-key id="414" parent="254" name="purchase_project_values_attribute_id_foreign">
       <ColNames>attribute_id</ColNames>
       <RefTableName>purchase_project_attributes</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
+    <column id="415" parent="255" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="416" parent="255" name="purchased_project_id">
+      <Position>2</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="417" parent="255" name="file">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="418" parent="255" name="created_at">
+      <Position>4</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <column id="419" parent="255" name="updated_at">
+      <Position>5</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <key id="420" parent="255" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
     <column id="421" parent="256" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>

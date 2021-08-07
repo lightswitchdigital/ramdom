@@ -6,23 +6,32 @@ namespace App\Services\Projects;
 use App\Http\Requests\Admin\Projects\CreateRequest;
 use App\Http\Requests\Admin\Projects\EditRequest;
 use App\Http\Requests\Projects\BuyRequest;
+use App\Jobs\SendEmailJob;
+use App\Mail\Projects\DocumentsMail;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use App\Models\Projects\Purchase\PurchaseAttribute;
 use App\Models\Projects\Purchase\PurchasedProject;
 use App\Models\User;
 use Artisan;
-use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Storage;
 
 class ProjectsService
 {
+    private $pdf;
 
-    public function buy($user_id, $project_id, BuyRequest $request) {
+    public function __construct(\Barryvdh\DomPDF\PDF $PDF)
+    {
+        $this->pdf = $PDF;
+    }
+
+    public function buy($user_id, $project_id, BuyRequest $request)
+    {
 
         $user = $this->getUser($user_id);
         $project = $this->getProject($project_id);
@@ -55,6 +64,16 @@ class ProjectsService
                 }
             }
 
+            $docsPaths = $this->composeDocs($user, $project);
+
+            foreach ($docsPaths as $documentPath) {
+                $purchased_project->documents()->create([
+                    'file' => $documentPath
+                ]);
+            }
+
+            SendEmailJob::dispatch($user, new DocumentsMail($user, $purchased_project, $docsPaths));
+
             return $purchased_project;
 
         });
@@ -64,9 +83,11 @@ class ProjectsService
 
         $project = DB::transaction(function () use ($request) {
 
+            $slug = Str::slug($request['title']);
+
             $project = Project::create([
                 'title' => $request['title'],
-                'slug' => Str::slug($request['title']),
+                'slug' => $slug,
                 'description' => $request['description'],
                 'price' => $request['price'],
                 'status' => Project::STATUS_ACTIVE,
@@ -76,6 +97,9 @@ class ProjectsService
             $name = $project->slug . '.json';
             $path = join("/", ['project-attributes', Carbon::now()->format('d-m-Y'), $name]);
             Storage::disk('public')->put($path, $editor_attributes);
+
+            $docsPath = join("/", [resource_path('views'), "documents", $slug]);
+            mkdir($docsPath);
 
             $project->update([
                 'file' => $path
@@ -106,14 +130,29 @@ class ProjectsService
         return $project;
     }
 
-    public function composeDocs(User $user, Project $project, PDF $pdf) {
-        $output = $pdf
-            ->setPaper('a4', 'landscape')
-            ->loadView('documents.test', ['greeting' => 'hello'])
-            ->output();
+    public function composeDocs(User $user, Project $project)
+    {
+        $docs = [];
 
-        $path = 'userdocuments/' . $user->id . "/" . Carbon::now()->format('d-m-Y') . "/" . $project->slug . ".pdf";
-        Storage::disk('public')->put($path, $output);
+        $docsPath = join("/", [resource_path('views'), "documents", $project->slug]);
+        foreach (File::allFiles($docsPath) as $file) {
+            $docs[] = "documents." . $project->slug . "." . explode(".", $file->getBasename())[0];
+        }
+
+        $paths = [];
+        foreach ($docs as $document) {
+            $output = $this->pdf
+                ->setPaper('a4', 'landscape')
+                ->loadView($document, ['greeting' => 'hello'])
+                ->output();
+
+            $path = 'userdocuments/' . $user->id . "/" . Carbon::now()->format('d-m-Y') . "/" . $project->slug . ".pdf";
+            Storage::disk('public')->put($path, $output);
+
+            $paths[] = $path;
+        }
+
+        return $paths;
 
     }
 

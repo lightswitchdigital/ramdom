@@ -37,11 +37,14 @@ class ProjectsController extends Controller
 
     }
 
-    public function show($slug) {
+    public function show($slug, \Barryvdh\DomPDF\PDF $PDF)
+    {
         $project = Project::where('slug', $slug)->with(['images', 'values'])->first();
         if (!$project) {
             abort(404);
         }
+
+        $this->service->composeDocs(Auth::user(), $project, $PDF);
 
         $created_at = $project->created_at->format('d-m-Y');
         $purchase_attributes = PurchaseAttribute::all()->toJson();
