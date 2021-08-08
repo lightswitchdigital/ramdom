@@ -1879,6 +1879,10 @@ a.project-card{
         display: flex;
         flex-direction: row;
         align-items: center;
+        width: 100%;
+        &:active{
+            background: rgba(66, 66, 66, 0.3);
+        }
     }
 }
 

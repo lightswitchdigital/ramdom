@@ -4641,7 +4641,7 @@ __webpack_require__.r(__webpack_exports__);
       hasEdits: false
     };
   },
-  props: ['project', 'createdAt', 'buyLink', 'recommendations', 'purchaseAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile', 'jsonUrl', 'calculateRoute'],
+  props: ['project', 'createdAt', 'buyLink', 'recommendations', 'purchaseAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile', 'jsonUrl', 'calculateRoute', 'save-editor-data'],
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   },
@@ -4654,7 +4654,7 @@ __webpack_require__.r(__webpack_exports__);
       this.savedAttributes = this.saveFile.values_data;
     }
 
-    axios.get(this.calculateRoute).then(function (response) {
+    axios.get(this.calculateRoute, this.values_data).then(function (response) {
       if (response.status === 200) {
         _this.changedPrice = response.data;
       }
@@ -4760,10 +4760,7 @@ __webpack_require__.r(__webpack_exports__);
     sendJson: function sendJson() {
       if (confirm("Сохранить изменения?")) {
         if (this.isAuthenticated && (this.canEdit || this.saveFile)) {
-          axios.post(this.saveLink, {
-            '_token': this.csrfToken,
-            'editor_attributes': this.values_data
-          }).then(function (response) {
+          axios.post(this.saveLink, this.values_data).then(function (response) {
             console.log(response.data);
           })["catch"](function (error) {
             console.log(error);
@@ -44497,13 +44494,6 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(
-                                "Значение: " +
-                                  _vm._s(this.getValue(this.changedCell.id))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
                                 "Изменить:\n                                "
                               ),
                               this.changedCell.type == "number"
@@ -44518,10 +44508,18 @@ var render = function() {
                                     ],
                                     attrs: {
                                       type: "number",
-                                      placeholder: this.changedCell.def
+                                      placeholder: this.getValue(
+                                        this.changedCell.id
+                                      )
                                     },
                                     domProps: { value: _vm.modalValue },
                                     on: {
+                                      change: function($event) {
+                                        return _vm.saveValue(
+                                          _vm.changedCell.id,
+                                          _vm.modalValue
+                                        )
+                                      },
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
@@ -44543,53 +44541,66 @@ var render = function() {
                                         }
                                       ],
                                       on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.modalValue = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          function($event) {
+                                            return _vm.saveValue(
+                                              _vm.changedCell.id,
+                                              _vm.modalValue
                                             )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.modalValue = $event.target
-                                            .multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        }
+                                          }
+                                        ]
                                       }
                                     },
-                                    _vm._l(this.changedCell.variants, function(
-                                      option,
-                                      index
-                                    ) {
-                                      return _c("option", { key: index }, [
-                                        _vm._v(
-                                          "\n                                        " +
-                                            _vm._s(option) +
-                                            "\n                                    "
-                                        )
-                                      ])
-                                    }),
-                                    0
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { selected: "" } },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              this.getValue(this.changedCell.id)
+                                            )
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        this.changedCell.variants,
+                                        function(option, index) {
+                                          return _c("option", { key: index }, [
+                                            _vm._v(
+                                              "\n                                        " +
+                                                _vm._s(option) +
+                                                "\n                                    "
+                                            )
+                                          ])
+                                        }
+                                      )
+                                    ],
+                                    2
                                   )
                                 : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn yellow-btn",
-                                attrs: { type: "submit" }
-                              },
-                              [_vm._v("cохранить")]
-                            )
+                            ])
                           ]
                         )
                       : _vm._e()

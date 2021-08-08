@@ -39,17 +39,17 @@
                                 <form v-if="this.changedCell.label" @submit.prevent="saveValue(changedCell.id, modalValue)">
                                 <!-- <form @submit.prevent="console.log('k')" v-if="this.changedCell"> -->
                                     <h5>{{this.changedCell.label}}: </h5>
-                                    <p>Значение: {{this.getValue(this.changedCell.id)}}</p>
                                     <p>Изменить:
-                                    <input v-if="this.changedCell.type == 'number'" type="number" :placeholder="this.changedCell.def" v-model="modalValue">
+                                    <input v-if="this.changedCell.type == 'number'" type="number" :placeholder="this.getValue(this.changedCell.id)" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
 
-                                    <select v-else-if="this.changedCell.type == 'select'" v-model="modalValue">
+                                    <select v-else-if="this.changedCell.type == 'select'" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
+                                        <option selected>{{this.getValue(this.changedCell.id)}}</option>
                                         <option v-for="(option, index) in this.changedCell.variants" :key="index">
                                             {{option}}
                                         </option>
                                     </select>
                                     </p>
-                                    <button type="submit" class="btn yellow-btn">cохранить</button>
+                                    <!-- <button type="submit" class="btn yellow-btn">cохранить</button> -->
                                 </form>
                             </div>
                         </div>
@@ -230,7 +230,8 @@ export default {
         'saveLink',
         'saveFile',
         'jsonUrl',
-        'calculateRoute'
+        'calculateRoute',
+        'save-editor-data'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -240,7 +241,7 @@ export default {
         if(this.saveFile){
             this.savedAttributes = this.saveFile.values_data
         }
-        axios.get(this.calculateRoute).then(response => {
+        axios.get(this.calculateRoute, this.values_data).then(response => {
             if(response.status === 200){
                 this.changedPrice = response.data
             }
@@ -325,7 +326,7 @@ export default {
         sendJson() {
             if(confirm("Сохранить изменения?")){
                 if(this.isAuthenticated && (this.canEdit || this.saveFile)){
-                    axios.post(this.saveLink , {'_token' : this.csrfToken, 'editor_attributes' : this.values_data} ).then(response => {
+                    axios.post(this.saveLink , this.values_data).then(response => {
                         console.log(response.data);
                     }).catch(error => {
                         console.log(error);

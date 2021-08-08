@@ -13047,6 +13047,11 @@ a.project-card.order-card .card-body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+}
+
+.user-settings .dropdown-item:active {
+  background: rgba(66, 66, 66, 0.3);
 }
 
 .detail-modal-block {
