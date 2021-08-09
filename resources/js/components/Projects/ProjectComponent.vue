@@ -1,6 +1,6 @@
 <template>
         <div class="container project-view">
-            <div class="modal fade" id="editorModal" tabindex="-1" aria-labelledby="editorModalLabel" aria-hidden="true">
+            <div v-if="this.isAuthenticated && (this.canEdit || this.saveFile)" class="modal fade" id="editorModal" tabindex="-1" aria-labelledby="editorModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -184,7 +184,7 @@
                         </div>
                         <div class="btn-block">
                             <button type="submit" class="btn yellow-btn" :disabled="buyDisabled">Купить проект</button>
-                            <button type="button"  data-toggle="modal" data-target="#editorModal" class="btn yellow-outline-btn">Редактирование</button>
+                            <button v-if="this.isAuthenticated && (this.canEdit || this.saveFile)" type="button"  data-toggle="modal" data-target="#editorModal" class="btn yellow-outline-btn">Редактирование</button>
                         </div>
                     </form>
                 </div>
@@ -231,7 +231,7 @@ export default {
         'saveFile',
         'jsonUrl',
         'calculateRoute',
-        'save-editor-data'
+        'saveEditorDataLink'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
@@ -327,8 +327,7 @@ export default {
         sendJson() {
             if(confirm("Сохранить изменения?")){
                 if(this.isAuthenticated && (this.canEdit || this.saveFile)){
-                    axios.post(this['save-editor-data'] , this.values_data).then(response => {
-                        console.log(response.data);
+                    axios.post(this.saveEditorDataLink , this.values_data).then(response => {
                         this.changedPrice = response.data.order_price
                     }).catch(error => {
                         console.log(error);
