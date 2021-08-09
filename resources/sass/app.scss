@@ -2311,7 +2311,34 @@ a.project-card{
             box-shadow: none;
         }
     }
-
+    select{
+        width: fit-content;
+        max-width: 200px;
+        background: none;
+        font-weight: bold;
+        border: none;
+        background-image: url('https://image.flaticon.com/icons/png/512/25/25623.png');
+        background-size: 10px 10px;
+        background-position: right center;
+        background-repeat: no-repeat;
+        padding: 0 10px;
+        color: #000;
+        &:focus{
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    input.form-control {
+        display: inline-block;
+        max-width: 100px;
+        border: none;
+        background: none;
+        padding: 15px 20px;
+        &:focus{
+            box-shadow: none;
+            outline: none;
+        }
+    }
     .search {
         border: none;
         border-bottom: 1px solid #000;
@@ -2362,13 +2389,12 @@ a.project-card{
             border-radius: 30px;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .col a:hover {
-            background: rgba(106, 106, 106, 0.1);
-        }
-        .col a.active {
-            background: rgba(106, 106, 106, 0.1);
+            &:hover {
+                background: rgba(106, 106, 106, 0.1);
+            }
+            &.active {
+                background: rgba(106, 106, 106, 0.1);
+            }
         }
 
         .editor__input {

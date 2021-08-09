@@ -17,7 +17,7 @@
                             <div class="col">
                                 <ul>
                                     <li v-for="(group, index) in this.groups" :key="index">
-                                        <a href="#"  @click.prevent="changeGroup(group)">
+                                        <a href="#"  @click.prevent="changeGroup(group)" :class="[changedGroup == group ? 'active' : '']">
                                             <span>{{group}}</span>
                                             <i class="fas fa-chevron-right"></i>
                                         </a>
@@ -25,10 +25,9 @@
                                 </ul>
                             </div>
                             <div class="col">
-                                <h5 v-if="this.changedGroup">{{this.changedGroup}}:</h5>
                                 <ul>
                                     <li v-for="(cell) in this.changedCells" :key="cell.id" >
-                                        <a href="#" @click.prevent="changeCell(cell.id)">
+                                        <a href="#" @click.prevent="changeCell(cell.id)" :class="[changedCell.id == cell.id ? 'active' : '']">
                                             <span>{{cell.label}}</span>
                                             <i class="fas fa-chevron-right"></i>
                                         </a>
@@ -37,22 +36,26 @@
                             </div>
                             <div class="col">
                                 <form v-if="this.changedCell.label" @submit.prevent="saveValue(changedCell.id, modalValue)">
-                                    <h5>{{this.changedCell.label}}: </h5>
+                                    <h5>{{this.changedCell.label}}: {{this.getValue(this.changedCell.id)}}</h5>
                                     <p>Изменить:
-                                        <input v-if="this.changedCell.type == 'number'" type="number" :placeholder="this.getValue(this.changedCell.id)" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
+                                        <input v-if="this.changedCell.type == 'number'" 
+                                        type="number" class="form-control"
+                                        :placeholder="getValue(this.changedCell.id)"
+                                        @input="saveValue(changedCell.id, $event.target.value)"
+                                        >
 
-                                        <vSelect v-else-if="this.changedCell.type == 'select'" :options="this.changedCell.variants" v-model="modalValue" @input="saveValue(changedCell.id, modalValue)" :placeholder="getValue(this.changedCell.id)"/> 
-                                            <!-- <option v-for="(option, index) in this.changedCell.variants" :key="index">
+                                        <select class="custom-select" v-else-if="this.changedCell.type == 'select'" @input="saveValue(changedCell.id, $event.target.value)">
+                                            <option v-for="(option, index) in this.changedCell.variants" :key="index">
                                                 {{option}}
-                                            </option> -->
-                                        <!-- </v-select> -->
+                                            </option>
+                                        </select>
                                     </p>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <!-- <h4>{{this.changedPrice}}</h4> -->
+                        <h4>Цена: {{this.changedPrice || this.project.price}}</h4>
                         <button type="button" class="btn yellow-outline-btn" :disabled='!this.hasEdits' @click.prevent="cancelEdit()">Сбросить</button>
                         <button type="button" class="btn yellow-btn" :disabled='!this.hasEdits' @click.prevent="sendJson()">Сохранить изменения</button>
                     </div>
@@ -196,10 +199,6 @@ import Recommend from './RecommendationsComponent'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-import vSelect from 'vue-select'
-import 'vue-select/dist/vue-select.css';
-
-// Vue.component('v-select', vSelect)
 
 export default {
     name: "ProjectComponent",
@@ -218,8 +217,7 @@ export default {
         changedGroup: '',
         chengedPrice: '',
         values_data: {},
-        hasEdits: false,
-        choisedOption: ''
+        hasEdits: false
     }),
     props: [
         'project',
@@ -268,8 +266,7 @@ export default {
     },
     components: {
         VueSlickCarousel ,
-        Recommend,
-        vSelect
+        Recommend
     },
     methods: {
         toggleFavorites() {
@@ -354,9 +351,6 @@ export default {
             for(let cell in this.cells){
                 if(this.cells[cell].id == id){
                     this.changedCell = this.cells[cell]
-                    if(this.changedCell.type == select){
-                        this.choisedOption = this.getValue(id)
-                    }
                 }
             }
         },

@@ -13527,6 +13527,40 @@ a.project-card.order-card .card-body {
   box-shadow: none;
 }
 
+.modal#editorModal .modal-content select {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 200px;
+  background: none;
+  font-weight: bold;
+  border: none;
+  background-image: url("https://image.flaticon.com/icons/png/512/25/25623.png");
+  background-size: 10px 10px;
+  background-position: right center;
+  background-repeat: no-repeat;
+  padding: 0 10px;
+  color: #000;
+}
+
+.modal#editorModal .modal-content select:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.modal#editorModal .modal-content input.form-control {
+  display: inline-block;
+  max-width: 100px;
+  border: none;
+  background: none;
+  padding: 15px 20px;
+}
+
+.modal#editorModal .modal-content input.form-control:focus {
+  box-shadow: none;
+  outline: none;
+}
+
 .modal#editorModal .modal-content .search {
   border: none;
   border-bottom: 1px solid #000;
