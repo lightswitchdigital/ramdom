@@ -41,11 +41,11 @@
                                     <p>Изменить:
                                         <input v-if="this.changedCell.type == 'number'" type="number" :placeholder="this.getValue(this.changedCell.id)" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
 
-                                        <select v-else-if="this.changedCell.type == 'select'" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
-                                            <option v-for="(option, index) in this.changedCell.variants" :key="index">
+                                        <vSelect v-else-if="this.changedCell.type == 'select'" :options="this.changedCell.variants" v-model="modalValue" @input="saveValue(changedCell.id, modalValue)" :placeholder="getValue(this.changedCell.id)"/> 
+                                            <!-- <option v-for="(option, index) in this.changedCell.variants" :key="index">
                                                 {{option}}
-                                            </option>
-                                        </select>
+                                            </option> -->
+                                        <!-- </v-select> -->
                                     </p>
                                 </form>
                             </div>
@@ -196,6 +196,10 @@ import Recommend from './RecommendationsComponent'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
+// Vue.component('v-select', vSelect)
 
 export default {
     name: "ProjectComponent",
@@ -264,7 +268,8 @@ export default {
     },
     components: {
         VueSlickCarousel ,
-        Recommend
+        Recommend,
+        vSelect
     },
     methods: {
         toggleFavorites() {
