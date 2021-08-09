@@ -4613,9 +4613,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -4638,7 +4635,8 @@ __webpack_require__.r(__webpack_exports__);
       changedGroup: '',
       chengedPrice: '',
       values_data: {},
-      hasEdits: false
+      hasEdits: false,
+      choisedOption: ''
     };
   },
   props: ['project', 'createdAt', 'buyLink', 'recommendations', 'purchaseAttributes', 'isAuthenticated', 'canEdit', 'saveLink', 'saveFile', 'jsonUrl', 'calculateRoute', 'save-editor-data'],
@@ -4750,6 +4748,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           if (response.status === 200) {
             _this4.buyDisabled = false;
+            _this4.changedPrice = response.data.order_price;
           }
         })["catch"](function (error) {
           _this4.buyDisabled = false;
@@ -4758,10 +4757,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     sendJson: function sendJson() {
+      var _this5 = this;
+
       if (confirm("Сохранить изменения?")) {
         if (this.isAuthenticated && (this.canEdit || this.saveFile)) {
-          axios.post(this.saveLink, this.values_data).then(function (response) {
+          axios.post(this['save-editor-data'], this.values_data).then(function (response) {
             console.log(response.data);
+            _this5.changedPrice = response.data.order_price;
           })["catch"](function (error) {
             console.log(error);
           });
@@ -4769,12 +4771,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     cancelEdit: function cancelEdit() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (confirm("Сбросить изменения?")) {
         axios.get(this.project.file_url).then(function (response) {
           if (response.status === 200) {
-            _this5.values_data = response.data;
+            _this6.values_data = response.data;
           }
         })["catch"](function (error) {
           console.log(error);
@@ -4785,6 +4787,10 @@ __webpack_require__.r(__webpack_exports__);
       for (var cell in this.cells) {
         if (this.cells[cell].id == id) {
           this.changedCell = this.cells[cell];
+
+          if (this.changedCell.type == select) {
+            this.choisedOption = this.getValue(id);
+          }
         }
       }
     },
@@ -44494,7 +44500,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(
-                                "Изменить:\n                                "
+                                "Изменить:\n                                    "
                               ),
                               this.changedCell.type == "number"
                                 ? _c("input", {
@@ -44571,33 +44577,19 @@ var render = function() {
                                         ]
                                       }
                                     },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { selected: "" } },
-                                        [
-                                          _vm._v(
-                                            _vm._s(
-                                              this.getValue(this.changedCell.id)
-                                            )
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(
-                                        this.changedCell.variants,
-                                        function(option, index) {
-                                          return _c("option", { key: index }, [
-                                            _vm._v(
-                                              "\n                                        " +
-                                                _vm._s(option) +
-                                                "\n                                    "
-                                            )
-                                          ])
-                                        }
-                                      )
-                                    ],
-                                    2
+                                    _vm._l(this.changedCell.variants, function(
+                                      option,
+                                      index
+                                    ) {
+                                      return _c("option", { key: index }, [
+                                        _vm._v(
+                                          "\n                                            " +
+                                            _vm._s(option) +
+                                            "\n                                        "
+                                        )
+                                      ])
+                                    }),
+                                    0
                                   )
                                 : _vm._e()
                             ])

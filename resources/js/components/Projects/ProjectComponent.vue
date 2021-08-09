@@ -37,19 +37,16 @@
                             </div>
                             <div class="col">
                                 <form v-if="this.changedCell.label" @submit.prevent="saveValue(changedCell.id, modalValue)">
-                                <!-- <form @submit.prevent="console.log('k')" v-if="this.changedCell"> -->
                                     <h5>{{this.changedCell.label}}: </h5>
                                     <p>Изменить:
-                                    <input v-if="this.changedCell.type == 'number'" type="number" :placeholder="this.getValue(this.changedCell.id)" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
+                                        <input v-if="this.changedCell.type == 'number'" type="number" :placeholder="this.getValue(this.changedCell.id)" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
 
-                                    <select v-else-if="this.changedCell.type == 'select'" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
-                                        <option selected>{{this.getValue(this.changedCell.id)}}</option>
-                                        <option v-for="(option, index) in this.changedCell.variants" :key="index">
-                                            {{option}}
-                                        </option>
-                                    </select>
+                                        <select v-else-if="this.changedCell.type == 'select'" v-model="modalValue" @change="saveValue(changedCell.id, modalValue)">
+                                            <option v-for="(option, index) in this.changedCell.variants" :key="index">
+                                                {{option}}
+                                            </option>
+                                        </select>
                                     </p>
-                                    <!-- <button type="submit" class="btn yellow-btn">cохранить</button> -->
                                 </form>
                             </div>
                         </div>
@@ -217,7 +214,8 @@ export default {
         changedGroup: '',
         chengedPrice: '',
         values_data: {},
-        hasEdits: false
+        hasEdits: false,
+        choisedOption: ''
     }),
     props: [
         'project',
@@ -316,6 +314,7 @@ export default {
                 axios.post(this.saveLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.savedAttributes} ).then(response => {
                     if(response.status === 200){
                         this.buyDisabled = false;
+                        this.changedPrice = response.data.order_price
                     }
                 }).catch(error => {
                     this.buyDisabled = false;
@@ -326,8 +325,9 @@ export default {
         sendJson() {
             if(confirm("Сохранить изменения?")){
                 if(this.isAuthenticated && (this.canEdit || this.saveFile)){
-                    axios.post(this.saveLink , this.values_data).then(response => {
+                    axios.post(this['save-editor-data'] , this.values_data).then(response => {
                         console.log(response.data);
+                        this.changedPrice = response.data.order_price
                     }).catch(error => {
                         console.log(error);
                     })
@@ -349,6 +349,9 @@ export default {
             for(let cell in this.cells){
                 if(this.cells[cell].id == id){
                     this.changedCell = this.cells[cell]
+                    if(this.changedCell.type == select){
+                        this.choisedOption = this.getValue(id)
+                    }
                 }
             }
         },
