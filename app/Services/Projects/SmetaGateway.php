@@ -3,17 +3,26 @@
 
 namespace App\Services\Projects;
 
-use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class SmetaGateway
 {
 
     public function calculatePrice($data)
     {
-        $res = Http::get('http://' . env('SMETA_HOST') . '/api/v1/calculate', $data);
 
-        return match ($res->status()) {
-            200 => $res->body(),
+        $url = 'http://' . env('SMETA_HOST') . '/api/v1/calculate';
+
+        $client = new Client();
+        $res = $client->post(
+            $url,
+            array(
+                'form_params' => $data
+            )
+        );
+
+        return match ($res->getStatusCode()) {
+            200 => $res->getBody()->getContents(),
             default => null,
         };
     }

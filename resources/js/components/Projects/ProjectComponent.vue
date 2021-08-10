@@ -38,10 +38,10 @@
                                 <form v-if="this.changedCell.label" @submit.prevent="saveValue(changedCell.id, modalValue)">
                                     <h5>{{this.changedCell.label}}: {{this.getValue(this.changedCell.id)}}</h5>
                                     <p>Изменить:
-                                        <input v-if="this.changedCell.type == 'number'" 
-                                        type="number" class="form-control"
-                                        :placeholder="getValue(this.changedCell.id)"
-                                        @input="saveValue(changedCell.id, $event.target.value)"
+                                        <input v-if="this.changedCell.type == 'number'"
+                                               type="number" class="form-control"
+                                               :placeholder="getValue(this.changedCell.id)"
+                                               @input="saveValue(changedCell.id, $event.target.value)"
                                         >
 
                                         <select class="custom-select" v-else-if="this.changedCell.type == 'select'" @input="saveValue(changedCell.id, $event.target.value)">
@@ -249,13 +249,24 @@ export default {
             console.log(error);
         })
         axios.get(this.jsonUrl).then(response => {
-            if(response.status === 200){
+            if(response.status === 200) {
                 this.cells = response.data.cells
                 this.getGroups()
+
+                const defaults = {}
+                for (const name in response.data.cells) {
+                    // Конвертирую в изначальный тип. Не знаю почему, но работает
+                    defaults[name] = (response.data.cells[name].def.constructor)(response.data.cells[name].def)
+                }
+
+                this.values_data = defaults
+
+                setTimeout(this.sendJson, 5000)
             }
         }).catch(error => {
             console.log(error);
         })
+
         axios.get(this.project.file_url).then(response => {
             if(response.status === 200){
                 this.values_data = response.data
@@ -326,9 +337,11 @@ export default {
         },
         sendJson() {
             if(confirm("Сохранить изменения?")){
-                if(this.isAuthenticated && (this.canEdit || this.saveFile)){
-                    axios.post(this.saveEditorDataLink , this.values_data).then(response => {
+                if(this.isAuthenticated && (this.canEdit || this.saveFile)) {
+
+                    axios.post(this.saveEditorDataLink, {"building_width": this.values_data.building_width}).then(response => {
                         this.changedPrice = response.data.order_price
+                        console.log("Прилетевшие данные:", response.data)
                     }).catch(error => {
                         console.log(error);
                     })
@@ -368,7 +381,7 @@ export default {
                     this.changedCells.push(this.cells[cell])
                 }
             }
-        
+
         },
         getValue(id){
             for(let key in this.values_data){
@@ -380,8 +393,8 @@ export default {
         saveValue(id, value){
             for(let key in this.values_data){
                 if(this.cells[key].id == id){
-                   this.values_data[key] = value
-                   this.hasEdits || (this.hasEdits = true)
+                    this.values_data[key] = parseInt(value)
+                    this.hasEdits || (this.hasEdits = true)
                 }
             }
         }

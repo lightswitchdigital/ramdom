@@ -28,14 +28,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_08_07_215644_add_saved_project_price.php" afterDir="false" />
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="minor fixes">
+      <change beforePath="$PROJECT_DIR$/.idea/ramdom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ramdom.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/PlansController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/PlansController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Purchase/PurchasedProject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Projects/SavedProject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/SavedProject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/PlansService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PlansService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/internal/mappings.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/internal/mappings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,11 +252,19 @@
       <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
+    <configuration name="SmetaGateway#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/SmetaGateway.http" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.SmetaGateway#1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -320,14 +333,10 @@
       <workItem from="1628238908586" duration="33000" />
       <workItem from="1628252012802" duration="10505000" />
       <workItem from="1628331157697" duration="3475000" />
-      <workItem from="1628370216888" duration="2067000" />
-    </task>
-    <task id="LOCAL-00013" summary="phone is now unique, added some fields to registration">
-      <created>1605420890926</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1605420890926</updated>
+      <workItem from="1628370216888" duration="2287000" />
+      <workItem from="1628433831051" duration="1366000" />
+      <workItem from="1628532738926" duration="2139000" />
+      <workItem from="1628598659563" duration="9602000" />
     </task>
     <task id="LOCAL-00014" summary="Attribute management done, search fixed">
       <created>1605438187091</created>
@@ -665,7 +674,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628334661590</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="minor fixes">
+      <created>1628373800390</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1628373800392</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,10 +751,10 @@
     <MESSAGE value="dompdf required" />
     <MESSAGE value="balance and payments added again" />
     <MESSAGE value="editor attributes backend saving" />
-    <MESSAGE value="minor fixes" />
     <MESSAGE value="compose documents implemented somehow" />
     <MESSAGE value="prev commit fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="prev commit fix" />
+    <MESSAGE value="minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

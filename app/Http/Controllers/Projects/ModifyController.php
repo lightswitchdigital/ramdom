@@ -75,21 +75,24 @@ class ModifyController extends Controller
         ]);
         $user = Auth::user();
 
+        $price = $this->getCalculatedPrice($request->all());
+
         if ($savedProject = $user->savedProjects()->where('project_id', $project->id)->first()) {
 
+
             $savedProject->update([
-                'editor_data' => $request['editor_data'],
-                'price' => $this->getCalculatedPrice($request['editor_data'])
+                'editor_data' => $request->all(),
+                'price' => $price
             ]);
 
             return response([
                 'success' => true,
-                'order_price' => $this->getCalculatedPrice($project)
+                'order_price' => $price
             ]);
         }
 
         $savedProject = SavedProject::make([
-            'editor_data' => $request['editor_data'],
+            'editor_data' => $request->all(),
             'values_data' => null
         ]);
 
@@ -99,7 +102,8 @@ class ModifyController extends Controller
         $savedProject->save();
 
         return response([
-            'order_price' => $this->getCalculatedPrice($project)
+            'success' => true,
+            'order_price' => $price
         ]);
     }
 
@@ -112,18 +116,13 @@ class ModifyController extends Controller
         }
 
         return response([
+            'success' => true,
             'order_price' => $project->price
         ]);
     }
 
     private function getCalculatedPrice($data)
     {
-        try {
-            $price = $this->smeta->calculatePrice($data);
-        } catch (\Exception $exception) {
-            return 0;
-        }
-
-        return $price;
+        return $this->smeta->calculatePrice($data);
     }
 }
