@@ -393,8 +393,13 @@ export default {
         saveValue(id, value){
             for(let key in this.values_data){
                 if(this.cells[key].id == id){
-                    this.values_data[key] = parseInt(value)
-                    this.hasEdits || (this.hasEdits = true)
+                    if(this.changedCell.type == 'number'){
+                        this.values_data[key] = +value
+                        this.hasEdits || (this.hasEdits = true)
+                    }else if(this.changedCell.type == 'select'){
+                        this.values_data[key] = value
+                        this.hasEdits || (this.hasEdits = true)
+                    }
                 }
             }
         }
