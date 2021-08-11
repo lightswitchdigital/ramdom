@@ -26,7 +26,7 @@
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li v-for="(cell) in this.changedCells" :key="cell.id" >
+                                    <li v-for="(cell, index) in this.changedCells" :key="index" >
                                         <a href="#" @click.prevent="changeCell(cell.id)" :class="[changedCell.id == cell.id ? 'active' : '']">
                                             <span>{{cell.label}}</span>
                                             <i class="fas fa-chevron-right"></i>
@@ -40,7 +40,7 @@
                                     <p>Изменить:
                                         <input v-if="this.changedCell.type == 'number'"
                                                type="number" class="form-control"
-                                               :placeholder="getValue(this.changedCell.id)"
+                                               :value="getValue(changedCell.id)"
                                                @input="saveValue(changedCell.id, $event.target.value)"
                                         >
 
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <h4>Цена: {{this.changedPrice || this.project.price}}</h4>
+                        <h4>Цена: {{this.changedPrice}}</h4>
                         <button type="button" class="btn yellow-outline-btn" :disabled='!this.hasEdits' @click.prevent="cancelEdit()">Сбросить</button>
                         <button type="button" class="btn yellow-btn" :disabled='!this.hasEdits' @click.prevent="sendJson()">Сохранить изменения</button>
                     </div>
@@ -215,7 +215,7 @@ export default {
         changedCells: {},
         groups: [],
         changedGroup: '',
-        chengedPrice: '',
+        changedPrice: '',
         values_data: {},
         hasEdits: false
     }),
@@ -244,24 +244,27 @@ export default {
         axios.get(this.calculateRoute, this.values_data).then(response => {
             if(response.status === 200){
                 this.changedPrice = response.data
+                if(+this.changedPrice == 0 || !this.changedPrice){
+                    this.changedPrice == this.project.price
+                }
             }
         }).catch(error => {
             console.log(error);
+            this.changedPrice == this.project.price
         })
         axios.get(this.jsonUrl).then(response => {
             if(response.status === 200) {
                 this.cells = response.data.cells
                 this.getGroups()
+                // const defaults = {}
+                // for (const name in response.data.cells) {
+                //     Конвертирую в изначальный тип. Не знаю почему, но работает
+                //     defaults[name] = (response.data.cells[name].def.constructor)(response.data.cells[name].def)
+                // }
 
-                const defaults = {}
-                for (const name in response.data.cells) {
-                    // Конвертирую в изначальный тип. Не знаю почему, но работает
-                    defaults[name] = (response.data.cells[name].def.constructor)(response.data.cells[name].def)
-                }
+                // this.values_data = defaults
 
-                this.values_data = defaults
-
-                setTimeout(this.sendJson, 5000)
+                // setTimeout(this.sendJson, 5000)
             }
         }).catch(error => {
             console.log(error);
@@ -346,6 +349,7 @@ export default {
                         console.log(error);
                     })
                 }
+
             }
         },
         cancelEdit(){
@@ -361,7 +365,7 @@ export default {
         },
         changeCell(id) {
             for(let cell in this.cells){
-                if(this.cells[cell].id == id){
+                if(this.cells[cell] && this.cells[cell].id == id){
                     this.changedCell = this.cells[cell]
                 }
             }
@@ -377,7 +381,7 @@ export default {
             this.changedCells = []
             this.changedGroup = group
             for (let cell in this.cells){
-                if(this.cells[cell].group == group){
+                if(this.cells[cell] &&  this.cells[cell].group == group){
                     this.changedCells.push(this.cells[cell])
                 }
             }
@@ -385,14 +389,14 @@ export default {
         },
         getValue(id){
             for(let key in this.values_data){
-                if(this.cells[key].id == id){
+                if(this.cells[key] && this.cells[key].id == id){
                     return this.values_data[key]
                 }
             }
         },
         saveValue(id, value){
             for(let key in this.values_data){
-                if(this.cells[key].id == id){
+                if(this.cells[key] && this.cells[key].id == id){
                     if(this.changedCell.type == 'number'){
                         this.values_data[key] = +value
                         this.hasEdits || (this.hasEdits = true)
