@@ -3313,6 +3313,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['link'],
   data: function data() {
@@ -4067,6 +4074,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       formData: {},
       error: '',
+      userType: 'entity',
       isEntityDate: true
     };
   },
@@ -42242,183 +42250,246 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "balance-modal" }, [
-    _c("div", { staticClass: "container" }, [
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "exampleModalBalance",
+        tabindex: "-1",
+        "aria-labelledby": "exampleModalLabel",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content balance-modal" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "modal-body", class: { animated: _vm.animated } },
+              [
+                _vm.step === 1
+                  ? _c(
+                      "form",
+                      {
+                        staticClass: "first-step",
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.onSubmit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "h5",
+                          {
+                            staticStyle: {
+                              "text-align": "center",
+                              margin: "0 0 35px 0"
+                            }
+                          },
+                          [_vm._v("Пополнить баланс")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "sumInput" } }, [
+                            _vm._v("Сумма")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.sum,
+                                expression: "sum"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: { "is-invalid": _vm.error },
+                            attrs: { type: "number", id: "sumInput" },
+                            domProps: { value: _vm.sum },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.sum = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.error
+                            ? _c("span", { staticClass: "invalid-text" }, [
+                                _vm._v("Введите сумму")
+                              ])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn secondary-btn",
+                            staticStyle: {
+                              display: "block",
+                              margin: "15px auto"
+                            },
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Продолжить")]
+                        )
+                      ]
+                    )
+                  : _vm.step === 2
+                  ? _c("div", { staticClass: "second-step" }, [
+                      _vm.loading
+                        ? _c("div", [_c("preloader")], 1)
+                        : _c("div", [
+                            _c("img", {
+                              attrs: {
+                                src: _vm.balanceInfo.qrcode_url,
+                                alt: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "hint" }, [
+                              _vm._v(
+                                "\n                            Чтобы пополнить баланс, переведите средства по указанному ниже счету или сканируйте QR-код. Средства начислятся сразу после того, как модерация сайта подтвердит их поступление.\n                        "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "h4",
+                              { staticStyle: { margin: "30px 0 20px" } },
+                              [_vm._v("Реквизиты")]
+                            ),
+                            _vm._v(" "),
+                            _vm.balanceInfo
+                              ? _c(
+                                  "ul",
+                                  { staticClass: "payment-credentials" },
+                                  [
+                                    _c("li", [
+                                      _c("p", [_vm._v("Сумма:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.amount))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("Название компании:")]),
+                                      _c("p", [
+                                        _vm._v(
+                                          _vm._s(_vm.balanceInfo.company_name)
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("ИНН:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.inn))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("КПП:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.kpp))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("ОРГН:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.orgn))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("Расчетный счет:")]),
+                                      _c("p", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.balanceInfo.payment_account
+                                          )
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("Корр. счет:")]),
+                                      _c("p", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.balanceInfo
+                                              .correspondent_account
+                                          )
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("БИК:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.bik))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("Назначение платежа:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.purpose))
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("li", [
+                                      _c("p", [_vm._v("Имя:")]),
+                                      _c("p", [
+                                        _vm._v(_vm._s(_vm.balanceInfo.name))
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                    ])
+                  : _vm._e()
+              ]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
       _c("h1", { staticClass: "title" }, [_vm._v("Пополнить баланс")]),
       _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "modal-body", class: { animated: _vm.animated } },
-          [
-            _vm.step === 1
-              ? _c(
-                  "form",
-                  {
-                    staticClass: "first-step",
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.onSubmit($event)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "h5",
-                      {
-                        staticStyle: {
-                          "text-align": "center",
-                          margin: "0 0 35px 0"
-                        }
-                      },
-                      [_vm._v("Пополнить баланс")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "sumInput" } }, [
-                        _vm._v("Сумма")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sum,
-                            expression: "sum"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: { "is-invalid": _vm.error },
-                        attrs: { type: "number", id: "sumInput" },
-                        domProps: { value: _vm.sum },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.sum = $event.target.value
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error
-                        ? _c("span", { staticClass: "invalid-text" }, [
-                            _vm._v("Введите сумму")
-                          ])
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn secondary-btn",
-                        staticStyle: { display: "block", margin: "15px auto" },
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Продолжить")]
-                    )
-                  ]
-                )
-              : _vm.step === 2
-              ? _c("div", { staticClass: "second-step" }, [
-                  _vm.loading
-                    ? _c("div", [_c("preloader")], 1)
-                    : _c("div", [
-                        _c("img", {
-                          attrs: { src: _vm.balanceInfo.qrcode_url, alt: "" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "hint" }, [
-                          _vm._v(
-                            "\n                        Чтобы пополнить баланс, переведите средства по указанному ниже счету или сканируйте QR-код. Средства начислятся сразу после того, как модерация сайта подтвердит их поступление.\n                    "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("h4", { staticStyle: { margin: "30px 0 20px" } }, [
-                          _vm._v("Реквизиты")
-                        ]),
-                        _vm._v(" "),
-                        _vm.balanceInfo
-                          ? _c("ul", { staticClass: "payment-credentials" }, [
-                              _c("li", [
-                                _c("p", [_vm._v("Сумма:")]),
-                                _c("p", [
-                                  _vm._v(_vm._s(_vm.balanceInfo.amount))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("Название компании:")]),
-                                _c("p", [
-                                  _vm._v(_vm._s(_vm.balanceInfo.company_name))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("ИНН:")]),
-                                _c("p", [_vm._v(_vm._s(_vm.balanceInfo.inn))])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("КПП:")]),
-                                _c("p", [_vm._v(_vm._s(_vm.balanceInfo.kpp))])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("ОРГН:")]),
-                                _c("p", [_vm._v(_vm._s(_vm.balanceInfo.orgn))])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("Расчетный счет:")]),
-                                _c("p", [
-                                  _vm._v(
-                                    _vm._s(_vm.balanceInfo.payment_account)
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("Корр. счет:")]),
-                                _c("p", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.balanceInfo.correspondent_account
-                                    )
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("БИК:")]),
-                                _c("p", [_vm._v(_vm._s(_vm.balanceInfo.bik))])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("Назначение платежа:")]),
-                                _c("p", [
-                                  _vm._v(_vm._s(_vm.balanceInfo.purpose))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("p", [_vm._v("Имя:")]),
-                                _c("p", [_vm._v(_vm._s(_vm.balanceInfo.name))])
-                              ])
-                            ])
-                          : _vm._e()
-                      ])
-                ])
-              : _vm._e()
-          ]
-        )
-      ])
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
-  ])
-}
-var staticRenderFns = []
+  }
+]
 render._withStripped = true
 
 
@@ -43649,7 +43720,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md" }, [
-            _vm.isEntityDate
+            _vm.userType == "entety"
               ? _c("div", [
                   _c("h2", { staticClass: "title" }, [
                     _vm._v("Данные компании")
@@ -43764,7 +43835,8 @@ var render = function() {
                     }
                   })
                 ])
-              : _c("div", [
+              : _vm.userType == "customer"
+              ? _c("div", [
                   _c("h2", { staticClass: "title" }, [
                     _vm._v("Паспортные данные")
                   ]),
@@ -43853,6 +43925,7 @@ var render = function() {
                     }
                   })
                 ])
+              : _vm._e()
           ])
         ]),
         _vm._v(" "),

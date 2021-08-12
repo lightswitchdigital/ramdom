@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <add-balance></add-balance>
+    {{-- <add-balance :link="'{{ route('profile.balance.add.check') }}'"></add-balance> --}}
     <div class="balance-block">
         <div class="container">
             <h1 class="title">Баланс</h1>
@@ -9,9 +11,9 @@
                 <h4 class="card-header">Текущий баланс</h4>
                 <div class="card-body">
                     <h3 class="balance">{{ $user->balance }} р</h3>
-                    <a
-                        class="btn yellow-btn"
+                    <a class="btn yellow-btn"
                         href="#"
+                        data-toggle="modal" data-target="#exampleModalBalance"
                     >Пополнить баланс</a>
                 </div>
             </div>

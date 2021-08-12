@@ -1,7 +1,13 @@
 <template>
-    <div class="balance-modal">
-        <div class="container">
-            <h1 class="title">Пополнить баланс</h1>
+<div class="modal fade" id="exampleModalBalance" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content balance-modal">
+      <div class="modal-header">
+        <h1 class="title">Пополнить баланс</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
             <div class="card">
             <div class="modal-body" :class="{animated: animated}">
                 <form class="first-step" v-if="step === 1" @submit.prevent='onSubmit'>
@@ -64,7 +70,8 @@
                 </div>
             </div>
             </div>
-        </div>
+    </div>
+      </div>
     </div>
 </template>
 
