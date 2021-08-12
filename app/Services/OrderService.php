@@ -4,25 +4,23 @@
 namespace App\Services;
 
 use App\Http\Requests\Projects\OrderRequest;
+use App\Jobs\SendEmailJob;
+use App\Mail\DeveloperNewOrderMail;
+use App\Models\Notification;
 use App\Models\Order;
-use App\Models\Projects\Project;
+use App\Models\Projects\Purchase\PurchasedProject;
 use App\Models\User;
-use App\Services\Projects\SmetaGateway;
 
 class OrderService
 {
 
-    private $gateway;
+    public function order(User $user, PurchasedProject $project, OrderRequest $request)
+    {
 
-    public function __construct(SmetaGateway $gateway) {
-        $this->gateway = $gateway;
-    }
 
-    public function order($user_id, $project_id, OrderRequest $request) {
-
-        $user = $this->getUser($user_id);
-        $project = $this->getProject($project_id);
-        $developer = $this->getUser($request['developer_id']);
+        if (!$developer = User::developers()->whereId($request['developer_id'])->first()) {
+            throw new \DomainException('Застройщик не найден');
+        }
 
         $params = [
             'order_name' => $request['order_name'],
@@ -31,7 +29,7 @@ class OrderService
             'order_city' => $request['order_city'],
             'order_address' => $request['order_address'],
             'order_postal_code' => $request['order_postal_code'],
-            'price' => $this->getCalculatedPrice($project)
+            'price' => $project->price
         ];
 
         if ($user->isIndividual())
@@ -59,20 +57,13 @@ class OrderService
         $order->developer()->associate($developer);
         $order->project()->associate($project);
 
+        SendEmailJob::dispatch($developer, new DeveloperNewOrderMail($project, $developer));
+        Notification::generate([
+            'user_id' => $developer->id,
+            'title' => 'Новый заказ',
+            'content' => 'Новый заказ на строительство проекта ' . $project->project->title . ' на сумму ' . $project->price
+        ]);
+
         return $order->save();
-    }
-
-    public function getCalculatedPrice(Project $project) {
-        return $project->price;
-    }
-
-    public function getUser($id): User
-    {
-        return User::findOrFail($id);
-    }
-
-    private function getProject($id): Project
-    {
-        return Project::findOrFail($id);
     }
 }
