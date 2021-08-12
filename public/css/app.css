@@ -8247,6 +8247,7 @@ button.bg-dark:focus {
 }
 
 .position-sticky {
+  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -8266,8 +8267,9 @@ button.bg-dark:focus {
   z-index: 1030;
 }
 
-@supports (position: sticky) {
+@supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -11977,11 +11979,10 @@ a.project-card.order-card .card-body {
   border-radius: 16px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   margin: 100px 0;
-  padding: 100px 0;
+  padding: 100px 50px;
 }
 
 .order-block .agree-form {
-  max-width: 640px;
   margin: 0 auto;
 }
 

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="order-block">
+<div class="order-block ">
     
     <div class="container">
         <form>
             <developers :developers="{{ $developers }}"></developers>
-                <div class="wrapper-form">
+                {{-- <div class="wrapper-form">
                     <div class="agree-form">
                     <h2 class="title">Введите данные для оформления договора</h2>
                     <input type="text" class="form-control" placeholder="Имя">
@@ -27,9 +27,9 @@
                     <input type="text" class="form-control" placeholder="Где оформлен">
                     <input type="text" class="form-control" placeholder="Дата оформления">
                     <button type="submit" class="btn yellow-btn">Отправить</button>   
-                </div>
+                </div> --}}
             </form>
-        </div>
+            <order/>
     </div>
 </div>
 
