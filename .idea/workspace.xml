@@ -28,19 +28,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="minor fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/ramdom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ramdom.iml" afterDir="false" />
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="koe-kak sikos nakos rabotayet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/SmetaGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/internal/mappings.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/internal/mappings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projects/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projects/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/DevelopersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/DevelopersComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/MyProjectsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/MyProjectsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/PurchasedProjectCardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/PurchasedProjectCardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +233,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/faq" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -336,14 +333,8 @@
       <workItem from="1628370216888" duration="2287000" />
       <workItem from="1628433831051" duration="1366000" />
       <workItem from="1628532738926" duration="2139000" />
-      <workItem from="1628598659563" duration="9602000" />
-    </task>
-    <task id="LOCAL-00014" summary="Attribute management done, search fixed">
-      <created>1605438187091</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1605438187092</updated>
+      <workItem from="1628598659563" duration="13270000" />
+      <workItem from="1628753101487" duration="1047000" />
     </task>
     <task id="LOCAL-00015" summary="project card component added">
       <created>1605858908709</created>
@@ -681,7 +672,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628373800392</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="koe-kak sikos nakos rabotayet">
+      <created>1628617429739</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1628617429739</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +727,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="payments refactored, added user balance" />
     <MESSAGE value="user's balance logic" />
     <MESSAGE value="user's plans logic" />
     <MESSAGE value="user's settings logic, plan subscription patch" />
@@ -754,7 +751,8 @@
     <MESSAGE value="compose documents implemented somehow" />
     <MESSAGE value="prev commit fix" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="koe-kak sikos nakos rabotayet" />
+    <option name="LAST_COMMIT_MESSAGE" value="koe-kak sikos nakos rabotayet" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

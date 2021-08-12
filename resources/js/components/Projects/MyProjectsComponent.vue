@@ -41,7 +41,8 @@
                             v-for="project in purchasedProjects"
                             :key="project.id"
                             :project="project"
-                            :projectLink="'#'"/>
+                            :order-link="project.orderLink"
+                        />
                         <template #prevArrow>
                             <div class="btn-prev">
                                 <i class="fas fa-chevron-left"></i>

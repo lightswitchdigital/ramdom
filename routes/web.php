@@ -125,7 +125,7 @@ Route::group([
 
         Route::get('/', 'ProjectsController@index')->name('index');
         Route::get('/{project}/order', 'ProjectsController@order')->name('order');
-        Route::post('/{project}/order/{developer}/submit')->name('order.submit');
+        Route::post('/{project}/order/{developer}/submit', 'ProjectsController@orderSubmit')->name('order.submit');
 
         Route::post('/{project}/remove-from-saved', 'ProjectsController@removedFromSaved')->name('order.submit');
     });

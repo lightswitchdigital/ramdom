@@ -2,7 +2,6 @@
 
 namespace App\Models\Projects;
 
-use App\Models\Comment;
 use App\Models\Image;
 use App\Models\User;
 use Auth;
@@ -26,7 +25,7 @@ class Project extends Model
     protected $appends = [
         'route', 'isInFavorites', 'jsonImages', 'jsonValues',
         'addToFavoritesLink', 'removeFromFavoritesLink',
-        'file_url'
+        'file_url', 'orderLink'
     ];
 
     public $timestamps = true;
@@ -83,13 +82,21 @@ class Project extends Model
         return route('projects.favorites.add', $this);
     }
 
-    public function getRemoveFromFavoritesLinkAttribute() {
+    public function getRemoveFromFavoritesLinkAttribute()
+    {
         return route('projects.favorites.remove', $this);
     }
 
-    public function getFileUrlAttribute() {
+    public function getFileUrlAttribute()
+    {
         return Storage::disk('public')->url($this->file);
     }
+
+    public function getOrderLinkAttribute()
+    {
+        return route('profile.projects.order', $this);
+    }
+
 
     public function addToFavorites($id): void
     {

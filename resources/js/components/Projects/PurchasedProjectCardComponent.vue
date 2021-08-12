@@ -1,5 +1,5 @@
 <template>
-    <a class="card project-card order-card" :href="project.project.route">
+    <a :href="orderLink" class="card project-card order-card">
         <div class="card-img-top">
             <img :src="project.project.jsonImages[0]">
         </div>
@@ -34,6 +34,7 @@ export default {
     }),
     props: [
         'project',
+        'orderLink'
     ],
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content

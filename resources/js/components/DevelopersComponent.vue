@@ -9,11 +9,11 @@
                 <div class="col-4">
                     <div class="list-group list-group-flush" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action"
-                        :id="'list-'+developer.id+'-list'" data-toggle="list" 
-                        :href="'#list-'+developer.id" role="tab" :aria-controls="developer.id"
-                        @click.prevent="changesDeveloper = developer.id"
-                        v-for="(developer , index) in developers" :key="index">
-                        {{ developer.name }}
+                           :id="'list-'+developer.id+'-list'" data-toggle="list"
+                           :href="'#list-'+developer.id" role="tab" :aria-controls="developer.id"
+                           @click.prevent="changesDeveloper = developer.id"
+                           v-for="(developer , index) in developers" :key="index">
+                            {{ developer.name }}
                         </a>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                         <div class="tab-pane fade" :id="'list-'+developer.id"
                         role="tabpanel" :aria-labelledby="'list-'+developer.id+'-list'"
                         v-for="(developer , index) in developers" :key="index">
-                        {{ developer.phone }}
+                            {{ developer.developer_desc }}
                         </div>
                     </div>
                 </div>

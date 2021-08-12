@@ -99,7 +99,8 @@ class User extends Authenticatable
             'email_verify_token' => Str::uuid(),
             'status' => self::STATUS_WAIT,
             'role' => $role,
-            'type' => $type
+            'type' => $type,
+            'balance' => 0
         ]);
     }
 
