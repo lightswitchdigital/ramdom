@@ -99,7 +99,7 @@ export default {
                 axios.post(this.link , {'amount': + this.sum, '_token' : this.csrfToken}).then(response => {
                     if(response.status === 200){
                         setTimeout(() => {
-                            this.balanceInfo = response.data
+                            this.balanceInfo = response.data.payment
                             this.loading = false
                         }, 200);
                     }

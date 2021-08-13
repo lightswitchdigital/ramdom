@@ -28,17 +28,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Mail/DeveloperNewOrderMail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mail/developer-new-order.blade.php" afterDir="false" />
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="developer new order notification, mail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/OrderService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/OrderService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AddBalanceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddBalanceComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,14 +329,8 @@
       <workItem from="1628433831051" duration="1366000" />
       <workItem from="1628532738926" duration="2139000" />
       <workItem from="1628598659563" duration="13270000" />
-      <workItem from="1628753101487" duration="3286000" />
-    </task>
-    <task id="LOCAL-00016" summary="local changes">
-      <created>1606761942352</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1606761942352</updated>
+      <workItem from="1628753101487" duration="4143000" />
+      <workItem from="1628891543595" duration="897000" />
     </task>
     <task id="LOCAL-00017" summary="vue fixed">
       <created>1606803763723</created>
@@ -680,7 +668,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628755281046</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="developer new order notification, mail">
+      <created>1628757997244</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1628757997244</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -728,7 +723,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="user's plans logic" />
     <MESSAGE value="user's settings logic, plan subscription patch" />
     <MESSAGE value="plans seeder" />
     <MESSAGE value="orders logic done" />
@@ -753,7 +747,8 @@
     <MESSAGE value="minor fixes" />
     <MESSAGE value="koe-kak sikos nakos rabotayet" />
     <MESSAGE value="projects order link" />
-    <option name="LAST_COMMIT_MESSAGE" value="projects order link" />
+    <MESSAGE value="developer new order notification, mail" />
+    <option name="LAST_COMMIT_MESSAGE" value="developer new order notification, mail" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
