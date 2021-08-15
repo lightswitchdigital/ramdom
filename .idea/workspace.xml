@@ -28,11 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="developer new order notification, mail">
+    <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="balance replenishment logic fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/BalanceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AddBalanceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddBalanceComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/balance/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/projects/order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/projects/order.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,14 +328,8 @@
       <workItem from="1628532738926" duration="2139000" />
       <workItem from="1628598659563" duration="13270000" />
       <workItem from="1628753101487" duration="4143000" />
-      <workItem from="1628891543595" duration="897000" />
-    </task>
-    <task id="LOCAL-00017" summary="vue fixed">
-      <created>1606803763723</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1606803763723</updated>
+      <workItem from="1628891543595" duration="1934000" />
+      <workItem from="1629039800012" duration="856000" />
     </task>
     <task id="LOCAL-00018" summary="basic recommendation system">
       <created>1606823748153</created>
@@ -675,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628757997244</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="balance replenishment logic fixed">
+      <created>1628892631224</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1628892631225</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -723,7 +722,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="user's settings logic, plan subscription patch" />
     <MESSAGE value="plans seeder" />
     <MESSAGE value="orders logic done" />
     <MESSAGE value="projects modify controller, save and discard logic" />
@@ -748,7 +746,8 @@
     <MESSAGE value="koe-kak sikos nakos rabotayet" />
     <MESSAGE value="projects order link" />
     <MESSAGE value="developer new order notification, mail" />
-    <option name="LAST_COMMIT_MESSAGE" value="developer new order notification, mail" />
+    <MESSAGE value="balance replenishment logic fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="balance replenishment logic fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
