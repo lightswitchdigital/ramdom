@@ -9,7 +9,7 @@
         <div class="container">
             <h1 class="title">Баланс</h1>
 
-            <div class="card mb-4 w-50">
+            <div class="card mb-4">
                 <h4 class="card-header">Текущий баланс</h4>
                 <div class="card-body">
                     <h3 class="balance">{{ $user->balance }} р</h3>

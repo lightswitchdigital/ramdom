@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <h4>Цена: {{this.changedPrice}}</h4>
+                        <h4 v-if="this.changedPrice">Цена: {{changedPrice}}</h4>
                         <button type="button" class="btn yellow-outline-btn" :disabled='!this.hasEdits' @click.prevent="cancelEdit()">Сбросить</button>
                         <button type="button" class="btn yellow-btn" :disabled='!this.hasEdits' @click.prevent="sendJson()">Сохранить изменения</button>
                     </div>
@@ -169,7 +169,7 @@
                                     <td><strong>Стоимость строительства</strong></td>
                                     <td><div class="price">{{ project.price }}</div></td>
                                 </tr>
-                                <tr>
+                                <tr v-if="this.changedPrice">
                                     <td><strong>Стоимость измененого проекта</strong></td>
                                     <td><div class="price">{{ changedPrice }}</div></td>
                                 </tr>
@@ -244,9 +244,6 @@ export default {
         axios.get(this.calculateRoute, this.values_data).then(response => {
             if(response.status === 200){
                 this.changedPrice = response.data
-                if(+this.changedPrice == 0 || !this.changedPrice){
-                    this.changedPrice == this.project.price
-                }
             }
         }).catch(error => {
             console.log(error);
@@ -256,15 +253,6 @@ export default {
             if(response.status === 200) {
                 this.cells = response.data.cells
                 this.getGroups()
-                // const defaults = {}
-                // for (const name in response.data.cells) {
-                //     Конвертирую в изначальный тип. Не знаю почему, но работает
-                //     defaults[name] = (response.data.cells[name].def.constructor)(response.data.cells[name].def)
-                // }
-
-                // this.values_data = defaults
-
-                // setTimeout(this.sendJson, 5000)
             }
         }).catch(error => {
             console.log(error);
@@ -344,8 +332,11 @@ export default {
 
                     axios.post(this.saveEditorDataLink, {"building_width": this.values_data.building_width}).then(response => {
                         this.changedPrice = response.data.order_price
-                        console.log("Прилетевшие данные:", response.data)
+                        this.hasEdits = false
+                        alert('Изменения сохранены')
+                        $('#editorModal').modal('hide')
                     }).catch(error => {
+                        alert('Ошибка на сервере. Мы уже занимаемся этим вопросом')
                         console.log(error);
                     })
                 }

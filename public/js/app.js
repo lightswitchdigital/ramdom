@@ -3320,6 +3320,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['link'],
   data: function data() {
@@ -3333,6 +3334,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    console.log(this.isMobile());
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -3348,7 +3350,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           if (response.status === 200) {
             setTimeout(function () {
-              _this.balanceInfo = response.data;
+              _this.balanceInfo = response.data.payment;
               _this.loading = false;
             }, 200);
           }
@@ -3357,6 +3359,13 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         this.error = true;
+      }
+    },
+    isMobile: function isMobile() {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+      } else {
+        return false;
       }
     }
   }
@@ -4664,10 +4673,6 @@ __webpack_require__.r(__webpack_exports__);
     axios.get(this.calculateRoute, this.values_data).then(function (response) {
       if (response.status === 200) {
         _this.changedPrice = response.data;
-
-        if (+_this.changedPrice == 0 || !_this.changedPrice) {
-          _this.changedPrice == _this.project.price;
-        }
       }
     })["catch"](function (error) {
       console.log(error);
@@ -4677,14 +4682,7 @@ __webpack_require__.r(__webpack_exports__);
       if (response.status === 200) {
         _this.cells = response.data.cells;
 
-        _this.getGroups(); // const defaults = {}
-        // for (const name in response.data.cells) {
-        //     Конвертирую в изначальный тип. Не знаю почему, но работает
-        //     defaults[name] = (response.data.cells[name].def.constructor)(response.data.cells[name].def)
-        // }
-        // this.values_data = defaults
-        // setTimeout(this.sendJson, 5000)
-
+        _this.getGroups();
       }
     })["catch"](function (error) {
       console.log(error);
@@ -4786,8 +4784,11 @@ __webpack_require__.r(__webpack_exports__);
             "building_width": this.values_data.building_width
           }).then(function (response) {
             _this5.changedPrice = response.data.order_price;
-            console.log("Прилетевшие данные:", response.data);
+            _this5.hasEdits = false;
+            alert('Изменения сохранены');
+            $('#editorModal').modal('hide');
           })["catch"](function (error) {
+            alert('Ошибка на сервере. Мы уже занимаемся этим вопросом');
             console.log(error);
           });
         }
@@ -44469,7 +44470,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
-                    _c("h4", [_vm._v("Цена: " + _vm._s(this.changedPrice))]),
+                    this.changedPrice
+                      ? _c("h4", [_vm._v("Цена: " + _vm._s(_vm.changedPrice))])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -44859,15 +44862,17 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("tr", [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "price" }, [
-                            _vm._v(_vm._s(_vm.changedPrice))
+                      this.changedPrice
+                        ? _c("tr", [
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("div", { staticClass: "price" }, [
+                                _vm._v(_vm._s(_vm.changedPrice))
+                              ])
+                            ])
                           ])
-                        ])
-                      ])
+                        : _vm._e()
                     ])
                   ])
                 ]),

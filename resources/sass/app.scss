@@ -1718,6 +1718,7 @@ a.project-card{
         padding: 1rem;
         border: none;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        width: 50%;
         .card-header{
             background: none;
             border-bottom: none;
@@ -1736,6 +1737,9 @@ a.project-card{
         }
         .balance{
             font-size: 35px;
+        }
+        @media screen and (max-width: 766px) {
+            width: 100%;
         }
     }
     .balance-history--wrapper {

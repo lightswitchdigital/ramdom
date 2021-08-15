@@ -12883,6 +12883,7 @@ a.project-card.order-card .card-body {
   padding: 1rem;
   border: none;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
 }
 
 .balance-block .card .card-header {
@@ -12907,6 +12908,12 @@ a.project-card.order-card .card-body {
 
 .balance-block .card .balance {
   font-size: 35px;
+}
+
+@media screen and (max-width: 766px) {
+  .balance-block .card {
+    width: 100%;
+  }
 }
 
 .balance-block .balance-history--wrapper {
