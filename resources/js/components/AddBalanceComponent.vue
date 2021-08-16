@@ -90,7 +90,6 @@ export default {
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
-        console.log(this.isMobile()); 
     },
     methods: {
         onSubmit() {
@@ -110,13 +109,6 @@ export default {
                 })
             }else{
                 this.error = true
-            }
-        }, 
-        isMobile() {
-            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                return true
-            } else {
-                return false
             }
         }
     }

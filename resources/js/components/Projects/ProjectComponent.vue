@@ -1,7 +1,7 @@
 <template>
         <div class="container project-view">
             <div v-if="this.isAuthenticated && (this.canEdit || this.saveFile)" class="modal fade" id="editorModal" tabindex="-1" aria-labelledby="editorModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
+                <div v-if="!isMobile()" class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Редактирование шаблона</h5>
@@ -59,6 +59,15 @@
                         <button type="button" class="btn yellow-outline-btn" :disabled='!this.hasEdits' @click.prevent="cancelEdit()">Сбросить</button>
                         <button type="button" class="btn yellow-btn" :disabled='!this.hasEdits' @click.prevent="sendJson()">Сохранить изменения</button>
                     </div>
+                    </div>
+                </div>
+                <div v-else class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h5 class="mobile-editor-title">
+                                Редактирование доступно только на компьютере
+                            </h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -396,6 +405,13 @@ export default {
                         this.hasEdits || (this.hasEdits = true)
                     }
                 }
+            }
+        }, 
+        isMobile() {
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                return true
+            } else {
+                return false
             }
         }
     }

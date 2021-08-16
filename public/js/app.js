@@ -3334,7 +3334,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    console.log(this.isMobile());
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -3359,13 +3358,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         this.error = true;
-      }
-    },
-    isMobile: function isMobile() {
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        return true;
-      } else {
-        return false;
       }
     }
   }
@@ -4632,6 +4624,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4849,6 +4850,13 @@ __webpack_require__.r(__webpack_exports__);
             this.hasEdits || (this.hasEdits = true);
           }
         }
+      }
+    },
+    isMobile: function isMobile() {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+      } else {
+        return false;
       }
     }
   }
@@ -44264,248 +44272,258 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "modal-dialog modal-xl" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass: "modal-title",
-                        attrs: { id: "exampleModalLabel" }
-                      },
-                      [_vm._v("Редактирование шаблона")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn-close",
-                        attrs: {
-                          type: "button",
-                          "data-dismiss": "modal",
-                          "aria-label": "Close"
-                        }
-                      },
-                      [
+              !_vm.isMobile()
+                ? _c("div", { staticClass: "modal-dialog modal-xl" }, [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _c("div", { staticClass: "modal-header" }, [
                         _c(
-                          "svg",
+                          "h5",
                           {
+                            staticClass: "modal-title",
+                            attrs: { id: "exampleModalLabel" }
+                          },
+                          [_vm._v("Редактирование шаблона")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-close",
                             attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              width: "19",
-                              height: "20",
-                              viewBox: "0 0 19 20",
-                              fill: "none"
+                              type: "button",
+                              "data-dismiss": "modal",
+                              "aria-label": "Close"
                             }
                           },
                           [
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M11.5499 9.95887L18.179 3.16637C18.4693 2.86822 18.6324 2.46385 18.6324 2.0422C18.6324 1.62056 18.4693 1.21619 18.179 0.918038C17.8887 0.61989 17.495 0.452393 17.0845 0.452393C16.6739 0.452393 16.2802 0.61989 15.9899 0.918038L9.37613 7.72637L2.76238 0.918038C2.47207 0.61989 2.07834 0.452393 1.66779 0.452393C1.25724 0.452393 0.863511 0.61989 0.57321 0.918038C0.282908 1.21619 0.119819 1.62056 0.119819 2.0422C0.119819 2.46385 0.282908 2.86822 0.57321 3.16637L7.20238 9.95887L0.57321 16.7514C0.428712 16.8986 0.314021 17.0737 0.235753 17.2666C0.157484 17.4596 0.117188 17.6665 0.117188 17.8755C0.117188 18.0846 0.157484 18.2915 0.235753 18.4845C0.314021 18.6774 0.428712 18.8525 0.57321 18.9997C0.716528 19.1481 0.887038 19.2659 1.0749 19.3463C1.26277 19.4267 1.46427 19.4681 1.66779 19.4681C1.87131 19.4681 2.07282 19.4267 2.26068 19.3463C2.44855 19.2659 2.61906 19.1481 2.76238 18.9997L9.37613 12.1914L15.9899 18.9997C16.1332 19.1481 16.3037 19.2659 16.4916 19.3463C16.6794 19.4267 16.8809 19.4681 17.0845 19.4681C17.288 19.4681 17.4895 19.4267 17.6773 19.3463C17.8652 19.2659 18.0357 19.1481 18.179 18.9997C18.3235 18.8525 18.4382 18.6774 18.5165 18.4845C18.5948 18.2915 18.6351 18.0846 18.6351 17.8755C18.6351 17.6665 18.5948 17.4596 18.5165 17.2666C18.4382 17.0737 18.3235 16.8986 18.179 16.7514L11.5499 9.95887Z",
-                                fill: "white"
-                              }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "ul",
-                          _vm._l(this.groups, function(group, index) {
-                            return _c("li", { key: index }, [
-                              _c(
-                                "a",
-                                {
-                                  class: [
-                                    _vm.changedGroup == group ? "active" : ""
-                                  ],
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.changeGroup(group)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("span", [_vm._v(_vm._s(group))]),
-                                  _vm._v(" "),
-                                  _c("i", {
-                                    staticClass: "fas fa-chevron-right"
-                                  })
-                                ]
-                              )
-                            ])
-                          }),
-                          0
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "ul",
-                          _vm._l(this.changedCells, function(cell, index) {
-                            return _c("li", { key: index }, [
-                              _c(
-                                "a",
-                                {
-                                  class: [
-                                    _vm.changedCell.id == cell.id
-                                      ? "active"
-                                      : ""
-                                  ],
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.changeCell(cell.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("span", [_vm._v(_vm._s(cell.label))]),
-                                  _vm._v(" "),
-                                  _c("i", {
-                                    staticClass: "fas fa-chevron-right"
-                                  })
-                                ]
-                              )
-                            ])
-                          }),
-                          0
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        this.changedCell.label
-                          ? _c(
-                              "form",
+                            _c(
+                              "svg",
                               {
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.saveValue(
-                                      _vm.changedCell.id,
-                                      _vm.modalValue
-                                    )
-                                  }
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  width: "19",
+                                  height: "20",
+                                  viewBox: "0 0 19 20",
+                                  fill: "none"
                                 }
                               },
                               [
-                                _c("h5", [
-                                  _vm._v(
-                                    _vm._s(this.changedCell.label) +
-                                      ": " +
-                                      _vm._s(this.getValue(this.changedCell.id))
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "Изменить:\n                                    "
-                                  ),
-                                  this.changedCell.type == "number"
-                                    ? _c("input", {
-                                        staticClass: "form-control",
-                                        attrs: { type: "number" },
-                                        domProps: {
-                                          value: _vm.getValue(
-                                            _vm.changedCell.id
-                                          )
-                                        },
-                                        on: {
-                                          input: function($event) {
-                                            return _vm.saveValue(
-                                              _vm.changedCell.id,
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    : this.changedCell.type == "select"
-                                    ? _c(
-                                        "select",
-                                        {
-                                          staticClass: "custom-select",
-                                          on: {
-                                            input: function($event) {
-                                              return _vm.saveValue(
-                                                _vm.changedCell.id,
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        },
-                                        _vm._l(
-                                          this.changedCell.variants,
-                                          function(option, index) {
-                                            return _c(
-                                              "option",
-                                              { key: index },
-                                              [
-                                                _vm._v(
-                                                  "\n                                            " +
-                                                    _vm._s(option) +
-                                                    "\n                                        "
-                                                )
-                                              ]
-                                            )
-                                          }
-                                        ),
-                                        0
-                                      )
-                                    : _vm._e()
-                                ])
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M11.5499 9.95887L18.179 3.16637C18.4693 2.86822 18.6324 2.46385 18.6324 2.0422C18.6324 1.62056 18.4693 1.21619 18.179 0.918038C17.8887 0.61989 17.495 0.452393 17.0845 0.452393C16.6739 0.452393 16.2802 0.61989 15.9899 0.918038L9.37613 7.72637L2.76238 0.918038C2.47207 0.61989 2.07834 0.452393 1.66779 0.452393C1.25724 0.452393 0.863511 0.61989 0.57321 0.918038C0.282908 1.21619 0.119819 1.62056 0.119819 2.0422C0.119819 2.46385 0.282908 2.86822 0.57321 3.16637L7.20238 9.95887L0.57321 16.7514C0.428712 16.8986 0.314021 17.0737 0.235753 17.2666C0.157484 17.4596 0.117188 17.6665 0.117188 17.8755C0.117188 18.0846 0.157484 18.2915 0.235753 18.4845C0.314021 18.6774 0.428712 18.8525 0.57321 18.9997C0.716528 19.1481 0.887038 19.2659 1.0749 19.3463C1.26277 19.4267 1.46427 19.4681 1.66779 19.4681C1.87131 19.4681 2.07282 19.4267 2.26068 19.3463C2.44855 19.2659 2.61906 19.1481 2.76238 18.9997L9.37613 12.1914L15.9899 18.9997C16.1332 19.1481 16.3037 19.2659 16.4916 19.3463C16.6794 19.4267 16.8809 19.4681 17.0845 19.4681C17.288 19.4681 17.4895 19.4267 17.6773 19.3463C17.8652 19.2659 18.0357 19.1481 18.179 18.9997C18.3235 18.8525 18.4382 18.6774 18.5165 18.4845C18.5948 18.2915 18.6351 18.0846 18.6351 17.8755C18.6351 17.6665 18.5948 17.4596 18.5165 17.2666C18.4382 17.0737 18.3235 16.8986 18.179 16.7514L11.5499 9.95887Z",
+                                    fill: "white"
+                                  }
+                                })
                               ]
                             )
-                          : _vm._e()
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "ul",
+                              _vm._l(this.groups, function(group, index) {
+                                return _c("li", { key: index }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      class: [
+                                        _vm.changedGroup == group
+                                          ? "active"
+                                          : ""
+                                      ],
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.changeGroup(group)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("span", [_vm._v(_vm._s(group))]),
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fas fa-chevron-right"
+                                      })
+                                    ]
+                                  )
+                                ])
+                              }),
+                              0
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "ul",
+                              _vm._l(this.changedCells, function(cell, index) {
+                                return _c("li", { key: index }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      class: [
+                                        _vm.changedCell.id == cell.id
+                                          ? "active"
+                                          : ""
+                                      ],
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.changeCell(cell.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("span", [_vm._v(_vm._s(cell.label))]),
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fas fa-chevron-right"
+                                      })
+                                    ]
+                                  )
+                                ])
+                              }),
+                              0
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            this.changedCell.label
+                              ? _c(
+                                  "form",
+                                  {
+                                    on: {
+                                      submit: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.saveValue(
+                                          _vm.changedCell.id,
+                                          _vm.modalValue
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("h5", [
+                                      _vm._v(
+                                        _vm._s(this.changedCell.label) +
+                                          ": " +
+                                          _vm._s(
+                                            this.getValue(this.changedCell.id)
+                                          )
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("p", [
+                                      _vm._v(
+                                        "Изменить:\n                                    "
+                                      ),
+                                      this.changedCell.type == "number"
+                                        ? _c("input", {
+                                            staticClass: "form-control",
+                                            attrs: { type: "number" },
+                                            domProps: {
+                                              value: _vm.getValue(
+                                                _vm.changedCell.id
+                                              )
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                return _vm.saveValue(
+                                                  _vm.changedCell.id,
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        : this.changedCell.type == "select"
+                                        ? _c(
+                                            "select",
+                                            {
+                                              staticClass: "custom-select",
+                                              on: {
+                                                input: function($event) {
+                                                  return _vm.saveValue(
+                                                    _vm.changedCell.id,
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            _vm._l(
+                                              this.changedCell.variants,
+                                              function(option, index) {
+                                                return _c(
+                                                  "option",
+                                                  { key: index },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                            " +
+                                                        _vm._s(option) +
+                                                        "\n                                        "
+                                                    )
+                                                  ]
+                                                )
+                                              }
+                                            ),
+                                            0
+                                          )
+                                        : _vm._e()
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-footer" }, [
+                        this.changedPrice
+                          ? _c("h4", [
+                              _vm._v("Цена: " + _vm._s(_vm.changedPrice))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn yellow-outline-btn",
+                            attrs: { type: "button", disabled: !this.hasEdits },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.cancelEdit()
+                              }
+                            }
+                          },
+                          [_vm._v("Сбросить")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn yellow-btn",
+                            attrs: { type: "button", disabled: !this.hasEdits },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.sendJson()
+                              }
+                            }
+                          },
+                          [_vm._v("Сохранить изменения")]
+                        )
                       ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    this.changedPrice
-                      ? _c("h4", [_vm._v("Цена: " + _vm._s(_vm.changedPrice))])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn yellow-outline-btn",
-                        attrs: { type: "button", disabled: !this.hasEdits },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.cancelEdit()
-                          }
-                        }
-                      },
-                      [_vm._v("Сбросить")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn yellow-btn",
-                        attrs: { type: "button", disabled: !this.hasEdits },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.sendJson()
-                          }
-                        }
-                      },
-                      [_vm._v("Сохранить изменения")]
-                    )
                   ])
-                ])
-              ])
+                : _c("div", { staticClass: "modal-dialog modal-sm" }, [
+                    _vm._m(0)
+                  ])
             ]
           )
         : _vm._e(),
@@ -44639,7 +44657,7 @@ var render = function() {
                       ? _c("span", [_vm._v("Добавить в избранное")])
                       : _c("span", [_vm._v("В избранном")]),
                     _vm._v(" "),
-                    _vm._m(0)
+                    _vm._m(1)
                   ]
                 )
               : _vm._e(),
@@ -44843,7 +44861,7 @@ var render = function() {
                   _c("table", { staticClass: "table" }, [
                     _c("tbody", [
                       _c("tr", [
-                        _vm._m(1),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "price" }, [
@@ -44853,7 +44871,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "price" }, [
@@ -44864,7 +44882,7 @@ var render = function() {
                       _vm._v(" "),
                       this.changedPrice
                         ? _c("tr", [
-                            _vm._m(3),
+                            _vm._m(4),
                             _vm._v(" "),
                             _c("td", [
                               _c("div", { staticClass: "price" }, [
@@ -44930,6 +44948,20 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-content" }, [
+      _c("div", { staticClass: "modal-body" }, [
+        _c("h5", { staticClass: "mobile-editor-title" }, [
+          _vm._v(
+            "\n                            Редактирование доступно только на компьютере\n                        "
+          )
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -13596,6 +13596,11 @@ a.project-card.order-card .card-body {
   border-radius: 50%;
 }
 
+.modal#editorModal .modal-content .mobile-editor-title {
+  text-align: center;
+  margin: 50px 30px;
+}
+
 .modal#editorModal .modal-content .modal-header {
   padding: 40px 50px;
   border: none;
