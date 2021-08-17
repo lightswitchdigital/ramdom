@@ -376,10 +376,18 @@ export default {
                     this.groups.push(this.cells[cell].group)
                 }
             }
+            this.groups.push('Другое')
         },
         changeGroup(group) {
             this.changedCells = []
             this.changedGroup = group
+            if(group == 'Другое'){
+                for (let cell in this.cells){
+                    if(this.cells[cell] && !this.cells[cell].group){
+                        this.changedCells.push(this.cells[cell])
+                    }
+                }
+            }
             for (let cell in this.cells){
                 if(this.cells[cell] &&  this.cells[cell].group == group){
                     this.changedCells.push(this.cells[cell])

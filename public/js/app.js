@@ -3318,9 +3318,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['link'],
   data: function data() {
@@ -4821,14 +4818,24 @@ __webpack_require__.r(__webpack_exports__);
           this.groups.push(this.cells[cell].group);
         }
       }
+
+      this.groups.push('Другое');
     },
     changeGroup: function changeGroup(group) {
       this.changedCells = [];
       this.changedGroup = group;
 
-      for (var cell in this.cells) {
-        if (this.cells[cell] && this.cells[cell].group == group) {
-          this.changedCells.push(this.cells[cell]);
+      if (group == 'Другое') {
+        for (var cell in this.cells) {
+          if (this.cells[cell] && !this.cells[cell].group) {
+            this.changedCells.push(this.cells[cell]);
+          }
+        }
+      }
+
+      for (var _cell in this.cells) {
+        if (this.cells[_cell] && this.cells[_cell].group == group) {
+          this.changedCells.push(this.cells[_cell]);
         }
       }
     },
@@ -20674,14 +20681,15 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.20';
+  var VERSION = '4.17.21';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
 
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
-      FUNC_ERROR_TEXT = 'Expected a function';
+      FUNC_ERROR_TEXT = 'Expected a function',
+      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -20814,10 +20822,11 @@ return jQuery;
   var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
       reHasRegExpChar = RegExp(reRegExpChar.source);
 
-  /** Used to match leading and trailing whitespace. */
-  var reTrim = /^\s+|\s+$/g,
-      reTrimStart = /^\s+/,
-      reTrimEnd = /\s+$/;
+  /** Used to match leading whitespace. */
+  var reTrimStart = /^\s+/;
+
+  /** Used to match a single whitespace character. */
+  var reWhitespace = /\s/;
 
   /** Used to match wrap detail comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -20826,6 +20835,18 @@ return jQuery;
 
   /** Used to match words composed of alphanumeric characters. */
   var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+
+  /**
+   * Used to validate the `validate` option in `_.template` variable.
+   *
+   * Forbids characters which could potentially change the meaning of the function argument definition:
+   * - "()," (modification of function parameters)
+   * - "=" (default value)
+   * - "[]{}" (destructuring of function parameters)
+   * - "/" (beginning of a comment)
+   * - whitespace
+   */
+  var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
 
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
@@ -21656,6 +21677,19 @@ return jQuery;
   }
 
   /**
+   * The base implementation of `_.trim`.
+   *
+   * @private
+   * @param {string} string The string to trim.
+   * @returns {string} Returns the trimmed string.
+   */
+  function baseTrim(string) {
+    return string
+      ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+      : string;
+  }
+
+  /**
    * The base implementation of `_.unary` without support for storing metadata.
    *
    * @private
@@ -21986,6 +22020,21 @@ return jQuery;
     return hasUnicode(string)
       ? unicodeToArray(string)
       : asciiToArray(string);
+  }
+
+  /**
+   * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+   * character of `string`.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {number} Returns the index of the last non-whitespace character.
+   */
+  function trimmedEndIndex(string) {
+    var index = string.length;
+
+    while (index-- && reWhitespace.test(string.charAt(index))) {}
+    return index;
   }
 
   /**
@@ -33156,7 +33205,7 @@ return jQuery;
       if (typeof value != 'string') {
         return value === 0 ? value : +value;
       }
-      value = value.replace(reTrim, '');
+      value = baseTrim(value);
       var isBinary = reIsBinary.test(value);
       return (isBinary || reIsOctal.test(value))
         ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -35528,6 +35577,12 @@ return jQuery;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
+      // Throw an error if a forbidden character was found in `variable`, to prevent
+      // potential command injection attacks.
+      else if (reForbiddenIdentifierChars.test(variable)) {
+        throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
+      }
+
       // Cleanup code by stripping empty strings.
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
         .replace(reEmptyStringMiddle, '$1')
@@ -35641,7 +35696,7 @@ return jQuery;
     function trim(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrim, '');
+        return baseTrim(string);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -35676,7 +35731,7 @@ return jQuery;
     function trimEnd(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrimEnd, '');
+        return string.slice(0, trimmedEndIndex(string) + 1);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -42262,7 +42317,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal fade",
+      staticClass: "modal fade balance-modal",
       attrs: {
         id: "exampleModalBalance",
         tabindex: "-1",
@@ -42272,205 +42327,183 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content balance-modal" }, [
+        _c("div", { staticClass: "modal-content card" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "card" }, [
-            _c(
-              "div",
-              { staticClass: "modal-body", class: { animated: _vm.animated } },
-              [
-                _vm.step === 1
-                  ? _c(
-                      "form",
-                      {
-                        staticClass: "first-step",
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.onSubmit($event)
-                          }
+          _c(
+            "div",
+            { staticClass: "modal-body", class: { animated: _vm.animated } },
+            [
+              _vm.step === 1
+                ? _c(
+                    "form",
+                    {
+                      staticClass: "first-step",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.onSubmit($event)
                         }
-                      },
-                      [
-                        _c(
-                          "h5",
-                          {
-                            staticStyle: {
-                              "text-align": "center",
-                              margin: "0 0 35px 0"
-                            }
-                          },
-                          [_vm._v("Пополнить баланс")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "sumInput" } }, [
-                            _vm._v("Сумма")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.sum,
-                                expression: "sum"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: { "is-invalid": _vm.error },
-                            attrs: { type: "number", id: "sumInput" },
-                            domProps: { value: _vm.sum },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.sum = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.error
-                            ? _c("span", { staticClass: "invalid-text" }, [
-                                _vm._v("Введите сумму")
-                              ])
-                            : _vm._e()
+                      }
+                    },
+                    [
+                      _c(
+                        "h5",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            margin: "0 0 35px 0"
+                          }
+                        },
+                        [_vm._v("Пополнить баланс")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "sumInput" } }, [
+                          _vm._v("Сумма")
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn secondary-btn",
-                            staticStyle: {
-                              display: "block",
-                              margin: "15px auto"
-                            },
-                            attrs: { type: "submit" }
-                          },
-                          [_vm._v("Продолжить")]
-                        )
-                      ]
-                    )
-                  : _vm.step === 2
-                  ? _c("div", { staticClass: "second-step" }, [
-                      _vm.loading
-                        ? _c("div", [_c("preloader")], 1)
-                        : _c("div", [
-                            _c("img", {
-                              attrs: {
-                                src: _vm.balanceInfo.qrcode_url,
-                                alt: ""
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sum,
+                              expression: "sum"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: { "is-invalid": _vm.error },
+                          attrs: { type: "number", id: "sumInput" },
+                          domProps: { value: _vm.sum },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "hint" }, [
-                              _vm._v(
-                                "\n                            Чтобы пополнить баланс, переведите средства по указанному ниже счету или сканируйте QR-код. Средства начислятся сразу после того, как модерация сайта подтвердит их поступление.\n                        "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "h4",
-                              { staticStyle: { margin: "30px 0 20px" } },
-                              [_vm._v("Реквизиты")]
-                            ),
-                            _vm._v(" "),
-                            _vm.balanceInfo
-                              ? _c(
-                                  "ul",
-                                  { staticClass: "payment-credentials" },
-                                  [
-                                    _c("li", [
-                                      _c("p", [_vm._v("Сумма:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.amount))
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("Название компании:")]),
-                                      _c("p", [
-                                        _vm._v(
-                                          _vm._s(_vm.balanceInfo.company_name)
-                                        )
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("ИНН:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.inn))
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("КПП:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.kpp))
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("ОРГН:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.orgn))
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("Расчетный счет:")]),
-                                      _c("p", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.balanceInfo.payment_account
-                                          )
-                                        )
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("Корр. счет:")]),
-                                      _c("p", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.balanceInfo
-                                              .correspondent_account
-                                          )
-                                        )
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("БИК:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.bik))
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("Назначение платежа:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.purpose))
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("li", [
-                                      _c("p", [_vm._v("Имя:")]),
-                                      _c("p", [
-                                        _vm._v(_vm._s(_vm.balanceInfo.name))
-                                      ])
-                                    ])
-                                  ]
-                                )
-                              : _vm._e()
-                          ])
-                    ])
-                  : _vm._e()
-              ]
-            )
-          ])
+                              _vm.sum = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.error
+                          ? _c("span", { staticClass: "invalid-text" }, [
+                              _vm._v("Введите сумму")
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn secondary-btn",
+                          staticStyle: {
+                            display: "block",
+                            margin: "15px auto"
+                          },
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Продолжить")]
+                      )
+                    ]
+                  )
+                : _vm.step === 2
+                ? _c("div", { staticClass: "second-step" }, [
+                    _vm.loading
+                      ? _c("div", [_c("preloader")], 1)
+                      : _c("div", [
+                          _c("img", {
+                            attrs: { src: _vm.balanceInfo.qrcode_url, alt: "" }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "hint" }, [
+                            _vm._v(
+                              "\n                            Чтобы пополнить баланс, переведите средства по указанному ниже счету или сканируйте QR-код. Средства начислятся сразу после того, как модерация сайта подтвердит их поступление.\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", { staticStyle: { margin: "30px 0 20px" } }, [
+                            _vm._v("Реквизиты")
+                          ]),
+                          _vm._v(" "),
+                          _vm.balanceInfo
+                            ? _c("ul", { staticClass: "payment-credentials" }, [
+                                _c("li", [
+                                  _c("p", [_vm._v("Сумма:")]),
+                                  _c("p", [
+                                    _vm._v(_vm._s(_vm.balanceInfo.amount))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("Название компании:")]),
+                                  _c("p", [
+                                    _vm._v(_vm._s(_vm.balanceInfo.company_name))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("ИНН:")]),
+                                  _c("p", [_vm._v(_vm._s(_vm.balanceInfo.inn))])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("КПП:")]),
+                                  _c("p", [_vm._v(_vm._s(_vm.balanceInfo.kpp))])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("ОРГН:")]),
+                                  _c("p", [
+                                    _vm._v(_vm._s(_vm.balanceInfo.orgn))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("Расчетный счет:")]),
+                                  _c("p", [
+                                    _vm._v(
+                                      _vm._s(_vm.balanceInfo.payment_account)
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("Корр. счет:")]),
+                                  _c("p", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.balanceInfo.correspondent_account
+                                      )
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("БИК:")]),
+                                  _c("p", [_vm._v(_vm._s(_vm.balanceInfo.bik))])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("Назначение платежа:")]),
+                                  _c("p", [
+                                    _vm._v(_vm._s(_vm.balanceInfo.purpose))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("p", [_vm._v("Имя:")]),
+                                  _c("p", [
+                                    _vm._v(_vm._s(_vm.balanceInfo.name))
+                                  ])
+                                ])
+                              ])
+                            : _vm._e()
+                        ])
+                  ])
+                : _vm._e()
+            ]
+          )
         ])
       ])
     ]
@@ -42482,8 +42515,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h1", { staticClass: "title" }, [_vm._v("Пополнить баланс")]),
-      _vm._v(" "),
       _c(
         "button",
         {
