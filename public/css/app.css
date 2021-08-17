@@ -12921,6 +12921,32 @@ a.project-card.order-card .card-body {
   padding: 2rem;
 }
 
+@media (max-width: 720px) {
+  .balance-block .balance-history--wrapper table thead {
+    display: none;
+  }
+
+  .balance-block .balance-history--wrapper table tr {
+    display: block;
+  }
+
+  .balance-block .balance-history--wrapper table td {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+
+  .balance-block .balance-history--wrapper table tr:not(:last-child) {
+    border-bottom: 1px solid black;
+  }
+
+  .balance-block .balance-history--wrapper table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 20px;
+  }
+}
+
 .balance-modal .title {
   width: -webkit-fit-content;
   width: -moz-fit-content;

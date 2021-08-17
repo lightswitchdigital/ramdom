@@ -35,10 +35,10 @@
 
                     @foreach ($payments as $payment)
                         <tr>
-                            <td>{{ $payment->id }}</td>
-                            <td>{{ $payment->getType() }}</td>
-                            <td>{{ $payment->getStatus() }}</td>
-                            <td>{{ $payment->amount }}</td>
+                            <td data-label="ID">{{ $payment->id }}</td>
+                            <td data-label="Тип">{{ $payment->getType() }}</td>
+                            <td data-label="Статус">{{ $payment->getStatus() }}</td>
+                            <td data-label="Сумма">{{ $payment->amount }}</td>
                         </tr>
                     @endforeach
 
