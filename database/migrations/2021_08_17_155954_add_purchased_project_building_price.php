@@ -4,20 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSavedProjectPrice extends Migration
+class AddPurchasedProjectBuildingPrice extends Migration
 {
 
     public function up()
     {
-        Schema::table('user_saved_projects', function (Blueprint $table) {
-            $table->unsignedDouble('building_price', 9, 2);
+        Schema::table('purchased_projects', function (Blueprint $table) {
+            $table->double('building_price', 9, 2);
         });
     }
 
 
     public function down()
     {
-        Schema::table('user_saved_projects', function (Blueprint $table) {
+        Schema::table('purchased_projects', function (Blueprint $table) {
             $table->dropColumn('building_price');
         });
     }

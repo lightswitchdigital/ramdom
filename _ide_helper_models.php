@@ -218,12 +218,14 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder|Plan whereDeletedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Plan whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Plan whereInterval($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Plan whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Plan wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Plan whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Plan whereUpdatedAt($value)
- */
-	class Plan extends \Eloquent {}
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan wherePrice($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereSlug($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereUpdatedAt($value)
+     */
+    class Plan extends \Eloquent
+    {
+    }
 }
 
 namespace App\Models\Plans{
@@ -332,6 +334,7 @@ namespace App\Models\Projects{
  * @property-read mixed $is_in_favorites
  * @property-read mixed $json_images
  * @property-read mixed $json_values
+ * @property-read mixed $order_link
  * @property-read mixed $remove_from_favorites_link
  * @property-read mixed $route
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
@@ -362,20 +365,10 @@ namespace App\Models\Projects{
 /**
  * App\Models\Projects\ProjectDocument
  *
- * @property int $id
- * @property int $project_id
- * @property string $file
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Projects\Project $project
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument query()
- * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereFile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereProjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProjectDocument whereUpdatedAt($value)
  */
 	class ProjectDocument extends \Eloquent {}
 }
@@ -434,6 +427,9 @@ namespace App\Models\Projects\Purchase{
      * @property float $price
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property float $building_price
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchasedProjectDocument[] $documents
+     * @property-read int|null $documents_count
      * @property-read mixed $json_values
      * @property-read mixed $order_link
      * @property-read \App\Models\Projects\Project $project
@@ -441,20 +437,47 @@ namespace App\Models\Projects\Purchase{
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Projects\Purchase\PurchaseValue[] $values
      * @property-read int|null $values_count
      * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject query()
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereProjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereUserId($value)
- */
-	class PurchasedProject extends \Eloquent {}
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject query()
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereBuildingPrice($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereData($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject wherePrice($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereProjectId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProject whereUserId($value)
+     */
+    class PurchasedProject extends \Eloquent
+    {
+    }
 }
 
-namespace App\Models\Projects{
+namespace App\Models\Projects\Purchase {
+    /**
+     * App\Models\Projects\Purchase\PurchasedProjectDocument
+     *
+     * @property int $id
+     * @property int $purchased_project_id
+     * @property string $file
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\Projects\Purchase\PurchasedProject $purchased_project
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument query()
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument whereFile($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument wherePurchasedProjectId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PurchasedProjectDocument whereUpdatedAt($value)
+     */
+    class PurchasedProjectDocument extends \Eloquent
+    {
+    }
+}
+
+namespace App\Models\Projects {
     /**
      * App\Models\Projects\SavedProject
      *
@@ -465,11 +488,13 @@ namespace App\Models\Projects{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property array|null $editor_data
+     * @property float $building_price
      * @property-read \App\Models\Projects\Project $project
      * @property-read \App\Models\User $user
      * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|SavedProject newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|SavedProject query()
+     * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereBuildingPrice($value)
      * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereEditorData($value)
      * @method static \Illuminate\Database\Eloquent\Builder|SavedProject whereId($value)

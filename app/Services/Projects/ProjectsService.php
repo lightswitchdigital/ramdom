@@ -38,7 +38,7 @@ class ProjectsService
 
         $savedProject = $user->savedProjects()->where('project_id', $project->id)->first();
 
-        if ($user->balance < $savedProject->price) {
+        if ($user->balance < $project->price) {
             throw new \DomainException('Недостаточно средств на балансе');
         }
 
@@ -46,13 +46,16 @@ class ProjectsService
 
             $purchased_project = PurchasedProject::make([
                 'data' => $savedProject ? $savedProject->editor_data : $request['editor_attributes'],
-                'price' => $savedProject ? $savedProject->price : $project->price
+                'price' => $project->price,
+                'building_price' => $savedProject ? $savedProject->building_price : 0
             ]);
 
             $purchased_project->user()->associate($user);
             $purchased_project->project()->associate($project);
 
             $purchased_project->save();
+
+            $user->withholdFromBalance($project->price);
 
             foreach (PurchaseAttribute::all() as $attribute) {
                 $value = $request['purchase_attributes'][$attribute->id] ?? null;

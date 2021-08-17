@@ -11,7 +11,7 @@ class PurchasedProject extends Model
     protected $table = 'purchased_projects';
 
     protected $fillable = [
-        'user_id', 'project_id', 'data', 'price'
+        'user_id', 'project_id', 'data', 'price', 'building_price'
     ];
 
     protected $appends = [
