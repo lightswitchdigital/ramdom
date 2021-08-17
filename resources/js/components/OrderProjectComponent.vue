@@ -46,7 +46,7 @@
                     <input type="checkbox" id="isEntityBtn" v-model="isEntity" @change="isEntityDate = !isEntityDate">
                     <label for="isEntityBtn">Юр. лицо<span class="switch"></span></label>
                 </div> -->
-                <div v-if="userType == 'entety'">
+                <div v-if="user.type == 'entity'">
                     <h2 class="title">Данные компании</h2>
                     <input type="text" placeholder="Название компании"
                     v-model="orderCompanyName"
@@ -64,7 +64,7 @@
                     v-model="orderCompanyCorrespondentAccount"
                     >
                 </div>
-                <div v-else-if="userType == 'customer'">
+                <div v-else-if="user.type == 'individual'">
                     <h2 class="title">Паспортные данные</h2>
                     <input type="text" placeholder="Серия паспорта"
                     v-model="orderPassportSerial"
@@ -89,7 +89,8 @@
 <script>
 export default {
     props: [
-        'orderLink'
+        'orderLink',
+        'user'
     ],
     data:() => ({
         formData: {},

@@ -7,7 +7,7 @@
             <form>
                 <developers
                     :developers="{{ $developers }}"
-                    :user="{{ \Auth::user() }}"
+                    
                 ></developers>
                 {{-- <div class="wrapper-form">
                     <div class="agree-form">
@@ -32,7 +32,7 @@
                     <button type="submit" class="btn yellow-btn">Отправить</button>
                 </div> --}}
             </form>
-            <order/>
+            <order :user="{{ \Auth::user() }}"/>
     </div>
 </div>
 

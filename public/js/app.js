@@ -4067,7 +4067,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['orderLink'],
+  props: ['orderLink', 'user'],
   data: function data() {
     return {
       formData: {},
@@ -43760,7 +43760,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md" }, [
-            _vm.userType == "entety"
+            _vm.user.type == "entity"
               ? _c("div", [
                   _c("h2", { staticClass: "title" }, [
                     _vm._v("Данные компании")
@@ -43875,7 +43875,7 @@ var render = function() {
                     }
                   })
                 ])
-              : _vm.userType == "customer"
+              : _vm.user.type == "individual"
               ? _c("div", [
                   _c("h2", { staticClass: "title" }, [
                     _vm._v("Паспортные данные")
