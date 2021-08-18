@@ -30,6 +30,13 @@ class PlansService
             throw new \DomainException('На вашем балансе недостаточно средств');
         }
 
+        if ($plan->slug = 'developer' and !$user->hasFilledEntityInformation()) {
+            $user->update([
+                'type' => 'entity'
+            ]);
+            throw new \DomainException('Для перехода на этот план необходимо заполнить все данные юр. лица в настройках профиля');
+        }
+
         DB::transaction(function () use ($user, $plan) {
 
             if ($user->subscription) {

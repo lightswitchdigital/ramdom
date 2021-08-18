@@ -172,7 +172,8 @@ class User extends Authenticatable
         $this->favorites()->attach($project_id);
     }
 
-    public function removeFromFavorites($project_id) {
+    public function removeFromFavorites($project_id)
+    {
         $project = Project::find($project_id);
 
         if (!$project)
@@ -181,35 +182,57 @@ class User extends Authenticatable
         $this->favorites()->detach($project_id);
     }
 
-    public function subscription() {
+    public function hasFilledEntityInformation(): bool
+    {
+        return $this->company_name
+            and $this->company_address
+            and $this->company_inn
+            and $this->company_account;
+    }
+
+    /////////////////
+    /// Relations
+
+    public function subscription()
+    {
         return $this->hasOne(PlanSubscription::class);
     }
 
-    public function favorites() {
+    public function favorites()
+    {
         return $this->belongsToMany(Project::class, 'project_favorites', 'user_id', 'project_id');
     }
 
-    public function purchasedProjects() {
+    public function purchasedProjects()
+    {
         return $this->hasMany(PurchasedProject::class);
     }
 
-    public function savedProjects() {
+    public function savedProjects()
+    {
         return $this->hasMany(SavedProject::class);
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         return $this->hasMany(Notification::class);
     }
 
-    public function scopeActive($query) {
+    ////////////////
+    /// Scopes
+
+    public function scopeActive($query)
+    {
         return $query->where('status', self::STATUS_ACTIVE);
     }
 
-    public function scopeDevelopers($query) {
+    public function scopeDevelopers($query)
+    {
         return $query->where('role', self::ROLE_DEVELOPER);
     }
 
-    public function scopeHasFavorites($query) {
+    public function scopeHasFavorites($query)
+    {
         return $query->has('favorites');
     }
 }

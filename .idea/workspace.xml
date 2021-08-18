@@ -30,10 +30,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/EditorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ModifyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/documents/proekt-3/privet.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/documents/proekt-3/test1.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Profile/SettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Profile/SettingsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Settings/UpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Settings/UpdateRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PlansService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PlansService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/plans/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/settings/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/settings/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,14 +336,7 @@
       <workItem from="1628753101487" duration="4143000" />
       <workItem from="1628891543595" duration="1934000" />
       <workItem from="1629039800012" duration="3973000" />
-      <workItem from="1629212274997" duration="4652000" />
-    </task>
-    <task id="LOCAL-00020" summary="region middleware, fixed issue with loading recommended projects images">
-      <created>1606904226904</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1606904226904</updated>
+      <workItem from="1629212274997" duration="7635000" />
     </task>
     <task id="LOCAL-00021" summary="favorites logic moved to main controller">
       <created>1606915734710</created>
@@ -678,7 +674,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629216643701</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="editor fixed">
+      <created>1629262666195</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1629262666195</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,7 +729,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="projects modify controller, save and discard logic" />
     <MESSAGE value="README" />
     <MESSAGE value="savefile, plans route patch" />
     <MESSAGE value="plans patch" />
@@ -751,7 +753,8 @@
     <MESSAGE value="balance replenishment logic fixed" />
     <MESSAGE value="order prop fix" />
     <MESSAGE value="project purchase fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="project purchase fixed" />
+    <MESSAGE value="editor fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="editor fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

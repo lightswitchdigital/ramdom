@@ -21,20 +21,6 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md">
-                    <div class="card big-card">
-                        <form>
-                            @csrf
-                            <h4 class="card-title">Профессионал</h4>
-                            <h1 class="price">100000 <br>
-                                <span style="display: block; font-size: 12px; font-weight: bold;">рублей / месяц</span>
-                            </h1>
-
-                            <p class="desc">план для тех, кто только начинает знакомиться с функционалом сайта</p>
-                            <button class="btn yellow-btn">Выбрать</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
