@@ -82,7 +82,7 @@ class ModifyController extends Controller
 
             $savedProject->update([
                 'editor_data' => $request->all(),
-                'price' => $price
+                'building_price' => $price
             ]);
 
             return response([
@@ -93,7 +93,8 @@ class ModifyController extends Controller
 
         $savedProject = SavedProject::make([
             'editor_data' => $request->all(),
-            'values_data' => null
+            'values_data' => null,
+            'building_price' => $price
         ]);
 
         $savedProject->user()->associate($user);
