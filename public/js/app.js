@@ -3393,7 +3393,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           if (response.status === 200) {
             setTimeout(function () {
-              _this.balanceInfo = response.data.payment;
+              _this.balanceInfo = response.data;
               _this.loading = false;
             }, 200);
           }
@@ -44497,62 +44497,66 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _c("p", [
-                                      _vm._v(
-                                        "Изменить:\n                                    "
-                                      ),
-                                      this.changedCell.type == "number"
-                                        ? _c("input", {
-                                            staticClass: "form-control",
-                                            attrs: { type: "number" },
-                                            domProps: {
-                                              value: _vm.getValue(
-                                                _vm.changedCell.id
-                                              )
-                                            },
-                                            on: {
-                                              input: function($event) {
-                                                return _vm.saveValue(
-                                                  _vm.changedCell.id,
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          })
-                                        : this.changedCell.type == "select"
-                                        ? _c(
-                                            "select",
-                                            {
-                                              staticClass: "custom-select",
-                                              on: {
-                                                input: function($event) {
-                                                  return _vm.saveValue(
-                                                    _vm.changedCell.id,
-                                                    $event.target.value
+                                    this.changedCell.type == "select" ||
+                                    this.changedCell.id == "C11" ||
+                                      this.changedCell.id == "C12"
+                                      ? _c("p", [
+                                          _vm._v(
+                                            "Изменить:\n                                    "
+                                          ),
+                                          this.changedCell.type == "number"
+                                            ? _c("input", {
+                                                staticClass: "form-control",
+                                                attrs: { type: "number" },
+                                                domProps: {
+                                                  value: _vm.getValue(
+                                                    _vm.changedCell.id
                                                   )
-                                                }
-                                              }
-                                            },
-                                            _vm._l(
-                                              this.changedCell.variants,
-                                              function(option, index) {
-                                                return _c(
-                                                  "option",
-                                                  { key: index },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                            " +
-                                                        _vm._s(option) +
-                                                        "\n                                        "
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    return _vm.saveValue(
+                                                      _vm.changedCell.id,
+                                                      $event.target.value
                                                     )
-                                                  ]
-                                                )
-                                              }
-                                            ),
-                                            0
-                                          )
-                                        : _vm._e()
-                                    ])
+                                                  }
+                                                }
+                                              })
+                                            : this.changedCell.type == "select"
+                                            ? _c(
+                                                "select",
+                                                {
+                                                  staticClass: "custom-select",
+                                                  on: {
+                                                    input: function($event) {
+                                                      return _vm.saveValue(
+                                                        _vm.changedCell.id,
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  this.changedCell.variants,
+                                                  function(option, index) {
+                                                    return _c(
+                                                      "option",
+                                                      { key: index },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                            " +
+                                                            _vm._s(option) +
+                                                            "\n                                        "
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              )
+                                            : _vm._e()
+                                        ])
+                                      : _vm._e()
                                   ]
                                 )
                               : _vm._e()

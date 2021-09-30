@@ -29,16 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab54bc0-e79f-4de9-b213-423a1c212af2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/smeta-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/483d8fdc-8a3d-43dc-82f7-a1bd1a5ab7f4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/internal/mappings.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/internal/_mappings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Projects/ProjectsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Projects/ProjectsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AddBalanceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddBalanceComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Projects/ProjectComponent.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,13 +252,14 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/faq" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/resources/views/admin/faq" />
       <recent name="$PROJECT_DIR$/resources/views/admin/editor/attributes" />
     </key>
@@ -361,14 +362,17 @@
       <workItem from="1629212274997" duration="8504000" />
       <workItem from="1629779169488" duration="742000" />
       <workItem from="1630845253267" duration="1714000" />
-      <workItem from="1631196623295" duration="639000" />
-    </task>
-    <task id="LOCAL-00022" summary="recommendations moved to main controller">
-      <created>1606916245225</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1606916245225</updated>
+      <workItem from="1631196623295" duration="2381000" />
+      <workItem from="1632422073395" duration="2579000" />
+      <workItem from="1632454913457" duration="901000" />
+      <workItem from="1632461061811" duration="1145000" />
+      <workItem from="1632502395247" duration="5204000" />
+      <workItem from="1632572036441" duration="553000" />
+      <workItem from="1632588949100" duration="2447000" />
+      <workItem from="1632761000950" duration="246000" />
+      <workItem from="1632765033988" duration="647000" />
+      <workItem from="1632940774676" duration="137000" />
+      <workItem from="1633009864298" duration="770000" />
     </task>
     <task id="LOCAL-00023" summary="projects components refactored">
       <created>1606922601469</created>
@@ -706,7 +710,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629267989745</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="new mappings">
+      <created>1631197787273</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1631197787276</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -754,7 +765,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="savefile, plans route patch" />
     <MESSAGE value="plans patch" />
     <MESSAGE value="regions fixed" />
     <MESSAGE value="discounts moved to root" />
@@ -779,7 +789,8 @@
     <MESSAGE value="project purchase fixed" />
     <MESSAGE value="editor fixed" />
     <MESSAGE value="settings fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings fixed" />
+    <MESSAGE value="new mappings" />
+    <option name="LAST_COMMIT_MESSAGE" value="new mappings" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

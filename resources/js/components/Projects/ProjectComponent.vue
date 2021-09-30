@@ -37,16 +37,18 @@
                             <div class="col">
                                 <form v-if="this.changedCell.label" @submit.prevent="saveValue(changedCell.id, modalValue)">
                                     <h5>{{this.changedCell.label}}: {{this.getValue(this.changedCell.id)}}</h5>
-                                    <p>Изменить:
+                                    <p v-if="this.changedCell.type == 'select' || (this.changedCell.id == 'C11' || this.changedCell.id == 'C12')">
+                                        Изменить:
                                         <input v-if="this.changedCell.type == 'number'"
                                                type="number" class="form-control"
                                                :value="getValue(changedCell.id)"
                                                @input="saveValue(changedCell.id, $event.target.value)"
                                         >
 
-                                        <select class="custom-select" v-else-if="this.changedCell.type == 'select'" @input="saveValue(changedCell.id, $event.target.value)">
+                                        <select class="custom-select" v-else-if="this.changedCell.type == 'select'"
+                                                @input="saveValue(changedCell.id, $event.target.value)">
                                             <option v-for="(option, index) in this.changedCell.variants" :key="index">
-                                                {{option}}
+                                                {{ option }}
                                             </option>
                                         </select>
                                     </p>
@@ -404,19 +406,19 @@ export default {
         },
         saveValue(id, value){
             for(let key in this.values_data){
-                if(this.cells[key] && this.cells[key].id == id){
-                    if(this.changedCell.type == 'number'){
+                if (this.cells[key] && this.cells[key].id == id) {
+                    if (this.changedCell.type == 'number') {
                         this.values_data[key] = +value
                         this.hasEdits || (this.hasEdits = true)
-                    }else if(this.changedCell.type == 'select'){
+                    } else if (this.changedCell.type == 'select') {
                         this.values_data[key] = value
                         this.hasEdits || (this.hasEdits = true)
                     }
                 }
             }
-        }, 
+        },
         isMobile() {
-            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 return true
             } else {
                 return false

@@ -16,6 +16,7 @@ use DomainException;
 
 class ProjectsController extends Controller
 {
+
     private $service;
     private $search;
     private $recommendations;
@@ -37,7 +38,7 @@ class ProjectsController extends Controller
 
     }
 
-    public function show($slug, \Barryvdh\DomPDF\PDF $PDF)
+    public function show($slug)
     {
         $project = Project::where('slug', $slug)->with(['images', 'values'])->first();
         if (!$project) {

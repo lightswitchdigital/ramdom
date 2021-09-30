@@ -6,8 +6,6 @@ namespace App\Services\Projects;
 use App\Http\Requests\Admin\Projects\CreateRequest;
 use App\Http\Requests\Admin\Projects\EditRequest;
 use App\Http\Requests\Projects\BuyRequest;
-use App\Jobs\SendEmailJob;
-use App\Mail\Projects\DocumentsMail;
 use App\Models\Projects\Attribute;
 use App\Models\Projects\Project;
 use App\Models\Projects\Purchase\PurchaseAttribute;
@@ -75,7 +73,7 @@ class ProjectsService
                 ]);
             }
 
-            SendEmailJob::dispatch($user, new DocumentsMail($user, $purchased_project, $docsPaths));
+//            SendEmailJob::dispatch($user, new DocumentsMail($user, $purchased_project, $docsPaths));
 
             return $purchased_project;
 
