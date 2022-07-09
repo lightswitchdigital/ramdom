@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\CommentRequest;
+use App\Models\Advice;
+use App\Services\AdviceService;
+
+class AdviceController extends Controller
+{
+    private $service;
+
+    public function __construct(AdviceService $service) {
+        $this->service = $service;
+    }
+
+    public function index() {
+        $advice = Advice::paginate(env('ADVICE_PAGINATION'));
+
+        return view('advice.index', compact('advice'));
+    }
+
+    public function show(Advice $advice) {
+        return view('advice.show', compact('advice'));
+    }
+
+    public function addComment(Advice $advice, CommentRequest $request) {
+        $this->service->addComment($advice->id, $request);
+
+        return redirect()->back()
+            ->with('success', 'Комментарий будет опубликован после модерации.');
+    }
+
+}
