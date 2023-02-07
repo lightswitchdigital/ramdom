@@ -11,15 +11,19 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchService
 {
-    private $client;
+//    private $client;
 
-    public function __construct(Client $client) {
-        $this->client = $client;
+    public function __construct()
+    {
+//        $this->client = $client;
     }
 
-    public function searchProjects(SearchRequest $request, $perPage, $page): LengthAwarePaginator {
+    public function searchProjects(SearchRequest $request, $perPage, $page): LengthAwarePaginator
+    {
 
-        $values = array_filter((array)$request->input('attrs'), function($value) {
+        return Project::paginate(20);
+
+        $values = array_filter((array)$request->input('attrs'), function ($value) {
             return !empty($value['equals']) || !empty($value['from']) || !empty($value['to']);
         });
 

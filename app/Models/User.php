@@ -28,8 +28,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'last_name', 'middle_name', 'email', 'phone', 'password', 'role', 'type', 'status',
         'passport_serial', 'passport_code', 'passport_issue', 'passport_issue_date',
-        'company_name', 'company_address', 'company_inn', 'company_account',
-        'developer_desc', 'balance'
+        'company_name', 'company_address', 'company_inn', 'company_account', 'company_kpp', 'company_ogrn', 'company_kc', 'company_bik', 'company_phone', 'company_site', 'company_email',
+        'developer_desc', 'balance',
+        'passport_1', 'passport_2', 'snils', 'docs_verified'
     ];
 
     protected $hidden = [
@@ -44,17 +45,17 @@ class User extends Authenticatable
 
     public static function rolesList() {
         return [
-            self::ROLE_CUSTOMER => 'Заказчик',
-            self::ROLE_PRO => 'Профессионал',
-            self::ROLE_DEVELOPER => 'Застройщик',
+            self::ROLE_CUSTOMER => 'Клиент',
+//            self::ROLE_PRO => 'Профессионал',
+//            self::ROLE_DEVELOPER => 'Застройщик',
         ];
     }
 
     public static function adminRolesList() {
         return [
-            self::ROLE_CUSTOMER => 'Заказчик',
-            self::ROLE_PRO => 'Профессионал',
-            self::ROLE_DEVELOPER => 'Застройщик',
+            self::ROLE_CUSTOMER => 'Клиент',
+//            self::ROLE_PRO => 'Профессионал',
+//            self::ROLE_DEVELOPER => 'Застройщик',
             self::ROLE_ADMIN => 'Админ'
         ];
     }
@@ -97,7 +98,7 @@ class User extends Authenticatable
             'phone' => $phone,
             'password' => bcrypt($password),
             'email_verify_token' => Str::uuid(),
-            'status' => self::STATUS_WAIT,
+            'status' => self::STATUS_ACTIVE,
             'role' => $role,
             'type' => $type,
             'balance' => 0
@@ -135,7 +136,7 @@ class User extends Authenticatable
     }
 
     public function isDeveloper() {
-        return $this->role === self::ROLE_DEVELOPER;
+        return $this->role === self::ROLE_DEVELOPER || $this->type == self::TYPE_ENTITY;
     }
 
     public function isAdmin() {
@@ -216,6 +217,26 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
+    }
+
+    public function userSave()
+    {
+        return $this->hasOne(UserSave::class, 'user_id', 'id');
+    }
+
+    public function userPricelist()
+    {
+        return $this->hasOne(UserPricelist::class, 'user_id', 'id');
+    }
+
+    public function buildRequests()
+    {
+        return $this->hasMany(BuildRequest::class);
+    }
+
+    public function loanRequests()
+    {
+        return $this->hasMany(LoanRequest::class);
     }
 
     ////////////////

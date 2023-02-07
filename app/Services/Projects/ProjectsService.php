@@ -126,7 +126,7 @@ class ProjectsService
 
         });
 
-        Artisan::call('search:index');
+//        Artisan::call('search:index');
 
         return $project;
     }

@@ -11,7 +11,11 @@ class HomeController extends Controller
 
     public function index(Request $request, DadataService $service)
     {
-        return view('index');
+        $calculator = json_decode(file_get_contents(public_path('internal/calculator.json')), true);
+        $rate = $calculator['rate'];
+        $settings = json_decode(file_get_contents(public_path('internal/main.json')), true);
+
+        return view('index', compact('rate', 'settings'));
     }
 
     public function about() {

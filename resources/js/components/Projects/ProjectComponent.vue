@@ -137,32 +137,33 @@
                                     <td>{{ label }}</td>
                                     <td>{{ value }}</td>
                                 </tr>
-                                <tr v-for="(attribute , index) in this.purchaseAttributes" :key="index">
+                                <tr v-for="(attribute , index) in this.purchaseAttributes" :key="'attribute'+index">
                                     <td>
-                                        <label :for="'purchase_attribute_'+attribute.id" class="col-form-label">{{ attribute.name }}</label>
+                                        <label :for="'purchase_attribute_'+attribute.id"
+                                               class="col-form-label">{{ attribute.name }}</label>
                                     </td>
                                     <td>
                                         <select v-if="attribute.variants.length > 0"
                                                 :id="'purchase_attribute_'+attribute.id"
                                                 class="custom-select"
                                                 :name="'purchase_attributes['+attribute.id+']'"
-                                                v-model="savedAttributes[attribute.id]">
-                                            <option v-for="(variant , index) in attribute.variants" :value="variant" :key="index">
+                                                v-model="savedAttributes[+attribute.id]">
+                                            <option v-for="(variant , index) in attribute.variants" :key="'variant'+index"
+                                                    :value="variant">
                                                 {{ variant }}
                                             </option>
                                         </select>
                                         <input v-else-if="attribute.type === 'integer'"
-                                        :id="'purchase_attribute_'+attribute.id"
-                                        type="number" class="form-control"
-                                        :name="'purchase_attributes['+attribute.id+']'"
-                                        v-model="savedAttributes[attribute.id]">
-
+                                               :id="'purchase_attribute_'+attribute.id"
+                                               v-model="savedAttributes[+attribute.id]" :name="'purchase_attributes['+attribute.id+']'"
+                                               class="form-control"
+                                               type="number">
                                         <input v-else
-                                        :id="'purchase_attribute_'+attribute.id"
-                                        type="text"
-                                        class="form-control"
-                                        :name="'purchase_attributes['+attribute.id+']'"
-                                        v-model="savedAttributes[attribute.id]">
+                                               :id="'purchase_attribute_'+attribute.id"
+                                               v-model="savedAttributes[+attribute.id]"
+                                               :name="'purchase_attributes['+attribute.id+']'"
+                                               class="form-control"
+                                               type="text">
                                     </td>
                                 </tr>
                             </tbody>
@@ -228,7 +229,7 @@ export default {
         changedGroup: '',
         changedPrice: '',
         values_data: {},
-        hasEdits: false
+        forSave: {}
     }),
     props: [
         'project',
@@ -251,6 +252,7 @@ export default {
         this.$nextTick(this.$forceUpdate);
         if(this.saveFile){
             this.savedAttributes = this.saveFile.values_data
+            this.changedPrice = this.saveFile.building_price
         }
         axios.get(this.calculateRoute, this.values_data).then(response => {
             if(response.status === 200){
@@ -326,8 +328,12 @@ export default {
         saveProject() {
             if(this.isAuthenticated && (this.canEdit || this.saveFile)){
                 this.buyDisabled = true;
-                axios.post(this.saveLink , {'_token' : this.csrfToken, 'purchase_attributes' : this.savedAttributes} ).then(response => {
-                    if(response.status === 200){
+                console.log(this.savedAttributes);
+                axios.post(this.saveLink, {
+                    '_token': this.csrfToken,
+                    'purchase_attributes': this.savedAttributes
+                }).then(response => {
+                    if (response.status === 200) {
                         this.buyDisabled = false;
                         this.changedPrice = response.data.order_price
                     }
@@ -339,9 +345,9 @@ export default {
         },
         sendJson() {
             if(confirm("Сохранить изменения?")){
+                console.log(this.forSave)
                 if(this.isAuthenticated && (this.canEdit || this.saveFile)) {
-
-                    axios.post(this.saveEditorDataLink, {"building_width": this.values_data.building_width}).then(response => {
+                    axios.post(this.saveEditorDataLink, this.values_data).then(response => {
                         this.changedPrice = response.data.order_price
                         this.hasEdits = false
                         alert('Изменения сохранены')
@@ -351,7 +357,6 @@ export default {
                         console.log(error);
                     })
                 }
-
             }
         },
         cancelEdit(){

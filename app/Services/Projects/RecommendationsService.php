@@ -8,21 +8,25 @@ use App\Models\Projects\Project;
 use App\Services\Search\SearchService;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Collection;
+use PhpParser\Node\Stmt\Return_;
 use Str;
 
 class RecommendationsService
 {
-    private $search;
-    private $limit;
+//    private $search;
+//    private $limit;
 
-    public function __construct(SearchService $search) {
-        $this->search = $search;
+    public function __construct(SearchService $search)
+    {
+//        $this->search = $search;
         $this->limit = env('RECOMMENDATIONS_COUNT');
     }
 
     public function getRecommendations($project_id): Collection
     {
         $project = $this->getProject($project_id);
+
+        return Project::all();
 
         $salt = Str::random(10);
         $hits = $this->search->searchRaw([
@@ -41,15 +45,16 @@ class RecommendationsService
                         ]
                     ],
                 ],
-                'sort' => [
-                    '_script' => [
-                        'script' => '(doc["_id"].value + "'.$salt.'").hashCode()',
-                        'type' => 'number',
-                        'order' => 'asc'
-                    ]
-                ]
+//                'sort' => [
+//                    '_script' => [
+//                        'script' => '(doc["_id"].value + "'.$salt.'").hashCode()',
+//                        'type' => 'number',
+//                        'order' => 'asc'
+//                    ]
+//                ]
             ]
         ]);
+//        dd($hits);
 
         $favorites = [];
         foreach ($hits as $hit) {

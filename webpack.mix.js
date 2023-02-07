@@ -17,3 +17,5 @@ mix.setPublicPath('public')
     .sass('resources/sass/app.scss', 'css')
     .sass('resources/sass/admin.scss', 'css')
     .version();
+
+mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');

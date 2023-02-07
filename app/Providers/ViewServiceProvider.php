@@ -11,12 +11,6 @@ use View;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    private $dadata;
-
-    public function register()
-    {
-        $this->dadata = $this->app->get(DadataService::class);
-    }
 
     public function boot(Request $request)
     {
@@ -26,11 +20,15 @@ class ViewServiceProvider extends ServiceProvider
             return;
         }
 
-        $current_region_name = $this->getCurrentRegionName($request);
-        $regions_list = $this->getRegionsList();
 
-        View::share('regions_list', $regions_list);
-        View::share('current_region_name', $current_region_name);
+//        $current_region_name = $this->getCurrentRegionName($request);
+//        $regions_list = $this->getRegionsList();
+//
+//        View::share('regions_list', $regions_list);
+//        View::share('current_region_name', $current_region_name);
+
+        $settings = json_decode(file_get_contents(public_path('internal/main.json')), true);
+        View::share('settings', $settings);
     }
 
     public function getRegionsList() {
@@ -42,15 +40,16 @@ class ViewServiceProvider extends ServiceProvider
             $region = Region::whereSlug($request->cookie('region'))->first()->name;
         }else {
             $ip = $request->ip();
-            $kladr = $this->dadata->getCityKladr($ip);
+//            $kladr = $this->dadata->getCityKladr($ip);
+            $kladr = null;
 
             if ($kladr) {
-                if($model = Region::whereKladr($kladr)->first()) {
+                if ($model = Region::whereKladr($kladr)->first()) {
                     $region = $model->name;
-                }else {
+                } else {
                     $region = 'moscow';
                 }
-            }else {
+            } else {
                 $region = 'moscow';
             }
         }

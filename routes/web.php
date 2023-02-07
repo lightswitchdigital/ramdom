@@ -3,10 +3,19 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
+Route::get('test', function () {
+    Mail::to('sireax@yandex.ru')->send(new \App\Mail\Auth\TestMail());
 
-Route::get('/', 'Projects\ProjectsController@index')->name('home');
+    return 'ok';
+});
+
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
+Route::post('/login/verify', 'Auth\LoginController@verify')->name('login.verify');
+
+
+Route::get('/profile/smeta/constructor', 'Profile\\SmetaController@constructorGetPrice')->name('profile.constructor.get-price');
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +125,11 @@ Route::group([
 
 //    Route::get('/', 'HomeController@index')->name('index');
 
+    Route::get('/developer', 'HomeController@developer')->name('developer');
+    Route::post('/developer/status', 'HomeController@changeStatus')->name('developer.changeStatus');
+
+    Route::post('/feedback', 'HomeController@feedback')->name('feedback');
+
     Route::group([
         'prefix' => 'projects',
         'as' => 'projects.'
@@ -151,9 +165,29 @@ Route::group([
     });
 
     Route::group([
+        'prefix' => 'smeta',
+        'as' => 'smeta.'
+    ], function () {
+
+        Route::get('/', 'SmetaController@index')->name('index');
+        Route::post('/', 'SmetaController@saveInputData')->name('index.save');
+        Route::get('/pricelist', 'SmetaController@pricelist')->name('pricelist');
+        Route::post('/pricelist', 'SmetaController@savePricelistData')->name('pricelist.save');
+        Route::get('/developers', 'SmetaController@developers')->name('developers');
+        Route::post('/developers', 'SmetaController@developersSave')->name('developers.save');
+
+        Route::get('/download-docs', 'SmetaController@downloadDocs')->name('download-docs');
+        Route::post('/download-docs/{buildReq}', 'SmetaController@downloadClientsDocs')->name('download-docs.client');
+
+        Route::get('/loan', 'SmetaController@loan')->name('loan');
+        Route::post('/request-loan', 'SmetaController@requestLoan')->name('request-loan');
+
+    });
+
+    Route::group([
         'prefix' => 'favorites',
         'as' => 'favorites.'
-    ], function() {
+    ], function () {
 
         Route::get('/', 'FavoritesController@index')->name('index');
 
@@ -191,6 +225,17 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('index');
 
+
+    Route::group([
+        'prefix' => 'documents',
+        'as' => 'documents.'
+    ], function () {
+
+        Route::get('/', 'DocumentsController@index')->name('index');
+        Route::post('/upload', 'DocumentsController@uploadDocs')->name('upload-docs');
+
+    });
+
 });
 
 /*
@@ -208,6 +253,7 @@ Route::group([
 ], function() {
 
     Route::get('/', 'HomeController@index')->name('index');
+    Route::post('/settings', 'HomeController@saveSettings')->name('save-settings');
 
     Route::group([
         'prefix' => 'projects',
@@ -238,21 +284,49 @@ Route::group([
     });
     Route::resource('plans', 'Plans\PlansController')->except(['create', 'store', 'destroy']);
 
+
     Route::group([
         'prefix' => 'advice',
         'as' => 'advice'
-    ], function() {
-
+    ], function () {
 
 
     });
     Route::resource('advice', 'AdviceController');
 
+
+    Route::group([
+        'prefix' => 'pricelist',
+        'as' => 'pricelist.'
+    ], function () {
+
+        Route::get("/", "PricelistController@index")->name('index');
+        Route::post("/save", "PricelistController@save")->name('save');
+
+    });
+
+
+    Route::group([
+        'prefix' => 'calculator',
+        'as' => 'calculator.',
+    ], function () {
+
+        Route::get('/', 'CalculatorController@index')->name('index');
+        Route::post('/', 'CalculatorController@update')->name('update');
+
+    });
+
+
+    Route::resource('loans', 'LoansController')->except('create', 'update', 'store', 'edit');
+    Route::group([], function () {
+
+    });
+
+
     Route::group([
         'prefix' => 'faq',
         'as' => 'faq'
-    ], function() {
-
+    ], function () {
 
 
     });
@@ -282,7 +356,9 @@ Route::group([
         'as' => 'users.'
     ], function() {
 
+        Route::post('/{user}/verify-docs', 'UsersController@verifyDocs')->name('verify-docs');
 
+        Route::get('/export', 'UsersController@export')->name('export');
 
     });
     Route::resource('users', 'UsersController');

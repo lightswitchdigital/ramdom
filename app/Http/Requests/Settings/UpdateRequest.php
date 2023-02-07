@@ -29,10 +29,18 @@ class UpdateRequest extends FormRequest
             'passport_issue' => ['nullable', 'string', 'max:255'],
             'passport_issue_date' => ['nullable', 'date'],
         ]) : array_merge($rules, [
-            'company_name' => ['required', 'string', 'max:255'],
-            'company_address' => ['required', 'string'],
-            'company_inn' => ['required', 'string', 'max:255'],
-            'company_account' => ['required', 'string', 'max:255'],
+            'company_name' => ['nullable', 'string', 'max:255'],
+            'company_address' => ['nullable', 'string'],
+            'company_inn' => ['nullable', 'string', 'max:255'],
+            'company_account' => ['nullable', 'string', 'max:255'],
+            'company_kpp' => ['nullable', 'numeric', 'max:255'],
+            'company_ogrn' => ['nullable', 'numeric', 'max:255'],
+            'company_kc' => ['nullable', 'string', 'max:255'],
+            'company_bik' => ['nullable', 'string', 'max:255'],
+
+            'company_phone' => ['nullable', 'string', 'max:255'],
+            'company_site' => ['nullable', 'string', 'max:255'],
+            'company_email' => ['nullable', 'string', 'max:255'],
         ]);
 
         return $rules;

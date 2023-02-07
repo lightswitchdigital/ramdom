@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Users\CreateRequest;
 use App\Http\Requests\Admin\Users\UpdateRequest;
 use App\Models\User;
 use App\Services\UsersService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -117,5 +119,19 @@ class UsersController extends Controller
 
         return redirect()->route('admin.users.index')
             ->with('success', 'Пользователь успешно удален.');
+    }
+
+    public function verifyDocs(User $user)
+    {
+        $user->update([
+            'docs_verified' => true
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport(), 'users.xlsx');
     }
 }

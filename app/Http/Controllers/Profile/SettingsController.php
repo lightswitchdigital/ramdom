@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UpdatePasswordRequest;
 use App\Http\Requests\Settings\UpdateRequest;
 use Auth;
+use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
@@ -34,8 +35,17 @@ class SettingsController extends Controller
             'company_name' => $request['company_name'],
             'company_address' => $request['company_address'],
             'company_inn' => $request['company_inn'],
-            'company_account' => $request['company_account']
+            'company_account' => $request['company_account'],
+            'company_kpp' => $request['company_kpp'],
+            'company_ogrn' => $request['company_ogrn'],
+            'company_kc' => $request['company_kc'],
+            'company_bik' => $request['company_bik'],
+
+            'company_phone' => $request['company_phone'],
+            'company_site' => $request['company_site'],
+            'company_email' => $request['company_email'],
         ]);
+
         $user->update($data);
 
         return redirect()->back()

@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        '/profile/smeta/pricelist',
+        '/profile/smeta/download-docs/*'
     ];
 }

@@ -1,16 +1,16 @@
 <template>
     <div class="login-block">
-        <form class="mx-auto" @submit.prevent='onSubmit'>
+        <form v-if="!isVerified" class="mx-auto" @submit.prevent='onSubmit'>
             <h1 class="title">Вход в личный кабинет</h1>
             <div v-if="message" class="alert alert-danger" role="alert">
-                {{message}}
+                {{ message }}
             </div>
             <div class="form-group">
                 <input type="text" id="login"
-                    v-model.trim="email"
-                    class="form-control"
-                    placeholder="E-mail *"
-                    :class="{'is-invalid': ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) || errors.email}">
+                       v-model.trim="email"
+                       :class="{'is-invalid': ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) || errors.email}"
+                       class="form-control"
+                       placeholder="E-mail *">
                 <small class="error-text" v-if="$v.email.$dirty && !$v.email.required">
                     введите email</small>
                 <small class="error-text" v-else-if="$v.email.$dirty && !$v.email.email">
@@ -41,6 +41,29 @@
             </div>
             <a href="/register" class="register-link">Регистрация</a>
         </form>
+        <form v-else class="mx-auto" @submit.prevent='onVerify'>
+            <h1 class="title">Введите код подтверждения</h1>
+            <div v-if="message" class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            <div class="form-group">
+                <input id="verify" v-model.trim="verify"
+                       :class="{'is-invalid': ($v.verify.$dirty && !$v.verify.required) || errors.token}"
+                       class="form-control"
+                       placeholder="Код из письма *"
+                       type="text">
+                <small v-if="$v.verify.$dirty && !$v.verify.required" class="error-text">
+                    введите код</small>
+                <small v-for="(item , index) in errors.token" :key="index" :v-if="errors.token"
+                       class="error-text">{{ item }}</small>
+            </div>
+            <div class="btn-block">
+                <button :class='{active: isDisabled}' :disabled='isDisabled' class="btn yellow-btn" type="submit">
+                    <span class="text-succes">Вы успешно вошли</span>
+                    <span class="not-disabled">Подтвердить</span>
+                </button>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -52,16 +75,20 @@ export default {
     data: () => ({
         email: '',
         password: '',
+        verify: '',
         errors: '',
         message: '',
-        isDisabled: false
+        isDisabled: false,
+        isVerified: false,
+        nextRoute: ''
     }),
     created() {
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').content
     },
     validations: {
-        email: {required , email},
-        password: {required , minLength: minLength(8)}
+        email: {required, email},
+        password: {required, minLength: minLength(8)},
+        verify: {required},
     },
     methods: {
         async onSubmit() {
@@ -75,18 +102,45 @@ export default {
                 _token: this.csrfToken
             }
 
-            axios.post('/login' , formData).then(response => {
-                if(response.status === 204){
-                   this.isDisabled = true 
-                    setTimeout(() => {
-                        window.location.href = '/'
-                    } , 1000)
+            axios.post('/login', formData).then(response => {
+                if (response.data.success) {
+                    this.message = ''
+                    this.errors = ''
+                    this.isVerified = true
+                    this.nextRoute = response.data.nextRoute
+                } else {
+                    this.message = response.data.message
                 }
             }).catch(error => {
-                this.message = error.response.data.message
+                this.message = error.message
                 this.errors = error.response.data.errors || ''
             })
-        }
+        },
+        async onVerify() {
+            if (this.$v.$invalid) {
+                this.$v.$touch()
+            }
+            const formData = {
+                token: this.verify,
+                _token: this.csrfToken
+            }
+
+            axios.post(this.nextRoute, formData).then(response => {
+                if (response.data.success) {
+                    this.errors = ''
+                    this.message = ''
+                    this.isDisabled = true
+                    setTimeout(() => {
+                        window.location.href = '/profile'
+                    }, 1000)
+                } else {
+                    this.message = response.data.message
+                }
+            }).catch(error => {
+                this.message = error.message
+                this.errors = error.response.data.errors || ''
+            })
+        },
     }
 
 }

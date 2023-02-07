@@ -8,7 +8,7 @@
                 <div class="col-md">
                     <form @submit.prevent='onSubmit'>
                         <div class="form-title">
-                            Заполните анкету, чтобы <br> <span class="with-border">зарегистритроваться</span> 
+                            Заполните анкету, чтобы <br> <span class="with-border">зарегистритроваться</span>
                         </div>
                         <div class="form-group">
                             <input type="text" id="name"
@@ -36,10 +36,11 @@
                         </div>
                         <div class="form-group">
                             <input type="text" id="phone"
-                                v-model.trim="phone"
-                                class="form-control"
-                                placeholder="Телефон"
-                                :class="{'is-invalid': ($v.phone.$dirty && !$v.phone.required) || errors.phone}">
+                                   v-mask="'+7(XXX) XXX XX XX'"
+                                   v-model.trim="phone"
+                                   :class="{'is-invalid': ($v.phone.$dirty && !$v.phone.required) || errors.phone}"
+                                   class="form-control"
+                                   placeholder="Телефон">
                             <small class="error-text" v-if="$v.phone.$dirty && !$v.phone.required">
                                 Введите телефон</small>
                             <small class="error-text" :v-if="errors.phone" v-for="(item , index) in errors.phone" :key="index">{{ item }}</small>
@@ -104,17 +105,19 @@
                     </form>
                 </div>
                 <div class="col-md form-img-col">
-                    <img src="https://www.architectureanddesign.com.au/getattachment/Projects/Houses/Designing-high-tech-cross-laminated-timber-house/The-Seed-House_FP_Ben-Guthrie_H02-1.jpg.aspx" alt="">
+                    <img alt="" src="/images/register-bg.jpg">
                 </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 <script>
-import {required , email , minLength} from 'vuelidate/lib/validators'
+import {required, email, minLength} from 'vuelidate/lib/validators'
+import {TheMask} from 'vue-the-mask'
 
 export default {
+    components: {TheMask},
     name: 'register',
     data: () => ({
         name: '',
@@ -164,11 +167,11 @@ export default {
 
             axios.post('/register' , formData).then(response => {
                 if(response.status === 204){
-                    this.isDisabled = true 
+                    this.isDisabled = true
                     setTimeout(() => {
                         window.location.href = '/login'
-                    } , 1000)
-                    
+                    }, 1000)
+
                 }
             }).catch(error => {
                 this.message = error.response.data.message

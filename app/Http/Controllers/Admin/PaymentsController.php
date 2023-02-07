@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BalanceAddMail;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentsController extends Controller
 {
@@ -42,6 +44,8 @@ class PaymentsController extends Controller
         $payment->update([
             'status' => Payment::STATUS_FINISHED
         ]);
+
+        Mail::to($user->email)->send(new BalanceAddMail($user, $payment->amount));
 
         return redirect()->route('admin.payments.index')
             ->with('success', 'Оплата успешно подтверждена');

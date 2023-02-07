@@ -14,11 +14,11 @@ class InitCommand extends Command
 
     private $client;
 
-    public function __construct(Client $client)
-    {
-        parent::__construct();
-        $this->client = $client;
-    }
+//    public function __construct(Client $client)
+//    {
+//        parent::__construct();
+//        $this->client = $client;
+//    }
 
     public function handle()
     {

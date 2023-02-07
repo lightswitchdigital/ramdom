@@ -16,13 +16,13 @@ class IndexCommand extends Command
     private $projectsIndexer;
     private $favoritesIndexer;
 
-    public function __construct(ProjectsIndexerService $projectsIndexer, FavoritesIndexerService $favoritesIndexer)
-    {
-        parent::__construct();
-
-        $this->projectsIndexer = $projectsIndexer;
-        $this->favoritesIndexer = $favoritesIndexer;
-    }
+//    public function __construct(ProjectsIndexerService $projectsIndexer, FavoritesIndexerService $favoritesIndexer)
+//    {
+//        parent::__construct();
+//
+//        $this->projectsIndexer = $projectsIndexer;
+//        $this->favoritesIndexer = $favoritesIndexer;
+//    }
 
     public function handle()
     {

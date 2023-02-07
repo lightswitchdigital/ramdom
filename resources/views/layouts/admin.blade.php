@@ -11,10 +11,21 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/admin.js') }}" defer></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/balloon/ckeditor.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea.texteditor', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+        });
+    </script>
+
 
     <!-- Styles -->
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet">

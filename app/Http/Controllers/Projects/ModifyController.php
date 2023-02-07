@@ -36,14 +36,16 @@ class ModifyController extends Controller
             foreach ($request['purchase_attributes'] as $id => $attribute) {
                 $values[$id] = $attribute;
             }
+            $price = $this->getCalculatedPrice($request['editor_attributes']);
+
             $savedProject->values_data = $values;
-            $savedProject->price = $this->getCalculatedPrice($request['editor_attributes']);
+            $savedProject->building_price = $price;
 
             $savedProject->update();
 
             return response([
                 'success' => true,
-                'order_price' => $this->getCalculatedPrice([])
+                'order_price' => $price
             ]);
         }
 
@@ -59,11 +61,13 @@ class ModifyController extends Controller
 
         $savedProject->user()->associate($user);
         $savedProject->project()->associate($project);
+        $price = $this->getCalculatedPrice($request['editor_attributes']);
+        $savedProject->building_price = $price;
 
         $savedProject->save();
 
         return response([
-            'order_price' => $this->getCalculatedPrice($project)
+            'order_price' => $price
         ]);
     }
 

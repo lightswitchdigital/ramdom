@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ $item->id }}</td>
                 <td><a href="{{ route('admin.advice.show', $item) }}">{{ $item->title }}</a></td>
-                <td>{{ $item->content }}</td>
+                <td>{!! $item->content !!}</td>
                 <td>{{ $item->created_at->format('d-m-Y') }}</td>
             </tr>
         @endforeach

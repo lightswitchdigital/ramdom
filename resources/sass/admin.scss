@@ -5,3 +5,72 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.price-list__title {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    .price-list-open-btn {
+        width: 30px;
+    }
+}
+
+.price-list__btn-group {
+    position: fixed;
+    left: 50%;
+    bottom: 60px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    .yellow-btn {
+        font-size: 14px;
+        padding: 20px 60px;
+        border: none;
+    }
+}
+
+.price-list__wrapper {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    margin-bottom: 40px;
+}
+
+.price-list__name {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.price-list__col-name {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.price-list__input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 320px;
+    width: 100%;
+}
+
+.price-list__flex {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}

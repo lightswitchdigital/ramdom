@@ -35,7 +35,6 @@ class AdviceController extends Controller
         $advice = Advice::create([
             'title' => $request['title'],
             'content' => $request['content'],
-
         ]);
         $advice->image()->create([
             'file' => $request['image']->store('advice', 'public')

@@ -9,11 +9,8 @@
             <div class="col-md">
             <div class="card-body">
                 <h4 class="card-title">{{ advice.title }}</h4>
-                <h5>Архитектурно-строительная компания</h5>
-                <p class="card-text">
-                    {{ advice.content }}
-                </p>
-                <a :href="adviceLink" class="yellow-btn">Подробнее</a>
+                <p class="card-text" v-html="advice.content"></p>
+                <a class="yellow-btn" href="/login">Подробнее</a>
             </div>
             </div>
         </div>
